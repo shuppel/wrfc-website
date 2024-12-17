@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\libraries",
     "\\my-app",
-    "\\my-app\\app",
-    "\\my-app\\components"
+    "\\my-app\\app\\fonts",
+    "\\my-app\\app\\playground",
+    "\\my-app\\app\\products",
+    "\\my-app\\app\\styles",
+    "\\public",
+    "\\public\\assets"
   ],
-  "SelectedNode": "\\styles.css",
+  "SelectedNode": "\\my-app",
   "PreviewInSolutionExplorer": false
 }
