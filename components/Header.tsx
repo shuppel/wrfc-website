@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Github, FileText } from 'lucide-react'
-import { Tooltip } from './ui/Tooltip'
+import { Tooltip } from './ui/tooltip'
 import { ThemeToggle } from './ThemeToggle'
 
 export default function Header() {
