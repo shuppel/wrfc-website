@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image from "next/image"
+import { nasalization, jetbrainsMono } from './styles/fonts'
 
 export default function Home() {
   return (

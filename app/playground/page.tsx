@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
+
 export default function Playground() {
   return (
     <div className="flex flex-col min-h-screen">
