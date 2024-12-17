@@ -17,5 +17,11 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+  "components": {
+    "tooltip": {
+      "path": "@/components/ui/tooltip",
+      "style": "default"
+    }
+  }
 }

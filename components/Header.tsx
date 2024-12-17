@@ -2,7 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Github, FileText } from 'lucide-react'
-import { Tooltip } from './ui/tooltip'
+import {
+  TooltipProvider,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { ThemeToggle } from './ThemeToggle'
 
 export default function Header() {
@@ -43,26 +47,36 @@ export default function Header() {
             </div>
           </div>
           <div className="ml-10 space-x-4 flex items-center">
-            <Tooltip content="View our GitHub">
-              <a 
-                href="https://github.com/Nodetus-Integrators-LLC" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-            </Tooltip>
-            <Tooltip content="Download Capabilities Statement">
-              <a 
-                href="/capabilities-statement.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
-              >
-                <FileText className="w-6 h-6" />
-              </a>
-            </Tooltip>
+            <TooltipProvider>
+              <TooltipTrigger>
+                <a 
+                  href="https://github.com/Nodetus-Integrators-LLC" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
+                >
+                  <Github className="w-6 h-6" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                View our GitHub
+              </TooltipContent>
+            </TooltipProvider>
+            <TooltipProvider>
+              <TooltipTrigger>
+                <a 
+                  href="/capabilities-statement.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
+                >
+                  <FileText className="w-6 h-6" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                Download Capabilities Statement
+              </TooltipContent>
+            </TooltipProvider>
             <ThemeToggle />
             <Button 
               variant="outline" 
