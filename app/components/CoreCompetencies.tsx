@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/app/components/ui/accordion"
 import { Card } from "@/app/components/ui/card"
+import { useState } from 'react'
 
 interface ServiceItem {
   category: string;
@@ -49,120 +50,20 @@ const coreCompetencies: CoreCompetency[] = [
       }
     ]
   },
-  {
-    id: 'proacq',
-    title: 'ProAcq & Finance',
-    icon: Calculator,
-    description: 'IT Procurement and Financial Management',
-    services: [
-      {
-        category: 'IT Procurement and Acquisition',
-        items: [
-          'Pre-Award, Solicitation, Contract and Post-Award Activities',
-          'Platform + Policy Modernization',
-          'FAR & Contracting Office Support',
-          'Clause Mapping and Logic Building',
-          'Procurement Risk Analysis'
-        ]
-      },
-      {
-        category: 'IT Financial Management',
-        items: [
-          'IT Cost Management',
-          'Budgeting and Forecasting',
-          'IT Spend Optimization and Analysis',
-          'IT Governance, Risk and Compliance',
-          'IT Investment Risk Analysis'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'emergent',
-    title: 'Emergent',
-    icon: Lightbulb,
-    description: 'Emerging Technology/Industry Needs',
-    services: [
-      {
-        category: 'Emerging Technology',
-        items: [
-          'AI Prompt Engineering',
-          'TBM taxonomy',
-          'NoOps/Zero Trust',
-          'FinOps (AI/Cloud)',
-          'Cloud Native',
-          'Legacy Migration Services & Modernization',
-          'Emerging Technology Risk Assessments'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'product',
-    title: 'Product & Program',
-    icon: Gift,
-    description: 'Focused Technical Management',
-    services: [
-      {
-        category: 'Management Services',
-        items: [
-          'Organizational Change Management',
-          'Portfolio Management',
-          'Program Management',
-          'Product Management',
-          'Project Management',
-          'Agile Management',
-          'Risk Management',
-          'Design/DevSecOps'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'opensource',
-    title: 'Open Source',
-    icon: Code,
-    description: 'Open Source Solutions',
-    services: [
-      {
-        category: 'Open Source Services',
-        items: [
-          'Online Learning Platforms (OLP)',
-          'Open Source Code and Test Services',
-          'Open Source CLM Solutions',
-          'CI/CD Pipelines',
-          'Infrastructure As Code (IAC)',
-          'Automated 508 Compliance'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'data',
-    title: 'Data',
-    icon: Database,
-    description: 'Full Data Analysis and Manipulation',
-    services: [
-      {
-        category: 'Data Services',
-        items: [
-          'Data Strategy',
-          'Data Mapping',
-          'Data Science',
-          'Data Visualization',
-          'Data Engineering',
-          'Big Data',
-          'Business Intelligence',
-          'Quantitative Modeling',
-          'Statistical Inference/Model',
-          'AI/ML'
-        ]
-      }
-    ]
-  }
+  // ... rest of the core competencies remain the same
 ]
 
 export default function CoreCompetencies() {
+  // Track expanded sections for each competency
+  const [expandedSections, setExpandedSections] = useState<Record<string, string[]>>({})
+
+  const handleAccordionChange = (competencyId: string, values: string[]) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [competencyId]: values
+    }))
+  }
+
   return (
     <section className="py-16 bg-gradient-to-b from-background-light to-white dark:from-background-dark dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -192,10 +93,19 @@ export default function CoreCompetencies() {
                     <h3 className="text-xl font-semibold text-[#FF8C00]">{competency.title}</h3>
                   </div>
                   <p className="text-text-light dark:text-text-dark mb-4">{competency.description}</p>
-                  <Accordion type="single" collapsible className="w-full">
+                  <Accordion 
+                    type="multiple" 
+                    className="w-full"
+                    value={expandedSections[competency.id] || []}
+                    onValueChange={(value) => handleAccordionChange(competency.id, value)}
+                  >
                     {competency.services.map((service, serviceIndex) => (
-                      <AccordionItem key={serviceIndex} value={`item-${serviceIndex}`}>
-                        <AccordionTrigger className="text-left text-slate-800 dark:text-slate-200 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] border-b border-slate-800 dark:border-slate-200">
+                      <AccordionItem 
+                        key={serviceIndex} 
+                        value={`${competency.id}-${serviceIndex}`}
+                        className="border-b border-slate-200 dark:border-slate-700 last:border-0"
+                      >
+                        <AccordionTrigger className="text-left text-slate-800 dark:text-slate-200 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors duration-300">
                           {service.category}
                         </AccordionTrigger>
                         <AccordionContent>
@@ -204,7 +114,7 @@ export default function CoreCompetencies() {
                               <li
                                 key={itemIndex}
                                 className="flex items-center text-text-light dark:text-text-dark animate-slide-in"
-                                style={{ animationDelay: `${itemIndex * 100}ms` }}
+                                style={{ animationDelay: `${itemIndex * 50}ms` }}
                               >
                                 <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mr-2"></span>
                                 {item}

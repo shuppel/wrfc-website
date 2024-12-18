@@ -1,4 +1,27 @@
+'use client'
+
 import { Cloud, Code, Database, Lock } from 'lucide-react'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion"
+import { Card } from "@/app/components/ui/card"
+import { useState } from 'react'
+
+interface ServiceItem {
+  category: string;
+  items: string[];
+}
+
+interface CoreCompetency {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  description: string;
+  services: ServiceItem[];
+}
 
 const services = [
   {
@@ -24,6 +47,15 @@ const services = [
 ]
 
 export default function Services() {
+  const [expandedSections, setExpandedSections] = useState<Record<string, string[]>>({})
+
+  const handleAccordionChange = (serviceId: string, values: string[]) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [serviceId]: values
+    }))
+  }
+
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
