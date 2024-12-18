@@ -218,12 +218,12 @@ body {
 }
 
 @keyframes accordion-down {
-  0% {
+  from {
     height: 0;
     opacity: 0;
     transform: translateY(-8px);
   }
-  100% {
+  to {
     height: var(--radix-accordion-content-height);
     opacity: 1;
     transform: translateY(0);
@@ -231,12 +231,12 @@ body {
 }
 
 @keyframes accordion-up {
-  0% {
+  from {
     height: var(--radix-accordion-content-height);
     opacity: 1;
     transform: translateY(0);
   }
-  100% {
+  to {
     height: 0;
     opacity: 0;
     transform: translateY(-8px);
@@ -244,10 +244,64 @@ body {
 }
 
 .animate-accordion-down {
-  animation: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .animate-accordion-up {
-  animation: accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Core Competencies specific styles */
+.independent-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .independent-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .independent-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.independent-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.independent-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Dark mode support */
+.dark .independent-card {
+  background: rgb(31, 41, 55);
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
 }
 

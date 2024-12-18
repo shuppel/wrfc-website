@@ -36,14 +36,23 @@ export default function Hero() {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <Image
-          src="/placeholder.svg"
-          alt="Team collaborating in modern office space"
-          width={1920}
-          height={1080}
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          priority
-        />
+        <div className="relative h-56 w-full sm:h-72 md:h-96 lg:h-full">
+          <Image
+            src="/assets/hero-workspace.png"
+            alt="Team collaborating in modern office space"
+            width={1792}
+            height={1024}
+            className="h-full w-full object-cover"
+            priority
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+              // TypeScript requires type assertion for currentTarget
+              const img = e.currentTarget as HTMLImageElement;
+              img.src = '/assets/fallback-workspace.png';
+              img.onerror = null; // Prevents infinite loop if fallback also fails
+            }}
+          />
+        </div>
       </div>
     </div>
   )
