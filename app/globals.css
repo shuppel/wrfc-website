@@ -2,7 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles for independent container architecture */
+:root {
+  --transition-timing: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1a1a1a;
+}
+
+/* Grid container for independent items */
+.independent-grid {
+  display: grid;
+  align-items: start;
+  gap: 1rem;
+  grid-auto-rows: min-content;
+  width: 100%;
+}
+
+/* Container wrapper with dynamic sizing */
+.independent-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  height: auto;
+  transition: height var(--transition-timing),
+              transform var(--transition-timing);
+  will-change: transform, height;
+}
+
+/* Card component with responsive sizing */
+.independent-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg-light);
+  height: fit-content;
+  min-height: min-content;
+  transition: height var(--transition-timing);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .independent-card {
+    background-color: var(--card-bg-dark);
+  }
+}
+
+/* Content area with smooth transitions */
+.independent-content {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: min-content;
+  transition: all var(--transition-timing);
+}
+
+/* Expandable section with overflow control */
+.independent-expandable {
+  overflow: hidden;
+  transition: max-height var(--transition-timing);
+}
+
+/* Utility classes for specific behaviors */
+.maintain-height {
+  height: var(--dynamic-height, auto);
+}
+
+.smooth-resize {
+  transition: height var(--transition-timing);
+}
+
+.prevent-collapse {
+  min-height: min-content;
+}
+
 @layer base {
+  .container-reset {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
   :root {
     --background: 36 100% 97%;
     --foreground: 20 14.3% 4.1%;
@@ -26,6 +104,7 @@
     --radius: 0.75rem;
   }
 }
+    
 
 .bg-paper {
   background-image: 
@@ -50,7 +129,60 @@ body {
   opacity: 0.8;
 }
 
+
+@layer components {
+  /* Main grid container for independent items */
+  .independent-grid {
+    @apply grid items-start gap-4;
+    grid-auto-rows: min-content;
+    width: 100%;
+  }
+
+  /* Individual container wrapper */
+  .independent-container {
+    @apply relative flex flex-col;
+    min-height: fit-content;
+    height: auto;
+    transition: height 0.3s ease-in-out, transform 0.3s ease-in-out;
+    will-change: transform, height;
+  }
+
+  /* Card component with dynamic sizing */
+  .independent-card {
+    @apply flex flex-col bg-white dark:bg-gray-800;
+    height: fit-content;
+    min-height: min-content;
+    transition: height 0.3s ease-in-out;
+  }
+
+  /* Content area with smooth transitions */
+  .independent-content {
+    @apply flex flex-col;
+    height: auto;
+    min-height: min-content;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Expandable section wrapper */
+  .independent-expandable {
+    @apply overflow-hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
 @layer utilities {
+  /* Helper classes for specific behaviors */
+  .maintain-height {
+    height: var(--dynamic-height, auto);
+  }
+
+  .smooth-resize {
+    transition: height 0.3s ease-in-out;
+  }
+
+  .prevent-collapse {
+    min-height: min-content;
+  }
+
   .animate-fade-in {
     opacity: 0;
     animation: fadeInUp 0.5s ease-out forwards;
@@ -118,3 +250,4 @@ body {
 .animate-accordion-up {
   animation: accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+

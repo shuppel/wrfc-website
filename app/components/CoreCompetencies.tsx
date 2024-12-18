@@ -50,11 +50,120 @@ const coreCompetencies: CoreCompetency[] = [
       }
     ]
   },
-  // ... rest of the core competencies remain the same
+  {
+    id: 'proacq',
+    title: 'ProAcq & Finance',
+    icon: Calculator,
+    description: 'IT Procurement and Financial Management',
+    services: [
+      {
+        category: 'IT Procurement and Acquisition',
+        items: [
+          'Pre-Award, Solicitation, Contract and Post-Award Activities',
+          'Platform + Policy Modernization',
+          'FAR & Contracting Office Support',
+          'Clause Mapping and Logic Building',
+          'Procurement Risk Analysis'
+        ]
+      },
+      {
+        category: 'IT Financial Management',
+        items: [
+          'IT Cost Management',
+          'Budgeting and Forecasting',
+          'IT Spend Optimization and Analysis',
+          'IT Governance, Risk and Compliance',
+          'IT Investment Risk Analysis'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'emergent',
+    title: 'Emergent',
+    icon: Lightbulb,
+    description: 'Emerging Technology/Industry Needs',
+    services: [
+      {
+        category: 'Emerging Technology',
+        items: [
+          'AI Prompt Engineering',
+          'TBM taxonomy',
+          'NoOps/Zero Trust',
+          'FinOps (AI/Cloud)',
+          'Cloud Native',
+          'Legacy Migration Services & Modernization',
+          'Emerging Technology Risk Assessments'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'product',
+    title: 'Product & Program',
+    icon: Gift,
+    description: 'Focused Technical Management',
+    services: [
+      {
+        category: 'Management Services',
+        items: [
+          'Organizational Change Management',
+          'Portfolio Management',
+          'Program Management',
+          'Product Management',
+          'Project Management',
+          'Agile Management',
+          'Risk Management',
+          'Design/DevSecOps'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'opensource',
+    title: 'Open Source',
+    icon: Code,
+    description: 'Open Source Solutions',
+    services: [
+      {
+        category: 'Open Source Services',
+        items: [
+          'Online Learning Platforms (OLP)',
+          'Open Source Code and Test Services',
+          'Open Source CLM Solutions',
+          'CI/CD Pipelines',
+          'Infrastructure As Code (IAC)',
+          'Automated 508 Compliance'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'data',
+    title: 'Data',
+    icon: Database,
+    description: 'Full Data Analysis and Manipulation',
+    services: [
+      {
+        category: 'Data Services',
+        items: [
+          'Data Strategy',
+          'Data Mapping',
+          'Data Science',
+          'Data Visualization',
+          'Data Engineering',
+          'Big Data',
+          'Business Intelligence',
+          'Quantitative Modeling',
+          'Statistical Inference/Model',
+          'AI/ML'
+        ]
+      }
+    ]
+  }
 ]
 
 export default function CoreCompetencies() {
-  // Track expanded sections for each competency
   const [expandedSections, setExpandedSections] = useState<Record<string, string[]>>({})
 
   const handleAccordionChange = (competencyId: string, values: string[]) => {
@@ -67,25 +176,23 @@ export default function CoreCompetencies() {
   return (
     <section className="py-16 bg-gradient-to-b from-background-light to-white dark:from-background-dark dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-right mb-12 animate-fade-in">
+        <div className="text-right mb-12">
           <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
             Core Competencies<sup className="text-[0.6em] font-mono">expertise</sup>
           </h2>
           <p className="text-xl text-text-light dark:text-text-dark sm:text-lg md:text-xl font-mono ml-auto max-w-2xl">
-            Transforming federal IT through strategic innovation and operational excellence. 
-            Where vision meets execution in government technology solutions.
+            Transforming federal IT through strategic innovation and operational excellence.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="independent-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {coreCompetencies.map((competency, index) => (
             <div
               key={competency.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="independent-container"
             >
-              <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 border-primary-light dark:border-primary-dark border-opacity-20">
-                <div className="p-6">
+              <Card className="independent-card hover:shadow-lg transition-shadow duration-300 border-primary-light dark:border-primary-dark border-opacity-20">
+                <div className="p-6 flex flex-col h-full">
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20 mr-4">
                       <competency.icon className="w-6 h-6 text-[#FF8C00]" />
@@ -95,9 +202,9 @@ export default function CoreCompetencies() {
                   <p className="text-text-light dark:text-text-dark mb-4">{competency.description}</p>
                   <Accordion 
                     type="multiple" 
-                    className="w-full"
                     value={expandedSections[competency.id] || []}
                     onValueChange={(value) => handleAccordionChange(competency.id, value)}
+                    className="w-full"
                   >
                     {competency.services.map((service, serviceIndex) => (
                       <AccordionItem 
@@ -113,11 +220,10 @@ export default function CoreCompetencies() {
                             {service.items.map((item, itemIndex) => (
                               <li
                                 key={itemIndex}
-                                className="flex items-center text-text-light dark:text-text-dark animate-slide-in"
-                                style={{ animationDelay: `${itemIndex * 50}ms` }}
+                                className="flex items-start gap-2 text-text-light dark:text-text-dark"
                               >
-                                <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mr-2"></span>
-                                {item}
+                                <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mt-2"></span>
+                                <span>{item}</span>
                               </li>
                             ))}
                           </ul>
