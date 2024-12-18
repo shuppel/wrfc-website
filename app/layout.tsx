@@ -14,8 +14,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${nasalization.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-300">
+    <html 
+      lang="en" 
+      className={`${nasalization.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body 
+        className={`min-h-screen bg-background font-geist antialiased ${jetbrainsMono.className}`}
+      >
         <ThemeProvider>
           {children}
         </ThemeProvider>

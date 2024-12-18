@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Cloud, Code, Database, Lock } from 'lucide-react'
 
 const services = [
@@ -41,12 +40,10 @@ export default function Services() {
         <div className="mt-10">
           <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={service.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative"
+                className="relative animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <dt>
                   <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
@@ -55,7 +52,7 @@ export default function Services() {
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{service.name}</p>
                 </dt>
                 <dd className="mt-2 ml-16 text-base text-gray-500">{service.description}</dd>
-              </motion.div>
+              </div>
             ))}
           </dl>
         </div>

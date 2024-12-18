@@ -2,14 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\libraries",
-    "\\my-app",
-    "\\my-app\\app\\fonts",
-    "\\my-app\\app\\playground",
-    "\\my-app\\app\\products",
-    "\\my-app\\app\\styles",
     "\\public",
     "\\public\\assets"
   ],
-  "SelectedNode": "\\my-app",
+  "SelectedNode": "\\public\\.gitignore",
   "PreviewInSolutionExplorer": false
 }

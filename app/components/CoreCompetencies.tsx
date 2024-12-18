@@ -1,16 +1,28 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Gift, Code, Database, Clipboard, Calculator, Lightbulb } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Card } from "@/components/ui/card"
+} from "@/app/components/ui/accordion"
+import { Card } from "@/app/components/ui/card"
 
-const coreCompetencies = [
+interface ServiceItem {
+  category: string;
+  items: string[];
+}
+
+interface CoreCompetency {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  description: string;
+  services: ServiceItem[];
+}
+
+const coreCompetencies: CoreCompetency[] = [
   {
     id: 'audit',
     title: 'IT Audit & Advisory',
@@ -154,12 +166,7 @@ export default function CoreCompetencies() {
   return (
     <section className="py-16 bg-gradient-to-b from-background-light to-white dark:from-background-dark dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-right mb-12"
-        >
+        <div className="text-right mb-12 animate-fade-in">
           <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
             Core Competencies<sup className="text-[0.6em] font-mono">expertise</sup>
           </h2>
@@ -167,15 +174,14 @@ export default function CoreCompetencies() {
             Transforming federal IT through strategic innovation and operational excellence. 
             Where vision meets execution in government technology solutions.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {coreCompetencies.map((competency, index) => (
-            <motion.div
+            <div
               key={competency.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300 border-primary-light dark:border-primary-dark border-opacity-20">
                 <div className="p-6">
@@ -195,16 +201,14 @@ export default function CoreCompetencies() {
                         <AccordionContent>
                           <ul className="space-y-2">
                             {service.items.map((item, itemIndex) => (
-                              <motion.li
+                              <li
                                 key={itemIndex}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: itemIndex * 0.1 }}
-                                className="flex items-center text-text-light dark:text-text-dark"
+                                className="flex items-center text-text-light dark:text-text-dark animate-slide-in"
+                                style={{ animationDelay: `${itemIndex * 100}ms` }}
                               >
                                 <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mr-2"></span>
                                 {item}
-                              </motion.li>
+                              </li>
                             ))}
                           </ul>
                         </AccordionContent>
@@ -213,11 +217,10 @@ export default function CoreCompetencies() {
                   </Accordion>
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   )
 }
-
