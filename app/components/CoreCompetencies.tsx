@@ -28,24 +28,33 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'audit',
     title: 'IT Audit & Advisory',
     icon: Clipboard,
-    description: 'Comprehensive IT audit and advisory services',
+    description: 'Comprehensive IT assessment and advisory services focusing on security, compliance, and modernization strategies',
     services: [
       {
         category: 'IT Audit',
         items: [
-          'SaaS Product Testing, Validation and Benchmarking',
-          'Transformation & Organizational Architecture Discovery',
-          'Analysis of Alternatives and Product Procurement Advisory',
-          'Functional Requirements Mapping and System Engineering',
-          'IT Product Risk Analysis & Assessments'
+          'SaaS Product Testing & Validation',
+          'IT Architecture Assessment',
+          'Product Selection & Integration Strategy',
+          'System Engineering & Requirements Analysis'
         ]
       },
       {
-        category: 'Advisory/Consulting Services',
+        category: 'Cybersecurity',
         items: [
-          'U3 (User Experience, Interaction Design, Research)',
-          'Customer Experience (CX) and IT Service Management (ITSM)',
-          'FinOps and IT Spend Modernization'
+          'Security Architecture Assessment',
+          'Zero Trust Implementation',
+          'Security Compliance Consulting (NIST, FedRAMP)',
+          'Cloud Security Posture Management'
+        ]
+      },
+      {
+        category: 'AI/ML Services',
+        items: [
+          'LLM Implementation & Integration',
+          'AI Model Validation & Testing',
+          'Responsible AI Framework Development',
+          'AI Security & Compliance'
         ]
       }
     ]
@@ -54,46 +63,42 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'proacq',
     title: 'ProAcq & Finance',
     icon: Calculator,
-    description: 'IT Procurement and Financial Management',
+    description: 'Federal IT Procurement Excellence',
     services: [
       {
-        category: 'IT Procurement and Acquisition',
+        category: 'IT Procurement',
         items: [
-          'Pre-Award, Solicitation, Contract and Post-Award Activities',
-          'Platform + Policy Modernization',
+          'Pre-Award Strategy & Solicitation',
           'FAR & Contracting Office Support',
           'Clause Mapping and Logic Building',
-          'Procurement Risk Analysis'
+          'IT Acquisition Risk Management'
         ]
       },
       {
         category: 'IT Financial Management',
         items: [
-          'IT Cost Management',
-          'Budgeting and Forecasting',
-          'IT Spend Optimization and Analysis',
-          'IT Governance, Risk and Compliance',
-          'IT Investment Risk Analysis'
+          'IT Cost Optimization',
+          'FinOps Implementation',
+          'IT Investment Strategy',
+          'Cloud Cost Management'
         ]
       }
     ]
   },
   {
     id: 'emergent',
-    title: 'Emergent',
+    title: 'Emergent Tech',
     icon: Lightbulb,
-    description: 'Emerging Technology/Industry Needs',
+    description: 'Next-Gen Technology Integration',
     services: [
       {
-        category: 'Emerging Technology',
+        category: 'Innovation Services',
         items: [
-          'AI Prompt Engineering',
-          'TBM taxonomy',
-          'NoOps/Zero Trust',
-          'FinOps (AI/Cloud)',
-          'Cloud Native',
-          'Legacy Migration Services & Modernization',
-          'Emerging Technology Risk Assessments'
+          'AI Prompt Engineering Consulting',
+          'Mixed Reality/AR Solutions',
+          '3D Printing/Modeling R&D',
+          'Zero Trust Architecture',
+          'Cloud Native Transformation'
         ]
       }
     ]
@@ -102,61 +107,33 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'product',
     title: 'Product & Program',
     icon: Gift,
-    description: 'Focused Technical Management',
+    description: 'Technical Program Leadership',
     services: [
       {
         category: 'Management Services',
         items: [
-          'Organizational Change Management',
-          'Portfolio Management',
-          'Program Management',
-          'Product Management',
-          'Project Management',
-          'Agile Management',
-          'Risk Management',
-          'Design/DevSecOps'
-        ]
-      }
-    ]
-  },
-  {
-    id: 'opensource',
-    title: 'Open Source',
-    icon: Code,
-    description: 'Open Source Solutions',
-    services: [
-      {
-        category: 'Open Source Services',
-        items: [
-          'Online Learning Platforms (OLP)',
-          'Open Source Code and Test Services',
-          'Open Source CLM Solutions',
-          'CI/CD Pipelines',
-          'Infrastructure As Code (IAC)',
-          'Automated 508 Compliance'
+          'Federal IT Portfolio Management',
+          'Agile Program Management',
+          'DevSecOps Implementation',
+          'Technical Risk Management'
         ]
       }
     ]
   },
   {
     id: 'data',
-    title: 'Data',
+    title: 'Data Engineering',
     icon: Database,
-    description: 'Full Data Analysis and Manipulation',
+    description: 'Enterprise Data Solutions',
     services: [
       {
         category: 'Data Services',
         items: [
-          'Data Strategy',
-          'Data Mapping',
-          'Data Science',
-          'Data Visualization',
-          'Data Engineering',
-          'Big Data',
-          'Business Intelligence',
-          'Quantitative Modeling',
-          'Statistical Inference/Model',
-          'AI/ML'
+          'Data Architecture & Engineering',
+          'AI/ML Pipeline Development',
+          'Data Security & Governance',
+          'Business Intelligence Solutions',
+          'Quantitative Analysis'
         ]
       }
     ]
@@ -198,9 +175,11 @@ export default function CoreCompetencies() {
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20 mr-4">
                       <competency.icon className="w-6 h-6 text-[#FF8C00]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-[#FF8C00]">{competency.title}</h3>
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#FF8C00]">{competency.title}</h3>
+                      <p className="text-sm text-text-light dark:text-text-dark opacity-75">{competency.description}</p>
+                    </div>
                   </div>
-                  <p className="text-text-light dark:text-text-dark mb-4">{competency.description}</p>
                   <div className="flex-grow">
                     <Accordion 
                       type="multiple" 

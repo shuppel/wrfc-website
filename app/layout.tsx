@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { nasalization, jetbrainsMono } from './styles/fonts'
+import Header from '@/app/components/Header'
+import Footer from '@/app/components/Footer'
+import { ThemeProvider } from '@/app/contexts/ThemeContext'
 import './globals.css'
-import { ThemeProvider } from './contexts/ThemeContext'
 
 export const metadata: Metadata = {
-  title: 'Nodetus.Com',
-  description: 'Your expandable web solution',
+  title: 'Nodetus',
+  description: 'Federal IT Solutions',
 }
 
 export default function RootLayout({
@@ -14,16 +15,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html 
-      lang="en" 
-      className={`${nasalization.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
-      <body 
-        className={`min-h-screen bg-background font-geist antialiased ${jetbrainsMono.className}`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body>
         <ThemeProvider>
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
