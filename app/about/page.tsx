@@ -334,7 +334,7 @@ export default function AboutPage() {
                   <Users className="w-5 h-5 text-[#FF8C00]" />
                   Professional Organizations
                 </h4>
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {[
                     {
                       org: 'ACT-IAC',
