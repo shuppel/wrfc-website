@@ -1,8 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import { Linkedin, Rocket, Shield, Binary, Target, Zap, AlertCircle, DollarSign, Clock, Book, Users } from 'lucide-react'
+import { Linkedin, Rocket, Shield, Binary, Target, Zap, AlertCircle, DollarSign, Clock, Book, Users, Music, GraduationCap, Code, Brain, Github, ChevronDown } from 'lucide-react'
 import { Card } from "@/app/components/ui/card"
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion"
 import { 
   Tooltip, 
   TooltipContent, 
@@ -60,6 +66,22 @@ export default function AboutPage() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <a 
+                              href="https://github.com/shuppel"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-3 rounded-full hover:bg-gray-50 dark:hover:bg-gray-800/20 transition-all duration-300 group hover:shadow-[0_0_10px_rgba(36,41,47,0.3)]"
+                            >
+                              <Github className="w-7 h-7 text-gray-400 group-hover:text-[#24292F] dark:group-hover:text-white" />
+                            </a>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Check out my GitHub</p>
+                          </TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <a 
                               href="https://www.goodreads.com/shupp-erikk"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -70,6 +92,28 @@ export default function AboutPage() {
                           </TooltipTrigger>
                           <TooltipContent>
                             <p>Follow my reading list on Goodreads</p>
+                          </TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <a 
+                              href="https://open.spotify.com/playlist/78PSlJ2q5NuRaJ8tsG8TqX?si=ok3aQv7ZRiioLpwevsyC3Q"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-3 rounded-full hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 group hover:shadow-[0_0_10px_rgba(29,185,84,0.3)]"
+                            >
+                              <svg 
+                                className="w-7 h-7 text-gray-400 group-hover:text-[#1DB954]" 
+                                viewBox="0 0 24 24" 
+                                fill="currentColor"
+                              >
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                              </svg>
+                            </a>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Listen to my NodeLabs playlist</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -94,7 +138,7 @@ export default function AboutPage() {
                 </p>
                 <p className="leading-relaxed">
                   At Nodetus, we've built our foundation on the principles of diligence, precision, and 
-                  unwavering commitment to excellence - values I always applauded the east meets west mentality when it comes to technology. It's what makes us great, reinvention in the apperceptive lens.
+                  unwavering commitment to excellence - values I always taken the best features of different cultures being in the diverse Northern Virginia area my whole life, I was lucky to be exposed to numerous cultures and have taken the east meets west mentality when it comes to technology. It's what makes us great, reinvention in the apperceptive lens.
                 </p>
 
                 {/* Pet Peeves Section */}
@@ -135,7 +179,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold text-[#FF8C00] mb-6">Professional Journey</h3>
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
                 <p className="leading-relaxed">
-                  Erikk started with an English degree, then got a Master's in Technology Management and has since evolved into technology through open source learning. His unique journey from soft-skills to hard-skills shaped a holistic perspective spanning design, development and business. "The evolution of artificial intelligence - from LLMs to agentic models with human-in-the-loop, to models with human-like authenticators, and ultimately AGI - will dictate technology's future. Yet technology, however revolutionary, must remain secondary to human experience. In this sense, I am not a technologist - my heart forever resides with humanity." Erikk's focus is still the people, the people who propel agencies and missions that benefit the people built by the people.
+                  Erikk started with an English degree, then got a Master's in Technology Management and has since evolved into technology through open source learning. His unique journey from soft-skills to hard-skills shaped a holistic perspective spanning design, development and business. "The evolution of artificial intelligence - from LLMs to agentic models with human-in-the-loop, to models with human-like authenticators, and ultimately AGI - will dictate technology's future. Yet technology, however revolutionary, must remain secondary to human experience. In this sense, I am not a technologist - my heart forever resides with humanity." Erikk's focus is still the people, the people who propel agencies and missions that benefit the people built by the people. Erikk's hobbies include rugby, music (guitar), traveling abroad, learning languages, 3d printing, building custom computers, keyboards and IoT devices and reading.
                 </p>
                 <div className="mt-6">
                   <h4 className="text-xl font-semibold text-[#FF8C00] mb-4">Core Values</h4>
@@ -237,34 +281,50 @@ export default function AboutPage() {
               {/* Metrics Section */}
               <div className="lg:col-span-3 mt-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {[
-                    {
-                      metric: '$8M+',
-                      label: 'Portfolio Managed',
-                      icon: DollarSign
-                    },
-                    {
-                      metric: '6+',
-                      label: 'Federal Programs',
-                      icon: Binary
-                    },
-                    {
-                      metric: '5/5',
-                      label: 'Perfect Score on CPARS as Key Personnel and SubK',
-                      icon: Target
-                    },
-                    {
-                      metric: '11.5%',
-                      label: 'Avg Cost Reduction',
-                      icon: Rocket
-                    }
-                  ].map((stat, index) => (
-                    <div key={index} className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg text-center">
-                      <stat.icon className="w-6 h-6 text-[#FF8C00] mx-auto mb-2" />
-                      <div className="text-2xl font-bold text-gray-800 dark:text-gray-200">{stat.metric}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
-                    </div>
-                  ))}
+                  <TooltipProvider delayDuration={100}>
+                    {[
+                      {
+                        metric: '$32M+',
+                        label: 'Portfolio Managed',
+                        icon: DollarSign,
+                        tooltip: "Erikk either managed or provided subject matter expertise over four projects with a combined value over ~32M for VA, TSA and NIH over the past 6 years."
+                      },
+                      {
+                        metric: '6+',
+                        label: 'Federal Programs',
+                        icon: Binary,
+                        tooltip: "Erikk has provided services as a subK on over 8 task orders, and six different government initiatives, not to mention the 15+ interfaces he's helped push to production over the past six years."
+                      },
+                      {
+                        metric: '5/5',
+                        label: 'Perfect Score on CPARS',
+                        icon: Target,
+                        tooltip: "During one task order, where Nodetus notified and mitigated a potential risk of losing valuable time downstream. Due to this effective use of time-savings and risk mitigiation using scope within a current contract, the services rendered were completed and mitigated a large risk. Due to this, the Prime had recieved its first ever perfect CPARs (with over 40+ historical contracts)."
+                      },
+                      {
+                        metric: '$4M+',
+                        label: 'Potential Cost Savings/Risk Mitigiation',
+                        icon: Rocket,
+                        tooltip: "While other modernization cost benefits can't be credibly verified, one cost that can be mentioned was the ability to complete a T&M Contract with 11.5% cost savings to total value, giving the government a 11.5% cost reduction. On the NIH contract, Nodetus had notified the leadership at OALM about potential down stream issues if the current configurations of the system were not properly mapped when migrated. Since the migration tool and team did not have an ETL or quick conversion tool, there was a risk of losing valuable time (estimated 6 to 12 months delay mitgated) by using a prexisting contract and scope to peform those tasks."
+                      }
+                    ].map((stat, index) => (
+                      <Tooltip key={index}>
+                        <TooltipTrigger asChild>
+                          <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg text-center cursor-help hover:shadow-md transition-shadow duration-300">
+                            <stat.icon className="w-6 h-6 text-[#FF8C00] mx-auto mb-2" />
+                            <div className="text-2xl font-bold text-gray-800 dark:text-gray-200">{stat.metric}</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent 
+                          className="max-w-xs p-3 bg-[#FFF9F0] dark:bg-[#2A2520] shadow-lg rounded-lg animate-tooltip-fade"
+                          sideOffset={5}
+                        >
+                          <p className="text-sm text-gray-700 dark:text-gray-200">{stat.tooltip}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </TooltipProvider>
                 </div>
               </div>
 
@@ -292,6 +352,23 @@ export default function AboutPage() {
                       ],
                       status: 'Active Member'
                     },
+                    {
+                      org: 'Project Management Institute (PMI)',
+                      roles: [
+                        'Member'
+                      ],
+                      status: 'Active Member'
+                    },
+                    {
+                      org: 'Washington Rugby Football Club',
+                      roles: [
+                        'Media Chair (2019-2020)',
+                        'Vice President (2021-2022)',
+                        'Fundraising Chair (2021-2023)',
+                        'Treasurer (2023-2025)'
+                      ],
+                      status: 'Executive Council'
+                    }
                   ].map((org, index) => (
                     <div key={index} className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
@@ -310,6 +387,251 @@ export default function AboutPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Learning Transcript Section */}
+              <div className="lg:col-span-3 mt-8">
+                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2 mb-4">
+                  <GraduationCap className="w-5 h-5 text-[#FF8C00]" />
+                  Open Source Learning Journey
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Technical Learning */}
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                      <div className="mb-6">
+                        <h5 className="font-medium text-[#FF8C00] flex items-center gap-2 mb-2">
+                          <Code className="w-4 h-4" />
+                          Technical Stack
+                        </h5>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                          <span className="font-bold">{66}</span> courses open-sourced and assimilated across <span className="font-bold">{11}</span> disciplines
+                        </p>
+                      </div>
+                      <div className="space-y-3">
+                        <Accordion type="single" collapsible className="w-full">
+                          {[
+                            {
+                              platform: 'Acquisition & Procurement',
+                              progress: '3/3',
+                              courses: [
+                                { name: 'Market Research CON 0040', org: 'Defense Acquisition Institute' },
+                                { name: 'IT Cost Estimation', org: 'Defense Acquisition Institute' },
+                                { name: 'Independent Government Cost Estimates (IGCE)', org: 'Defense Acquisition Institute' }
+                              ]
+                            },
+                            {
+                              platform: 'AI & Machine Learning',
+                              progress: '1/1',
+                              courses: [
+                                { name: 'Large Language Models (LLMs) - Level 2', org: 'Brillient' }
+                              ]
+                            },
+                            {
+                              platform: 'Automation & Development',
+                              progress: '8/8',
+                              courses: [
+                                { name: 'RPA Basics and Introduction to UiPath', org: 'UiPath' },
+                                { name: 'UiPath Orchestrator and Capstone Projects', org: 'UiPath' },
+                                { name: 'Data Manipulation in RPA', org: 'UiPath' },
+                                { name: 'UI Automation and Selectors', org: 'UiPath' },
+                                { name: 'Control Flow in RPA', org: 'UiPath' },
+                                { name: 'Automation Techniques in RPA', org: 'UiPath' },
+                                { name: 'Animation with JavaScript and jQuery', org: 'University of California, Davis' },
+                                { name: 'Implementing Page Navigation in a Flutter Application', org: 'Google Cloud' }
+                              ]
+                            },
+                            {
+                              platform: 'Cloud & Infrastructure',
+                              progress: '5/5',
+                              courses: [
+                                { name: 'Google Cloud Fundamentals: Core Infrastructure', org: 'Google Cloud' },
+                                { name: 'Essential Google Cloud Infrastructure: Foundation', org: 'Google Cloud' },
+                                { name: 'Linux: SSH to remote server & Networking basics for DevOps', org: 'Guided Projects' },
+                                { name: 'Peer-to-Peer Protocols and Local Area Networks', org: 'University of Colorado' },
+                                { name: 'Fundamentals of Network Communication', org: 'University of Colorado' }
+                              ]
+                            },
+                            {
+                              platform: 'Computer Science Foundations',
+                              progress: '3/3',
+                              courses: [
+                                { name: 'Introduction to Computer Science and Programming Specialization', org: 'University of London' },
+                                { name: 'How Computers Work', org: 'University of London' },
+                                { name: 'Introduction to Computer Programming', org: 'University of London' }
+                              ]
+                            },
+                            {
+                              platform: 'Cybersecurity',
+                              progress: '9/9',
+                              courses: [
+                                { name: 'Introduction to Cyber Security', org: 'TryHackMe', desc: 'Defense Security & Core Concepts' },
+                                { name: 'Network Fundamentals', org: 'TryHackMe', desc: 'OSI Model, LAN, Packets & Frames' },
+                                { name: 'How the Web Works', org: 'TryHackMe', desc: 'DNS, HTTP, Web Architecture' },
+                                { name: 'Linux Fundamentals', org: 'TryHackMe', desc: 'Parts I, II, III & Linux Shells' },
+                                { name: 'Windows & AD Fundamentals', org: 'TryHackMe', desc: 'Windows I, II, III & Active Directory Basics' },
+                                { name: 'Command Line Mastery', org: 'TryHackMe', desc: 'Windows Command Line, PowerShell & Search Skills' },
+                                { name: 'Networking', org: 'TryHackMe', desc: 'Concepts, Essentials & Core Protocols' },
+                                { name: 'Cryptography', org: 'TryHackMe', desc: 'Basic cryptography & encryption concepts' },
+                                { name: 'Exploitation Basics', org: 'TryHackMe', desc: 'Offensive Security Introduction' }
+                              ]
+                            },
+                            {
+                              platform: 'Data Engineering & Analytics',
+                              progress: '11/11',
+                              courses: [
+                                { name: 'Data Visualization', org: 'University of Illinois Chicago' },
+                                { name: 'Introduction to Statistics', org: 'Stanford University' },
+                                { name: 'Capstone: Retrieving, Processing, and Visualizing Data with Python', org: 'University of Michigan' },
+                                { name: 'Database Architecture, Scale, and NoSQL with Elasticsearch', org: 'University of Michigan' },
+                                { name: 'JSON and Natural Language Processing in PostgreSQL', org: 'University of Michigan' },
+                                { name: 'Intermediate PostgreSQL', org: 'University of Michigan' },
+                                { name: 'Database Design and Basic SQL in PostgreSQL', org: 'University of Michigan' },
+                                { name: 'Using Python to Access Web Data', org: 'University of Michigan' },
+                                { name: 'Using Databases with Python', org: 'University of Michigan' },
+                                { name: 'Python Data Structures', org: 'University of Michigan' },
+                                { name: 'Programming for Everybody (Getting Started with Python)', org: 'University of Michigan' }
+                              ]
+                            },
+                            {
+                              platform: 'Embedded Systems',
+                              progress: '3/3',
+                              courses: [
+                                { name: 'Embedded Interface Design', org: 'University of Colorado Boulder' },
+                                { name: 'Arduino Project Development', org: 'Self-Directed Learning' },
+                                { name: 'Raspberry Pi Project Development', org: 'Self-Directed Learning' }
+                              ]
+                            },
+                            {
+                              platform: 'Mathematics & Modeling',
+                              progress: '7/7',
+                              courses: [
+                                { name: 'Calculus - Level 3', org: 'Brillient' },
+                                { name: 'Linear Algebra - Level 3', org: 'Brillient' },
+                                { name: 'Fundamentals of Quantitative Modeling', org: 'University of Pennsylvania' },
+                                { name: 'Precalculus through Data and Modelling', org: 'Johns Hopkins University' },
+                                { name: 'Precalculus: Mathematical Modeling', org: 'Johns Hopkins University' },
+                                { name: 'Precalculus: Relations and Functions', org: 'Johns Hopkins University' },
+                                { name: 'Precalculus: Periodic Functions', org: 'Johns Hopkins University' }
+                              ]
+                            },
+                            {
+                              platform: 'Neuropsychology & Productivity',
+                              progress: '1/1',
+                              courses: [
+                                { name: 'Learning How to Learn: Powerful mental tools', org: 'Deep Teaching Solutions' }
+                              ]
+                            },
+                            {
+                              platform: 'UX/UI Design',
+                              progress: '12/12',
+                              courses: [
+                                { name: 'Interaction Design: 3-Day Course - Day 1', org: 'Nielsen Norman Group' },
+                                { name: 'Interaction Design: 3-Day Course - Day 2', org: 'Nielsen Norman Group' },
+                                { name: 'Interaction Design: 3-Day Course - Day 3', org: 'Nielsen Norman Group' },
+                                { name: 'Information Architecture', org: 'Nielsen Norman Group' },
+                                { name: 'Omnichannel Journeys and Customer Experience', org: 'Nielsen Norman Group' },
+                                { name: 'Managing User Experience Strategy', org: 'Nielsen Norman Group' },
+                                { name: 'DesignOps: Scaling UX Design and User Research', org: 'Nielsen Norman Group' },
+                                { name: 'UX Roadmaps', org: 'Nielsen Norman Group' },
+                                { name: 'Customer Journey Management', org: 'Nielsen Norman Group' },
+                                { name: 'User Research Methods: From Strategy to Requirements to Design', org: 'Nielsen Norman Group' },
+                                { name: 'Discoveries: Building the Right Thing', org: 'Nielsen Norman Group' },
+                                { name: 'Product and UX: Building Partnerships for Better Outcomes', org: 'Nielsen Norman Group' }
+                              ]
+                            },
+                            {
+                              platform: 'Virtual Reality Development',
+                              progress: '3/3',
+                              courses: [
+                                { name: 'Introduction to Virtual Reality', org: 'University of London' },
+                                { name: '3D Models for Virtual Reality', org: 'University of London' },
+                                { name: 'Virtual Reality Development', org: 'University of London' }
+                              ]
+                            }
+                          ].map((edu, index) => (
+                            <AccordionItem 
+                              key={index} 
+                              value={`item-${index}`}
+                              className="border-l-2 border-[#FF8C00]/20 pl-3 mb-4"
+                            >
+                              <AccordionTrigger className="hover:no-underline">
+                                <div className="flex items-center justify-between w-full pr-4">
+                                  <div className="font-medium text-gray-700 dark:text-gray-300">{edu.platform}</div>
+                                  <div className="text-sm text-[#FF8C00] font-mono">{edu.progress}</div>
+                                </div>
+                              </AccordionTrigger>
+                              <AccordionContent>
+                                <ul className="mt-1 space-y-2">
+                                  {edu.courses.map((course, idx) => (
+                                    <li key={idx} className="text-sm text-gray-600 dark:text-gray-400">
+                                      <div className="flex items-center gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#FF8C00]" />
+                                        <span>{course.name}</span>
+                                      </div>
+                                      <div className="text-xs text-gray-500 ml-3 mt-0.5">{course.org}</div>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </AccordionContent>
+                            </AccordionItem>
+                          ))}
+                        </Accordion>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Business & Leadership Learning */}
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                      <h5 className="font-medium text-[#FF8C00] flex items-center gap-2 mb-3">
+                        <Brain className="w-4 h-4" />
+                        Auxiliary Cognitive Regeneration
+                      </h5>
+                      <div className="space-y-3">
+                        {[
+                          {
+                            category: 'Key Books',
+                            items: [
+                              'Learning How to Learn - Barbara Oakley',
+                              'Designing Data-Intensive Applications - Martin Kleppmann',
+                              'Clean Code: A Handbook of Agile Software Craftsmanship - Robert Martin',
+                              'The Visual Display of Quantitative Information - Edward Tufte',
+                              'Visualization Analysis and Design - Tamara Munzner',
+                              'Introduction to Graph Theory - Richard Trudeau',
+                              'Calculus: An Intuitive and Physical Approach - Morris Kline',
+                            ]
+                          },
+                          {
+                            category: 'Industry Certifications',
+                            items: [
+                              'Nielsen Norman Group (NN/G) Master Certificate (UXMC)',
+                              'SAFe 4 Practitioner',
+                              'ITIL v4 Foundation',
+                              'Scrum Master Professional',
+                              'DAI Market Research CON 0040',
+                              'DAI IT Cost Estimation',
+                              'DAI Independent Government Cost Estimates (IGCE)',
+                              'TryHackMe - Pre-Security Learning Path Certificate'
+                            ]
+                          }
+                        ].map((section, index) => (
+                          <div key={index} className="border-l-2 border-[#FF8C00]/20 pl-3">
+                            <div className="font-medium text-gray-700 dark:text-gray-300">{section.category}</div>
+                            <ul className="mt-1 space-y-1">
+                              {section.items.map((item, idx) => (
+                                <li key={idx} className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF8C00]" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
