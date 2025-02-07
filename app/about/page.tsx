@@ -178,8 +178,8 @@ export default function AboutPage() {
             <Card className="p-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#FF8C00] mb-6">Professional Journey</h3>
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                <p className="text-gray-700 dark:text-gray-300">
-                  Erikk started with an English degree, then got a Master's in Technology Management and has since evolved into technology through open source learning. His unique journey from soft-skills to hard-skills shaped a holistic perspective spanning design, development and business. "The evolution of artificial intelligence - from LLMs to agentic models with human-in-the-loop, to models with human-like authenticators, and ultimately AGI - will dictate technology's future. Yet technology, however revolutionary, must remain secondary to human experience. In this sense, I am not a technologist - my heart forever resides with humanity." Erikk's focus is still the people, the people who propel agencies and missions that benefit the people built by the people. Erikk's hobbies include rugby, music (guitar), traveling abroad, learning languages, 3d printing, building custom computers, keyboards and IoT devices and reading.
+                <p>
+                  I&apos;m passionate about leveraging technology to enhance transparency and accountability. My journey began with &ldquo;FoiaQuest&rdquo; - a tool I developed to streamline FOIA requests. I&apos;ve also created &ldquo;NodeTus&rdquo;, and I&apos;m excited about its potential to revolutionize file uploads.
                 </p>
                 <div className="mt-6">
                   <h4 className="text-xl font-semibold text-[#FF8C00] mb-4">Core Values</h4>

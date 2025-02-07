@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import './FoiaQuest.css'
+import { useForm } from 'react-hook-form'
 
 interface Agency {
   id: string
@@ -52,6 +53,20 @@ export default function FoiaQuest() {
   const [currentCommand, setCurrentCommand] = useState('')
   const [agencies, setAgencies] = useState<Agency[]>([])
   const [loading, setLoading] = useState(true)
+
+  const { register, handleSubmit } = useForm<FormData>()
+
+  const fetchRequests = async () => {
+    setLoading(true)
+    try {
+      // Fetch implementation here
+      // setRequests(data)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     const fetchAgencies = async () => {

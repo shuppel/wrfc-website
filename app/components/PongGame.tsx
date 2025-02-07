@@ -526,6 +526,19 @@ export default function PongGame() {
     handleNavigateToMenu()
   }
 
+  useEffect(() => {
+    if (isGameStarted) {
+      startServe();
+    }
+  }, [isGameStarted, startServe]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleOpponentServe();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [handleOpponentServe]);
+
   return (
     <div>
       <style>{globalStyles}</style>
