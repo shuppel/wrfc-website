@@ -50,6 +50,10 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-2px)' },
         },
+        gradient: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -58,6 +62,7 @@ module.exports = {
         'slide-in-right': 'slide-in-right 0.5s ease-out',
         'float': 'float 3s ease-in-out infinite',
         'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+        gradient: 'gradient 15s ease infinite',
       }
     },
   },

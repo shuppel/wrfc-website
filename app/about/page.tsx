@@ -249,7 +249,7 @@ export default function AboutPage() {
                     {
                       title: 'VA EHRM Interface Management',
                       description: 'Led agile management of 15+ critical healthcare system interfaces for the Electronic Health Record Modernization program. Orchestrated successful go-live implementations across multiple VA facilities, ensuring seamless integration with legacy systems while maintaining strict compliance with HIPAA and VA security protocols.',
-                      year: '2020-2025'
+                      year: '2020-Present'
                     },
                     {
                       title: 'NIH OALM Document Generation System Modernization',
@@ -275,6 +275,37 @@ export default function AboutPage() {
                       <p className="text-sm text-gray-600 dark:text-gray-300">{project.description}</p>
                     </div>
                   ))}
+
+                  {/* Classified Project Card */}
+                  <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-[#FF8C00]/20 relative overflow-hidden group hover:shadow-md transition-all duration-300">
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <div className="flex justify-between items-start mb-2">
+                        <h5 className="font-medium text-[#FF8C00] flex items-center gap-2">
+                          <span className="text-base">🕵️‍♂️</span> Classified Project
+                        </h5>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">2025-2026</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300 italic">
+                        Currently assisting a federal agency with secure web application development. 
+                        Details classified.
+                      </p>
+                    </div>
+
+                    {/* Centered Watermark with Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/10 to-gray-900/30 dark:from-gray-900/30 dark:to-gray-900/50 group-hover:opacity-80 transition-opacity duration-300">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="transform rotate-[-15deg] opacity-20 group-hover:opacity-30 transition-all duration-300">
+                          <span className="text-6xl">🔒</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Additional Decorative Elements */}
+                    <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                      <div className="w-full h-full bg-[linear-gradient(45deg,transparent_40%,rgba(255,140,0,0.1)_45%,rgba(255,140,0,0.1)_55%,transparent_60%)] bg-[length:300%_300%] animate-gradient"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -329,7 +360,7 @@ export default function AboutPage() {
               </div>
 
               {/* Professional Organizations Section */}
-              <div className="space-y-4 mt-8">
+              <div className="lg:col-span-3 mt-8">
                 <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                   <Users className="w-5 h-5 text-[#FF8C00]" />
                   Professional Organizations
@@ -396,10 +427,10 @@ export default function AboutPage() {
                   <GraduationCap className="w-5 h-5 text-[#FF8C00]" />
                   Open Source Learning Journey
                 </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-none">
                   {/* Technical Learning */}
-                  <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                  <div className="space-y-4 w-full">
+                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg w-full">
                       <div className="mb-6">
                         <h5 className="font-medium text-[#FF8C00] flex items-center gap-2 mb-2">
                           <Code className="w-4 h-4" />
@@ -583,8 +614,8 @@ export default function AboutPage() {
                   </div>
 
                   {/* Business & Leadership Learning */}
-                  <div className="space-y-4">
-                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                  <div className="space-y-4 w-full">
+                    <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg w-full">
                       <h5 className="font-medium text-[#FF8C00] flex items-center gap-2 mb-3">
                         <Brain className="w-4 h-4" />
                         Auxiliary Cognitive Regeneration
