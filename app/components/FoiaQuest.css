@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.computer-wrapper {
+  background: transparent;
+  padding: 1rem;
+  min-height: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.monitor {
+  background: #383838;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 0 10px rgba(0,0,0,0.8),
+    0 5px 15px rgba(0,0,0,0.5);
+  position: relative;
+  max-height: 90vh;
+  width: auto;
+  aspect-ratio: 4/3;
+}
+
+.monitor::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 8px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.monitor-screen {
+  position: relative;
+  background: #000;
+  border: 20px solid #1a1a1a;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.terminal-container {
+  position: relative;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+
+.screen-header {
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: 2px solid #00ff00;
+  margin-bottom: 1rem;
+}
+
+/* Scanline effect */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* CRT flicker effect */
+.monitor-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 0, 0.02);
+  opacity: 0;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+  z-index: 9;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
+
+.terminal-output {
+  font-size: 0.8rem;
+}
+
+.terminal-input-line {
+  border-top: 1px solid #00ff00;
+  padding-top: 1rem;
+}
+
+input {
+  font-size: 0.8rem;
+}
+
+/* Custom scrollbar */
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: #001100;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: #00ff00;
+  border: 2px solid #001100;
+}
+
+/* Blinking cursor */
+.terminal-input-line::after {
+  content: '▋';
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Screen glow effect */
+.terminal-container {
+  box-shadow: 
+    inset 0 0 50px rgba(0, 255, 0, 0.1),
+    0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .monitor {
+    padding: 1rem;
+  }
+  
+  .monitor-screen {
+    border-width: 10px;
+  }
+  
+  .terminal-container {
+    font-size: 0.7rem;
+  }
+}
+
+.theater-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.nav-button {
+  position: fixed;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  font-family: 'Press Start 2P', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 51;
+}
+
+.nav-button:hover {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: rgba(0, 255, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
+}
+
+.nav-button:active {
+  transform: translateY(0);
+}
+
+.back-button {
+  top: 2rem;
+  left: 2rem;
+  font-size: 0.8rem;
+}
+
+.exit-button {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: 2px solid rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 51;
+}
+
+.exit-button:hover {
+  background: rgba(0, 255, 0, 0.1);
+  border-color: rgba(0, 255, 0, 0.3);
+  transform: scale(1.1);
+} 

@@ -82,3 +82,51 @@ p{
     line-height:1.5em;
     margin-bottom:1em;
 }
+
+.game-menu {
+  background: #1a1a1a;
+  padding: 2rem;
+  border: 4px solid #fff;
+  image-rendering: pixelated;
+}
+
+.pixel-text {
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px #000;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.game-item {
+  background: #333;
+  padding: 1rem;
+  border: 3px solid #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.game-item:hover {
+  transform: scale(1.05);
+  background: #444;
+}
+
+.pixel-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  background-size: contain;
+  image-rendering: pixelated;
+}
+
+/* Sprite icons - replace URLs with actual sprite images */
+.snake { background-image: url('snake-sprite.png'); }
+.tetris { background-image: url('tetris-sprite.png'); }
+.pong { background-image: url('pong-sprite.png'); }

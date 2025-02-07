@@ -103,8 +103,35 @@
     --ring: 24.6 95% 53.1%;
     --radius: 0.75rem;
   }
+
+  .game-title {
+    @apply font-['Press_Start_2P'] text-2xl;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .game-text {
+    @apply font-['Press_Start_2P'] text-sm;
+  }
+  
+  .game-menu-title {
+    @apply font-['Press_Start_2P'] text-4xl;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  }
 }
-    
+
+/* Alternative using CSS variable if the above doesn't work */
+@layer base {
+  .game-title {
+    font-family: var(--font-pixel);
+    @apply text-2xl;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .game-text {
+    font-family: var(--font-pixel);
+    @apply text-sm;
+  }
+}
 
 .bg-paper {
   background-image: 
@@ -168,7 +195,59 @@ body {
     @apply overflow-hidden;
     transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  .game-menu {
+    @apply w-full;
+  }
+
+  .game-grid {
+    @apply grid gap-6;
+    grid-template-columns: 1fr;
+  }
+
+  .game-item {
+    @apply bg-gray-100 dark:bg-gray-700 p-4 border-4 
+           border-white cursor-pointer text-center transition-transform;
+  }
+
+  .game-item:hover {
+    @apply scale-105 bg-gray-200 dark:bg-gray-600;
+  }
+
+  .game-item-large {
+    @apply rounded-xl overflow-hidden cursor-pointer 
+           transform transition-all duration-300 
+           hover:scale-[1.02] hover:shadow-xl
+           bg-gray-800;
+    height: 160px;
+  }
+
+  .game-sprite {
+    @apply w-20 h-20 flex-shrink-0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+  }
+
+  .game-summary {
+    max-width: 24rem;
+    transition: opacity 0.3s ease-in-out;
+  }
 }
+
+@screen md {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@screen lg {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @layer utilities {
   /* Helper classes for specific behaviors */
   .maintain-height {
@@ -303,5 +382,61 @@ body {
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Game-specific styles scoped to playground */
+.playground {
+  .game-title {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .game-text {
+    font-size: 0.875rem;
+  }
+  
+  .game-menu-title {
+    font-size: 2.25rem;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .game-menu {
+    width: 100%;
+  }
+
+  .game-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .game-item-large {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: all 300ms;
+    height: 160px;
+    background-color: rgb(31, 41, 55);
+  }
+
+  .game-item-large:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .game-sprite {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-rendering: pixelated;
+  }
+
+  .game-summary {
+    max-width: 24rem;
+    transition: opacity 0.3s ease-in-out;
+  }
 }
 

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Linkedin, Rocket, Shield, Binary, Target, Zap, AlertCircle, DollarSign, Clock, Book, Users, Music, GraduationCap, Code, Brain, Github, ChevronDown } from 'lucide-react'
+import { Linkedin, Rocket, Shield, Binary, Target, Zap, AlertCircle, DollarSign, Clock, Book, Users, GraduationCap, Code, Brain, Github } from 'lucide-react'
 import { Card } from "@/app/components/ui/card"
 import { 
   Accordion,
@@ -133,12 +133,12 @@ export default function AboutPage() {
               <h3 className="text-2xl font-bold text-[#FF8C00] mb-6">Vision & Leadership</h3>
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
                 <p className="leading-relaxed">
-                  "I think the beautiful thing about the United States, is we are a group of people from all over the world, 
-                  who have integrated into melting pot of culture, band together and compete (latin for strive together)."
+                  &quot;I think the beautiful thing about the United States, is we are a group of people from all over the world, 
+                  who have integrated into melting pot of culture, band together and compete (latin for strive together).&quot;
                 </p>
                 <p className="leading-relaxed">
-                  At Nodetus, we've built our foundation on the principles of diligence, precision, and 
-                  unwavering commitment to excellence - values I always taken the best features of different cultures being in the diverse Northern Virginia area my whole life, I was lucky to be exposed to numerous cultures and have taken the east meets west mentality when it comes to technology. It's what makes us great, reinvention in the apperceptive lens.
+                  At Nodetus, we&apos;ve built our foundation on the principles of diligence, precision, and 
+                  unwavering commitment to excellence - values I always taken the best features of different cultures being in the diverse Northern Virginia area my whole life, I was lucky to be exposed to numerous cultures and have taken the east meets west mentality when it comes to technology. It&apos;s what makes us great, reinvention in the apperceptive lens.
                 </p>
 
                 {/* Pet Peeves Section */}
@@ -178,7 +178,7 @@ export default function AboutPage() {
             <Card className="p-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-[#FF8C00] mb-6">Professional Journey</h3>
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
-                <p className="leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300">
                   Erikk started with an English degree, then got a Master's in Technology Management and has since evolved into technology through open source learning. His unique journey from soft-skills to hard-skills shaped a holistic perspective spanning design, development and business. "The evolution of artificial intelligence - from LLMs to agentic models with human-in-the-loop, to models with human-like authenticators, and ultimately AGI - will dictate technology's future. Yet technology, however revolutionary, must remain secondary to human experience. In this sense, I am not a technologist - my heart forever resides with humanity." Erikk's focus is still the people, the people who propel agencies and missions that benefit the people built by the people. Erikk's hobbies include rugby, music (guitar), traveling abroad, learning languages, 3d printing, building custom computers, keyboards and IoT devices and reading.
                 </p>
                 <div className="mt-6">

@@ -1,6 +1,6 @@
 'use client'
 
-import { Gift, Code, Database, Clipboard, Calculator, Lightbulb } from 'lucide-react'
+import { Gift, Database, Clipboard, Calculator, Lightbulb } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
