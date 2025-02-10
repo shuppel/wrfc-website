@@ -1,8 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import PongGame from '@/app/components/PongGame'
-import FoiaQuest from '@/app/components/FoiaQuest'
+import dynamic from 'next/dynamic'
+
+// Dynamically import the game components with no SSR
+const PongGame = dynamic(() => import('../components/features/PongGame/PongGame'), { ssr: false })
+const FoiaQuest = dynamic(() => import('../components/features/FoiaQuest/FoiaQuest'), { ssr: false })
+
 import { Press_Start_2P } from 'next/font/google'
 
 const pressStart2P = Press_Start_2P({

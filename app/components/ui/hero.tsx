@@ -1,7 +1,8 @@
-// app/components/Hero.tsx
+// app/components/hero.tsx
 'use client'
-import { Button } from '../components/ui/button'
+import { Button } from './button'
 import Image from 'next/image'
+import * as React from "react"
 
 export default function Hero() {
   return (

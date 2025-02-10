@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import './FoiaQuest.css'
-import { useForm } from 'react-hook-form'
 
 interface Agency {
   id: string
@@ -53,20 +52,6 @@ export default function FoiaQuest() {
   const [currentCommand, setCurrentCommand] = useState('')
   const [agencies, setAgencies] = useState<Agency[]>([])
   const [loading, setLoading] = useState(true)
-
-  const { register, handleSubmit } = useForm<FormData>()
-
-  const fetchRequests = async () => {
-    setLoading(true)
-    try {
-      // Fetch implementation here
-      // setRequests(data)
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   useEffect(() => {
     const fetchAgencies = async () => {
@@ -146,17 +131,26 @@ export default function FoiaQuest() {
           try {
             const res = await fetch(`${API_BASE}/agency/?q=${encodeURIComponent(term)}`)
             const data = await res.json()
-            response = data.results
-              .slice(0, 5)
-              .map((a: Agency) => `${a.id}: ${a.name} (${a.jurisdiction})`)
-              .join('\n')
-          } catch (error) {
-            response = 'Error: Search failed'
+            if (data.results.length === 0) {
+              response = 'No agencies found matching your search.'
+            } else {
+              response = data.results
+                .slice(0, 5)
+                .map((a: Agency) => `${a.id}: ${a.name} (${a.jurisdiction})`)
+                .join('\n')
+            }
+          } catch {
+            response = 'Error: Search failed. Please try again.'
           }
         } else if (command.startsWith('request ')) {
           const agencyId = command.slice(8)
-          await submitFoiaRequest(agencyId)
-          response = 'Processing FOIA request...'
+          const agencyExists = agencies.some(agency => agency.id === agencyId)
+          if (!agencyExists) {
+            response = 'Error: Invalid agency ID. Use the search command to find valid agency IDs.'
+          } else {
+            await submitFoiaRequest(agencyId)
+            response = 'Processing FOIA request...'
+          }
         } else {
           response = 'Unknown command. Type "help" for available commands.'
         }

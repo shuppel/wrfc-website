@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 // Global CSS for theater mode and other styling.
 const globalStyles = `
@@ -139,8 +139,8 @@ export default function PongGame() {
   const [servingPlayer, setServingPlayer] = useState<'player' | 'opponent'>('player')
   const [isWaitingForOpponentServe, setIsWaitingForOpponentServe] = useState(false)
 
-  // New state for theater mode.
-  const [isTheaterMode, setIsTheaterMode] = useState(true)
+  // Remove the unused state and just use a constant since it's always true
+  const isTheaterMode = true
 
   // Mirror state into refs for use in our continuous game loop.
   const isGameStartedRef = useRef(isGameStarted)
@@ -179,8 +179,8 @@ export default function PongGame() {
   const upPressed = useRef(false)
   const downPressed = useRef(false)
 
-  // --- Serve Logic.
-  const handleOpponentServe = () => {
+  // Wrap handleOpponentServe in useCallback
+  const handleOpponentServe = useCallback(() => {
     if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
     if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
     setIsWaitingForOpponentServe(true)
@@ -191,25 +191,27 @@ export default function PongGame() {
     failsafeTimerRef.current = setTimeout(() => {
       executeServe()
     }, 2000)
-  }
+  }, [])
 
-  const executeServe = () => {
+  // Wrap executeServe in useCallback
+  const executeServe = useCallback(() => {
     if (isServingRef.current && !isPausedRef.current && servingPlayerRef.current === 'opponent') {
       setIsServing(false)
       setIsWaitingForOpponentServe(false)
       if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
       if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
     }
-  }
+  }, [])
 
-  const startServe = () => {
+  // Wrap startServe in useCallback
+  const startServe = useCallback(() => {
     if (!isServingRef.current || isPausedRef.current) return
     if (servingPlayerRef.current === 'player') {
       setIsServing(false)
     } else if (servingPlayerRef.current === 'opponent') {
       handleOpponentServe()
     }
-  }
+  }, [handleOpponentServe])
 
   // --- Key Handlers.
   useEffect(() => {

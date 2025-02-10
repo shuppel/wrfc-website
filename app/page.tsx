@@ -1,4 +1,4 @@
-import Hero from './components/Hero'
+import Hero from '@/app/components/ui/hero'
 import MissionStatement from './components/MissionStatement'
 import CoreCompetencies from './components/CoreCompetencies'
 

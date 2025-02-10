@@ -5,6 +5,9 @@ import { ThemeProvider } from '@/app/contexts/ThemeContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
+// Initialize Inter font
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata: Metadata = {
   title: 'Nodetus',
   description: 'Federal IT Solutions',
@@ -17,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={inter.className}>
         <ThemeProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
