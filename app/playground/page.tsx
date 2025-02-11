@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 // Dynamically import the game components with no SSR
 const PongGame = dynamic(() => import('../components/features/PongGame/PongGame'), { ssr: false })
 const FoiaQuest = dynamic(() => import('../components/features/FoiaQuest/FoiaQuest'), { ssr: false })
+const SnakeGame = dynamic(() => import('../components/features/SnakeGame/SnakeGame'), { ssr: false })
 
 import { Press_Start_2P } from 'next/font/google'
 
@@ -15,7 +16,22 @@ const pressStart2P = Press_Start_2P({
   display: 'swap',
 })
 
-const games = [
+interface Game {
+  id: string;
+  name: string;
+  sprite: string;
+  background: string;
+  summary: string;
+}
+
+const games: Game[] = [
+  { 
+    id: 'scif', 
+    name: 'SCIF: The Password Hunt', 
+    sprite: '/sprites/scif.png',
+    background: '/backgrounds/scif-bg.png',
+    summary: 'Roam the quirky office searching for clues to unlock the terminal!'
+  },
   { 
     id: 'foia-quest', 
     name: 'FOIA Quest', 
@@ -39,11 +55,21 @@ const games = [
   }
 ]
 
+// Add this CSS at the top level of the component, before the return statement
+const breathingGlowStyles = `
+  @keyframes breathe {
+    0% { box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2); }
+    50% { box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.3); }
+    100% { box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2); }
+  }
+`
+
 export default function PlaygroundPage() {
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background-light to-white dark:from-background-dark dark:to-gray-900">
+      <style>{breathingGlowStyles}</style>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 className="text-4xl font-bold text-[#FF8C00] mb-8 font-nasalization">
           Playground
@@ -56,12 +82,19 @@ export default function PlaygroundPage() {
                 {games.map((game) => (
                   <div
                     key={game.id}
-                    className="game-item-large group relative"
+                    className="game-item-large group relative transition-all duration-300 hover:scale-[1.02]"
                     onClick={() => setSelectedGame(game.id)}
                     style={{
                       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${game.background})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center'
+                      backgroundPosition: 'center',
+                      animation: 'none',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.animation = 'breathe 3s ease-in-out infinite'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.animation = 'none'
                     }}
                   >
                     <div className="flex items-center p-6 h-full">
@@ -85,6 +118,7 @@ export default function PlaygroundPage() {
           ) : (
             <div className="animate-fade-in">
               {selectedGame === 'foia-quest' && <FoiaQuest />}
+              {selectedGame === 'snake' && <SnakeGame />}
               {selectedGame === 'pong' && <PongGame />}
               <button 
                 onClick={() => setSelectedGame(null)}

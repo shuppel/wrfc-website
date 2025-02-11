@@ -3,10 +3,16 @@ import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import { ThemeProvider } from '@/app/contexts/ThemeContext'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Press_Start_2P } from 'next/font/google'
 
 // Initialize Inter font
 const inter = Inter({ subsets: ['latin'] })
+
+const pressStart2P = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Nodetus',
@@ -19,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning className={pressStart2P.className}>
+      <body className={`${inter.className} bg-background text-foreground`}>
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen transition-colors duration-300">
             <Header />
             <main className="flex-grow">
               {children}

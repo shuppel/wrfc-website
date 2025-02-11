@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 
 // Global CSS for theater mode and other styling.
 const globalStyles = `
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
   @keyframes glow {
     0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
     50% { text-shadow: 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff, 0 0 30px #0ff; }
@@ -58,7 +60,7 @@ const globalStyles = `
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: white;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     cursor: pointer;
@@ -67,7 +69,7 @@ const globalStyles = `
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.2s ease;
-    font-family: 'Press Start 2P', monospace;
+    font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     z-index: 51;
@@ -168,50 +170,35 @@ export default function PongGame() {
       y: 600 / 2 - 7.5, 
       width: 15, 
       height: 15, 
-      dx: 5 * (Math.random() > 0.5 ? 1 : -1),
-      dy: 5 * (Math.random() > 0.5 ? 1 : -1)
+      dx: 3 * (Math.random() > 0.5 ? 1 : -1),
+      dy: 3 * (Math.random() > 0.5 ? 1 : -1)
     },
-    PADDLE_SPEED: 5,
-    BALL_SPEED: 5,
+    PADDLE_SPEED: 4,
+    BALL_SPEED: 3,
   })
 
   // Refs for key press states.
   const upPressed = useRef(false)
   const downPressed = useRef(false)
 
-  // Wrap handleOpponentServe in useCallback
+  // Combined serve handling logic in a single useCallback
   const handleOpponentServe = useCallback(() => {
+    const executeServe = () => {
+      if (isServingRef.current && !isPausedRef.current && servingPlayerRef.current === 'opponent') {
+        setIsServing(false)
+        setIsWaitingForOpponentServe(false)
+        if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
+        if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
+      }
+    }
+
     if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
     if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
     setIsWaitingForOpponentServe(true)
     const randomDelay = Math.random() * 1800 + 200
-    opponentServeTimerRef.current = setTimeout(() => {
-      executeServe()
-    }, randomDelay)
-    failsafeTimerRef.current = setTimeout(() => {
-      executeServe()
-    }, 2000)
-  }, [])
-
-  // Wrap executeServe in useCallback
-  const executeServe = useCallback(() => {
-    if (isServingRef.current && !isPausedRef.current && servingPlayerRef.current === 'opponent') {
-      setIsServing(false)
-      setIsWaitingForOpponentServe(false)
-      if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
-      if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
-    }
-  }, [])
-
-  // Wrap startServe in useCallback
-  const startServe = useCallback(() => {
-    if (!isServingRef.current || isPausedRef.current) return
-    if (servingPlayerRef.current === 'player') {
-      setIsServing(false)
-    } else if (servingPlayerRef.current === 'opponent') {
-      handleOpponentServe()
-    }
-  }, [handleOpponentServe])
+    opponentServeTimerRef.current = setTimeout(executeServe, randomDelay)
+    failsafeTimerRef.current = setTimeout(executeServe, 2000)
+  }, []) // No external dependencies needed since we're using refs
 
   // --- Key Handlers.
   useEffect(() => {
@@ -224,8 +211,9 @@ export default function PongGame() {
         e.preventDefault()
         if (!isGameStartedRef.current) {
           setIsGameStarted(true)
-        } else if (isServingRef.current && !isWaitingForOpponentServeRef.current) {
-          startServe()
+        } else if (isServingRef.current && servingPlayerRef.current === 'player') {
+          // Only handle serve for player, not opponent
+          setIsServing(false)
         } else if (!isServingRef.current) {
           setIsPaused(prev => !prev)
         }
@@ -251,7 +239,7 @@ export default function PongGame() {
     if (servingPlayer === 'opponent' && isServing && !isPaused && !isWaitingForOpponentServe) {
       handleOpponentServe()
     }
-  }, [servingPlayer, isServing, isPaused, isWaitingForOpponentServe])
+  }, [servingPlayer, isServing, isPaused, isWaitingForOpponentServe, handleOpponentServe])
 
   // --- Main Game Loop.
   useEffect(() => {
@@ -299,7 +287,7 @@ export default function PongGame() {
       } else {
         targetY = canvasHeight / 2 - opponent.height / 2
       }
-      const aiSpeed = 2
+      const aiSpeed = 1.5
       if (opponent.y + opponent.height / 2 < targetY) {
         opponent.y += aiSpeed
       } else if (opponent.y + opponent.height / 2 > targetY) {
@@ -395,7 +383,7 @@ export default function PongGame() {
       ctx.scale(scale, scale)
       ctx.translate(-centerX, -centerY)
       ctx.fillStyle = '#fff'
-      ctx.font = '48px "Press Start 2P", cursive'
+      ctx.font = '24px "Press Start 2P"'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       const colors = ['#0ff', '#0ff', '#fff']
@@ -407,7 +395,7 @@ export default function PongGame() {
       })
       ctx.shadowColor = 'transparent'
       ctx.shadowBlur = 0
-      ctx.font = '16px "Press Start 2P", cursive'
+      ctx.font = '12px "Press Start 2P"'
       ctx.fillText('PRESS SPACE TO START', centerX, centerY + 20)
       ctx.fillText('↑ AND ↓ TO MOVE', centerX, centerY + 60)
       ctx.fillText('SPACE TO PAUSE', centerX, centerY + 100)
@@ -425,7 +413,7 @@ export default function PongGame() {
       ctx.scale(scale, scale)
       ctx.translate(-centerX, -centerY)
       ctx.fillStyle = '#fff'
-      ctx.font = '48px "Press Start 2P", cursive'
+      ctx.font = '24px "Press Start 2P"'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       const colors = ['#0ff', '#0ff', '#fff']
@@ -437,7 +425,7 @@ export default function PongGame() {
       })
       ctx.shadowColor = 'transparent'
       ctx.shadowBlur = 0
-      ctx.font = '16px "Press Start 2P", cursive'
+      ctx.font = '12px "Press Start 2P"'
       ctx.fillText('PRESS SPACE TO RESUME', centerX, centerY + 60)
       ctx.restore()
     }
@@ -446,7 +434,7 @@ export default function PongGame() {
       ctx.fillStyle = 'black'
       ctx.fillRect(0, 0, canvasWidth, canvasHeight)
       ctx.fillStyle = 'white'
-      ctx.font = '32px Arial'
+      ctx.font = '24px "Press Start 2P"'
       ctx.textAlign = 'center'
       ctx.fillText(`${scoresRef.current.player} - ${scoresRef.current.opponent}`, canvasWidth / 2, 50)
       ctx.beginPath()
@@ -460,7 +448,7 @@ export default function PongGame() {
       ctx.fillRect(opponent.x, opponent.y, opponent.width, opponent.height)
       ctx.fillRect(ball.x, ball.y, ball.width, ball.height)
       if (isServingRef.current && !isPausedRef.current) {
-        ctx.font = '16px "Press Start 2P"'
+        ctx.font = '12px "Press Start 2P"'
         ctx.fillStyle = 'white'
         ctx.textAlign = 'center'
         if (servingPlayerRef.current === 'player') {
@@ -527,19 +515,6 @@ export default function PongGame() {
   const handleExit = () => {
     handleNavigateToMenu()
   }
-
-  useEffect(() => {
-    if (isGameStarted) {
-      startServe();
-    }
-  }, [isGameStarted, startServe]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleOpponentServe();
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [handleOpponentServe]);
 
   return (
     <div>

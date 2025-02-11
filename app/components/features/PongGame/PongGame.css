@@ -1,3 +1,6 @@
+/* Add this at the top of the file */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* Create new PongGame.css file */
 .theater-overlay {
   position: fixed;

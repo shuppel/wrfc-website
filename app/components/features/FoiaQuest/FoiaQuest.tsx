@@ -47,7 +47,20 @@ export default function FoiaQuest() {
   })
 
   const [commandHistory, setCommandHistory] = useState<Command[]>([
-    { input: 'FOIA-OS v1.0 initialized...', output: 'Welcome to FOIA Quest. Type "help" for commands.' }
+    { 
+      input: `
+███████╗ ██████╗ ██╗ █████╗     ██████╗ ██╗   ██╗███████╗███████╗████████╗
+██╔════╝██╔═══██╗██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝
+█████╗  ██║   ██║██║███████║    ██║   ██║██║   ██║█████╗  ███████╗   ██║   
+██╔══╝  ██║   ██║██║██╔══██║    ██║▄▄ ██║██║   ██║██╔══╝  ╚════██║   ██║   
+██║     ╚██████╔╝██║██║  ██║    ╚██████╔╝╚██████╔╝███████╗███████║   ██║   
+╚═╝      ╚═════╝ ╚═╝╚═╝  ╚═╝     ╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝   
+                                                                    
+                        © 2025 Erikk L Shupp
+                      Nodetus Integrators LLC
+`, 
+      output: 'FOIA-OS v1.0 initialized...\nWelcome to FOIA Quest. Type "help" for commands.' 
+    }
   ])
   const [currentCommand, setCurrentCommand] = useState('')
   const [agencies, setAgencies] = useState<Agency[]>([])

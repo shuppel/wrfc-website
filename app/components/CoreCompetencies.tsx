@@ -63,7 +63,7 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'proacq',
     title: 'ProAcq & Finance',
     icon: Calculator,
-    description: 'Federal IT Procurement Excellence',
+    description: 'Strategic procurement and financial management services optimizing federal IT investments and acquisition processes',
     services: [
       {
         category: 'IT Procurement',
@@ -89,7 +89,7 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'emergent',
     title: 'Emergent Tech',
     icon: Lightbulb,
-    description: 'Next-Gen Technology Integration',
+    description: 'Cutting-edge technology integration and innovation services leveraging AI, mixed reality, and cloud-native solutions',
     services: [
       {
         category: 'Innovation Services',
@@ -107,7 +107,7 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'product',
     title: 'Product & Program',
     icon: Gift,
-    description: 'Technical Program Leadership',
+    description: 'Comprehensive program management and technical leadership delivering successful federal IT initiatives through agile methodologies',
     services: [
       {
         category: 'Management Services',
@@ -124,7 +124,7 @@ const coreCompetencies: CoreCompetency[] = [
     id: 'data',
     title: 'Data Engineering',
     icon: Database,
-    description: 'Enterprise Data Solutions',
+    description: 'Advanced data architecture and analytics solutions enabling data-driven decision making and AI/ML capabilities',
     services: [
       {
         category: 'Data Services',

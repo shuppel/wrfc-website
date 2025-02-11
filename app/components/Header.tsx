@@ -31,7 +31,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm relative z-50">
+    <header className="bg-white/80 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm relative z-50">
       <TooltipProvider>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="w-full py-6 flex items-center justify-between">
@@ -46,7 +46,7 @@ export default function Header() {
                   className="object-contain"
                   priority
                 />
-                <span className="font-nasalization text-2xl text-[#FF8C00] dark:text-[#FF8C00]">
+                <span className="font-nasalization text-2xl text-[#FF8C00]">
                   Nodetus<sup className="text-xs">LLC</sup>
                 </span>
               </Link>
@@ -57,9 +57,9 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="text-base font-medium text-gray-500 hover:text-[#FF8C00] dark:hover:text-[#FF8C00]"
+                    className="text-base font-medium text-gray-400 hover:text-[#FF8C00] transition-colors duration-200"
                   >
-                    {item.label}<sup className="text-[0.6em]">{item.index}</sup>
+                    {item.label}<sup className="text-[0.6em] text-gray-400">{item.index}</sup>
                   </Link>
                 ))}
               </div>
@@ -68,7 +68,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-[#FF8C00] hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-[#FF8C00] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -87,7 +87,7 @@ export default function Header() {
                     href="https://github.com/Nodetus-Integrators-LLC" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
+                    className="text-gray-400 hover:text-[#FF8C00] transition-colors duration-200"
                   >
                     <Github className="w-6 h-6" />
                   </a>
@@ -103,7 +103,7 @@ export default function Header() {
                     href="/assets/capabilities-statement.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="text-gray-400 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
+                    className="text-gray-400 hover:text-[#FF8C00] transition-colors duration-200"
                   >
                     <FileText className="w-6 h-6" />
                   </a>
@@ -116,7 +116,7 @@ export default function Header() {
               <ThemeToggle />
               <Button 
                 variant="outline" 
-                className="border-[#FF8C00] text-[#FF8C00] hover:bg-[#FF8C00] hover:text-white dark:border-[#FF8C00] dark:text-[#FF8C00] dark:hover:bg-[#FF8C00] dark:hover:text-white font-mono"
+                className="border-[#FF8C00] text-[#FF8C00] hover:bg-[#FF8C00] hover:text-white font-mono transition-all duration-200"
               >
                 Get Started<sup className="text-[0.6em]">→</sup>
               </Button>
@@ -124,16 +124,16 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`${mobileMenuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-900 shadow-lg z-[100]`}>
+          <div className={`${mobileMenuOpen ? 'block' : 'hidden'} lg:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg z-[100]`}>
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigationItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-[#FF8C00] hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-[#FF8C00] hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.label}<sup className="text-[0.6em]">{item.index}</sup>
+                  {item.label}<sup className="text-[0.6em] text-gray-400">{item.index}</sup>
                 </Link>
               ))}
               
@@ -143,7 +143,7 @@ export default function Header() {
                   href="https://github.com/Nodetus-Integrators-LLC" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-400 hover:text-[#FF8C00]"
+                  className="text-gray-400 hover:text-[#FF8C00] transition-colors duration-200"
                 >
                   <Github className="w-6 h-6" />
                 </a>
@@ -151,7 +151,7 @@ export default function Header() {
                   href="/assets/capabilities-statement.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-400 hover:text-[#FF8C00]"
+                  className="text-gray-400 hover:text-[#FF8C00] transition-colors duration-200"
                 >
                   <FileText className="w-6 h-6" />
                 </a>

@@ -35,8 +35,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         ? 'dark'
         : 'light'
       root.classList.add(systemTheme)
+      // Also add data-theme attribute for components that might need it
+      root.setAttribute('data-theme', systemTheme)
     } else {
       root.classList.add(theme)
+      root.setAttribute('data-theme', theme)
     }
   }, [theme])
 

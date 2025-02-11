@@ -97,6 +97,7 @@
 
 .terminal-output {
   font-size: 0.8rem;
+  white-space: pre;
 }
 
 .terminal-input-line {
@@ -232,4 +233,12 @@ input {
   background: rgba(0, 255, 0, 0.1);
   border-color: rgba(0, 255, 0, 0.3);
   transform: scale(1.1);
+}
+
+/* Add this new style for the ASCII art */
+.terminal-output pre {
+  color: #00ff00;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
 } 
