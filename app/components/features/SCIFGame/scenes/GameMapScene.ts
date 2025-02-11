@@ -67,8 +67,10 @@ export default class GameMapScene extends Scene {
 
   update() {
     // Handle player movement
-    const cursors = this.input.keyboard.createCursorKeys();
+    if (!this.input?.keyboard) return;
     
+    const cursors = this.input.keyboard.createCursorKeys();
+
     if (!cursors) {
         return;
     }

@@ -1,5 +1,4 @@
 import { GameObjects, Scene, BlendModes } from 'phaser';
-import { styled } from '@mui/material/styles';
 
 interface Origin {
     x: number;

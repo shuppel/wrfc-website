@@ -8,6 +8,11 @@ declare module 'next/font/google' {
     display?: string;
   }
 
+  export function Inter(options: FontOptions): {
+    className: string;
+    style: { fontFamily: string };
+  };
+
   export function Press_Start_2P(options: FontOptions): {
     className: string;
     style: { fontFamily: string };

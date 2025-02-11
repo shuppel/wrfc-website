@@ -34,7 +34,10 @@ interface Command {
 const API_BASE = 'https://www.muckrock.com/api_v1'
 
 const TheaterMode = () => (
-  <div className="scanlines"></div>
+  <>
+    <div className="scanlines"></div>
+    <div className="crt-overlay"></div>
+  </>
 )
 
 export default function FoiaQuest() {
@@ -48,7 +51,8 @@ export default function FoiaQuest() {
 
   const [commandHistory, setCommandHistory] = useState<Command[]>([
     { 
-      input: `
+      input: '',
+      output: `<div class="ascii-art">
 ███████╗ ██████╗ ██╗ █████╗     ██████╗ ██╗   ██╗███████╗███████╗████████╗
 ██╔════╝██╔═══██╗██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝
 █████╗  ██║   ██║██║███████║    ██║   ██║██║   ██║█████╗  ███████╗   ██║   
@@ -57,9 +61,10 @@ export default function FoiaQuest() {
 ╚═╝      ╚═════╝ ╚═╝╚═╝  ╚═╝     ╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝   
                                                                     
                         © 2025 Erikk L Shupp
-                      Nodetus Integrators LLC
-`, 
-      output: 'FOIA-OS v1.0 initialized...\nWelcome to FOIA Quest. Type "help" for commands.' 
+                      Nodetus Integrators LLC</div>
+
+FOIA-OS v1.0 initialized...
+Welcome to FOIA Quest. Type "help" for commands.`
     }
   ])
   const [currentCommand, setCurrentCommand] = useState('')
@@ -183,8 +188,15 @@ export default function FoiaQuest() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[600px] bg-black text-green-500 font-['Press_Start_2P']">
-        Loading FOIA-OS...
+      <div className="theater-overlay">
+        <div className="monitor">
+          <div className="monitor-screen">
+            <TheaterMode />
+            <div className="terminal-container h-[600px] bg-black text-green-500 p-4 font-['Press_Start_2P'] flex items-center justify-center">
+              <div className="text-center">Loading FOIA-OS...</div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -216,7 +228,10 @@ export default function FoiaQuest() {
                   {commandHistory.map((cmd, i) => (
                     <div key={i} className="mb-2">
                       <div className={cmd.isError ? 'text-red-500' : ''}>{cmd.input}</div>
-                      <div className="ml-2 whitespace-pre-line">{cmd.output}</div>
+                      <div 
+                        className="ml-2 whitespace-pre-line"
+                        dangerouslySetInnerHTML={{ __html: cmd.output }}
+                      />
                     </div>
                   ))}
                 </div>

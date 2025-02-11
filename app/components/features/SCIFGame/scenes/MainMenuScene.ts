@@ -80,7 +80,7 @@ export default class MainMenuScene extends Scene {
         });
 
         // Add keyboard controls
-        const selectedItem = 0;
+        let selectedItem = 0;
         const menuItems = [startText, exitText];
 
         // Helper to update menu item selection
