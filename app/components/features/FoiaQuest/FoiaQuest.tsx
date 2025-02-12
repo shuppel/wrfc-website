@@ -54,7 +54,29 @@ const TheaterMode = () => (
 
 // Add available commands constant
 const AVAILABLE_COMMANDS: Record<string, CommandInfo> = {
-  help: { description: 'Show available commands' },
+  help: { 
+    description: 'Show available commands',
+    help: `Available Commands:
+=================
+
+help                    Show this help message
+help <command>         Show detailed help for a specific command
+
+search <term>          Search for agencies
+  Examples:
+  - search fbi         Search for specific agency
+  - search police      Search for type of agency
+  - search california  Search by state/jurisdiction
+
+request <agency_id>    Submit FOIA request to an agency
+  Example: request 123
+
+status                 Check current game status
+clear                  Clear terminal
+
+Use Tab for command completion and ↑↓ for command history.
+Type "help <command>" for more details about a specific command.`
+  },
   search: { 
     description: 'Search for agencies', 
     args: '<term>',
@@ -80,9 +102,39 @@ Tips:
 
 Note: Results are limited to 5 agencies at a time.`
   },
-  request: { description: 'Submit FOIA request', args: '<agency_id>' },
-  status: { description: 'Check current game status' },
-  clear: { description: 'Clear terminal' }
+  request: { 
+    description: 'Submit FOIA request', 
+    args: '<agency_id>',
+    help: `Usage: request <agency_id>
+Submits a FOIA request to the specified agency.
+
+Steps:
+1. First search for an agency using the search command
+2. Note the agency ID number from the search results
+3. Use request command with that ID number
+
+Example workflow:
+1. search fbi
+2. [Note the ID from results, e.g. "123: FBI"]
+3. request 123
+
+Note: You must use a valid agency ID from search results.`
+  },
+  status: { 
+    description: 'Check current game status',
+    help: `Usage: status
+Shows your current game progress including:
+- Current level
+- Score
+- Request status
+- Game state`
+  },
+  clear: { 
+    description: 'Clear terminal',
+    help: `Usage: clear
+Clears the terminal screen and command history.
+You can also use Ctrl+C as a shortcut.`
+  }
 } as const;
 
 export default function FoiaQuest() {
@@ -190,31 +242,34 @@ Welcome to FOIA Quest. Type "help" for commands.`
 
   // Function to get command suggestions
   const getCommandSuggestions = (input: string): string[] => {
-    const [command, ...args] = input.toLowerCase().trim().split(' ');
+    const inputLower = input.toLowerCase().trim();
     
     // If we're starting a new command
-    if (!input.includes(' ')) {
+    if (!inputLower.includes(' ')) {
       return Object.keys(AVAILABLE_COMMANDS)
-        .filter(cmd => cmd.startsWith(command));
+        .filter(cmd => cmd.startsWith(inputLower));
     }
 
-    // If we have just typed 'search' with no args, suggest help
-    if (command === 'search' && args.length === 0) {
-      return ['-help search: Show search command usage and examples'];
+    // Handle help command suggestions
+    if (inputLower.startsWith('help ')) {
+      const searchTerm = inputLower.slice(5).trim();
+      return Object.keys(AVAILABLE_COMMANDS)
+        .filter(cmd => cmd.startsWith(searchTerm))
+        .map(cmd => `help ${cmd}`);
     }
 
     // If we're in a search command, suggest from recent searches
-    if (command === 'search' && args.length <= 1) {
-      const searchTerm = args[0] || '';
+    if (inputLower.startsWith('search ')) {
+      const searchTerm = inputLower.slice(7).trim();
       const recentSearches = commandHistory
         .filter(cmd => cmd.input.startsWith('> search'))
-        .map(cmd => cmd.input.slice(8)) // Remove '> search ' prefix
-        .filter(cmd => cmd.toLowerCase().includes(searchTerm.toLowerCase()))
+        .map(cmd => cmd.input.slice(2)) // Remove '> ' prefix
+        .filter(cmd => cmd.toLowerCase().includes(searchTerm))
         .slice(0, 5);
       
       // Add help suggestion if no recent searches or at start
       if (searchTerm === '' || recentSearches.length === 0) {
-        recentSearches.unshift('-help search');
+        recentSearches.unshift('help search');
       }
       
       return recentSearches;
@@ -253,9 +308,10 @@ Try again or use a different search term.`;
 
   const handleCommand = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== 'Enter') {
-      if (currentCommand.startsWith('search')) {
+      const trimmedCommand = currentCommand.trim();
+      if (trimmedCommand.startsWith('search')) {
         setStatus(prev => ({ ...prev, mode: 'search' }));
-      } else if (currentCommand === 'help') {
+      } else if (trimmedCommand.startsWith('help')) {
         setStatus(prev => ({ ...prev, mode: 'help' }));
       } else {
         setStatus(prev => ({ ...prev, mode: 'input' }));
@@ -263,18 +319,33 @@ Try again or use a different search term.`;
       return;
     }
     
-    const command = currentCommand.toLowerCase().trim()
+    const command = currentCommand.trim()
+    const commandLower = command.toLowerCase()
     let response = ''
     let isError = false
     
-    switch (command) {
+    // Extract command and args, preserving original case for args
+    const [mainCommand, ...args] = command.split(/\s+/)
+    const mainCommandLower = mainCommand.toLowerCase()
+    const commandArg = args.join(' ')
+    const commandArgLower = commandArg.toLowerCase()
+
+    switch (mainCommandLower) {
       case 'help':
-        response = getHelpText();
-        break;
-        
-      case '-help search':
-      case 'help search':
-        response = AVAILABLE_COMMANDS.search.help || '';
+        if (commandArg) {
+          // Show help for specific command
+          const requestedCommand = Object.entries(AVAILABLE_COMMANDS)
+            .find(([cmd]) => cmd === commandArgLower);
+          
+          if (requestedCommand) {
+            response = requestedCommand[1].help || `${requestedCommand[0]}${requestedCommand[1].args ? ' ' + requestedCommand[1].args : ''}: ${requestedCommand[1].description}`;
+          } else {
+            response = `Unknown command: "${commandArg}"\nType "help" to see all available commands.`;
+            isError = true;
+          }
+        } else {
+          response = AVAILABLE_COMMANDS.help.help || getHelpText();
+        }
         break;
         
       case 'clear':
@@ -286,35 +357,33 @@ Try again or use a different search term.`;
         response = `Level: ${gameState.level}\nScore: ${gameState.score}\nStatus: ${gameState.status}`
         break;
         
-      default:
-        if (command.startsWith('search ')) {
-          const term = command.slice(7).trim()
-          if (!term) {
-            response = AVAILABLE_COMMANDS.search.help || '';
-            break;
+      case 'search':
+        if (!commandArg) {
+          response = AVAILABLE_COMMANDS.search.help || '';
+          break;
+        }
+
+        // Add loading state
+        setCommandHistory(prev => [...prev, 
+          { input: `> ${command}`, output: 'Searching agencies...', isLoading: true }
+        ]);
+        setIsSearching(true);
+
+        try {
+          const res = await fetch(`${API_BASE}/agency/?q=${encodeURIComponent(commandArg)}`)
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
           }
-
-          // Add loading state
-          setCommandHistory(prev => [...prev, 
-            { input: `> ${currentCommand}`, output: 'Searching agencies...', isLoading: true }
-          ]);
-          setIsSearching(true);
-
-          try {
-            const res = await fetch(`${API_BASE}/agency/?q=${encodeURIComponent(term)}`)
-            if (!res.ok) {
-              throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const data = await res.json()
-            
-            if (data.results.length === 0) {
-              response = `No agencies found matching your search: "${term}"
+          const data = await res.json()
+          
+          if (data.results.length === 0) {
+            response = `No agencies found matching your search: "${commandArg}"
 
 Suggestions:
 1. Check the spelling
 2. Try using fewer words
 3. Use alternative terms:
-   - Instead of "${term}", try related terms
+   - Instead of "${commandArg}", try related terms
    - Use broader categories
    - Include or remove location information
 4. Try one of these example searches:
@@ -323,28 +392,34 @@ Suggestions:
    - search environmental
 
 Type "-help search" for more search tips.`;
-              isError = true;
-            } else {
-              response = `Found ${data.results.length > 5 ? '5 of ' + data.results.length : data.results.length} agencies matching "${term}":\n\n` + 
-                data.results
-                  .slice(0, 5)
-                  .map((a: Agency) => `${a.id}: ${a.name} (${a.jurisdiction})`)
-                  .join('\n') +
-                (data.results.length > 5 ? '\n\nNote: Showing first 5 results. Try a more specific search to narrow down results.' : '');
-            }
-          } catch (error) {
-            response = formatErrorMessage(error, 'agency search');
             isError = true;
-          } finally {
-            setIsSearching(false);
-            // Remove the loading message
-            setCommandHistory(prev => prev.slice(0, -1));
+          } else {
+            response = `Found ${data.results.length > 5 ? '5 of ' + data.results.length : data.results.length} agencies matching "${commandArg}":\n\n` + 
+              data.results
+                .slice(0, 5)
+                .map((a: Agency) => `${a.id}: ${a.name} (${a.jurisdiction})`)
+                .join('\n') +
+              (data.results.length > 5 ? '\n\nNote: Showing first 5 results. Try a more specific search to narrow down results.' : '');
           }
-        } else if (command.startsWith('request ')) {
-          const agencyId = command.slice(8)
-          const agencyExists = agencies.some(agency => agency.id === agencyId)
-          if (!agencyExists) {
-            response = `Error: Invalid agency ID "${agencyId}"
+        } catch (error) {
+          response = formatErrorMessage(error, 'agency search');
+          isError = true;
+        } finally {
+          setIsSearching(false);
+          // Remove the loading message
+          setCommandHistory(prev => prev.slice(0, -1));
+        }
+        break;
+
+      case 'request':
+        if (!commandArg) {
+          response = AVAILABLE_COMMANDS.request.help || '';
+          isError = true;
+          break;
+        }
+        const agencyExists = agencies.some(agency => agency.id === commandArg)
+        if (!agencyExists) {
+          response = `Error: Invalid agency ID "${commandArg}"
 
 Please:
 1. Use the search command to find valid agency IDs
@@ -355,27 +430,28 @@ Example:
 1. search fbi
 2. Find the ID in the results (e.g., "123: FBI")
 3. request 123`;
-            isError = true;
-          } else {
-            try {
-              await submitFoiaRequest(agencyId)
-              response = 'Processing FOIA request...\nRequest submitted successfully!'
-            } catch (error) {
-              response = formatErrorMessage(error, 'FOIA request');
-              isError = true;
-            }
-          }
-        } else {
-          response = `Unknown command: "${command}"\nType "help" for available commands.`
           isError = true;
+        } else {
+          try {
+            await submitFoiaRequest(commandArg)
+            response = 'Processing FOIA request...\nRequest submitted successfully!'
+          } catch (error) {
+            response = formatErrorMessage(error, 'FOIA request');
+            isError = true;
+          }
         }
+        break;
+
+      default:
+        response = `Unknown command: "${mainCommand}"\nType "help" for available commands.`
+        isError = true;
     }
 
     setCommandHistory(prev => [...prev, 
-      { input: `> ${currentCommand}`, output: response, isError }
+      { input: `> ${command}`, output: response, isError }
     ])
     setCurrentCommand('')
-    setStatus(prev => ({ ...prev, lastCommand: currentCommand }));
+    setStatus(prev => ({ ...prev, lastCommand: command }));
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -386,8 +462,7 @@ Example:
       'PageUp',
       'PageDown',
       'Home',
-      'End',
-      ' ' // Space
+      'End'
     ].includes(e.key)) {
       e.preventDefault();
     }
