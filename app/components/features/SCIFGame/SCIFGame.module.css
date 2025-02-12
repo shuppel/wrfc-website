@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-.theater-overlay {
+.theater_overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,18 +16,86 @@
   overflow: hidden;
 }
 
-.scif-container {
+.scif_container {
   position: relative;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   max-width: 90vw;
   max-height: 90vh;
   margin: 0 auto;
-  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scif_container canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.loading_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading_spinner {
+  color: #00ff00;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.error_message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px solid rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  max-width: 80%;
+}
+
+.error_message h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.error_message button {
+  margin-top: 1rem;
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  color: #ff0000;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.error_message button:hover {
+  background: rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 /* Navigation buttons styling */
-.nav-button {
+.nav_button {
   position: fixed;
   background: rgba(0, 255, 0, 0.1);
   border: 2px solid rgba(0, 255, 0, 0.2);
@@ -47,24 +115,24 @@
   z-index: 51;
 }
 
-.nav-button:hover {
+.nav_button:hover {
   background: rgba(0, 255, 0, 0.2);
   border-color: rgba(0, 255, 0, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
 }
 
-.nav-button:active {
+.nav_button:active {
   transform: translateY(0);
 }
 
-.back-button {
+.back_button {
   top: 2rem;
   left: 2rem;
   font-size: 0.8rem;
 }
 
-.exit-button {
+.exit_button {
   position: fixed;
   top: 2rem;
   right: 2rem;
@@ -83,13 +151,13 @@
   z-index: 51;
 }
 
-.exit-button:hover {
+.exit_button:hover {
   background: rgba(0, 255, 0, 0.1);
   border-color: rgba(0, 255, 0, 0.3);
   transform: scale(1.1);
 }
 
-.dialog-box {
+.dialog_box {
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -101,11 +169,11 @@
   min-width: 300px;
 }
 
-.dialog-content {
+.dialog_content {
   text-align: center;
 }
 
-.dialog-content button {
+.dialog_content button {
   margin-top: 10px;
   padding: 5px 15px;
   background: #444;
@@ -115,6 +183,6 @@
   border-radius: 3px;
 }
 
-.dialog-content button:hover {
+.dialog_content button:hover {
   background: #555;
 } 

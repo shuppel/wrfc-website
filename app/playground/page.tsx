@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 const PongGame = dynamic(() => import('../components/features/PongGame/PongGame'), { ssr: false })
 const FoiaQuest = dynamic(() => import('../components/features/FoiaQuest/FoiaQuest'), { ssr: false })
 const SnakeGame = dynamic(() => import('../components/features/SnakeGame/SnakeGame'), { ssr: false })
+const SCIFGame = dynamic(() => import('../components/features/SCIFGame/SCIFGame'), { ssr: false })
 
 import { Press_Start_2P } from 'next/font/google'
 
@@ -117,6 +118,7 @@ export default function PlaygroundPage() {
             </div>
           ) : (
             <div className="animate-fade-in">
+              {selectedGame === 'scif' && <SCIFGame />}
               {selectedGame === 'foia-quest' && <FoiaQuest />}
               {selectedGame === 'snake' && <SnakeGame />}
               {selectedGame === 'pong' && <PongGame />}

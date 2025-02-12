@@ -1,6 +1,6 @@
 'use client'
 
-import { Gift, Database, Clipboard, Calculator, Lightbulb } from 'lucide-react'
+import { Gift, Database, Clipboard, Calculator, Lightbulb, Workflow } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -55,6 +55,41 @@ const coreCompetencies: CoreCompetency[] = [
           'AI Model Validation & Testing',
           'Responsible AI Framework Development',
           'AI Security & Compliance'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'process',
+    title: 'Process Excellence',
+    icon: Workflow,
+    description: 'Transformative business process optimization and customer experience enhancement through modern methodologies',
+    services: [
+      {
+        category: 'Process Optimization',
+        items: [
+          'Business Process Re-engineering',
+          'Workflow Automation',
+          'Process Mining & Analysis',
+          'Quality Management Systems'
+        ]
+      },
+      {
+        category: 'Customer Experience',
+        items: [
+          'Service Design & Journey Mapping',
+          'User Research & Analytics',
+          'Experience Strategy Development',
+          'Digital Transformation Consulting'
+        ]
+      },
+      {
+        category: 'Change Management',
+        items: [
+          'Organizational Change Strategy',
+          'Training & Adoption Programs',
+          'Process Documentation',
+          'Performance Metrics & KPIs'
         ]
       }
     ]

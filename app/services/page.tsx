@@ -283,10 +283,10 @@ export default function ServicesPage() {
                           className={`
                             p-6 hover:shadow-lg transition-all duration-300 cursor-help
                             ${naics.relevance === 'primary' 
-                              ? 'border-2 border-[#FF8C00] bg-gray-900/90' 
+                              ? 'border-2 border-[#FF8C00] bg-gray-50 dark:bg-gray-900/90' 
                               : naics.relevance === 'secondary'
-                              ? 'border border-orange-300 bg-gray-900/80'
-                              : 'border border-orange-200 bg-gray-900/70'}
+                              ? 'border border-orange-300 bg-gray-100 dark:bg-gray-900/80'
+                              : 'border border-orange-200 bg-gray-100 dark:bg-gray-900/70'}
                           `}
                         >
                           <div className="flex items-start space-x-4">
@@ -297,7 +297,7 @@ export default function ServicesPage() {
                               <h3 className="text-2xl font-mono font-bold text-[#FF8C00] mb-2">
                                 {naics.code}
                               </h3>
-                              <p className="text-text-light dark:text-text-dark">
+                              <p className="text-gray-700 dark:text-gray-300">
                                 {naics.description}
                               </p>
                             </div>
@@ -305,11 +305,12 @@ export default function ServicesPage() {
                         </Card>
                       </TooltipTrigger>
                       <TooltipContent 
-                        side="right" 
-                        sideOffset={20}
-                        className="z-[9999] w-80 bg-gray-900 border border-[#FF8C00]/20 shadow-xl"
+                        side="top" 
+                        align="center"
+                        sideOffset={5}
+                        className="z-[100] w-80 bg-white dark:bg-gray-900 border border-[#FF8C00]/20 shadow-xl"
                         style={{
-                          position: 'absolute',
+                          position: 'relative',
                           pointerEvents: 'auto'
                         }}
                       >

@@ -9,97 +9,100 @@ export default class GameMapScene extends Scene {
   }
 
   create() {
-    // Create the tilemap
-    this.map = this.make.tilemap({ key: 'map' });
-    
-    // Add tileset image - make sure the first argument matches the name in the tileset file
-    const tileset = this.map.addTilesetImage('scifitiles-sheet', 'tiles');
-    
-    if (!tileset) {
-        console.error('Failed to load tileset');
-        return;
+    try {
+      // Create the tilemap with explicit configuration
+      this.map = this.make.tilemap({ 
+        key: 'map'
+      });
+      
+      if (!this.map) {
+        throw new Error('Failed to create tilemap');
+      }
+
+      // Add tileset image with exact name from Tiled
+      const tileset = this.map.addTilesetImage(
+        'scifitiles-sheet',  // name in Tiled (from tileset.tsj)
+        'tiles'              // key of the loaded image
+      );
+      
+      if (!tileset) {
+        throw new Error('Failed to load tileset');
+      }
+
+      // Create layers with error checking
+      const baseLayer = this.map.createLayer('base', tileset, 0, 0);
+      if (!baseLayer) {
+        throw new Error('Failed to create base layer');
+      }
+
+      const collisionLayer = this.map.createLayer('collision', tileset, 0, 0);
+      if (!collisionLayer) {
+        throw new Error('Failed to create collision layer');
+      }
+
+      const aboveLayer = this.map.createLayer('above', tileset, 0, 0);
+      if (!aboveLayer) {
+        throw new Error('Failed to create above layer');
+      }
+
+      // Set collision based on tile properties
+      collisionLayer.setCollisionByProperty({ ge_collide: true });
+      
+      // Create player sprite
+      const spawnX = this.map.widthInPixels / 2;
+      const spawnY = this.map.heightInPixels / 2;
+      
+      this.player = this.physics.add.sprite(spawnX, spawnY, 'player');
+      
+      if (!this.player) {
+        throw new Error('Failed to create player sprite');
+      }
+      
+      this.player.setCollideWorldBounds(true);
+      
+      // Add collision between player and collision layer
+      this.physics.add.collider(this.player, collisionLayer);
+      
+      // Set up camera to follow player
+      this.cameras.main.startFollow(this.player);
+      this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+
+      console.log('Game scene initialized successfully');
+      
+    } catch (error) {
+      console.error('Error in GameMapScene create:', error);
+      const errorEvent = new CustomEvent('game-error', {
+        detail: { message: error instanceof Error ? error.message : 'Failed to initialize game scene' }
+      });
+      window.dispatchEvent(errorEvent);
     }
-
-    // Create layers - note "base" instead of "ground"
-    const baseLayer = this.map.createLayer('base', tileset, 0, 0);
-    const collisionLayer = this.map.createLayer('collision', tileset, 0, 0);
-    const aboveLayer = this.map.createLayer('above', tileset, 0, 0);
-    
-    if (!baseLayer || !collisionLayer || !aboveLayer) {
-        console.error('Failed to create layers');
-        return;
-    }
-
-    // Set collision based on properties set in Tiled
-    collisionLayer.setCollisionByProperty({ ge_collide: true });
-    
-    // Create player with default spawn position in case spawn point is not found
-    const spawnPoint = this.map.findObject('Spawn', obj => obj.name === 'Spawn') || { x: 100, y: 100 };
-    this.player = this.physics.add.sprite(
-        spawnPoint.x ?? 100, 
-        spawnPoint.y ?? 100, 
-        'player-sheet'
-    );
-    
-    // Set up player animations
-    this.createPlayerAnimations();
-    
-    // Add collision between player and collision layer
-    this.physics.add.collider(this.player, collisionLayer);
-    
-    // Make above layer render on top of player
-    aboveLayer.setDepth(10);
-    
-    // Set up camera to follow player
-    this.cameras.main.startFollow(this.player);
-    this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-  }
-
-  private createPlayerAnimations() {
-    this.anims.create({
-      key: 'walk-down',
-      frames: this.anims.generateFrameNumbers('player-sheet', { start: 0, end: 3 }),
-      frameRate: 10,
-      repeat: -1
-    });
-    // Add other directional animations...
   }
 
   update() {
-    // Handle player movement
-    if (!this.input?.keyboard) return;
+    if (!this.input?.keyboard || !this.player) return;
     
     const cursors = this.input.keyboard.createCursorKeys();
-
-    if (!cursors) {
-        return;
-    }
+    if (!cursors) return;
     
-    const speed = 175;
+    const speed = 200;
     let velocityX = 0;
     let velocityY = 0;
 
+    // Handle horizontal movement
     if (cursors.left.isDown) {
       velocityX = -speed;
-      this.player.anims.play('walk-left', true);
     } else if (cursors.right.isDown) {
       velocityX = speed;
-      this.player.anims.play('walk-right', true);
     }
 
+    // Handle vertical movement
     if (cursors.up.isDown) {
       velocityY = -speed;
-      this.player.anims.play('walk-up', true);
     } else if (cursors.down.isDown) {
       velocityY = speed;
-      this.player.anims.play('walk-down', true);
     }
 
+    // Apply movement
     this.player.setVelocity(velocityX, velocityY);
-    
-    // Stop animations if not moving
-    if (velocityX === 0 && velocityY === 0) {
-      this.player.anims.stop();
-    }
   }
 } 

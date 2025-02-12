@@ -153,7 +153,7 @@ export default function AboutPage() {
                       },
                       {
                         title: 'Gold-Plated SaaS',
-                        desc: 'Overpriced software with .blems',
+                        desc: 'Overpriced software with minimal value',
                         icon: DollarSign
                       },
                       {
@@ -162,12 +162,19 @@ export default function AboutPage() {
                         icon: Clock
                       }
                     ].map((peeve, index) => (
-                      <div key={index} className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                      <div 
+                        key={index} 
+                        className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-600"
+                      >
                         <div className="flex items-center space-x-3">
-                          <peeve.icon className="w-5 h-5 text-red-500" />
-                          <span className="font-medium text-gray-800 dark:text-gray-200">{peeve.title}</span>
+                          <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-red-50 dark:bg-red-900/20">
+                            <peeve.icon className="w-5 h-5 text-red-500" />
+                          </div>
+                          <div>
+                            <span className="font-medium text-gray-800 dark:text-gray-200">{peeve.title}</span>
+                            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{peeve.desc}</p>
+                          </div>
                         </div>
-                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 ml-8">{peeve.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -183,28 +190,42 @@ export default function AboutPage() {
                 </p>
                 <div className="mt-6">
                   <h4 className="text-xl font-semibold text-[#FF8C00] mb-4">Core Values</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-3">
                     {[
                       {
                         value: 'Innovation with Purpose',
-                        icon: Rocket
+                        icon: Rocket,
+                        desc: 'Driving meaningful technological advancement'
                       },
                       {
                         value: 'Relentless Perseverance ("Grit")',
-                        icon: Shield
+                        icon: Shield,
+                        desc: 'Unwavering dedication to excellence'
                       },
                       {
                         value: 'Rapid Problem Resolution',
-                        icon: Zap
+                        icon: Zap,
+                        desc: 'Swift, effective solutions to complex challenges'
                       },
                       {
                         value: 'Mission-Driven Operandum',
-                        icon: Target
+                        icon: Target,
+                        desc: 'Purpose-driven approach to every project'
                       }
                     ].map((item, index) => (
-                      <div key={index} className="flex items-center space-x-3 bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg">
-                        <item.icon className="w-5 h-5 text-[#FF8C00]" />
-                        <span className="text-sm font-medium">{item.value}</span>
+                      <div 
+                        key={index} 
+                        className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-600"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-[#FF8C00]/10 dark:bg-[#FF8C00]/20">
+                            <item.icon className="w-5 h-5 text-[#FF8C00]" />
+                          </div>
+                          <div>
+                            <span className="font-medium text-gray-800 dark:text-gray-200">{item.value}</span>
+                            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>

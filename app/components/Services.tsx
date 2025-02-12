@@ -52,52 +52,51 @@ const services = [
 
 export default function Services() {
   return (
-    <div className="py-12 bg-white">
+    <section className="py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Services</h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            Comprehensive IT Solutions
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+        <div className="text-right mb-12 animate-fade-in">
+          <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
+            Our Services<sup className="text-[0.6em] font-mono">capabilities</sup>
+          </h2>
+          <p className="text-xl text-slate-800 dark:text-slate-200 sm:text-lg md:text-xl font-mono ml-auto max-w-2xl">
             Discover how Nodetus can transform your business with our range of services.
           </p>
         </div>
 
-        <div className="mt-10">
-          <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-            {services.map((service, index) => (
-              <Card
-                key={service.name}
-                className="relative animate-fade-in p-6 hover:shadow-lg transition-shadow duration-300"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                    <service.icon className="h-6 w-6" aria-hidden="true" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {services.map((service, index) => (
+            <Card
+              key={service.name}
+              className="bg-white dark:bg-gray-800 hover:shadow-xl transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20 mr-4">
+                    <service.icon className="h-6 w-6 text-[#FF8C00]" />
                   </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{service.name}</p>
-                </dt>
-                <dd className="mt-2 ml-16">
-                  <p className="text-base text-gray-500 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
-                    {service.items.map((item, itemIndex) => (
-                      <li
-                        key={itemIndex}
-                        className="flex items-start gap-2 text-gray-500"
-                      >
-                        <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full mt-2"></span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </Card>
-            ))}
-          </dl>
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#FF8C00]">{service.name}</h3>
+                    <p className="text-sm text-slate-800 dark:text-slate-200 opacity-75">{service.description}</p>
+                  </div>
+                </div>
+                <ul className="space-y-2">
+                  {service.items.map((item, itemIndex) => (
+                    <li
+                      key={itemIndex}
+                      className="flex items-start gap-2 text-slate-800 dark:text-slate-200"
+                    >
+                      <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mt-2"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

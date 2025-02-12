@@ -41,10 +41,35 @@ export const createInteractiveGameObject = (
 };
 
 export function calculateGameSize() {
-    const width = 800
-    const height = 600
-    const multiplier = 1
-
+    // Base size that works well with our assets
+    const baseWidth = 800
+    const baseHeight = 600
+    
+    // Calculate responsive size based on window
+    let width = baseWidth
+    let height = baseHeight
+    let multiplier = 1
+    
+    if (typeof window !== 'undefined') {
+        const windowWidth = window.innerWidth
+        const windowHeight = window.innerHeight
+        
+        // Calculate the maximum size that fits in the window while maintaining aspect ratio
+        const maxWidth = Math.min(windowWidth * 0.9, baseWidth * 1.5)
+        const maxHeight = Math.min(windowHeight * 0.9, baseHeight * 1.5)
+        
+        // Calculate scale based on both dimensions
+        const scaleX = maxWidth / baseWidth
+        const scaleY = maxHeight / baseHeight
+        
+        // Use the smaller scale to ensure it fits
+        multiplier = Math.min(scaleX, scaleY)
+        
+        // Apply the scale
+        width = Math.round(baseWidth * multiplier)
+        height = Math.round(baseHeight * multiplier)
+    }
+    
     return { width, height, multiplier }
 }
 

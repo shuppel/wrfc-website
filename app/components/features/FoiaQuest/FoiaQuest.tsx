@@ -46,7 +46,22 @@ interface CommandInfo {
   help?: string;
 }
 
-const API_BASE = 'https://www.muckrock.com/api_v1'
+const API_BASE = '/api/muckrock'
+
+// Add API configuration
+const API_CONFIG = {
+  PAGE_SIZE: 50,
+  DEFAULT_HEADERS: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+}
+
+// Add API endpoints
+const API_ENDPOINTS = {
+  AGENCY: 'agency',
+  FOIA: 'foia'
+}
 
 const TheaterMode = () => (
   <div className="scanlines"></div>
@@ -137,6 +152,33 @@ You can also use Ctrl+C as a shortcut.`
   }
 } as const;
 
+// Add fuzzy search utility
+const fuzzySearch = (items: Agency[], searchTerm: string): Agency[] => {
+  const searchTermLower = searchTerm.toLowerCase();
+  const searchWords = searchTermLower.split(/\s+/);
+  
+  return items.filter(agency => {
+    const nameLower = agency.name.toLowerCase();
+    const jurisdictionLower = agency.jurisdiction.toLowerCase();
+    const searchString = `${nameLower} ${jurisdictionLower}`;
+    
+    // All search words must be found in either name or jurisdiction
+    return searchWords.every(word => 
+      searchString.includes(word) ||
+      // Add fuzzy matching using common abbreviations and partial matches
+      (word.length > 2 && searchString.split(/\s+/).some(part => 
+        part.startsWith(word) || 
+        (word.length > 3 && part.includes(word))
+      ))
+    );
+  }).sort((a, b) => {
+    // Prioritize exact matches
+    const aExact = a.name.toLowerCase().includes(searchTermLower) ? 0 : 1;
+    const bExact = b.name.toLowerCase().includes(searchTermLower) ? 0 : 1;
+    return aExact - bExact;
+  });
+};
+
 export default function FoiaQuest() {
   const [gameState, setGameState] = useState<GameState>({
     score: 0,
@@ -195,8 +237,21 @@ Welcome to FOIA Quest. Type "help" for commands.`
   useEffect(() => {
     const fetchAgencies = async () => {
       try {
-        const response = await fetch(`${API_BASE}/agency/`)
+        const params = new URLSearchParams({
+          format: 'json',
+          page_size: '100' // Get more results initially
+        });
+        const response = await fetch(`${API_BASE}/${API_ENDPOINTS.AGENCY}?${params}`, {
+          headers: API_CONFIG.DEFAULT_HEADERS,
+          method: 'GET'
+        })
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json()
+        if (!data || !data.results) {
+          throw new Error('Invalid API response format');
+        }
         setAgencies(data.results)
         setLoading(false)
       } catch (error: unknown) {
@@ -211,11 +266,10 @@ Welcome to FOIA Quest. Type "help" for commands.`
   const submitFoiaRequest = async (agencyId: string) => {
     setGameState(prev => ({ ...prev, status: 'requesting' }))
     try {
-      const response = await fetch(`${API_BASE}/foia/`, {
+      const params = new URLSearchParams({ format: 'json' });
+      const response = await fetch(`${API_BASE}/${API_ENDPOINTS.FOIA}?${params}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: API_CONFIG.DEFAULT_HEADERS,
         body: JSON.stringify({
           agency: agencyId,
           title: `Level ${gameState.level} FOIA Request`,
@@ -224,10 +278,17 @@ Welcome to FOIA Quest. Type "help" for commands.`
       })
       
       if (!response.ok) {
-        throw new Error('Failed to submit request')
+        if (response.status === 402) {
+          throw new Error('No available FOIA requests. Please purchase more requests to continue.');
+        }
+        throw new Error(`HTTP error! status: ${response.status}`)
       }
       
       const data = await response.json()
+      if (!data) {
+        throw new Error('Invalid API response format');
+      }
+      
       setGameState(prev => ({
         ...prev,
         score: prev.score + 100,
@@ -320,7 +381,6 @@ Try again or use a different search term.`;
     }
     
     const command = currentCommand.trim()
-    const commandLower = command.toLowerCase()
     let response = ''
     let isError = false
     
@@ -370,13 +430,10 @@ Try again or use a different search term.`;
         setIsSearching(true);
 
         try {
-          const res = await fetch(`${API_BASE}/agency/?q=${encodeURIComponent(commandArg)}`)
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          const data = await res.json()
+          // Perform client-side fuzzy search
+          const searchResults = fuzzySearch(agencies, commandArg);
           
-          if (data.results.length === 0) {
+          if (searchResults.length === 0) {
             response = `No agencies found matching your search: "${commandArg}"
 
 Suggestions:
@@ -387,6 +444,7 @@ Suggestions:
    - Use broader categories
    - Include or remove location information
 4. Try one of these example searches:
+   - search fbi
    - search police
    - search california
    - search environmental
@@ -394,12 +452,13 @@ Suggestions:
 Type "-help search" for more search tips.`;
             isError = true;
           } else {
-            response = `Found ${data.results.length > 5 ? '5 of ' + data.results.length : data.results.length} agencies matching "${commandArg}":\n\n` + 
-              data.results
+            const totalResults = searchResults.length;
+            response = `Found ${totalResults > 5 ? '5 of ' + totalResults : totalResults} agencies matching "${commandArg}":\n\n` + 
+              searchResults
                 .slice(0, 5)
                 .map((a: Agency) => `${a.id}: ${a.name} (${a.jurisdiction})`)
                 .join('\n') +
-              (data.results.length > 5 ? '\n\nNote: Showing first 5 results. Try a more specific search to narrow down results.' : '');
+              (totalResults > 5 ? '\n\nNote: Showing first 5 results. Try a more specific search to narrow down results.' : '');
           }
         } catch (error) {
           response = formatErrorMessage(error, 'agency search');
