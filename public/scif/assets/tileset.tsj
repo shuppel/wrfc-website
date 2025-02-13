@@ -1,5 +1,5 @@
 { "columns":14,
- "image":"/scif/assets/tileset.png",
+ "image":"tileset.png",
  "imageheight":192,
  "imagewidth":448,
  "margin":0,

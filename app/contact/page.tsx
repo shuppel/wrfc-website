@@ -8,9 +8,8 @@ interface FormData {
   name: string;
   email: string;
   company?: string;
-  service: 'web-development' | 'app-development' | 'cloud-solutions' | 'systems-integration' | 
-          'ai-ml-solutions' | 'cybersecurity' | 'data-analytics' | 'devops' | 'consulting' | 
-          'enterprise-architecture' | 'digital-transformation' | 'other';
+  service: 'project-management' | 'ai-consulting' | 'acquisition-it' | 'data-engineering' | 
+          'app-development' | 'mobile-development' | 'design-ux' | 'other';
   message: string;
 }
 
@@ -166,26 +165,18 @@ export default function ContactPage() {
                   className="input-base"
                 >
                   <option value="">Select a service</option>
+                  <optgroup label="Core Services">
+                    <option value="project-management">Project Management</option>
+                    <option value="ai-consulting">AI Consulting</option>
+                    <option value="acquisition-it">Acquisition IT</option>
+                    <option value="data-engineering">Data Engineering</option>
+                  </optgroup>
                   <optgroup label="Development">
-                    <option value="web-development">Web Development</option>
                     <option value="app-development">App Development</option>
+                    <option value="mobile-development">Mobile Development</option>
                   </optgroup>
-                  <optgroup label="Cloud & Infrastructure">
-                    <option value="cloud-solutions">Cloud Solutions</option>
-                    <option value="systems-integration">Systems Integration</option>
-                    <option value="devops">DevOps & Automation</option>
-                  </optgroup>
-                  <optgroup label="Data & AI">
-                    <option value="ai-ml-solutions">AI & Machine Learning</option>
-                    <option value="data-analytics">Data Analytics & BI</option>
-                  </optgroup>
-                  <optgroup label="Security & Architecture">
-                    <option value="cybersecurity">Cybersecurity</option>
-                    <option value="enterprise-architecture">Enterprise Architecture</option>
-                  </optgroup>
-                  <optgroup label="Strategy">
-                    <option value="digital-transformation">Digital Transformation</option>
-                    <option value="consulting">Technical Consulting</option>
+                  <optgroup label="Design">
+                    <option value="design-ux">Design & UX</option>
                   </optgroup>
                   <optgroup label="Other">
                     <option value="other">Other Services</option>

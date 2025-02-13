@@ -7,6 +7,18 @@
   --transition-timing: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --card-bg-light: #ffffff;
   --card-bg-dark: #1a1a1a;
+  
+  /* Brand Colors */
+  --primary: #FFB800;
+  --primary-hover: #FFC933;
+  --background: #FFF5E6;
+  --text: #1A1A1A;
+  
+  /* Semantic Colors */
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  --info: #3B82F6;
 }
 
 /* Grid container for independent items */
@@ -139,6 +151,39 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 24.6 95% 53.1%;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-nasalization tracking-wide;
+  }
+
+  body {
+    @apply font-mono antialiased;
+  }
+
+  .title-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r;
+    @apply from-[#FFB800] to-[#FFC933];
+    @apply dark:from-[#FFB800] dark:to-[#FFA000];
+  }
+
+  .title-container {
+    @apply inline-block p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg mb-4;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center;
+  }
+
+  .body-text {
+    @apply text-gray-600 dark:text-gray-300 leading-relaxed;
+  }
+
+  .subscript {
+    font-size: 0.7em;
+    vertical-align: sub;
+    font-family: var(--font-mono);
+    opacity: 0.8;
+  }
 }
 
 /* Alternative using CSS variable if the above doesn't work */
@@ -168,22 +213,6 @@
     linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
   background-color: hsl(222.2 84% 4.9%);
 }
-
-h1, h2, h3, h4, h5, h6 {
-  @apply font-nasalization tracking-wide;
-}
-
-body {
-  @apply font-mono antialiased;
-}
-
-.subscript {
-  font-size: 0.7em;
-  vertical-align: sub;
-  font-family: var(--font-mono);
-  opacity: 0.8;
-}
-
 
 @layer components {
   /* Main grid container for independent items */
@@ -262,6 +291,70 @@ body {
     max-width: 24rem;
     transition: opacity 0.3s ease-in-out;
   }
+
+  .icon-container {
+    @apply bg-orange-100 dark:bg-orange-900/50 p-2 rounded-lg mr-3 
+           transition-colors duration-300 ease-in-out;
+  }
+
+  .icon-base {
+    @apply h-6 w-6 text-[#FFB800] dark:text-[#FFC933]
+           transition-all duration-300 ease-in-out;
+  }
+
+  .icon-sm {
+    @apply h-5 w-5;
+  }
+
+  .icon-lg {
+    @apply h-8 w-8;
+  }
+
+  .decorative-line {
+    @apply w-24 h-1 mx-auto bg-gradient-to-r 
+           from-[#FFB800] to-[#FFC933]
+           dark:from-[#FFB800] dark:to-[#FFA000]
+           rounded-full;
+  }
+
+  .card-base {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 
+           border border-gray-100 dark:border-gray-700
+           transition-all duration-300 ease-in-out;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:border-orange-200 dark:hover:border-orange-800
+           transform transition-all duration-300 ease-out;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-orange-50 to-orange-100/50
+           dark:from-orange-900/20 dark:to-orange-800/20;
+  }
+
+  .input-base {
+    @apply w-full rounded-lg border-2 bg-transparent px-4 py-3 
+           outline-none transition-all duration-300
+           focus:border-[#FFB800] dark:focus:border-[#FFC933]
+           dark:bg-gray-800/50 dark:text-white;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 
+           mb-2 transition-colors;
+  }
+
+  .button-primary {
+    @apply px-6 py-2 rounded-lg font-medium
+           bg-gradient-to-r from-[#FFB800] to-[#FFC933]
+           hover:from-[#FFC933] hover:to-[#FFD666]
+           dark:from-[#FFB800] dark:to-[#FFA000]
+           text-white shadow-sm
+           transform transition-all duration-300
+           hover:scale-[1.02] active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
 }
 
 @screen md {
@@ -291,20 +384,17 @@ body {
   }
 
   .animate-fade-in {
-    opacity: 0;
-    animation: fadeInUp 0.5s ease-out forwards;
+    animation: fadeIn 0.6s ease-out forwards;
   }
 
   .animate-slide-in {
-    opacity: 0;
-    transform: translateX(-20px);
     animation: slideIn 0.3s ease-out forwards;
   }
 
-  @keyframes fadeInUp {
+  @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -315,7 +405,7 @@ body {
   @keyframes slideIn {
     from {
       opacity: 0;
-      transform: translateX(-20px);
+      transform: translateX(-10px);
     }
     to {
       opacity: 1;
