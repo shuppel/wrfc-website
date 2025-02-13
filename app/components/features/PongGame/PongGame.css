@@ -49,4 +49,64 @@
 .exit-button {
   top: 2rem;
   right: 2rem;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
+  50% { text-shadow: 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff, 0 0 30px #0ff; }
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pong-game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.game-canvas {
+  display: block;
+  background: black;
+  transition: all 0.3s ease;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  aspect-ratio: 4/3;
+}
+
+.pong-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 50;
+}
+
+.theater-canvas {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  transform: scale(1.1);
+}
+
+/* Keep any unique animations or styles needed for the game */
+.icon-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 } 

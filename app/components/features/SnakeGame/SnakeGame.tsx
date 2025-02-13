@@ -1,8 +1,10 @@
 'use client'
 
-import * as React from 'react'
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import './SnakeGame.css'
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { GameContainer } from '../common/GameContainer';
+import './SnakeGame.css';
+import { GameNavigation } from '../common/GameNavigation'
+import { useGameNavigation } from '../hooks/useGameNavigation'
 
 type Position = {
   x: number;
@@ -21,7 +23,8 @@ const INITIAL_SNAKE: Position[] = [{ x: Math.floor(GRID_SIZE / 2), y: Math.floor
 const INITIAL_DIRECTION = Direction.RIGHT;
 const INITIAL_SPEED = 150;
 
-const SnakeGame: React.FC = () => {
+export default function SnakeGame() {
+  const { handleNavigateToMenu } = useGameNavigation();
   const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE);
   const [food, setFood] = useState<Position>({ x: 5, y: 5 });
   const [direction, setDirection] = useState<Direction>(INITIAL_DIRECTION);
@@ -138,60 +141,35 @@ const SnakeGame: React.FC = () => {
     setScore(0);
   };
 
-  const handleNavigateToMenu = () => {
-    if (window.confirm('Are you sure you want to exit? Your progress will be lost.')) {
-      window.location.href = '/playground';
-    }
-  };
-
   const handleExit = () => handleNavigateToMenu();
 
   return (
-    <div>
-      <div className="theater-overlay">
-        <button 
-          className="nav-button back-button" 
-          onClick={handleNavigateToMenu}
-          aria-label="Back to menu"
-        >
-          ← Back to Menu
-        </button>
-        <button 
-          className="exit-button" 
-          onClick={handleExit}
-          aria-label="Exit game"
-        >
-          ×
-        </button>
-        <div className="game-container">
-          <div className="snake-game">
-            <div className="game-info">
-              <span>Score: {score}</span>
-              {gameOver && (
-                <div className="game-over">
-                  <h2>Game Over!</h2>
-                  <button onClick={resetGame}>Play Again</button>
-                </div>
-              )}
-            </div>
-            <div className="game-board">
-              {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {
-                const x = index % GRID_SIZE;
-                const y = Math.floor(index / GRID_SIZE);
-                const cellKey = `${x}-${y}`;
-                const cellClass = snakePositions.has(`${x},${y}`)
-                  ? 'cell snake'
-                  : (food.x === x && food.y === y)
-                  ? 'cell food'
-                  : 'cell';
-                return <div key={cellKey} className={cellClass} />;
-              })}
-            </div>
-          </div>
-        </div>
+    <GameContainer className="snake-game">
+      <div className="game-info">
+        <span>Score: {score}</span>
       </div>
-    </div>
+      <div className="game-board">
+        {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {
+          const x = index % GRID_SIZE;
+          const y = Math.floor(index / GRID_SIZE);
+          const cellKey = `${x}-${y}`;
+          const cellClass = snakePositions.has(`${x},${y}`)
+            ? 'cell snake'
+            : (food.x === x && food.y === y)
+            ? 'cell food'
+            : 'cell';
+          return <div key={cellKey} className={cellClass} />;
+        })}
+      </div>
+      {gameOver && (
+        <div className="game-over">
+          <h2>Game Over!</h2>
+          <p>Score: {score}</p>
+          <button onClick={resetGame} className="arcade-button">
+            Play Again
+          </button>
+        </div>
+      )}
+    </GameContainer>
   );
-};
-
-export default SnakeGame;
+}

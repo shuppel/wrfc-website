@@ -1,134 +1,52 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
+import './PongGame.css'
 
-// Global CSS for theater mode and other styling.
-const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+type Particle = {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  life: number
+  maxLife: number
+  color: string
+}
 
-  @keyframes glow {
-    0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
-    50% { text-shadow: 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff, 0 0 30px #0ff; }
-    100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
-  }
-  @keyframes breathe {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-  
-  .game-container {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
-  }
-  
-  .game-canvas {
-    display: block;
-    background: black;
-    transition: all 0.3s ease;
-  }
-  
-  /* Theater Mode Overlay */
-  .theater-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-    padding: 2rem;
-    transition: all 0.3s ease;
-  }
-  
-  /* Theater canvas styling */
-  .theater-canvas {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    border-radius: 12px;
-    transform: scale(1.1);
-  }
-  
-  /* Navigation buttons styling */
-  .nav-button {
-    position: fixed;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-    font-family: 'Press Start 2P', cursive;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 51;
-  }
-
-  .nav-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .nav-button:active {
-    transform: translateY(0);
-  }
-
-  .back-button {
-    top: 2rem;
-    left: 2rem;
-    font-size: 0.8rem;
-  }
-  
-  .exit-button {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    font-size: 2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    z-index: 51;
-  }
-
-  .exit-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-  }
-
-  /* Icon animations */
-  .icon-spin {
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-`
+// Move the initial game state to a constant
+const INITIAL_GAME_STATE = {
+  player: {
+    x: 50,
+    y: 600 / 2 - 45,
+    width: 15,
+    height: 90,
+    angle: 0
+  },
+  opponent: {
+    x: 800 - 50 - 15,
+    y: 600 / 2 - 45,
+    width: 15,
+    height: 90,
+    angle: 0
+  },
+  ball: { 
+    x: 800 / 2 - 7.5, 
+    y: 600 / 2 - 7.5, 
+    width: 15, 
+    height: 15, 
+    dx: 2,
+    dy: 0,
+    spin: 0
+  },
+  PADDLE_SPEED: 4,
+  BALL_SPEED: 3,
+  canvasWidth: 800,
+  canvasHeight: 600
+}
 
 export default function PongGame() {
+  // Initialize gameRef with the initial state
+  const gameRef = useRef(INITIAL_GAME_STATE)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const opponentServeTimerRef = useRef<NodeJS.Timeout | null>(null)
   const failsafeTimerRef = useRef<NodeJS.Timeout | null>(null)
@@ -141,7 +59,7 @@ export default function PongGame() {
   const [servingPlayer, setServingPlayer] = useState<'player' | 'opponent'>('player')
   const [isWaitingForOpponentServe, setIsWaitingForOpponentServe] = useState(false)
 
-  // Remove the unused state and just use a constant since it's always true
+  // Constant value for theater mode.
   const isTheaterMode = true
 
   // Mirror state into refs for use in our continuous game loop.
@@ -159,29 +77,65 @@ export default function PongGame() {
   useEffect(() => { isWaitingForOpponentServeRef.current = isWaitingForOpponentServe }, [isWaitingForOpponentServe])
   useEffect(() => { scoresRef.current = scores }, [scores])
 
-  // Keep game objects in a ref so the game loop isn't recreated on state updates.
-  const gameRef = useRef({
-    canvasWidth: 800,
-    canvasHeight: 600,
-    player: { x: 50, y: 600 / 2 - 45, width: 15, height: 90 },
-    opponent: { x: 800 - 50 - 15, y: 600 / 2 - 45, width: 15, height: 90 },
-    ball: { 
-      x: 800 / 2 - 7.5, 
-      y: 600 / 2 - 7.5, 
-      width: 15, 
-      height: 15, 
-      dx: 3 * (Math.random() > 0.5 ? 1 : -1),
-      dy: 3 * (Math.random() > 0.5 ? 1 : -1)
-    },
-    PADDLE_SPEED: 4,
-    BALL_SPEED: 3,
-  })
-
   // Refs for key press states.
   const upPressed = useRef(false)
   const downPressed = useRef(false)
+  const leftPressed = useRef(false)
+  const rightPressed = useRef(false)
+  const horizLeftPressed = useRef(false)
+  const horizRightPressed = useRef(false)
 
-  // Combined serve handling logic in a single useCallback
+  // Particle system for sparks and dust.
+  const particlesRef = useRef<{
+    sparks: Particle[]
+    dust: Particle[]
+  }>({ sparks: [], dust: [] })
+
+  // --- Particle System Functions
+
+  // Update each particle's position and decrease its life.
+  const updateParticles = () => {
+    // Update spark particles.
+    for (let i = particlesRef.current.sparks.length - 1; i >= 0; i--) {
+      const p = particlesRef.current.sparks[i]
+      p.x += p.vx
+      p.y += p.vy
+      p.life -= 1
+      if (p.life <= 0) {
+        particlesRef.current.sparks.splice(i, 1)
+      }
+    }
+    // Update dust particles.
+    for (let i = particlesRef.current.dust.length - 1; i >= 0; i--) {
+      const p = particlesRef.current.dust[i]
+      p.x += p.vx
+      p.y += p.vy
+      p.life -= 1
+      if (p.life <= 0) {
+        particlesRef.current.dust.splice(i, 1)
+      }
+    }
+  }
+
+  // Spawn several spark particles at the given position.
+  const spawnSpark = (x: number, y: number) => {
+    const numSparks = 5
+    for (let i = 0; i < numSparks; i++) {
+      const angle = Math.random() * Math.PI * 2
+      const speed = Math.random() * 2 + 1
+      particlesRef.current.sparks.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 20,
+        maxLife: 20,
+        color: 'rgba(255,215,0,1)' // golden spark
+      })
+    }
+  }
+
+  // --- Serve Handling.
   const handleOpponentServe = useCallback(() => {
     const executeServe = () => {
       if (isServingRef.current && !isPausedRef.current && servingPlayerRef.current === 'opponent') {
@@ -198,7 +152,7 @@ export default function PongGame() {
     const randomDelay = Math.random() * 1800 + 200
     opponentServeTimerRef.current = setTimeout(executeServe, randomDelay)
     failsafeTimerRef.current = setTimeout(executeServe, 2000)
-  }, []) // No external dependencies needed since we're using refs
+  }, [])
 
   // --- Key Handlers.
   useEffect(() => {
@@ -207,25 +161,48 @@ export default function PongGame() {
         upPressed.current = true
       } else if (e.key === 'ArrowDown') {
         downPressed.current = true
+      } else if (e.key === 'ArrowLeft') {
+        horizLeftPressed.current = true  // Horizontal move left
+      } else if (e.key === 'ArrowRight') {
+        horizRightPressed.current = true // Horizontal move right
+      } else if (e.key.toLowerCase() === 'a') {
+        leftPressed.current = true  // Tilt left
+      } else if (e.key.toLowerCase() === 'd') {
+        rightPressed.current = true // Tilt right
+      } else if (e.code === 'Enter') {
+        if (!isServingRef.current) {
+          setIsPaused(prev => !prev)
+        }
       } else if (e.code === 'Space') {
         e.preventDefault()
         if (!isGameStartedRef.current) {
           setIsGameStarted(true)
         } else if (isServingRef.current && servingPlayerRef.current === 'player') {
-          // Only handle serve for player, not opponent
+          const angle = gameRef.current.player.angle
+          const speed = gameRef.current.BALL_SPEED
+          gameRef.current.ball.dx = speed * Math.cos(angle)
+          gameRef.current.ball.dy = speed * Math.sin(angle)
           setIsServing(false)
-        } else if (!isServingRef.current) {
-          setIsPaused(prev => !prev)
         }
       }
     }
+
     const keyUpHandler = (e: KeyboardEvent) => {
       if (e.key === 'ArrowUp') {
         upPressed.current = false
       } else if (e.key === 'ArrowDown') {
         downPressed.current = false
+      } else if (e.key === 'ArrowLeft') {
+        horizLeftPressed.current = false
+      } else if (e.key === 'ArrowRight') {
+        horizRightPressed.current = false
+      } else if (e.key.toLowerCase() === 'a') {
+        leftPressed.current = false
+      } else if (e.key.toLowerCase() === 'd') {
+        rightPressed.current = false
       }
     }
+
     window.addEventListener('keydown', keyDownHandler)
     window.addEventListener('keyup', keyUpHandler)
     return () => {
@@ -262,6 +239,14 @@ export default function PongGame() {
       )
     }
 
+    // When a point is scored, reset the ball.
+    const resetBall = () => {
+      ball.x = canvasWidth / 2 - ball.width / 2
+      ball.y = canvasHeight / 2 - ball.height / 2
+      ball.dx = gameRef.current.BALL_SPEED * (servingPlayerRef.current === 'player' ? 1 : -1)
+      ball.dy = servingPlayerRef.current === 'player' ? 0 : gameRef.current.BALL_SPEED * (Math.random() > 0.5 ? 1 : -1)
+    }
+
     const handleScore = (scorer: 'player' | 'opponent') => {
       if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
       if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
@@ -272,38 +257,101 @@ export default function PongGame() {
       resetBall()
     }
 
-    const resetBall = () => {
-      ball.x = canvasWidth / 2 - ball.width / 2
-      ball.y = canvasHeight / 2 - ball.height / 2
-      ball.dx = gameRef.current.BALL_SPEED * (servingPlayerRef.current === 'player' ? 1 : -1)
-      ball.dy = gameRef.current.BALL_SPEED * (Math.random() > 0.5 ? 1 : -1)
-    }
-
-    // Updated AI Logic for a slightly weaker opponent.
+    // Updated AI for the opponent.
     function updateAI() {
+      // --- Vertical Movement: Track ball's Y position with some noise
       let targetY: number
-      if (ball.dx > 0) {
-        targetY = ball.y + (Math.random() - 0.5) * 40
+      if (ball.dx > 0) { 
+        // When ball is coming toward opponent, follow its vertical position
+        targetY = ball.y + (Math.random() - 0.5) * 20
       } else {
+        // Otherwise, aim for vertical center
         targetY = canvasHeight / 2 - opponent.height / 2
       }
-      const aiSpeed = 1.5
+      const aiVerticalSpeed = 1.5
       if (opponent.y + opponent.height / 2 < targetY) {
-        opponent.y += aiSpeed
+        opponent.y += aiVerticalSpeed
       } else if (opponent.y + opponent.height / 2 > targetY) {
-        opponent.y -= aiSpeed
+        opponent.y -= aiVerticalSpeed
       }
       opponent.y = Math.max(0, Math.min(canvasHeight - opponent.height, opponent.y))
+
+      // --- Horizontal Movement: Move within allowed range on opponent's side
+      const minOpponentX = canvasWidth / 2 + 10
+      const maxOpponentX = canvasWidth - opponent.width - 10
+      let targetX: number
+      if (ball.dx > 0) {
+        // When ball is approaching, get as close to the net as possible
+        targetX = minOpponentX
+      } else {
+        // Otherwise, stay in the middle of the allowed range
+        targetX = (minOpponentX + maxOpponentX) / 2
+      }
+      const aiHorizontalSpeed = 1.5
+      if (opponent.x < targetX) {
+        opponent.x += aiHorizontalSpeed
+      } else if (opponent.x > targetX) {
+        opponent.x -= aiHorizontalSpeed
+      }
+      opponent.x = Math.max(minOpponentX, Math.min(maxOpponentX, opponent.x))
+
+      // --- Paddle Tilt: Use tilt to intercept and even simulate a fulcrum hit
+      // Compute the basic desired angle based on vertical offset
+      let desiredAngle = ((ball.y + ball.height/2) - (opponent.y + opponent.height/2)) / (opponent.height/2) * (Math.PI / 8)
+      
+      // If the ball is nearly centered on the paddle and is approaching, sometimes add extra tilt
+      if (Math.abs((ball.y + ball.height/2) - (opponent.y + opponent.height/2)) < opponent.height * 0.1 && ball.dx > 0) {
+        if (Math.random() < 0.5) { // 50% chance to "commit" to a fulcrum tilt
+          desiredAngle += (Math.random() - 0.5) * 0.2 // Add a random tilt offset between -0.1 and 0.1 radians
+        }
+      }
+      
+      // Smoothly adjust the AI paddle's angle toward desiredAngle
+      const tiltSpeed = 0.05
+      if (opponent.angle < desiredAngle) {
+        opponent.angle = Math.min(desiredAngle, opponent.angle + tiltSpeed)
+      } else if (opponent.angle > desiredAngle) {
+        opponent.angle = Math.max(desiredAngle, opponent.angle - tiltSpeed)
+      }
     }
 
     const update = () => {
       if (isPausedRef.current) return
 
+      // Add horizontal movement constraints and handling
+      const PLAYER_HORIZONTAL_SPEED = 2
+      const minPlayerX = 10
+      const maxPlayerX = canvasWidth / 2 - player.width - 10
+      if (horizLeftPressed.current && player.x > minPlayerX) {
+        player.x -= PLAYER_HORIZONTAL_SPEED
+      }
+      if (horizRightPressed.current && player.x < maxPlayerX) {
+        player.x += PLAYER_HORIZONTAL_SPEED
+      }
+
+      // Update vertical movement.
       if (upPressed.current && player.y > 0) player.y -= PADDLE_SPEED
       if (downPressed.current && player.y + player.height < canvasHeight) player.y += PADDLE_SPEED
 
+      // --- Update paddle rotation (tilt) based on left/right input.
+      const MAX_PADDLE_ANGLE = 0.2618  // ~15° in radians.
+      const PADDLE_TURN_SPEED = 0.05   // Radians per frame.
+      if (leftPressed.current) {
+        gameRef.current.player.angle = Math.max(gameRef.current.player.angle - PADDLE_TURN_SPEED, -MAX_PADDLE_ANGLE)
+      } else if (rightPressed.current) {
+        gameRef.current.player.angle = Math.min(gameRef.current.player.angle + PADDLE_TURN_SPEED, MAX_PADDLE_ANGLE)
+      } else {
+        // Gradually return to neutral.
+        if (gameRef.current.player.angle > 0) {
+          gameRef.current.player.angle = Math.max(gameRef.current.player.angle - PADDLE_TURN_SPEED, 0)
+        } else if (gameRef.current.player.angle < 0) {
+          gameRef.current.player.angle = Math.min(gameRef.current.player.angle + PADDLE_TURN_SPEED, 0)
+        }
+      }
+
       updateAI()
 
+      // --- Serve Mode: position the ball at the serving paddle.
       if (isServingRef.current) {
         if (servingPlayerRef.current === 'player') {
           ball.x = player.x + player.width + 5
@@ -312,6 +360,8 @@ export default function PongGame() {
           ball.x = opponent.x - ball.width - 5
           ball.y = opponent.y + opponent.height / 2 - ball.height / 2
         }
+        // Even in serve mode, update particles.
+        updateParticles()
         return
       }
 
@@ -319,57 +369,112 @@ export default function PongGame() {
       ball.x += ball.dx
       ball.y += ball.dy
 
-      // Wall collision (top and bottom)
+      // --- Apply Magnus Effect based on ball.spin ---
+      const magnusCoefficient = 0.01  // Adjust to taste for "curve" effect
+      const speed = Math.hypot(ball.dx, ball.dy)
+      if (speed > 0) {
+        // Compute the unit vector perpendicular to the ball's velocity.
+        const perpX = -ball.dy / speed
+        const perpY = ball.dx / speed
+        ball.dx += perpX * ball.spin * magnusCoefficient
+        ball.dy += perpY * ball.spin * magnusCoefficient
+      }
+      // Decay spin over time so it doesn't accumulate forever.
+      ball.spin *= 0.99
+
+      // Add dust particles based on ball speed
+      const DUST_SPEED_THRESHOLD = 3
+      if (speed > DUST_SPEED_THRESHOLD) {
+        particlesRef.current.dust.push({
+          x: ball.x + ball.width / 2,
+          y: ball.y + ball.height / 2,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          life: 30,
+          maxLife: 30,
+          color: 'rgba(255,255,255,0.5)'
+        })
+        if (particlesRef.current.dust.length > 50) {
+          particlesRef.current.dust.splice(0, 1)
+        }
+      }
+
+      // Wall collision (top and bottom).
       if (ball.y <= 0) {
         ball.y = 0
-        ball.dy = Math.abs(ball.dy) // Force downward
-        ball.dy *= 1.1 // Add some randomness to prevent loops
-        if (Math.abs(ball.dy) > gameRef.current.BALL_SPEED * 2) {
-          ball.dy = gameRef.current.BALL_SPEED * (ball.dy > 0 ? 1 : -1)
-        }
+        ball.dy = Math.abs(ball.dy)
       }
       if (ball.y + ball.height >= canvasHeight) {
         ball.y = canvasHeight - ball.height
-        ball.dy = -Math.abs(ball.dy) // Force upward
-        ball.dy *= 1.1 // Add some randomness to prevent loops
-        if (Math.abs(ball.dy) > gameRef.current.BALL_SPEED * 2) {
-          ball.dy = gameRef.current.BALL_SPEED * (ball.dy > 0 ? 1 : -1)
-        }
+        ball.dy = -Math.abs(ball.dy)
       }
 
-      // Paddle collisions with improved angle calculation
+      // --- Player Paddle Collision with refined physics
       if (checkCollision(ball, player)) {
-        ball.x = player.x + player.width // Prevent sticking
+        // Prevent sticking
+        ball.x = player.x + player.width
+        
+        // Calculate the collision point
         let collidePoint = (ball.y + ball.height / 2) - (player.y + player.height / 2)
-        collidePoint = collidePoint / (player.height / 2)
-        const angleRad = (Math.PI / 4) * collidePoint
-        const direction = Math.abs(ball.dx)
-        ball.dx = direction * Math.cos(angleRad)
-        ball.dy = direction * Math.sin(angleRad)
-        // Ensure minimum horizontal velocity
-        if (Math.abs(ball.dx) < gameRef.current.BALL_SPEED / 2) {
-          ball.dx = gameRef.current.BALL_SPEED * (ball.dx > 0 ? 1 : -1)
+        const normalizedCollide = collidePoint / (player.height / 2)
+        let bounceAngle = normalizedCollide * (Math.PI / 4)
+        bounceAngle += player.angle
+        
+        // Fulcrum effect: if paddle is turning and hit is near the center
+        let multiplier = 1
+        const fulcrumThreshold = 0.2
+        if ((leftPressed.current || rightPressed.current) && Math.abs(normalizedCollide) < fulcrumThreshold) {
+          multiplier = 1.3
+          spawnSpark(ball.x + ball.width / 2, ball.y + ball.height / 2)
         }
-      } else if (checkCollision(ball, opponent)) {
-        ball.x = opponent.x - ball.width // Prevent sticking
+        
+        // NEW: Horizontal boost based on paddle proximity to the net
+        // As player.x increases (paddle moves right), boostFactor approaches 1.05
+        const boostFactor = 1 + (player.x / maxPlayerX) * 0.05
+        
+        // Impart spin based on tilt keys
+        if (leftPressed.current) {
+          ball.spin += 0.5
+        } else if (rightPressed.current) {
+          ball.spin -= 0.5
+        }
+        
+        const currentSpeed = Math.hypot(ball.dx, ball.dy) || gameRef.current.BALL_SPEED
+        let newDx = multiplier * currentSpeed * Math.cos(bounceAngle) * boostFactor
+        if (newDx < 0) newDx = -newDx
+        ball.dx = newDx
+        ball.dy = multiplier * currentSpeed * Math.sin(bounceAngle) * boostFactor
+      } 
+      // --- Opponent Paddle Collision (no fulcrum effect).
+      else if (checkCollision(ball, opponent)) {
+        // Prevent ball from sticking
+        ball.x = opponent.x - ball.width
+        
+        // Compute collision point relative to paddle center
         let collidePoint = (ball.y + ball.height / 2) - (opponent.y + opponent.height / 2)
-        collidePoint = collidePoint / (opponent.height / 2)
-        const angleRad = (Math.PI / 4) * collidePoint
-        const direction = -Math.abs(ball.dx)
-        ball.dx = direction * Math.cos(angleRad)
-        ball.dy = direction * Math.sin(angleRad)
-        // Ensure minimum horizontal velocity
-        if (Math.abs(ball.dx) < gameRef.current.BALL_SPEED / 2) {
-          ball.dx = gameRef.current.BALL_SPEED * (ball.dx > 0 ? 1 : -1)
-        }
+        const normalizedCollide = collidePoint / (opponent.height / 2)
+        // Calculate bounce angle (max 45°) and add the AI's tilt
+        let bounceAngle = normalizedCollide * (Math.PI / 4) + opponent.angle
+        
+        // Horizontal boost: The closer the opponent is to the net, the larger the boost
+        const minOpponentX = canvasWidth / 2 + 10
+        const maxOpponentX = canvasWidth - opponent.width - 10
+        const boostFactor = 1 + ((maxOpponentX - opponent.x) / (maxOpponentX - minOpponentX)) * 0.05
+        
+        const currentSpeed = Math.hypot(ball.dx, ball.dy) || gameRef.current.BALL_SPEED
+        ball.dx = -Math.abs(currentSpeed * Math.cos(bounceAngle) * boostFactor)
+        ball.dy = currentSpeed * Math.sin(bounceAngle) * boostFactor
       }
 
-      // Score points
+      // Score points.
       if (ball.x <= 0) {
         handleScore('opponent')
       } else if (ball.x + ball.width >= canvasWidth) {
         handleScore('player')
       }
+
+      // Update all particles.
+      updateParticles()
     }
 
     const drawStartScreen = () => {
@@ -398,7 +503,7 @@ export default function PongGame() {
       ctx.font = '12px "Press Start 2P"'
       ctx.fillText('PRESS SPACE TO START', centerX, centerY + 20)
       ctx.fillText('↑ AND ↓ TO MOVE', centerX, centerY + 60)
-      ctx.fillText('SPACE TO PAUSE', centerX, centerY + 100)
+      ctx.fillText('PRESS RETURN TO PAUSE', centerX, centerY + 100)
       ctx.restore()
     }
 
@@ -426,13 +531,83 @@ export default function PongGame() {
       ctx.shadowColor = 'transparent'
       ctx.shadowBlur = 0
       ctx.font = '12px "Press Start 2P"'
-      ctx.fillText('PRESS SPACE TO RESUME', centerX, centerY + 60)
+      ctx.fillText('PRESS RETURN TO RESUME', centerX, centerY + 60)
       ctx.restore()
     }
 
     const drawGame = () => {
       ctx.fillStyle = 'black'
       ctx.fillRect(0, 0, canvasWidth, canvasHeight)
+
+      // Draw version and controls when game hasn't started
+      if (!isGameStartedRef.current) {
+        ctx.fillStyle = 'white'
+        ctx.font = '24px "Press Start 2P"'
+        ctx.textAlign = 'center'
+        ctx.fillText('PONG v2.0', canvasWidth / 2, 100)
+        
+        ctx.font = '16px "Press Start 2P"'
+        ctx.fillText('Controls:', canvasWidth / 2, 200)
+        ctx.fillText('↑/↓ - Move Up/Down', canvasWidth / 2, 240)
+        ctx.fillText('←/→ - Move Left/Right', canvasWidth / 2, 270)
+        ctx.fillText('A/D - Tilt Paddle', canvasWidth / 2, 300)
+        ctx.fillText('SPACE - Serve Ball', canvasWidth / 2, 330)
+        ctx.fillText('ENTER - Pause Game', canvasWidth / 2, 360)
+        
+        ctx.font = '20px "Press Start 2P"'
+        ctx.fillText('Press SPACE to Start', canvasWidth / 2, 450)
+        return
+      }
+
+      // Draw dust particles first
+      particlesRef.current.dust.forEach(p => {
+        const alpha = p.life / p.maxLife
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      // Updated ball color computation with improved interpolation
+      const ballSpeed = Math.hypot(ball.dx, ball.dy)
+      const maxBallSpeed = 10 // Must match the cap used elsewhere
+      const ratio = Math.min(ballSpeed / maxBallSpeed, 1)
+
+      // Define key color stops:
+      // 0.0: white, 0.25: yellow, 0.5: orange, 0.75: red, 1.0: violet
+      const colorStops = [
+        { t: 0.0, color: [255, 255, 255] },    // white at rest
+        { t: 0.25, color: [255, 255, 0] },     // yellow
+        { t: 0.5, color: [255, 165, 0] },      // orange
+        { t: 0.75, color: [255, 0, 0] },       // red
+        { t: 1.0, color: [238, 130, 238] }     // violet at max speed
+      ]
+
+      // Find the two color stops to interpolate between
+      let lowerStop = colorStops[0],
+          upperStop = colorStops[colorStops.length - 1]
+      for (let i = 0; i < colorStops.length - 1; i++) {
+        if (ratio >= colorStops[i].t && ratio <= colorStops[i + 1].t) {
+          lowerStop = colorStops[i]
+          upperStop = colorStops[i + 1]
+          break
+        }
+      }
+      
+      // Compute local interpolation factor between the two stops
+      const localT = (ratio - lowerStop.t) / (upperStop.t - lowerStop.t)
+      
+      // Interpolate each RGB channel
+      const interpolate = (a: number, b: number, t: number) => Math.round(a + (b - a) * t)
+      const r = interpolate(lowerStop.color[0], upperStop.color[0], localT)
+      const g = interpolate(lowerStop.color[1], upperStop.color[1], localT)
+      const bVal = interpolate(lowerStop.color[2], upperStop.color[2], localT)
+      const ballColor = `rgb(${r}, ${g}, ${bVal})`
+
+      ctx.fillStyle = ballColor
+      ctx.fillRect(ball.x, ball.y, ball.width, ball.height)
+
+      // Draw score and center line
       ctx.fillStyle = 'white'
       ctx.font = '24px "Press Start 2P"'
       ctx.textAlign = 'center'
@@ -443,10 +618,29 @@ export default function PongGame() {
       ctx.lineTo(canvasWidth / 2, canvasHeight)
       ctx.strokeStyle = 'white'
       ctx.stroke()
+
+      // Draw the player's paddle
+      ctx.save()
+      ctx.translate(player.x + player.width / 2, player.y + player.height / 2)
+      ctx.rotate(player.angle)
       ctx.fillStyle = 'white'
-      ctx.fillRect(player.x, player.y, player.width, player.height)
+      ctx.fillRect(-player.width / 2, -player.height / 2, player.width, player.height)
+      ctx.restore()
+
+      // Draw the opponent paddle
+      ctx.fillStyle = 'white'
       ctx.fillRect(opponent.x, opponent.y, opponent.width, opponent.height)
-      ctx.fillRect(ball.x, ball.y, ball.width, ball.height)
+
+      // --- Draw spark particles on top.
+      particlesRef.current.sparks.forEach(p => {
+        const alpha = p.life / p.maxLife
+        ctx.fillStyle = `rgba(255,215,0,${alpha})`
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      // Display serve instructions.
       if (isServingRef.current && !isPausedRef.current) {
         ctx.font = '12px "Press Start 2P"'
         ctx.fillStyle = 'white'
@@ -481,7 +675,7 @@ export default function PongGame() {
       if (opponentServeTimerRef.current) clearTimeout(opponentServeTimerRef.current)
       if (failsafeTimerRef.current) clearTimeout(failsafeTimerRef.current)
     }
-  }, []) // Run only once on mount
+  }, []) // Run once on mount
 
   // Manage body class.
   useEffect(() => {
@@ -493,10 +687,10 @@ export default function PongGame() {
     }
   }, [isGameStarted])
 
-  // Prevent default scrolling for arrow keys.
+  // Prevent default scrolling for gameplay keys.
   useEffect(() => {
     const preventArrowScroll = (e: KeyboardEvent) => {
-      if (['ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
         e.preventDefault()
       }
     }
@@ -504,21 +698,20 @@ export default function PongGame() {
     return () => window.removeEventListener('keydown', preventArrowScroll)
   }, [])
 
-  // Handle navigation back to menu
+  // Handle navigation back to menu.
   const handleNavigateToMenu = () => {
     if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
       window.location.href = '/playground'
     }
   }
 
-  // Handle exit: clicking "X" will return to playground
+  // Handle exit.
   const handleExit = () => {
     handleNavigateToMenu()
   }
 
   return (
     <div>
-      <style>{globalStyles}</style>
       <div className={isTheaterMode ? "theater-overlay" : ""}>
         <button 
           className="nav-button back-button" 

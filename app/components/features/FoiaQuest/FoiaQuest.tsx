@@ -1,7 +1,11 @@
 'use client'
 
+import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './FoiaQuest.css'
+import { GameNavigation } from '../common/GameNavigation';
+import { useGameNavigation } from '../hooks/useGameNavigation';
+import { GameContainer } from '../common/GameContainer';
 
 interface Agency {
   id: string
@@ -180,6 +184,7 @@ const fuzzySearch = (items: Agency[], searchTerm: string): Agency[] => {
 };
 
 export default function FoiaQuest() {
+  const { handleNavigateToMenu } = useGameNavigation();
   const [gameState, setGameState] = useState<GameState>({
     score: 0,
     level: 1,
@@ -592,12 +597,6 @@ Example:
     }
   };
 
-  const handleNavigateToMenu = () => {
-    if (window.confirm('Are you sure you want to exit? Your progress will be lost.')) {
-      window.location.href = '/playground'
-    }
-  }
-
   const StatusBar = () => (
     <div className="status-bar">
       <div className="status-bar-section">
@@ -668,22 +667,12 @@ Example:
   }
 
   return (
-    <div>
+    <GameContainer className="foia-quest">
       <div className="theater-overlay">
-        <button 
-          className="nav-button back-button" 
-          onClick={handleNavigateToMenu}
-          aria-label="Back to menu"
-        >
-          ← Back to Menu
-        </button>
-        <button 
-          className="exit-button" 
-          onClick={handleNavigateToMenu}
-          aria-label="Exit game"
-        >
-          ×
-        </button>
+        <GameNavigation 
+          onBack={handleNavigateToMenu}
+          onExit={handleNavigateToMenu}
+        />
         <div className="computer-wrapper">
           <div className="monitor">
             <div className="monitor-screen">
@@ -731,6 +720,6 @@ Example:
           </div>
         </div>
       </div>
-    </div>
+    </GameContainer>
   )
 } 

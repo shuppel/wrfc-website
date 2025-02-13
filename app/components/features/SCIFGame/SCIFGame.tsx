@@ -1,9 +1,13 @@
 'use client'
 
+import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import type { Game as PhaserGame } from 'phaser'
 import { calculateGameSize } from './utils'
 import styles from './SCIFGame.module.css'
+import { GameNavigation } from '../common/GameNavigation'
+import { useGameNavigation } from '../hooks/useGameNavigation'
+import { GameContainer } from '../common/GameContainer'
 
 // Import scenes
 import BootScene from './scenes/BootScene'
@@ -26,6 +30,7 @@ export default function SCIFGame() {
   const [gameSize, setGameSize] = useState(calculateGameSize())
   const [isLoading, setIsLoading] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
+  const { handleNavigateToMenu } = useGameNavigation()
 
   // Handle component mount
   useEffect(() => {
@@ -159,14 +164,16 @@ export default function SCIFGame() {
   }
 
   return (
-    <div className={styles.theater_overlay}>
-      <div className={styles.scif_container} ref={gameRef}>
-        {isLoading && (
-          <div className={styles.loading_overlay}>
-            <div className={styles.loading_spinner}>Loading...</div>
-          </div>
-        )}
+    <GameContainer className="scif-game">
+      <div className={styles.theater_overlay}>
+        <div className={styles.scif_container} ref={gameRef}>
+          {isLoading && (
+            <div className={styles.loading_overlay}>
+              <div className={styles.loading_spinner}>Loading...</div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </GameContainer>
   )
 } 

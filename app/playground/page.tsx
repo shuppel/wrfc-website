@@ -1,15 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
-
-// Dynamically import the game components with no SSR
-const PongGame = dynamic(() => import('../components/features/PongGame/PongGame'), { ssr: false })
-const FoiaQuest = dynamic(() => import('../components/features/FoiaQuest/FoiaQuest'), { ssr: false })
-const SnakeGame = dynamic(() => import('../components/features/SnakeGame/SnakeGame'), { ssr: false })
-const SCIFGame = dynamic(() => import('../components/features/SCIFGame/SCIFGame'), { ssr: false })
-
 import { Press_Start_2P } from 'next/font/google'
+import Link from 'next/link'
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -23,6 +16,7 @@ interface Game {
   sprite: string;
   background: string;
   summary: string;
+  path: string; // Add path for the game route
 }
 
 const games: Game[] = [
@@ -31,28 +25,32 @@ const games: Game[] = [
     name: 'SCIF: The Password Hunt', 
     sprite: '/sprites/scif.png',
     background: '/backgrounds/scif-bg.png',
-    summary: 'Roam the quirky office searching for clues to unlock the terminal!'
+    summary: 'Roam the quirky office searching for clues to unlock the terminal!',
+    path: '/games/scif'
   },
   { 
     id: 'foia-quest', 
     name: 'FOIA Quest', 
     sprite: '/sprites/foia-quest.png',
     background: '/backgrounds/foia-bg.png',
-    summary: 'Navigate the bureaucracy and uncover hidden truths in this document-hunting adventure.'
+    summary: 'Navigate the bureaucracy and uncover hidden truths in this document-hunting adventure.',
+    path: '/games/foia-quest'
   },
   { 
     id: 'snake', 
     name: 'Snake', 
     sprite: '/sprites/snake.png',
     background: '/backgrounds/snake-bg.png',
-    summary: 'Classic snake game with a modern twist. Collect power-ups and avoid obstacles.'
+    summary: 'Classic snake game with a modern twist. Collect power-ups and avoid obstacles.',
+    path: '/games/snake'
   },
   { 
     id: 'pong', 
     name: 'Pong', 
     sprite: '/sprites/pong.png',
     background: '/backgrounds/pong-bg.png',
-    summary: 'The original arcade classic. Simple yet addictive paddle action.'
+    summary: 'The original arcade classic. Simple yet addictive paddle action.',
+    path: '/games/pong'
   }
 ]
 
@@ -66,8 +64,6 @@ const breathingGlowStyles = `
 `
 
 export default function PlaygroundPage() {
-  const [selectedGame, setSelectedGame] = useState<string | null>(null)
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
       {/* Animated background grid */}
@@ -94,76 +90,58 @@ export default function PlaygroundPage() {
         </div>
         
         <div className={`${pressStart2P.className} mt-12`}>
-          {!selectedGame ? (
-            <div className="game-menu rounded-lg animate-fade-in">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 perspective-1000">
-                {games.map((game) => (
-                  <div
-                    key={game.id}
-                    className="group relative transition-all duration-500 
-                             hover:shadow-[0_0_30px_rgba(255,140,0,0.15)]
-                             hover:scale-[1.02]
-                             bg-slate-900/90 dark:bg-slate-800/90 
-                             backdrop-blur-sm rounded-xl
-                             border border-orange-100/10 dark:border-orange-500/10
-                             overflow-hidden"
-                    onClick={() => setSelectedGame(game.id)}
-                  >
+          <div className="game-menu rounded-lg animate-fade-in">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 perspective-1000">
+              {games.map((game) => (
+                <Link
+                  key={game.id}
+                  href={game.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative transition-all duration-500 
+                           hover:shadow-[0_0_30px_rgba(255,140,0,0.15)]
+                           hover:scale-[1.02]
+                           bg-slate-900/90 dark:bg-slate-800/90 
+                           backdrop-blur-sm rounded-xl
+                           border border-orange-100/10 dark:border-orange-500/10
+                           overflow-hidden"
+                >
+                  <div 
+                    className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${game.background})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                  />
+                  
+                  <div className="relative flex items-center p-8 h-full">
                     <div 
-                      className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
+                      className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden
+                               border-2 border-[#FF8C00]/20 group-hover:border-[#FF8C00]/40
+                               transition-all duration-500"
                       style={{
-                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${game.background})`,
+                        backgroundImage: `url(${game.sprite})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                       }}
                     />
-                    
-                    <div className="relative flex items-center p-8 h-full">
-                      <div 
-                        className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden
-                                 border-2 border-[#FF8C00]/20 group-hover:border-[#FF8C00]/40
-                                 transition-all duration-500"
-                        style={{
-                          backgroundImage: `url(${game.sprite})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                        }}
-                      />
-                      <div className="ml-6 flex-1">
-                        <h3 className="text-lg text-[#FF8C00] mb-3 group-hover:text-[#FFA500] transition-colors duration-300">
-                          {game.name}
-                        </h3>
-                        <p className="text-xs leading-relaxed text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
-                          {game.summary}
-                        </p>
+                    <div className="ml-6 flex-1">
+                      <h3 className="text-lg text-[#FF8C00] mb-3 group-hover:text-[#FFA500] transition-colors duration-300">
+                        {game.name}
+                      </h3>
+                      <p className="text-xs leading-relaxed text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
+                        {game.summary}
+                      </p>
+                      <div className="mt-4 text-[10px] text-slate-400/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        Click to launch game in new window →
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </Link>
+              ))}
             </div>
-          ) : (
-            <div className="animate-fade-in space-y-6">
-              {selectedGame === 'scif' && <SCIFGame />}
-              {selectedGame === 'foia-quest' && <FoiaQuest />}
-              {selectedGame === 'snake' && <SnakeGame />}
-              {selectedGame === 'pong' && <PongGame />}
-              
-              <button 
-                onClick={() => setSelectedGame(null)}
-                className="px-6 py-3 bg-slate-100 dark:bg-slate-800
-                         hover:bg-[#FF8C00]/10 dark:hover:bg-[#FF8C00]/20
-                         text-slate-700 dark:text-slate-300
-                         hover:text-[#FF8C00] dark:hover:text-[#FF8C00]
-                         rounded-lg transition-all duration-300
-                         border border-slate-200 dark:border-slate-700
-                         hover:border-[#FF8C00]/30 dark:hover:border-[#FF8C00]/30
-                         text-sm tracking-wide"
-              >
-                ← Back to Arcade
-              </button>
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
