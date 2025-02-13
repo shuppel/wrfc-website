@@ -20,6 +20,16 @@ const pressStart2P = Press_Start_2P({
 export const metadata: Metadata = {
   title: 'Nodetus - Federal IT Solutions',
   description: 'Transforming federal IT through strategic innovation and operational excellence.',
+  icons: {
+    icon: [
+      {
+        url: '/assets/node_logo_paper_feel_webclip.png',
+        type: 'image/png',
+      }
+    ],
+    shortcut: '/assets/node_logo_paper_feel_webclip.png',
+    apple: '/assets/node_logo_paper_feel_webclip.png',
+  },
 }
 
 export default function RootLayout({

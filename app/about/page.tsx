@@ -688,6 +688,77 @@ export default function AboutPage() {
               </div>
             </div>
           </Card>
+
+          {/* Tech Stack Section */}
+          <Card className="p-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
+            <h3 className="text-2xl font-bold text-[#FF8C00] mb-6">Technology Stack</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* AI & Machine Learning */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-[#FF8C00]" />
+                  AI & Machine Learning
+                </h4>
+                <div className="space-y-2">
+                  {[
+                    { name: 'Claude AI', desc: 'Advanced language model for intelligent interactions' },
+                    { name: 'OpenAI ChatGPT', desc: 'Natural language processing and generation' },
+                    { name: 'Sora', desc: 'Text-to-video AI model' },
+                    { name: 'Hugging Face', desc: 'State-of-the-art ML models and tools' },
+                    { name: 'Perplexity', desc: 'AI-powered knowledge exploration' }
+                  ].map((tech, index) => (
+                    <div key={index} className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:shadow-md transition-all duration-300">
+                      <div className="font-medium text-gray-800 dark:text-gray-200">{tech.name}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">{tech.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Development Frameworks */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                  <Code className="w-5 h-5 text-[#FF8C00]" />
+                  Development Frameworks
+                </h4>
+                <div className="space-y-2">
+                  {[
+                    { name: 'Next.js', desc: 'React framework for production-grade applications' },
+                    { name: 'React', desc: 'UI library for building interactive interfaces' },
+                    { name: 'Flutter', desc: 'Cross-platform app development framework' },
+                    { name: 'Tailwind CSS', desc: 'Utility-first CSS framework' }
+                  ].map((tech, index) => (
+                    <div key={index} className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:shadow-md transition-all duration-300">
+                      <div className="font-medium text-gray-800 dark:text-gray-200">{tech.name}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">{tech.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Development Tools & Protocols */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                  <Binary className="w-5 h-5 text-[#FF8C00]" />
+                  Tools & Protocols
+                </h4>
+                <div className="space-y-2">
+                  {[
+                    { name: 'Cursor', desc: 'AI-powered code editor' },
+                    { name: 'PerMedia Context Protocol', desc: 'Advanced media context handling' },
+                    { name: 'Agentic AI', desc: 'Autonomous AI development tools' },
+                    { name: 'Git & GitHub', desc: 'Version control and collaboration' },
+                    { name: 'VS Code', desc: 'Advanced code editing' }
+                  ].map((tech, index) => (
+                    <div key={index} className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:shadow-md transition-all duration-300">
+                      <div className="font-medium text-gray-800 dark:text-gray-200">{tech.name}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-300">{tech.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </div>
