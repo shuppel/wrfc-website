@@ -8,8 +8,10 @@ interface FormData {
   name: string;
   email: string;
   company?: string;
+  sector: 'federal' | 'state' | 'local' | 'commercial' | 'non-profit' | 'other';
   service: 'project-management' | 'ai-consulting' | 'acquisition-it' | 'data-engineering' | 
-          'app-development' | 'mobile-development' | 'design-ux' | 'other';
+          'app-development' | 'mobile-development' | 'design-ux' | 'process-engineering' |
+          'change-management' | 'other';
   message: string;
 }
 
@@ -28,6 +30,7 @@ export default function ContactPage() {
       name: '',
       email: '',
       company: '',
+      sector: undefined,
       service: undefined,
       message: ''
     }
@@ -147,6 +150,36 @@ export default function ContactPage() {
                 )}
               </div>
 
+              {/* Sector Field */}
+              <div className="group">
+                <label htmlFor="sector" className="input-label">
+                  <div className="flex items-center">
+                    <div className="icon-container">
+                      <Building2 className="icon-base icon-sm" />
+                    </div>
+                    Sector
+                  </div>
+                </label>
+                <select
+                  {...register('sector', {
+                    required: 'Please select a sector'
+                  })}
+                  id="sector"
+                  className="input-base"
+                >
+                  <option value="">Select your sector</option>
+                  <option value="federal">Federal Government</option>
+                  <option value="state">State Government</option>
+                  <option value="local">Local Government</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="non-profit">Non-Profit</option>
+                  <option value="other">Other</option>
+                </select>
+                {errors.sector && (
+                  <p className="mt-2 text-red-500 dark:text-red-400 animate-slide-in text-sm">{errors.sector.message}</p>
+                )}
+              </div>
+
               {/* Service Field */}
               <div className="group">
                 <label htmlFor="service" className="input-label">
@@ -167,6 +200,10 @@ export default function ContactPage() {
                   <option value="">Select a service</option>
                   <optgroup label="Core Services">
                     <option value="project-management">Project Management</option>
+                    <option value="process-engineering">Process Engineering</option>
+                    <option value="change-management">Change Management</option>
+                  </optgroup>
+                  <optgroup label="Technology">
                     <option value="ai-consulting">AI Consulting</option>
                     <option value="acquisition-it">Acquisition IT</option>
                     <option value="data-engineering">Data Engineering</option>
