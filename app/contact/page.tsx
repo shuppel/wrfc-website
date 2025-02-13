@@ -51,21 +51,21 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF5E6] dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-500">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
+      {/* Animated background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl shadow-lg 
-                      border border-orange-100/50 dark:border-orange-500/10
-                      hover:shadow-orange-100 dark:hover:shadow-orange-900/30
-                      transition-all duration-500 p-8">
-          <div className="text-center mb-12 space-y-4">
-            <div className="title-container inline-flex items-center justify-center">
-              <Mail className="icon-base icon-lg mr-3" />
-              <h1 className="title-gradient text-4xl font-bold">
-                Let's Work Together
-              </h1>
-            </div>
-            <div className="decorative-line mb-6"></div>
-            <p className="body-text text-lg animate-fade-in-delayed">
+                     border border-orange-100/50 dark:border-orange-500/10
+                     hover:shadow-[0_0_30px_rgba(255,140,0,0.15)] 
+                     transition-all duration-500 p-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] sm:text-5xl mb-6 font-nasalization tracking-wider group">
+              Let's Work Together
+              <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF8C00] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+            </h1>
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-mono max-w-3xl mx-auto leading-relaxed">
               Tell us about your project and we'll get back to you within 24 hours.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   })}
                   type="text"
                   id="name"
-                  className="input-base"
+                  className="input-base hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                   placeholder="John Doe"
                 />
                 {errors.name && (
@@ -118,7 +118,7 @@ export default function ContactPage() {
                   })}
                   type="email"
                   id="email"
-                  className="input-base"
+                  className="input-base hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                   placeholder="john@example.com"
                 />
                 {errors.email && (
@@ -142,7 +142,7 @@ export default function ContactPage() {
                   })}
                   type="text"
                   id="company"
-                  className="input-base"
+                  className="input-base hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                   placeholder="Your Company (Optional)"
                 />
                 {errors.company && (
@@ -165,7 +165,7 @@ export default function ContactPage() {
                     required: 'Please select a sector'
                   })}
                   id="sector"
-                  className="input-base"
+                  className="input-base hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                 >
                   <option value="">Select your sector</option>
                   <option value="federal">Federal Government</option>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                     required: 'Please select a service'
                   })}
                   id="service"
-                  className="input-base"
+                  className="input-base hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                 >
                   <option value="">Select a service</option>
                   <optgroup label="Core Services">
@@ -243,7 +243,7 @@ export default function ContactPage() {
                 })}
                 id="message"
                 rows={4}
-                className="input-base resize-none"
+                className="input-base resize-none hover:border-[#FF8C00] focus:border-[#FF8C00] transition-colors duration-300"
                 placeholder="Tell us about your project..."
               />
               {errors.message && (

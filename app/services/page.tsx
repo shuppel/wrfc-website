@@ -222,8 +222,22 @@ const naicsCodes: NAICSCode[] = [
 
 export default function ServicesPage() {
   return (
-    <main className="bg-background dark:bg-background transition-colors duration-300 min-h-screen">
-      <div className="bg-paper dark:bg-paper relative">
+    <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
+      {/* Animated background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-16 animate-fade-in">
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] sm:text-5xl mb-6 font-nasalization tracking-wider group">
+            Our Services
+            <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">[capabilities]</sup>
+            <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF8C00] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          </h1>
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-mono max-w-3xl mx-auto leading-relaxed">
+            Comprehensive IT solutions tailored for federal agencies and contractors.
+          </p>
+        </div>
+
         {/* Hero Section */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12 animate-fade-in">
@@ -351,6 +365,6 @@ export default function ServicesPage() {
           </section>
         </div>
       </div>
-    </main>
+    </div>
   )
 } 

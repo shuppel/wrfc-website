@@ -1,0 +1,89 @@
+# Puppeteer, AI Assistant & Brave Search Rules
+
+## Browser Automation (Puppeteer)
+
+### Core Tools Usage
+- Use `puppeteer_navigate` for all page navigation operations
+  - Always include error handling and timeout settings
+  - Example: `await puppeteer_navigate('https://example.com')`
+
+- Use `puppeteer_screenshot` for visual verification
+  - Store screenshots in `src/test/screenshots`
+  - Include timestamp in filenames
+  - Example: `await puppeteer_screenshot({ path: 'verification.png' })`
+
+- Use `puppeteer_click` for element interactions
+  - Wait for elements before clicking
+  - Use specific selectors
+  - Example: `await puppeteer_click('#specific-button')`
+
+- Use `puppeteer_fill` for form interactions
+  - Support both single and multiple field filling
+  - Example: `await puppeteer_fill('#input', 'value')`
+
+- Use `puppeteer_select` for dropdown interactions
+  - Verify options exist before selection
+  - Example: `await puppeteer_select('#dropdown', 'option')`
+
+- Use `puppeteer_hover` for hover interactions
+  - Include wait time after hover actions
+  - Example: `await puppeteer_hover('.menu-item')`
+
+- Use `puppeteer_evaluate` for client-side JavaScript execution
+  - Keep evaluation functions pure
+  - Example: `await puppeteer_evaluate(() => document.title)`
+
+### General Puppeteer Rules
+- Store browser session data in `src/data/sessions`
+- Implement retry logic for failed operations
+- Close browser instances after use
+- Use TypeScript for all automation scripts
+
+## AI Assistant Integration
+
+- Use `generateChatCompletion` in `src/lib/aiClient.ts` for all AI calls
+- Implement conversation history management in `src/lib/utils/chatHistory.ts`
+- Use structured prompts from `src/data/prompts` directory
+- Handle rate limiting and API errors gracefully
+- Log AI interactions for debugging purposes
+- Maintain context across multiple interactions
+
+## Brave Search MCP Integration
+
+- Store Brave Search API credentials securely in environment variables
+- Use `src/lib/utils/braveSearch.ts` for all Brave Search operations
+- Implement result caching to minimize API calls
+- Handle pagination for search results
+- Validate and sanitize search queries
+- Log search operations for monitoring
+
+## Error Handling & Testing
+
+- Wrap all tool operations in try/catch blocks:
+#tsx
+try {
+await puppeteer_navigate(url);
+} catch (error) {
+console.error(Navigation failed: ${error});
+await puppeteer_screenshot({ path: 'error.png' });
+}
+
+
+- Run `npm run test:e2e` for end-to-end testing
+- Document all automation flows in `src/docs/automation.md`
+- Add error tracking and monitoring for production
+
+## Build & Deploy
+
+- Run `npm run build` after changes
+- Add summary to `.cursor-updates` in markdown format
+- Use semantic commit messages
+- Test all integrations in staging environment
+
+IMPORTANT:
+- Always handle browser cleanup in try/catch blocks
+- Implement proper logging for debugging
+- Use TypeScript types for all operations
+- Keep automation scripts modular and reusable
+- Document changes to automation workflow
+- Take screenshots for visual verification of critical steps
