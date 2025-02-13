@@ -227,143 +227,148 @@ export default function ServicesPage() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] sm:text-5xl mb-6 font-nasalization tracking-wider group">
-            Our Services
-            <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">[capabilities]</sup>
-            <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF8C00] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-          </h1>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-mono max-w-3xl mx-auto leading-relaxed">
-            Comprehensive IT solutions tailored for federal agencies and contractors.
-          </p>
-        </div>
-
         {/* Hero Section */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12 animate-fade-in">
-            <div className="w-64 h-64 relative flex-shrink-0 rounded-lg overflow-hidden shadow-2xl ring-4 ring-[#FF8C00]/30">
-              <div className="absolute inset-0 bg-gradient-to-b from-gray-900/10 to-gray-900/30 group-hover:opacity-80 transition-opacity duration-300" />
-              <Image
-                src="/assets/services-hero.png"
-                alt="Federal IT Services Pixel Art"
-                width={256}
-                height={256}
-                className="object-contain scale-100 hover:scale-110 transition-transform duration-500"
-                priority
-              />
-            </div>
-            
-            <div className="flex-grow text-center md:text-left">
-              <h1 className="text-4xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-5xl mb-4 font-nasalization">
-                Our Services<sup className="text-[0.6em] font-mono">capabilities</sup>
-              </h1>
-              <p className="text-xl text-text-light dark:text-text-dark sm:text-lg md:text-xl font-mono max-w-2xl">
-                Comprehensive IT solutions tailored for federal agencies and contractors.
-              </p>
+        <div className="mb-16">
+          <div className="card-base card-gradient p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="w-32 h-32 md:w-48 md:h-48 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl transform rotate-6"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-transparent rounded-2xl"></div>
+                <Image
+                  src="/assets/services-hero.png"
+                  alt="Federal IT Services Pixel Art"
+                  width={256}
+                  height={256}
+                  className="relative object-contain scale-100 hover:scale-110 transition-transform duration-500"
+                  priority
+                />
+              </div>
+              
+              <div className="flex-1 text-center md:text-left">
+                <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] mb-4 font-nasalization tracking-wider group">
+                  Our Services
+                  <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00]">[capabilities]</sup>
+                </h1>
+                <p className="text-slate-600 dark:text-slate-300 font-mono max-w-2xl leading-relaxed mb-6">
+                  Comprehensive IT solutions tailored for federal agencies and contractors, delivering cutting-edge technology services with proven expertise.
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">20+ NAICS Codes</span>
+                  </div>
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">Federal Contractor</span>
+                  </div>
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">IT Modernization</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Core Competencies Section */}
-          <CoreCompetencies />
+        {/* Core Competencies Section */}
+        <CoreCompetencies />
 
-          {/* NAICS Codes Section */}
-          <section className="mt-16">
-            <div className="text-right mb-12">
-              <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
-                NAICS Codes<sup className="text-[0.6em] font-mono">classification</sup>
-              </h2>
-              <p className="text-lg text-text-light dark:text-text-dark font-mono ml-auto max-w-2xl">
-                Federal classification codes defining our service categories
-              </p>
-            </div>
-            
-            <TooltipProvider>
-              <div 
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                style={{ position: 'static' }}
-              >
-                {naicsCodes.map((naics, index) => (
-                  <div
-                    key={naics.code}
-                    className="animate-fade-in"
-                    style={{ 
-                      animationDelay: `${index * 100}ms`,
-                      position: 'relative'
-                    }}
-                  >
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Card 
-                          className={`
-                            p-6 hover:shadow-lg transition-all duration-300 cursor-help
-                            ${naics.relevance === 'primary' 
-                              ? 'border-2 border-[#FF8C00] bg-gray-50 dark:bg-gray-900/90' 
-                              : naics.relevance === 'secondary'
-                              ? 'border border-orange-300 bg-gray-100 dark:bg-gray-900/80'
-                              : 'border border-orange-200 bg-gray-100 dark:bg-gray-900/70'}
-                          `}
-                        >
-                          <div className="flex items-start space-x-4">
-                            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20">
-                              <naics.icon className="w-6 h-6 text-[#FF8C00]" />
-                            </div>
-                            <div>
-                              <h3 className="text-2xl font-mono font-bold text-[#FF8C00] mb-2">
-                                {naics.code}
-                              </h3>
-                              <p className="text-gray-700 dark:text-gray-300">
-                                {naics.description}
-                              </p>
-                            </div>
-                          </div>
-                        </Card>
-                      </TooltipTrigger>
-                      <TooltipContent 
-                        side="top" 
-                        align="center"
-                        sideOffset={5}
-                        className="z-[100] w-80 bg-white dark:bg-gray-900 border border-[#FF8C00]/20 shadow-xl"
-                        style={{
-                          position: 'relative',
-                          pointerEvents: 'auto'
-                        }}
+        {/* NAICS Codes Section */}
+        <section className="mt-16">
+          <div className="text-right mb-12">
+            <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
+              NAICS Codes<sup className="text-[0.6em] font-mono">classification</sup>
+            </h2>
+            <p className="text-lg text-text-light dark:text-text-dark font-mono ml-auto max-w-2xl">
+              Federal classification codes defining our service categories
+            </p>
+          </div>
+          
+          <TooltipProvider>
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              style={{ position: 'static' }}
+            >
+              {naicsCodes.map((naics, index) => (
+                <div
+                  key={naics.code}
+                  className="animate-fade-in"
+                  style={{ 
+                    animationDelay: `${index * 100}ms`,
+                    position: 'relative'
+                  }}
+                >
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Card 
+                        className={`
+                          p-6 hover:shadow-lg transition-all duration-300 cursor-help
+                          ${naics.relevance === 'primary' 
+                            ? 'border-2 border-[#FF8C00] bg-gray-50 dark:bg-gray-900/90' 
+                            : naics.relevance === 'secondary'
+                            ? 'border border-orange-300 bg-gray-100 dark:bg-gray-900/80'
+                            : 'border border-orange-200 bg-gray-100 dark:bg-gray-900/70'}
+                        `}
                       >
-                        <div className="relative space-y-2">
-                          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 to-gray-900/10 dark:from-gray-900/20 dark:to-gray-900/30" />
-                          
-                          <div className="relative z-10">
-                            <h4 className="font-nasalization text-[#FF8C00]">
-                              {relevanceDescriptions[naics.relevance].title}
-                            </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 font-mono">
-                              {relevanceDescriptions[naics.relevance].description}
+                        <div className="flex items-start space-x-4">
+                          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20">
+                            <naics.icon className="w-6 h-6 text-[#FF8C00]" />
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-mono font-bold text-[#FF8C00] mb-2">
+                              {naics.code}
+                            </h3>
+                            <p className="text-gray-700 dark:text-gray-300">
+                              {naics.description}
                             </p>
-                            <div className="pt-2">
-                              <div className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-1">
-                                Core Capabilities:
-                              </div>
-                              <ul className="space-y-1">
-                                {relevanceDescriptions[naics.relevance].capabilities.map((capability, idx) => (
-                                  <li 
-                                    key={idx} 
-                                    className="text-sm flex items-start gap-2 text-gray-600 dark:text-gray-300"
-                                  >
-                                    <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mt-2"></span>
-                                    <span>{capability}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
                           </div>
                         </div>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                ))}
-              </div>
-            </TooltipProvider>
-          </section>
-        </div>
+                      </Card>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      align="center"
+                      sideOffset={5}
+                      className="z-[100] w-80 bg-white dark:bg-gray-900 border border-[#FF8C00]/20 shadow-xl"
+                      style={{
+                        position: 'relative',
+                        pointerEvents: 'auto'
+                      }}
+                    >
+                      <div className="relative space-y-2">
+                        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 to-gray-900/10 dark:from-gray-900/20 dark:to-gray-900/30" />
+                        
+                        <div className="relative z-10">
+                          <h4 className="font-nasalization text-[#FF8C00]">
+                            {relevanceDescriptions[naics.relevance].title}
+                          </h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-300 font-mono">
+                            {relevanceDescriptions[naics.relevance].description}
+                          </p>
+                          <div className="pt-2">
+                            <div className="text-xs text-gray-500 dark:text-gray-400 font-mono mb-1">
+                              Core Capabilities:
+                            </div>
+                            <ul className="space-y-1">
+                              {relevanceDescriptions[naics.relevance].capabilities.map((capability, idx) => (
+                                <li 
+                                  key={idx} 
+                                  className="text-sm flex items-start gap-2 text-gray-600 dark:text-gray-300"
+                                >
+                                  <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mt-2"></span>
+                                  <span>{capability}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              ))}
+            </div>
+          </TooltipProvider>
+        </section>
       </div>
     </div>
   )

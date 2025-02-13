@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Press_Start_2P } from 'next/font/google'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -16,7 +16,7 @@ interface Game {
   sprite: string;
   background: string;
   summary: string;
-  path: string; // Add path for the game route
+  path: string;
 }
 
 const games: Game[] = [
@@ -49,7 +49,7 @@ const games: Game[] = [
     name: 'Pong', 
     sprite: '/sprites/pong.png',
     background: '/backgrounds/pong-bg.png',
-    summary: 'The original arcade classic. Simple yet addictive paddle action.',
+    summary: 'The original arcade classic with some minor upgrades :). Simple yet addictive paddle action.',
     path: '/games/pong'
   }
 ]
@@ -64,6 +64,12 @@ const breathingGlowStyles = `
 `
 
 export default function PlaygroundPage() {
+  const router = useRouter()
+
+  const handleGameSelect = (gamePath: string) => {
+    router.push(gamePath)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
       {/* Animated background grid */}
@@ -93,18 +99,17 @@ export default function PlaygroundPage() {
           <div className="game-menu rounded-lg animate-fade-in">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 perspective-1000">
               {games.map((game) => (
-                <Link
+                <div
                   key={game.id}
-                  href={game.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="group relative transition-all duration-500 
                            hover:shadow-[0_0_30px_rgba(255,140,0,0.15)]
                            hover:scale-[1.02]
                            bg-slate-900/90 dark:bg-slate-800/90 
                            backdrop-blur-sm rounded-xl
                            border border-orange-100/10 dark:border-orange-500/10
-                           overflow-hidden"
+                           overflow-hidden
+                           cursor-pointer"
+                  onClick={() => handleGameSelect(game.path)}
                 >
                   <div 
                     className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
@@ -133,12 +138,9 @@ export default function PlaygroundPage() {
                       <p className="text-xs leading-relaxed text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
                         {game.summary}
                       </p>
-                      <div className="mt-4 text-[10px] text-slate-400/60 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        Click to launch game in new window →
-                      </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>

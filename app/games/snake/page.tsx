@@ -1,11 +1,12 @@
 'use client'
 
 import SnakeGame from '@/app/components/features/SnakeGame/SnakeGame'
+import { GameContainer } from '@/app/components/features/common/GameContainer'
 
 export default function SnakeGamePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
+    <GameContainer>
       <SnakeGame />
-    </div>
+    </GameContainer>
   )
 } 

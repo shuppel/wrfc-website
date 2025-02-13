@@ -8,7 +8,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion"
-import { useState } from 'react'
 
 const products = [
   {
@@ -186,29 +185,52 @@ const products = [
 ]
 
 export default function ProductsPage() {
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
-      {/* Animated background grid - adjusted for light/dark modes */}
+      {/* Animated background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-24 animate-fade-in space-y-8">
-          <div className="inline-block">
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] sm:text-6xl mb-4 font-nasalization tracking-wider relative group">
-              Our Products
-              <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">[solutions]</sup>
-              <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF8C00] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-            </h1>
+        {/* Hero Section */}
+        <div className="mb-16">
+          <div className="card-base card-gradient p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="w-32 h-32 md:w-48 md:h-48 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl transform rotate-6"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-transparent rounded-2xl"></div>
+                <div className="relative h-full w-full flex items-center justify-center">
+                  <span className="text-5xl md:text-6xl">🚀</span>
+                </div>
+              </div>
+              
+              <div className="flex-1 text-center md:text-left">
+                <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] mb-4 font-nasalization tracking-wider group">
+                  Our Products
+                  <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">[solutions]</sup>
+                </h1>
+                <p className="text-slate-600 dark:text-slate-300 font-mono max-w-2xl leading-relaxed mb-6">
+                  <span className="text-[#FF8C00]">&lt;</span>
+                  Empowering development through structured methodologies and AI-driven solutions
+                  <span className="text-[#FF8C00]">/&gt;</span>
+                </p>
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">6 Product Lines</span>
+                  </div>
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">AI-Powered</span>
+                  </div>
+                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
+                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">Enterprise Ready</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-['Press_Start_2P'] mx-auto max-w-3xl leading-loose relative">
-            <span className="absolute -left-4 text-[#FF8C00] opacity-60">&lt;</span>
-            Empowering development through structured methodologies and AI-driven solutions
-            <span className="absolute -right-4 text-[#FF8C00] opacity-60">/&gt;</span>
-          </p>
         </div>
 
+        {/* Products Grid */}
         <div className="grid grid-cols-1 gap-12 mt-12 md:grid-cols-2 perspective-1000">
           {products.map((product, idx) => (
             <Card 
@@ -241,11 +263,7 @@ export default function ProductsPage() {
                   <p className="text-slate-600 dark:text-slate-300 mb-6 font-mono text-sm leading-relaxed">
                     {product.description}
                   </p>
-                  <Accordion 
-                    type="single" 
-                    collapsible 
-                    className="w-full"
-                  >
+                  <Accordion type="single" collapsible className="w-full">
                     {product.categories.map((category, index) => (
                       <AccordionItem 
                         key={index} 

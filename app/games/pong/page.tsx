@@ -1,11 +1,12 @@
 'use client'
 
 import PongGame from '@/app/components/features/PongGame/PongGame'
+import { GameContainer } from '@/app/components/features/common/GameContainer'
 
 export default function PongGamePage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
+    <GameContainer>
       <PongGame />
-    </div>
+    </GameContainer>
   )
 } 

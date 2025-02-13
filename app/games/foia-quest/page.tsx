@@ -1,11 +1,12 @@
 'use client'
 
 import FoiaQuest from '@/app/components/features/FoiaQuest/FoiaQuest'
+import { GameContainer } from '@/app/components/features/common/GameContainer'
 
 export default function FoiaQuestPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900">
+    <GameContainer>
       <FoiaQuest />
-    </div>
+    </GameContainer>
   )
 } 

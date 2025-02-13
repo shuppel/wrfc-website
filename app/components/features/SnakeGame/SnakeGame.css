@@ -10,12 +10,137 @@
 .snake-game {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
+  gap: 1.5rem;
+  padding: 2rem;
   height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.score-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Press Start 2P', monospace;
+  color: #00ff00;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00ff00;
+  border-radius: 4px;
+  width: 100%;
   max-width: 800px;
+}
+
+.current-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.game-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: 2rem auto;
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.game-board {
+  width: min(800px, 90vmin);
+  height: min(800px, 90vmin);
   margin: 0 auto;
+  display: grid;
+  gap: 1px;
+  background-color: #000000;
+  padding: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  aspect-ratio: 1;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 255, 0, 0.1);
+  background-color: transparent;
+}
+
+.cell.snake {
+  background-color: #00ff00;
+  border-radius: 2px;
+}
+
+.cell.food {
+  background-color: #ff0000;
+  border-radius: 50%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  gap: 2rem;
+  color: #00ff00;
+  font-family: 'Press Start 2P', monospace;
+  border-radius: 4px;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.primary-button, .secondary-button {
+  font-family: 'Press Start 2P', monospace;
+  padding: 1rem 2rem;
+  border: 2px solid #00ff00;
+  background: transparent;
+  color: #00ff00;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.primary-button:hover {
+  background: #00ff00;
+  color: #000;
+}
+
+.secondary-button {
+  border-color: rgba(0, 255, 0, 0.5);
+  color: rgba(0, 255, 0, 0.5);
+}
+
+.secondary-button:hover {
+  border-color: #00ff00;
+  color: #00ff00;
+}
+
+.instructions {
+  font-size: 0.8rem;
+  color: rgba(0, 255, 0, 0.7);
+}
+
+.final-score {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.game-navigation {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
 }
 
 .game-info {
@@ -24,50 +149,6 @@
   color: #00ff00;
   text-align: center;
   margin-bottom: 20px;
-}
-
-/* Update game container styling */
-.game-container {
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: 90vw;
-  max-height: 90vh;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.game-board {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  gap: 1px;
-  width: 100%;
-  max-width: 600px;
-  aspect-ratio: 1;
-  border: 2px solid rgba(0, 255, 0, 0.3);
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
-  padding: 2px;
-}
-
-.cell {
-  aspect-ratio: 1;
-  background-color: transparent;
-  border: 1px solid rgba(0, 255, 0, 0.1);
-}
-
-.cell.snake {
-  background-color: #00ff00;
-  border-radius: 4px;
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.4);
-}
-
-.cell.food {
-  background-color: #ff0000;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
 }
 
 .game-over {
