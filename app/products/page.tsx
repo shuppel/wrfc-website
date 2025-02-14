@@ -192,17 +192,19 @@ export default function ProductsPage() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <HeroCard
-          icon="🚀"
-          title="Our Products"
-          subtitle="solutions"
-          description="Empowering development through structured methodologies and AI-driven solutions"
-          badges={[
-            { text: "6 Product Lines", icon: <Boxes className="w-4 h-4" />, variant: "default" },
-            { text: "AI-Powered", icon: <Sparkles className="w-4 h-4" />, variant: "glow" },
-            { text: "Enterprise Ready", icon: <Rocket className="w-4 h-4" />, variant: "outline" }
-          ]}
-        />
+        <div className="text-left mb-12">
+          <HeroCard
+            icon="🚀"
+            title="Our Products"
+            subtitle="solutions"
+            description="Empowering development through structured methodologies and AI-driven solutions"
+            badges={[
+              { text: "6 Product Lines", icon: <Boxes className="w-4 h-4" />, variant: "default" },
+              { text: "AI-Powered", icon: <Sparkles className="w-4 h-4" />, variant: "glow" },
+              { text: "Enterprise Ready", icon: <Rocket className="w-4 h-4" />, variant: "outline" }
+            ]}
+          />
+        </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
