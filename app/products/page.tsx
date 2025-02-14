@@ -223,9 +223,11 @@ export default function ProductsPage() {
                     value={`item-${index}`}
                     className="border-slate-200/50 dark:border-slate-700/50 last:border-none"
                   >
-                    <AccordionTrigger className="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#FF8C00] transition-colors group">
-                      <span className="font-mono mr-2 text-[#FF8C00]/70 group-hover:text-[#FF8C00]">&gt;</span>
-                      {category.name}
+                    <AccordionTrigger className="text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#FF8C00] transition-colors group text-left flex items-center justify-between w-full">
+                      <div className="flex items-center">
+                        <span className="font-mono mr-2 text-[#FF8C00]/70 group-hover:text-[#FF8C00]">&gt;</span>
+                        {category.name}
+                      </div>
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="space-y-3 pt-2">
