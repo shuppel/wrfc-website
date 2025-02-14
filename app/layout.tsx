@@ -7,6 +7,7 @@ import { Inter, Press_Start_2P } from 'next/font/google'
 import Link from 'next/link'
 import { defaultMetadata, viewport } from './seo/config'
 import { OrganizationJsonLd } from './seo/components/JsonLd'
+import { Analytics } from '@vercel/analytics/react'
 
 // Initialize fonts with optimized loading
 const inter = Inter({ 
@@ -47,6 +48,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
