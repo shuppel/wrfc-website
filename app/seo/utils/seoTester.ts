@@ -14,6 +14,17 @@ export interface SEOTestOptions {
   requireStructuredData?: boolean;
 }
 
+type MetadataValue = string | number | boolean | null | undefined | Record<string, unknown>;
+
+const getNestedValue = (obj: Record<string, MetadataValue>, path: string): MetadataValue | undefined => {
+  return path.split('.').reduce((current: MetadataValue | undefined, key: string) => {
+    if (current && typeof current === 'object') {
+      return (current as Record<string, MetadataValue>)[key];
+    }
+    return undefined;
+  }, obj);
+};
+
 export const validateSEOMetadata = (
   metadata: Metadata,
   options: SEOTestOptions = {}
@@ -83,7 +94,7 @@ export const validateSEOMetadata = (
   }
 
   const missingTags = requiredTags.filter(tag => {
-    const value = tag.split('.').reduce((obj: any, key) => obj?.[key], metadata);
+    const value = getNestedValue(metadata as Record<string, MetadataValue>, tag);
     return !value;
   });
 

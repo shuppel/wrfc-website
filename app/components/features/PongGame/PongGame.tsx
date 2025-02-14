@@ -415,10 +415,9 @@ export default function PongGame() {
         ball.x = player.x + player.width
         
         // Calculate the collision point
-        let collidePoint = (ball.y + ball.height / 2) - (player.y + player.height / 2)
+        const collidePoint = (ball.y + ball.height / 2) - (player.y + player.height / 2)
         const normalizedCollide = collidePoint / (player.height / 2)
-        let bounceAngle = normalizedCollide * (Math.PI / 4)
-        bounceAngle += player.angle
+        const bounceAngle = normalizedCollide * (Math.PI / 4) + player.angle
         
         // Fulcrum effect: if paddle is turning and hit is near the center
         let multiplier = 1
@@ -428,8 +427,7 @@ export default function PongGame() {
           spawnSpark(ball.x + ball.width / 2, ball.y + ball.height / 2)
         }
         
-        // NEW: Horizontal boost based on paddle proximity to the net
-        // As player.x increases (paddle moves right), boostFactor approaches 1.05
+        // Horizontal boost based on paddle proximity to the net
         const boostFactor = 1 + (player.x / maxPlayerX) * 0.05
         
         // Impart spin based on tilt keys
@@ -445,16 +443,15 @@ export default function PongGame() {
         ball.dx = newDx
         ball.dy = multiplier * currentSpeed * Math.sin(bounceAngle) * boostFactor
       } 
-      // --- Opponent Paddle Collision (no fulcrum effect).
+      // --- Opponent Paddle Collision
       else if (checkCollision(ball, opponent)) {
         // Prevent ball from sticking
         ball.x = opponent.x - ball.width
         
         // Compute collision point relative to paddle center
-        let collidePoint = (ball.y + ball.height / 2) - (opponent.y + opponent.height / 2)
+        const collidePoint = (ball.y + ball.height / 2) - (opponent.y + opponent.height / 2)
         const normalizedCollide = collidePoint / (opponent.height / 2)
-        // Calculate bounce angle (max 45°) and add the AI's tilt
-        let bounceAngle = normalizedCollide * (Math.PI / 4) + opponent.angle
+        const bounceAngle = normalizedCollide * (Math.PI / 4) + opponent.angle
         
         // Horizontal boost: The closer the opponent is to the net, the larger the boost
         const minOpponentX = canvasWidth / 2 + 10

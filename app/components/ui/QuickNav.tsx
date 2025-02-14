@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 export interface NavLink {
   href: string
@@ -16,7 +15,6 @@ interface QuickNavProps {
 
 export default function QuickNav({ links }: QuickNavProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
 
   // Default navigation links for the home page
   const defaultLinks: NavLink[] = [

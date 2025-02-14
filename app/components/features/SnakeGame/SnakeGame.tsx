@@ -7,8 +7,8 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import { GameContainer } from '../common/GameContainer';
 import './SnakeGame.css';
+import { GameContainer } from '../common/GameContainer';
 import { GameNavigation } from '../common/GameNavigation';
 import { useGameNavigation } from '../hooks/useGameNavigation';
 
@@ -87,17 +87,15 @@ export default function SnakeGame() {
 
   const [snake, setSnake] = useState<Position[]>(INITIAL_SNAKE);
   const [food, setFood] = useState<Position>({ x: 5, y: 5 });
-  // Direction state is still here for re-renders but real-time changes use a ref.
-  const [direction, setDirection] = useState<Direction>(INITIAL_DIRECTION);
   const [score, setScore] = useState<number>(0);
   const [gameState, setGameState] = useState<GameState>('start');
   const [highScore, setHighScore] = useState<number>(0);
-  // Board configuration & level (for expanding the play area)
   const [boardConfig, setBoardConfig] = useState(initialBoardConfig);
   const [level, setLevel] = useState<number>(0);
 
   // A ref to queue rapid direction changes.
   const nextDirectionRef = useRef<Direction>(INITIAL_DIRECTION);
+  const snakeRef = useRef<Position[]>(INITIAL_SNAKE);
 
   // ── Update snake lookup (for collisions) ─────────────────────────────────────
   const snakePositions = useMemo(
@@ -109,7 +107,7 @@ export default function SnakeGame() {
   const generateFood = useCallback((): Position => {
     let newFood: Position;
     // If the snake fills the board, end the game.
-    if (snake.length >= boardConfig.width * boardConfig.height) {
+    if (snakeRef.current.length >= boardConfig.width * boardConfig.height) {
       setGameState('gameOver');
       return food;
     }
@@ -132,8 +130,6 @@ export default function SnakeGame() {
 
       // Use the buffered direction for a smooth turn.
       const currentDirection = nextDirectionRef.current;
-      // Update the displayed direction (if needed).
-      setDirection(currentDirection);
 
       switch (currentDirection) {
         case Direction.UP:
@@ -168,17 +164,24 @@ export default function SnakeGame() {
       }
 
       newSnake.unshift(head);
+      snakeRef.current = newSnake;
 
       // Check for food collision.
       if (head.x === food.x && head.y === food.y) {
-        setScore(prev => prev + 1);
+        setScore(prev => {
+          const newScore = prev + 1;
+          if (newScore > highScore) {
+            setHighScore(newScore);
+          }
+          return newScore;
+        });
         setFood(generateFood());
       } else {
         newSnake.pop();
       }
       return newSnake;
     });
-  }, [food, gameState, boardConfig, generateFood]);
+  }, [food, gameState, boardConfig, generateFood, highScore]);
 
   // ── Keyboard Controls ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -251,7 +254,7 @@ export default function SnakeGame() {
       setBoardConfig(prev => ({
         width: prev.width + incrementWidth,
         height: prev.height + incrementHeight,
-        color: getRandomColor(), // New color signals the level change.
+        gridColor: getRandomColor(), // New color signals the level change.
       }));
     }
   }, [score, level]);
@@ -267,14 +270,13 @@ export default function SnakeGame() {
   // ── Reset Game Function ─────────────────────────────────────────────────────
   const resetGame = useCallback(() => {
     setSnake(INITIAL_SNAKE);
-    setFood(generateFood());
+    setFood({ x: 5, y: 5 });
     nextDirectionRef.current = INITIAL_DIRECTION;
-    setDirection(INITIAL_DIRECTION);
     setScore(0);
-    setGameState('running');
-    setLevel(0);
     setBoardConfig(initialBoardConfig);
-  }, [generateFood]);
+    setLevel(0);
+    setGameState('running');
+  }, []);
 
   const handleExit = useCallback(() => {
     handleNavigateToMenu();
@@ -289,88 +291,64 @@ export default function SnakeGame() {
   }, []);
 
   return (
-    <div>
-      <div className="game-container">
-        {/* Score Panel - Positioned like Pong */}
-        <div className="score-panel">
-          <div className="current-stats">
-            <div className="score">Score: {score}</div>
-            <div className="level">Level: {level + 1}</div>
-          </div>
-          <div className="high-score">High Score: {highScore}</div>
+    <GameContainer>
+      <div className="snake-game-container">
+        <div className="game-board" style={{
+          gridTemplateColumns: `repeat(${boardConfig.width}, 1fr)`,
+          gridTemplateRows: `repeat(${boardConfig.height}, 1fr)`,
+          backgroundColor: boardConfig.gridColor,
+        }}>
+          {snake.map((segment, index) => (
+            <div
+              key={`${segment.x}-${segment.y}-${index}`}
+              className="snake-segment"
+              style={{
+                gridColumn: segment.x + 1,
+                gridRow: segment.y + 1,
+              }}
+            />
+          ))}
+          <div
+            className="food"
+            style={{
+              gridColumn: food.x + 1,
+              gridRow: food.y + 1,
+            }}
+          />
         </div>
-
-        {/* Main Game Board - Using canvas-like sizing */}
-        <div
-          className="game-board"
-          style={{
-            gridTemplateColumns: `repeat(${boardConfig.width}, 1fr)`,
-            border: `2px solid ${boardConfig.gridColor}`,
-          }}
-        >
-          {Array.from({ length: boardConfig.width * boardConfig.height }).map((_, index) => {
-            const x = index % boardConfig.width;
-            const y = Math.floor(index / boardConfig.width);
-            const cellKey = `${x}-${y}`;
-            const cellClass = snakePositions.has(`${x},${y}`)
-              ? 'cell snake'
-              : food.x === x && food.y === y
-              ? 'cell food'
-              : 'cell';
-            return <div key={cellKey} className={cellClass} />;
-          })}
+        <div className="game-info">
+          <div>Score: {score}</div>
+          <div>High Score: {highScore}</div>
+          <div>Level: {level}</div>
         </div>
-
-        {/* Overlays - Improved spacing and hierarchy */}
         {gameState === 'start' && (
-          <div className="overlay start-overlay">
-            <h1>SNAKE</h1>
-            <p className="instructions">Use arrow keys to control the snake</p>
-            <p className="instructions">Press ESC to pause</p>
-            <button onClick={() => setGameState('running')} className="primary-button">
-              Start Game
-            </button>
+          <div className="game-overlay">
+            <h2>Snake Game</h2>
+            <p>Press Enter to Start</p>
+            <p>Use Arrow Keys to Move</p>
           </div>
         )}
-
         {gameState === 'paused' && (
-          <div className="overlay pause-overlay">
-            <h2>PAUSED</h2>
-            <div className="button-group">
-              <button onClick={() => setGameState('running')} className="primary-button">
-                Resume
-              </button>
-              <button onClick={handleExit} className="secondary-button">
-                Exit
-              </button>
-            </div>
+          <div className="game-overlay">
+            <h2>Game Paused</h2>
+            <p>Press Enter to Continue</p>
           </div>
         )}
-
         {gameState === 'gameOver' && (
-          <div className="overlay gameover-overlay">
-            <h2>GAME OVER</h2>
-            <div className="final-score">
-              <p>Final Score: {score}</p>
-              <p>High Score: {highScore}</p>
-            </div>
-            <div className="button-group">
-              <button onClick={resetGame} className="primary-button">
-                Play Again
-              </button>
-              <button onClick={handleExit} className="secondary-button">
-                Exit to Menu
-              </button>
-            </div>
+          <div className="game-overlay">
+            <h2>Game Over</h2>
+            <p>Score: {score}</p>
+            <p>High Score: {highScore}</p>
+            <p>Press Enter to Play Again</p>
           </div>
         )}
-
         <GameNavigation 
-          onRestart={resetGame} 
+          onBack={handleExit}
           onExit={handleExit}
+          onRestart={resetGame}
           className="game-navigation"
         />
       </div>
-    </div>
+    </GameContainer>
   );
 }

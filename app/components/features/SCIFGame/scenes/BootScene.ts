@@ -1,4 +1,24 @@
-export default class BootScene extends Phaser.Scene {
+import { Scene } from 'phaser';
+
+interface AssetLoadStatus {
+  tiles: boolean;
+  map: boolean;
+  player: boolean;
+}
+
+interface MapValidationData {
+  hasData: boolean;
+  dataType: string;
+  hasLayers: boolean;
+  layersType: string;
+  isLayersArray: boolean;
+  hasTilesets: boolean;
+  tilesetsType: string;
+  isTilesetsArray: boolean;
+  keys: string[];
+}
+
+export default class BootScene extends Scene {
   constructor() {
     super({ key: 'BootScene' })
   }
@@ -6,7 +26,7 @@ export default class BootScene extends Phaser.Scene {
   preload() {
     try {
       // Add debug logging for asset loading
-      this.load.on('filecomplete', (key: string, type: string, data: any) => {
+      this.load.on('filecomplete', (key: string, type: string, data: unknown) => {
         console.log(`Asset loaded: ${key} (${type})`, data);
       });
 
@@ -30,10 +50,7 @@ export default class BootScene extends Phaser.Scene {
           type: file.type,
           path: file.url
         });
-        const errorEvent = new CustomEvent('game-error', {
-          detail: { message: `Failed to load game asset: ${file.key}` }
-        });
-        window.dispatchEvent(errorEvent);
+        this.dispatchGameError(`Failed to load game asset: ${file.key}`);
       });
 
       // Add load complete handling
@@ -41,7 +58,7 @@ export default class BootScene extends Phaser.Scene {
         console.log('All assets loaded successfully');
         
         // Verify all required assets are loaded
-        const assetsLoaded = {
+        const assetsLoaded: AssetLoadStatus = {
           tiles: this.textures.exists('tiles'),
           map: this.cache.tilemap.exists('map'),
           player: this.textures.exists('player')
@@ -49,20 +66,18 @@ export default class BootScene extends Phaser.Scene {
         
         console.log('Assets loaded status:', assetsLoaded);
         
-        if (!Object.values(assetsLoaded).every(loaded => loaded)) {
-          const missingAssets = Object.entries(assetsLoaded)
-            .filter(([_, loaded]) => !loaded)
-            .map(([asset]) => asset)
-            .join(', ');
-            
-          throw new Error(`Missing required assets: ${missingAssets}`);
+        const missingAssets = Object.entries(assetsLoaded)
+          .filter(([, loaded]) => !loaded)
+          .map(([asset]) => asset);
+
+        if (missingAssets.length > 0) {
+          throw new Error(`Missing required assets: ${missingAssets.join(', ')}`);
         }
 
         // Verify tilemap data structure
         if (this.cache.tilemap.exists('map')) {
           const mapData = this.cache.tilemap.get('map');
-          console.log('Raw tilemap data:', mapData);
-          console.log('Tilemap data structure:', {
+          const mapStructure: MapValidationData = {
             hasData: !!mapData,
             dataType: typeof mapData,
             hasLayers: 'layers' in mapData,
@@ -72,15 +87,14 @@ export default class BootScene extends Phaser.Scene {
             tilesetsType: mapData.tilesets ? typeof mapData.tilesets : 'undefined',
             isTilesetsArray: Array.isArray(mapData.tilesets),
             keys: Object.keys(mapData)
-          });
+          };
+          console.log('Tilemap data structure:', mapStructure);
+          this.validateMapData(mapData);
         }
       });
     } catch (error) {
       console.error('Error in BootScene preload:', error);
-      const errorEvent = new CustomEvent('game-error', {
-        detail: { message: error instanceof Error ? error.message : 'Failed to initialize game assets' }
-      });
-      window.dispatchEvent(errorEvent);
+      this.dispatchGameError(error instanceof Error ? error.message : 'Failed to initialize game assets');
     }
   }
   
@@ -91,52 +105,53 @@ export default class BootScene extends Phaser.Scene {
         throw new Error('Required assets not loaded');
       }
 
-      // Get and validate map data with detailed logging
       const mapData = this.cache.tilemap.get('map');
-      console.log('Map data in create:', {
-        hasData: !!mapData,
-        dataType: typeof mapData,
-        hasLayers: 'layers' in mapData,
-        layersType: mapData.layers ? typeof mapData.layers : 'undefined',
-        isLayersArray: Array.isArray(mapData.layers),
-        hasTilesets: 'tilesets' in mapData,
-        tilesetsType: mapData.tilesets ? typeof mapData.tilesets : 'undefined',
-        isTilesetsArray: Array.isArray(mapData.tilesets),
-        keys: Object.keys(mapData)
-      });
-
-      // Validate required properties
-      const requiredProps = ['layers', 'tilesets', 'width', 'height', 'tilewidth', 'tileheight'];
-      const missingProps = requiredProps.filter(prop => !(prop in mapData));
-      
-      if (missingProps.length > 0) {
-        throw new Error(`Map data missing required properties: ${missingProps.join(', ')}`);
-      }
-
-      if (!Array.isArray(mapData.layers)) {
-        throw new Error('Map layers property is not an array');
-      }
-
-      if (!Array.isArray(mapData.tilesets)) {
-        throw new Error('Map tilesets property is not an array');
-      }
-
-      if (mapData.layers.length === 0) {
-        throw new Error('Map has no layers');
-      }
-
-      if (mapData.tilesets.length === 0) {
-        throw new Error('Map has no tilesets');
-      }
+      this.validateMapData(mapData);
 
       // Start the game scene
       this.scene.start('GameMapScene');
     } catch (error) {
       console.error('Error in BootScene create:', error);
-      const errorEvent = new CustomEvent('game-error', {
-        detail: { message: error instanceof Error ? error.message : 'Failed to start game scene' }
-      });
-      window.dispatchEvent(errorEvent);
+      this.dispatchGameError(error instanceof Error ? error.message : 'Failed to start game scene');
     }
+  }
+
+  private validateMapData(mapData: unknown): asserts mapData is Phaser.Tilemaps.MapData {
+    if (!mapData || typeof mapData !== 'object') {
+      throw new Error('Invalid map data: not an object');
+    }
+
+    const requiredProps = ['layers', 'tilesets', 'width', 'height', 'tilewidth', 'tileheight'] as const;
+    
+    for (const prop of requiredProps) {
+      if (!(prop in mapData)) {
+        throw new Error(`Map data missing required property: ${prop}`);
+      }
+    }
+
+    const typedMapData = mapData as Record<string, unknown>;
+
+    if (!Array.isArray(typedMapData.layers)) {
+      throw new Error('Map layers property is not an array');
+    }
+
+    if (!Array.isArray(typedMapData.tilesets)) {
+      throw new Error('Map tilesets property is not an array');
+    }
+
+    if (typedMapData.layers.length === 0) {
+      throw new Error('Map has no layers');
+    }
+
+    if (typedMapData.tilesets.length === 0) {
+      throw new Error('Map has no tilesets');
+    }
+  }
+
+  private dispatchGameError(message: string): void {
+    const errorEvent = new CustomEvent('game-error', {
+      detail: { message }
+    });
+    window.dispatchEvent(errorEvent);
   }
 } 

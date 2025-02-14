@@ -5,13 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Game as PhaserGame } from 'phaser'
 import { calculateGameSize } from './utils'
 import styles from './SCIFGame.module.css'
-import { GameNavigation } from '../common/GameNavigation'
-import { useGameNavigation } from '../hooks/useGameNavigation'
 import { GameContainer } from '../common/GameContainer'
-
-// Import scenes
-import BootScene from './scenes/BootScene'
-import GameMapScene from './scenes/GameMapScene'
 
 interface GameError extends CustomEvent {
   detail: {
@@ -27,10 +21,9 @@ export default function SCIFGame() {
   const gameRef = useRef<HTMLDivElement>(null)
   const gameInstanceRef = useRef<ExtendedGame | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [gameSize, setGameSize] = useState(calculateGameSize())
+  const [gameSize, setGameSize] = useState(() => calculateGameSize())
   const [isLoading, setIsLoading] = useState(true)
   const [isMounted, setIsMounted] = useState(false)
-  const { handleNavigateToMenu } = useGameNavigation()
 
   // Handle component mount
   useEffect(() => {
@@ -38,57 +31,23 @@ export default function SCIFGame() {
     return () => setIsMounted(false)
   }, [])
 
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      const newSize = calculateGameSize()
-      setGameSize(newSize)
-      
-      // Only resize if game instance exists and is properly initialized
-      if (gameInstanceRef.current?.scale && !gameInstanceRef.current.isDestroyed) {
-        try {
-          gameInstanceRef.current.scale.resize(newSize.width, newSize.height)
-        } catch (error) {
-          console.error('Error resizing game:', error)
-        }
-      }
-    }
-
-    if (isMounted) {
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }
-  }, [isMounted])
-
-  // Handle game errors
-  useEffect(() => {
-    const handleGameError = (event: GameError) => {
-      console.error('Game error:', event.detail)
-      setError(event.detail.message || 'An error occurred in the game')
-      setIsLoading(false)
-    }
-
-    if (isMounted) {
-      window.addEventListener('game-error', handleGameError as EventListener)
-      return () => window.removeEventListener('game-error', handleGameError as EventListener)
-    }
-  }, [isMounted])
-
   // Initialize game
   useEffect(() => {
+    if (!isMounted || !gameRef.current) {
+      return;
+    }
+
     let game: ExtendedGame | null = null;
 
     const initGame = async () => {
-      if (!isMounted || !gameRef.current) {
-        return;
-      }
-
       try {
         setIsLoading(true)
         setError(null)
         
-        // Import Phaser dynamically
-        const { default: Phaser } = await import('phaser')
+        // Dynamically import dependencies
+        const [{ default: Phaser }] = await Promise.all([
+          import('phaser')
+        ]);
 
         const config = {
           type: Phaser.AUTO,
@@ -111,7 +70,6 @@ export default function SCIFGame() {
               debug: false 
             }
           },
-          scene: [BootScene, GameMapScene],
           backgroundColor: '#000000',
         }
         
@@ -143,6 +101,42 @@ export default function SCIFGame() {
       }
     }
   }, [gameSize, isMounted])
+
+  // Handle window resize
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleResize = () => {
+      const newSize = calculateGameSize()
+      setGameSize(newSize)
+      
+      // Only resize if game instance exists and is properly initialized
+      if (gameInstanceRef.current?.scale && !gameInstanceRef.current.isDestroyed) {
+        try {
+          gameInstanceRef.current.scale.resize(newSize.width, newSize.height)
+        } catch (error) {
+          console.error('Error resizing game:', error)
+        }
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [isMounted])
+
+  // Handle game errors
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleGameError = (event: GameError) => {
+      console.error('Game error:', event.detail)
+      setError(event.detail.message || 'An error occurred in the game')
+      setIsLoading(false)
+    }
+
+    window.addEventListener('game-error', handleGameError as EventListener)
+    return () => window.removeEventListener('game-error', handleGameError as EventListener)
+  }, [isMounted])
 
   // Don't render anything until mounted
   if (!isMounted) {

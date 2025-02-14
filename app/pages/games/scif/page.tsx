@@ -1,25 +1,22 @@
-import { Metadata } from 'next';
-import { defaultMetadata } from '@/app/seo/config';
-import SCIFGame from '@/app/components/features/SCIFGame/SCIFGame'
-import { GameContainer } from '@/app/components/features/common/GameContainer'
+'use client';
 
-export const metadata: Metadata = {
-  ...defaultMetadata,
-  title: 'SCIF Game | Nodetus Games',
-  description: 'Experience the challenges of managing a Sensitive Compartmented Information Facility (SCIF) in this unique simulation game.',
-  keywords: 'SCIF Game, Security Simulation, Government Facility, Educational Game, Cybersecurity',
-  openGraph: {
-    ...defaultMetadata.openGraph,
-    title: 'Play SCIF Game on Nodetus',
-    description: 'Learn about SCIF management through an interactive simulation.',
-    type: 'website'
-  }
-};
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { GameContainer } from '@/app/components/features/common/GameContainer';
+import { GameLoadingScreen } from '@/app/components/ui/GameLoadingScreen';
+
+// Dynamically import the game component with SSR disabled
+const SCIFGame = dynamic(
+  () => import('@/app/components/features/SCIFGame/SCIFGame'),
+  { ssr: false }
+);
 
 export default function SCIFGamePage() {
   return (
     <GameContainer>
-      <SCIFGame />
+      <Suspense fallback={<GameLoadingScreen />}>
+        <SCIFGame />
+      </Suspense>
     </GameContainer>
-  )
+  );
 } 

@@ -23,7 +23,7 @@ export default function ContactPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
     reset
   } = useForm<FormData>({
     mode: 'onChange',
@@ -37,14 +37,16 @@ export default function ContactPage() {
     }
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (formData: FormData) => {
     setIsSubmitting(true);
     try {
       // TODO: Replace with actual API endpoint
+      console.log('Form submitted:', formData);
       await new Promise(resolve => setTimeout(resolve, 1000));
       setSubmitStatus('success');
       reset();
-    } catch (error) {
+    } catch (err) {
+      console.error('Form submission error:', err);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -61,7 +63,7 @@ export default function ContactPage() {
           icon="📧"
           title="Contact Us"
           subtitle="connect"
-          description="Let's discuss how we can help transform your organization with innovative technology solutions"
+          description="Let&apos;s discuss how we can help transform your organization with innovative technology solutions"
           badges={[
             { text: "24/7 Support", icon: <Clock4 className="w-4 h-4" />, variant: "glow" },
             { text: "Quick Response", icon: <Zap className="w-4 h-4" />, variant: "outline" },
@@ -281,7 +283,7 @@ export default function ContactPage() {
                 <div className="text-center p-4 rounded-lg animate-fade-in card-gradient">
                   <div className="flex items-center justify-center space-x-2 text-emerald-600 dark:text-emerald-400">
                     <CheckCircle2 className="icon-base text-emerald-600 dark:text-emerald-400" />
-                    <span>Thank you! We'll be in touch soon.</span>
+                    <span>Thank you! We&apos;ll be in touch soon.</span>
                   </div>
                 </div>
               )}

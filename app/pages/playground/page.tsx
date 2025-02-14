@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Press_Start_2P } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import { HeroCard } from '@/app/components/ui/HeroCard'
@@ -58,32 +58,25 @@ const games: Game[] = [
 // Arcade-themed emojis that we can rotate through
 const ARCADE_EMOJIS = ["🕹️", "🎮", "👾", "🎲", "🎯", "🎪"] as const;
 
-// Add this CSS at the top level of the component, before the return statement
-const breathingGlowStyles = `
-  @keyframes breathe {
-    0% { box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2); }
-    50% { box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.3); }
-    100% { box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2); }
-  }
-`
-
 export default function PlaygroundPage() {
   const router = useRouter()
-  const [currentEmojiIndex, setCurrentEmojiIndex] = useState(0);
+  const [currentEmoji, setCurrentEmoji] = useState<string>(ARCADE_EMOJIS[0]);
 
   const handleGameSelect = (gamePath: string) => {
     router.push(gamePath)
   }
 
-  // Optional: Rotate through emojis on interval
-  /*
+  // Rotate through emojis on interval
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentEmojiIndex((prev) => (prev + 1) % ARCADE_EMOJIS.length);
+      setCurrentEmoji(prev => {
+        const currentIndex = ARCADE_EMOJIS.indexOf(prev as typeof ARCADE_EMOJIS[number]);
+        const nextIndex = (currentIndex + 1) % ARCADE_EMOJIS.length;
+        return ARCADE_EMOJIS[nextIndex];
+      });
     }, 3000);
     return () => clearInterval(interval);
   }, []);
-  */
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
@@ -92,7 +85,7 @@ export default function PlaygroundPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <HeroCard
-          icon={ARCADE_EMOJIS[currentEmojiIndex]}
+          icon={currentEmoji}
           title="Playground"
           subtitle="arcade"
           description="Welcome to our retro-inspired game collection! Take a break from the serious world of federal IT and enjoy these custom-built arcade games"

@@ -1,25 +1,22 @@
-import { Metadata } from 'next';
-import { defaultMetadata } from '@/app/seo/config';
-import PongGame from '@/app/components/features/PongGame/PongGame'
-import { GameContainer } from '@/app/components/features/common/GameContainer'
+'use client';
 
-export const metadata: Metadata = {
-  ...defaultMetadata,
-  title: 'Play Pong | Nodetus Games',
-  description: 'Experience the classic Pong game reimagined. Challenge yourself or play with friends in this timeless arcade game.',
-  keywords: 'Pong Game, Classic Arcade, Online Games, Retro Gaming, Multiplayer Games',
-  openGraph: {
-    ...defaultMetadata.openGraph,
-    title: 'Play Pong on Nodetus',
-    description: 'Classic Pong game reimagined for modern browsers.',
-    type: 'website'
-  }
-};
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { GameContainer } from '@/app/components/features/common/GameContainer';
+import { GameLoadingScreen } from '@/app/components/ui/GameLoadingScreen';
+
+// Dynamically import the game component with SSR disabled
+const PongGame = dynamic(
+  () => import('@/app/components/features/PongGame/PongGame'),
+  { ssr: false }
+);
 
 export default function PongGamePage() {
   return (
     <GameContainer>
-      <PongGame />
+      <Suspense fallback={<GameLoadingScreen />}>
+        <PongGame />
+      </Suspense>
     </GameContainer>
-  )
+  );
 } 

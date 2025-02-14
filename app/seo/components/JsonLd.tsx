@@ -1,4 +1,4 @@
-import { Organization, WebSite, WithContext } from 'schema-dts'
+import { Organization, WithContext } from 'schema-dts'
 
 export function OrganizationJsonLd() {
   const organizationData: WithContext<Organization> = {

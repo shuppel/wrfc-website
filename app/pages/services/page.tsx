@@ -11,7 +11,6 @@ import {
   TooltipTrigger 
 } from '@/app/components/ui/tooltip'
 import { Code, Database, Building2, FileCode, Network, Brain, Users, GraduationCap, Cog, PenTool, Calculator, LineChart, Camera, Briefcase, ClipboardList, UserCheck, FileText, School, BookOpen, ListChecks, Building, Cpu } from 'lucide-react'
-import Image from 'next/image'
 
 interface NAICSCode {
   code: string;
