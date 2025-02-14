@@ -1,5 +1,3 @@
-'use client'
-
 import { Metadata } from 'next';
 import { defaultMetadata } from '@/app/seo/config';
 import PongGame from '@/app/components/features/PongGame/PongGame'

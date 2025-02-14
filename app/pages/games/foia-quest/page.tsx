@@ -1,5 +1,3 @@
-'use client'
-
 import { Metadata } from 'next';
 import { defaultMetadata } from '@/app/seo/config';
 import FoiaQuest from '@/app/components/features/FoiaQuest/FoiaQuest'

@@ -14,7 +14,7 @@ export default function MissionStatement() {
               we are authentic and active listeners.
             </p>
             <p className="text-lg leading-relaxed">
-              Our mission is to engage our Federal clients
+              Our mission is to engage our clients
               with deep commitments for: clarity, efficacy and ingenuity.
             </p>
             <p className="text-lg leading-relaxed">
