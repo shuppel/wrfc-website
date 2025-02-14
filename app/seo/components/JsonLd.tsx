@@ -19,6 +19,7 @@ export function OrganizationJsonLd() {
     },
     sameAs: [
       'https://www.linkedin.com/company/nodetus-integrators-llc/',
+      'https://github.com/Nodetus-Integrators-LLC',
       'https://www.facebook.com/nodetus'
     ],
     knowsAbout: [

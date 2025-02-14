@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react';
 import Image from 'next/image'
 import { Linkedin, Rocket, Shield, Binary, Target, Zap, AlertCircle, DollarSign, Clock, Book, Users, GraduationCap, Code, Brain, Github } from 'lucide-react'
 import { Card } from "@/app/components/ui/card"

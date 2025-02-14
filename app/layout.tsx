@@ -1,10 +1,12 @@
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 import Header from '@/app/components/content-blocks/Header'
 import Footer from '@/app/components/content-blocks/Footer'
 import { ThemeProvider } from '@/app/contexts/ThemeContext'
 import './globals.css'
 import { Inter, Press_Start_2P } from 'next/font/google'
 import Link from 'next/link'
+import { defaultMetadata, viewport } from './seo/config'
+import { OrganizationJsonLd } from './seo/components/JsonLd'
 
 // Initialize fonts with optimized loading
 const inter = Inter({ 
@@ -18,46 +20,8 @@ const pressStart2P = Press_Start_2P({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Nodetus Integrators LLC',
-    template: '%s | Nodetus - No-nonsense IT Advisory'
-  },
-  description: 'Strategic IT Advisory services specializing in Market Research, Technical Writing, Human Centered Design, Product Management, and IT Modernization. [Sense of humor included]',
-  metadataBase: new URL('https://www.nodetus.com'),
-  openGraph: {
-    title: 'Nodetus Integrators LLC',
-    description: 'Strategic IT Advisory services specializing in Market Research, Technical Writing, Human Centered Design, Product Management, and IT Modernization.',
-    url: 'https://www.nodetus.com',
-    siteName: 'Nodetus Integrators LLC',
-    locale: 'en_US',
-    type: 'website',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code', // Add your Google verification code
-  },
-  icons: {
-    icon: [
-      {
-        url: '/assets/node_logo_paper_feel_webclip.png',
-        type: 'image/png',
-      }
-    ],
-    shortcut: '/assets/node_logo_paper_feel_webclip.png',
-    apple: '/assets/node_logo_paper_feel_webclip.png',
-  },
-}
+export const metadata: Metadata = defaultMetadata
+export { viewport }
 
 export default function RootLayout({
   children,
@@ -70,6 +34,9 @@ export default function RootLayout({
       suppressHydrationWarning 
       className={`${pressStart2P.className}`}
     >
+      <head>
+        <OrganizationJsonLd />
+      </head>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <ThemeProvider>
           <div className="flex flex-col min-h-screen transition-colors duration-300">

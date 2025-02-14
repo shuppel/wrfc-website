@@ -1,11 +1,23 @@
-'use client'
-
 import Hero from '@/app/components/ui/hero'
 import MissionStatement from './components/content-blocks/MissionStatement'
 import CoreCompetencies from './components/content-blocks/CoreCompetencies'
 import QuickNav from './components/ui/QuickNav'
+import { Metadata } from 'next'
+import { defaultMetadata } from './seo/config'
 
-export default function Home() {
+export const metadata: Metadata = {
+  ...defaultMetadata,
+  title: 'Home | Nodetus Integrators LLC',
+  description: 'Welcome to Nodetus - Your partner for strategic IT Advisory services. We specialize in Market Research, Technical Writing, and Digital Transformation.',
+  openGraph: {
+    ...defaultMetadata.openGraph,
+    title: 'Home | Nodetus Integrators LLC',
+    description: 'Welcome to Nodetus - Your partner for strategic IT Advisory services.',
+    type: 'website'
+  }
+}
+
+export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section with gradient overlay */}

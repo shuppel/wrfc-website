@@ -1,20 +1,58 @@
 import { type Metadata } from 'next'
 
+// Site URLs and routes for sitemap generation
+export const siteConfig = {
+  baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.nodetus.com',
+  routes: [
+    { path: '/', priority: 1.0 },
+    { path: '/about', priority: 0.8 },
+    { path: '/services', priority: 0.8 },
+    { path: '/products', priority: 0.8 },
+    { path: '/contact', priority: 0.8 },
+    { path: '/privacy', priority: 0.5 },
+    { path: '/playground', priority: 0.6 },
+    // Games section
+    { path: '/games/pong', priority: 0.7 },
+    { path: '/games/snake', priority: 0.7 },
+    { path: '/games/foia-quest', priority: 0.7 },
+    { path: '/games/scif', priority: 0.7 }
+  ]
+} as const;
+
+// Viewport configuration for Next.js 13+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#ffffff'
+};
+
+// Default metadata configuration for Next.js 13+
 export const defaultMetadata: Metadata = {
   title: {
     default: 'Nodetus Integrators LLC',
     template: '%s | Nodetus - No-nonsense IT Advisory'
   },
   description: 'Strategic IT Advisory services specializing in Market Research, Technical Writing, Human Centered Design, Product Management, and IT Modernization. [Sense of humor included]',
-  metadataBase: new URL('https://www.nodetus.com'),
+  metadataBase: new URL(siteConfig.baseUrl),
+  keywords: 'Nodetus, Small Business, Asian Owned Small Business,IT Advisory, Customer Experience Market Research, Technical Writing, Human Centered Design, Product Management, FinOps, IT Spend Management, IT Modernization, Improve CX, Digital Transformation, Procurement Innovation, Industrial Psychology',
+  authors: [{ name: 'Nodetus Integrators LLC' }],
+  
+  // Open Graph
   openGraph: {
-    title: 'Nodetus Integrators LLC',
-    description: 'Strategic IT Advisory services specializing in Market Research, Technical Writing, Human Centered Design, Product Management, and IT Modernization.',
-    url: 'https://www.nodetus.com',
+    type: 'website',
     siteName: 'Nodetus Integrators LLC',
     locale: 'en_US',
-    type: 'website',
+    url: siteConfig.baseUrl,
+    images: [{
+      url: '/assets/node_logo_paper_feel_webclip.png',
+      width: 1200,
+      height: 630,
+      alt: 'Nodetus Integrators LLC - Strategic IT Advisory'
+    }]
   },
+
+  // Robots and Verification
   robots: {
     index: true,
     follow: true,
@@ -29,23 +67,21 @@ export const defaultMetadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
+
+  // Icons and Manifest
   icons: {
     icon: [{ url: '/assets/node_logo_paper_feel_webclip.png', type: 'image/png' }],
     shortcut: '/assets/node_logo_paper_feel_webclip.png',
     apple: '/assets/node_logo_paper_feel_webclip.png',
+    other: [
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#5bbad5' }
+    ]
   },
-}
+  manifest: '/site.webmanifest',
 
-export const routes = [
-  { path: '/', priority: 1.0 },
-  { path: '/about', priority: 0.8 },
-  { path: '/services', priority: 0.8 },
-  { path: '/services/market-research', priority: 0.8 },
-  { path: '/services/technical-writing', priority: 0.8 },
-  { path: '/services/human-centered-design', priority: 0.8 },
-  { path: '/services/product-management', priority: 0.8 },
-  { path: '/services/it-modernization', priority: 0.8 },
-  { path: '/services/procurement-innovation', priority: 0.8 },
-  { path: '/white-papers', priority: 0.8 },
-  { path: '/contact', priority: 0.8 },
-] 
+  // Additional Metadata
+  other: {
+    'geo.region': 'US-VA',
+    'geo.placename': 'Arlington'
+  }
+}; 
