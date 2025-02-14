@@ -25,6 +25,7 @@
     "grid-engine": "^2.40.0",
     "lucide-react": "^0.468.0",
     "next": "^14.2.16",
+    "next-seo": "^6.6.0",
     "phaser": "^3.70.0",
     "reac": "^0.0.0",
     "react": "^18",

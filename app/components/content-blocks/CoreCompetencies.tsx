@@ -1,13 +1,13 @@
 'use client'
 
 import { Gift, Database, Clipboard, Calculator, Lightbulb, Workflow } from 'lucide-react'
+import { ChevronCard } from "@/app/components/ui/chevron-card"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/app/components/ui/accordion"
-import { Card } from "@/app/components/ui/card"
 import { useState } from 'react'
 
 interface ServiceItem {
@@ -186,9 +186,9 @@ export default function CoreCompetencies() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-b from-background-light to-white dark:from-background-dark dark:to-gray-900">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-right mb-12 animate-fade-in">
+        <div className="text-right mb-12">
           <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
             Core Competencies<sup className="text-[0.6em] font-mono">expertise</sup>
           </h2>
@@ -197,60 +197,68 @@ export default function CoreCompetencies() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {coreCompetencies.map((competency, index) => (
-            <div
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {coreCompetencies.map((competency, idx) => (
+            <ChevronCard
               key={competency.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              icon={<competency.icon className="h-8 w-8 text-[#FF8C00]" />}
+              title={competency.title}
+              description={competency.description}
+              index={idx}
             >
-              <Card className="h-full bg-white dark:bg-gray-800 hover:shadow-lg transition-shadow duration-300">
-                <div className="p-6 flex flex-col h-full">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FF8C00] bg-opacity-20 mr-4">
-                      <competency.icon className="w-6 h-6 text-[#FF8C00]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#FF8C00]">{competency.title}</h3>
-                      <p className="text-sm text-text-light dark:text-text-dark opacity-75">{competency.description}</p>
-                    </div>
-                  </div>
-                  <div className="flex-grow">
-                    <Accordion 
-                      type="multiple" 
-                      value={expandedSections[competency.id] || []}
-                      onValueChange={(value) => handleAccordionChange(competency.id, value)}
-                      className="w-full"
+              <Accordion 
+                type="multiple" 
+                value={expandedSections[competency.id] || []}
+                onValueChange={(value) => handleAccordionChange(competency.id, value)}
+                className="w-full"
+              >
+                {competency.services.map((service, serviceIndex) => (
+                  <AccordionItem 
+                    key={serviceIndex} 
+                    value={`${competency.id}-${serviceIndex}`}
+                    className="border-b border-slate-200/50 dark:border-slate-700/50 last:border-none"
+                  >
+                    <AccordionTrigger
+                      className="accordion-trigger flex items-center justify-between w-full py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-[#FF8C00] transition-colors group"
                     >
-                      {competency.services.map((service, serviceIndex) => (
-                        <AccordionItem 
-                          key={serviceIndex} 
-                          value={`${competency.id}-${serviceIndex}`}
-                          className="border-b border-slate-200 dark:border-slate-700 last:border-0"
+                      <div className="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4 shrink-0 text-[#FF8C00]/70 group-hover:text-[#FF8C00]"
                         >
-                          <AccordionTrigger className="text-left text-slate-800 dark:text-slate-200 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors duration-300">
-                            {service.category}
-                          </AccordionTrigger>
-                          <AccordionContent className="overflow-hidden transition-all duration-300">
-                            <ul className="space-y-2">
-                              {service.items.map((item, itemIndex) => (
-                                <li
-                                  key={itemIndex}
-                                  className="flex items-start gap-2 text-text-light dark:text-text-dark"
-                                >
-                                  <span className="w-1.5 h-1.5 bg-[#FF8C00] rounded-full mt-2"></span>
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  </div>
-                </div>
-              </Card>
-            </div>
+                          <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                        {service.category}
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="accordion-content pt-2 overflow-hidden">
+                      <ul className="space-y-2">
+                        {service.items.map((item, itemIndex) => (
+                          <li 
+                            key={itemIndex}
+                            className="text-sm text-slate-500 dark:text-slate-400 pl-6 border-l-2 border-[#FF8C00]/20
+                                      hover:text-slate-900 dark:hover:text-slate-200 hover:border-[#FF8C00] 
+                                      transition-all duration-300
+                                      font-mono relative group/item"
+                          >
+                            <span className="absolute left-2 text-[#FF8C00]/70 group-hover/item:text-[#FF8C00]">$</span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </ChevronCard>
           ))}
         </div>
       </div>

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+
+# Protect private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /*?*
+
+# Crawl delays to prevent server overload
+Crawl-delay: 10
+
+# Sitemap declaration
+Sitemap: https://www.nodetus.com/sitemap.xml 

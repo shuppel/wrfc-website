@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Press_Start_2P } from 'next/font/google'
 import { useRouter } from 'next/navigation'
+import { HeroCard } from '@/app/components/ui/HeroCard'
 
 const pressStart2P = Press_Start_2P({
   weight: '400',
@@ -26,7 +27,7 @@ const games: Game[] = [
     sprite: '/sprites/scif.png',
     background: '/backgrounds/scif-bg.png',
     summary: 'Roam the quirky office searching for clues to unlock the terminal!',
-    path: '/games/scif'
+    path: '/pages/games/scif'
   },
   { 
     id: 'foia-quest', 
@@ -34,7 +35,7 @@ const games: Game[] = [
     sprite: '/sprites/foia-quest.png',
     background: '/backgrounds/foia-bg.png',
     summary: 'Navigate the bureaucracy and uncover hidden truths in this document-hunting adventure.',
-    path: '/games/foia-quest'
+    path: '/pages/games/foia-quest'
   },
   { 
     id: 'snake', 
@@ -42,7 +43,7 @@ const games: Game[] = [
     sprite: '/sprites/snake.png',
     background: '/backgrounds/snake-bg.png',
     summary: 'Classic snake game with a modern twist. Collect power-ups and avoid obstacles.',
-    path: '/games/snake'
+    path: '/pages/games/snake'
   },
   { 
     id: 'pong', 
@@ -50,9 +51,12 @@ const games: Game[] = [
     sprite: '/sprites/pong.png',
     background: '/backgrounds/pong-bg.png',
     summary: 'The original arcade classic with some minor upgrades :). Simple yet addictive paddle action.',
-    path: '/games/pong'
+    path: '/pages/games/pong'
   }
 ]
+
+// Arcade-themed emojis that we can rotate through
+const ARCADE_EMOJIS = ["🕹️", "🎮", "👾", "🎲", "🎯", "🎪"] as const;
 
 // Add this CSS at the top level of the component, before the return statement
 const breathingGlowStyles = `
@@ -65,10 +69,21 @@ const breathingGlowStyles = `
 
 export default function PlaygroundPage() {
   const router = useRouter()
+  const [currentEmojiIndex, setCurrentEmojiIndex] = useState(0);
 
   const handleGameSelect = (gamePath: string) => {
     router.push(gamePath)
   }
+
+  // Optional: Rotate through emojis on interval
+  /*
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentEmojiIndex((prev) => (prev + 1) % ARCADE_EMOJIS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+  */
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
@@ -76,26 +91,19 @@ export default function PlaygroundPage() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in space-y-8">
-          <div className="inline-block">
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] sm:text-5xl mb-6 font-nasalization tracking-wider group relative">
-              Playground
-              <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">[arcade]</sup>
-              <div className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#FF8C00] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-            </h1>
-          </div>
-          
-          <div className="max-w-3xl mx-auto space-y-4">
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-mono leading-relaxed">
-              Welcome to our retro-inspired game collection! Take a break from the serious world of federal IT and enjoy these custom-built arcade games.
-            </p>
-            <p className="text-sm text-slate-500 dark:text-slate-400 font-mono">
-              Each game is crafted with love and features unique mechanics inspired by the federal technology landscape.
-            </p>
-          </div>
-        </div>
+        <HeroCard
+          icon={ARCADE_EMOJIS[currentEmojiIndex]}
+          title="Playground"
+          subtitle="arcade"
+          description="Welcome to our retro-inspired game collection! Take a break from the serious world of federal IT and enjoy these custom-built arcade games"
+          badges={[
+            { text: "4 Games" },
+            { text: "Retro Style" },
+            { text: "Custom Built" }
+          ]}
+        />
         
-        <div className={`${pressStart2P.className} mt-12`}>
+        <div className={`${pressStart2P.className}`}>
           <div className="game-menu rounded-lg animate-fade-in">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 perspective-1000">
               {games.map((game) => (
@@ -132,10 +140,10 @@ export default function PlaygroundPage() {
                       }}
                     />
                     <div className="ml-6 flex-1">
-                      <h3 className="text-lg text-[#FF8C00] mb-3 group-hover:text-[#FFA500] transition-colors duration-300">
+                      <h3 className="text-lg text-[#FF8C00] mb-3 group-hover:text-[#FFA500] transition-colors duration-300 leading-relaxed">
                         {game.name}
                       </h3>
-                      <p className="text-xs leading-relaxed text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
+                      <p className="text-xs leading-[1.8] text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
                         {game.summary}
                       </p>
                     </div>

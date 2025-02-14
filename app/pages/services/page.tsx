@@ -1,14 +1,16 @@
 'use client'
 
-import CoreCompetencies from '@/app/components/CoreCompetencies'
+import CoreCompetencies from '@/app/components/content-blocks/CoreCompetencies'
 import { Card } from "@/app/components/ui/card"
+import { HeroCard } from "@/app/components/ui/HeroCard"
+import QuickNav from '@/app/components/ui/QuickNav'
 import { 
   Tooltip, 
   TooltipContent, 
   TooltipProvider, 
   TooltipTrigger 
 } from '@/app/components/ui/tooltip'
-import { Code, Database, Building2, FileCode, Network, Brain, Users, GraduationCap, Cog, PenTool, Calculator, LineChart, Camera, Briefcase, ClipboardList, UserCheck, FileText, School, BookOpen } from 'lucide-react'
+import { Code, Database, Building2, FileCode, Network, Brain, Users, GraduationCap, Cog, PenTool, Calculator, LineChart, Camera, Briefcase, ClipboardList, UserCheck, FileText, School, BookOpen, ListChecks, Building, Cpu } from 'lucide-react'
 import Image from 'next/image'
 
 interface NAICSCode {
@@ -221,59 +223,40 @@ const naicsCodes: NAICSCode[] = [
 ]
 
 export default function ServicesPage() {
+  const serviceLinks = [
+    { href: '#top', icon: '🏠', label: 'Top' },
+    { href: '#competencies', icon: '💡', label: 'Core Competencies' },
+    { href: '#naics', icon: '📋', label: 'NAICS Codes' },
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 relative overflow-hidden">
       {/* Animated background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Hero Section */}
-        <div className="mb-16">
-          <div className="card-base card-gradient p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-              <div className="w-32 h-32 md:w-48 md:h-48 relative flex-shrink-0">
-                <div className="absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl transform rotate-6"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-transparent rounded-2xl"></div>
-                <Image
-                  src="/assets/services-hero.png"
-                  alt="Federal IT Services Pixel Art"
-                  width={256}
-                  height={256}
-                  className="relative object-contain scale-100 hover:scale-110 transition-transform duration-500"
-                  priority
-                />
-              </div>
-              
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] mb-4 font-nasalization tracking-wider group">
-                  Our Services
-                  <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00]">[capabilities]</sup>
-                </h1>
-                <p className="text-slate-600 dark:text-slate-300 font-mono max-w-2xl leading-relaxed mb-6">
-                  Comprehensive IT solutions tailored for federal agencies and contractors, delivering cutting-edge technology services with proven expertise.
-                </p>
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
-                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">20+ NAICS Codes</span>
-                  </div>
-                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
-                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">Federal Contractor</span>
-                  </div>
-                  <div className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
-                    <span className="font-mono text-sm text-orange-600 dark:text-orange-400">IT Modernization</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="top">
+          <HeroCard
+            imageSrc="/assets/services-hero.png"
+            imageAlt="Federal IT Services Pixel Art"
+            title="Our Services"
+            subtitle="capabilities"
+            description="Comprehensive IT solutions tailored for federal agencies and contractors, delivering cutting-edge technology services with proven expertise"
+            badges={[
+              { text: "20+ NAICS Codes", icon: <ListChecks className="w-4 h-4" />, variant: "default" },
+              { text: "Federal Contractor", icon: <Building className="w-4 h-4" />, variant: "outline" },
+              { text: "IT Modernization", icon: <Cpu className="w-4 h-4" />, variant: "glow" }
+            ]}
+          />
         </div>
 
         {/* Core Competencies Section */}
-        <CoreCompetencies />
+        <div id="competencies" className="scroll-mt-16">
+          <CoreCompetencies />
+        </div>
 
         {/* NAICS Codes Section */}
-        <section className="mt-16">
+        <section id="naics" className="mt-16 scroll-mt-16">
           <div className="text-right mb-12">
             <h2 className="text-3xl font-bold text-[#FF8C00] dark:text-[#FF8C00] sm:text-4xl mb-4 font-nasalization">
               NAICS Codes<sup className="text-[0.6em] font-mono">classification</sup>
@@ -370,6 +353,8 @@ export default function ServicesPage() {
           </TooltipProvider>
         </section>
       </div>
+
+      <QuickNav links={serviceLinks} />
     </div>
   )
 } 

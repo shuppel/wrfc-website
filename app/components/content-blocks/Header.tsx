@@ -11,7 +11,7 @@ import {
   TooltipProvider, 
   TooltipTrigger 
 } from '@/app/components/ui/tooltip'
-import { ThemeToggle } from './ThemeToggle'
+import { ThemeToggle } from '../ui/ThemeToggle'
 
 interface NavigationItem {
   href: string;
@@ -20,11 +20,11 @@ interface NavigationItem {
 }
 
 const navigationItems: NavigationItem[] = [
-  { href: '/services', label: 'Services', index: '01' },
-  { href: '/products', label: 'Products', index: '02' },
-  { href: '/playground', label: 'Playground', index: '03' },
-  { href: '/about', label: 'About', index: '04' },
-  { href: '/contact', label: 'Contact', index: '05' },
+  { href: '/pages/services', label: 'Services', index: '01' },
+  { href: '/pages/products', label: 'Products', index: '02' },
+  { href: '/pages/playground', label: 'Playground', index: '03' },
+  { href: '/pages/about', label: 'About', index: '04' },
+  { href: '/pages/contact', label: 'Contact', index: '05' },
 ]
 
 export default function Header() {

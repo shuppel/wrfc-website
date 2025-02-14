@@ -320,7 +320,8 @@
   .card-base {
     @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 
            border border-gray-100 dark:border-gray-700
-           transition-all duration-300 ease-in-out;
+           transition-all duration-300 ease-in-out
+           relative overflow-hidden;
   }
 
   .card-hover {
@@ -354,6 +355,31 @@
            transform transition-all duration-300
            hover:scale-[1.02] active:scale-[0.98]
            disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .hero-badge {
+    @apply px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg
+           transform transition-all duration-500
+           hover:scale-105 hover:bg-orange-200 dark:hover:bg-orange-800/40;
+  }
+
+  .hero-badge-text {
+    @apply font-mono text-sm text-orange-600 dark:text-orange-400;
+  }
+
+  .hero-icon-container {
+    @apply relative flex-shrink-0 transform transition-transform duration-500
+           group-hover:scale-110;
+  }
+
+  .hero-icon-background {
+    @apply absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl
+           transform rotate-6 group-hover:rotate-12 transition-transform duration-500;
+  }
+
+  .hero-icon {
+    @apply text-5xl md:text-6xl transform transition-transform duration-500
+           hover:scale-110;
   }
 }
 
@@ -410,6 +436,45 @@
     to {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes glint {
+    from {
+      transform: translateX(-100%) rotate(12deg);
+    }
+    to {
+      transform: translateX(100%) rotate(12deg);
+    }
+  }
+
+  /* Badge animations */
+  @keyframes badgeFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes badgeGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
     }
   }
 }
@@ -603,5 +668,49 @@
 
 .card:hover {
   @apply shadow-xl;
+}
+
+/* Add these accordion-specific styles */
+.accordion-trigger[data-state='open'] svg {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease-out;
+}
+
+.accordion-trigger svg {
+  transition: transform 0.2s ease-out;
+}
+
+.accordion-content {
+  overflow: hidden;
+}
+
+.accordion-content[data-state='open'] {
+  animation: slideDown 300ms ease-out;
+}
+
+.accordion-content[data-state='closed'] {
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
 }
 

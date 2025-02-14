@@ -25,7 +25,7 @@ export default function Hero() {
                   Nodetus is focused on generating better investments, stronger contracts, reducing administrative waste, improving outcomes, enriching stakeholder work life and ensuring mission over minutiae.
                 </p>
                 <div className="mt-8">
-                  <Link href="/services">
+                  <Link href="#competencies">
                     <Button 
                       variant="outline"
                       className="px-8 py-3 text-base font-medium rounded-md text-[#FF8C00] dark:text-[#FF8C00] border-[#FF8C00] dark:border-[#FF8C00] hover:bg-[#FF8C00] hover:text-white dark:hover:text-white font-mono"
