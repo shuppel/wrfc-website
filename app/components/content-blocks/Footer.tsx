@@ -38,17 +38,17 @@ export default function Footer() {
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   <li>
-                    <Link href="/services" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/services" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       Services
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/products" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       Products
                     </Link>
                   </li>
                   <li>
-                    <Link href="/playground" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/playground" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       Playground
                     </Link>
                   </li>
@@ -60,17 +60,17 @@ export default function Footer() {
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   <li>
-                    <Link href="/about" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/about" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       About
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/contact" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       Contact
                     </Link>
                   </li>
                   <li>
-                    <Link href="/privacy" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <Link href="/pages/privacy" className="text-base text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                       Privacy Policy
                     </Link>
                   </li>

@@ -30,25 +30,27 @@ export const viewport = {
 // Default metadata configuration for Next.js 13+
 export const defaultMetadata: Metadata = {
   title: {
-    default: 'Nodetus Integrators LLC',
-    template: '%s | Nodetus - No-nonsense IT Advisory'
+    default: 'Nodetus Integrators | Federal IT Consulting, Market Research & Digital Transformation',
+    template: '%s | Nodetus - Strategic Federal IT Solutions'
   },
-  description: 'Strategic IT Advisory services specializing in Market Research, Technical Writing, Human Centered Design, Product Management, and IT Modernization. [Sense of humor included]',
+  description: 'Minority-owned federal IT consulting firm specializing in Strategic Planning, Market Research, Technical Writing, Human-Centered Design, Product Management, and IT Modernization for Federal Health IT and Civilian Agencies.',
   metadataBase: new URL(siteConfig.baseUrl),
-  keywords: 'Nodetus, Small Business, Asian Owned Small Business,IT Advisory, Customer Experience Market Research, Technical Writing, Human Centered Design, Product Management, FinOps, IT Spend Management, IT Modernization, Improve CX, Digital Transformation, Procurement Innovation, Industrial Psychology',
+  keywords: 'Federal IT Consulting, Health IT, Market Research, Technical Writing, Human Centered Design, Product Management, FinOps, IT Spend Management, IT Modernization, Digital Transformation, Procurement Innovation, Industrial Psychology, Minority Owned Business, Small Business, Asian Owned Business, Federal Contractor, Government Contractor',
   authors: [{ name: 'Nodetus Integrators LLC' }],
   
   // Open Graph
   openGraph: {
     type: 'website',
-    siteName: 'Nodetus Integrators LLC',
+    siteName: 'Nodetus Integrators - Federal IT Solutions',
+    title: 'Nodetus Integrators | Strategic Federal IT Consulting',
+    description: 'Minority-owned federal IT consulting firm delivering strategic solutions in Market Research, Technical Writing, and Digital Transformation for Federal Health IT and Civilian Agencies.',
     locale: 'en_US',
     url: siteConfig.baseUrl,
     images: [{
       url: '/assets/node_logo_paper_feel_webclip.png',
       width: 1200,
       height: 630,
-      alt: 'Nodetus Integrators LLC - Strategic IT Advisory'
+      alt: 'Nodetus Integrators - Strategic Federal IT Solutions'
     }]
   },
 
