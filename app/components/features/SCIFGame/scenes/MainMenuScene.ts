@@ -96,7 +96,7 @@ export default class MainMenuScene extends Scene {
             });
 
             exitText.on('pointerdown', () => {
-                window.location.href = '/playground';
+                window.location.href = '/pages/playground';
             });
 
             // Add keyboard controls

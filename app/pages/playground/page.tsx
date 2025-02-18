@@ -18,6 +18,8 @@ interface Game {
   background: string;
   summary: string;
   path: string;
+  maintenance?: boolean;
+  maintenanceMessage?: string;
 }
 
 const games: Game[] = [
@@ -27,7 +29,9 @@ const games: Game[] = [
     sprite: '/sprites/scif.png',
     background: '/backgrounds/scif-bg.png',
     summary: 'Roam the quirky office searching for clues to unlock the terminal!',
-    path: '/pages/games/scif'
+    path: '/pages/games/scif',
+    maintenance: true,
+    maintenanceMessage: 'Currently under maintenance. Check back soon!'
   },
   { 
     id: 'foia-quest', 
@@ -43,7 +47,9 @@ const games: Game[] = [
     sprite: '/sprites/snake.png',
     background: '/backgrounds/snake-bg.png',
     summary: 'Classic snake game with a modern twist. Collect power-ups and avoid obstacles.',
-    path: '/pages/games/snake'
+    path: '/pages/games/snake',
+    maintenance: true,
+    maintenanceMessage: 'Currently under maintenance. Check back soon!'
   },
   { 
     id: 'pong', 
@@ -102,15 +108,14 @@ export default function PlaygroundPage() {
               {games.map((game) => (
                 <div
                   key={game.id}
-                  className="group relative transition-all duration-500 
-                           hover:shadow-[0_0_30px_rgba(255,140,0,0.15)]
-                           hover:scale-[1.02]
+                  className={`group relative transition-all duration-500 
+                           ${game.maintenance ? 'cursor-not-allowed opacity-75' : 'cursor-pointer hover:shadow-[0_0_30px_rgba(255,140,0,0.15)] hover:scale-[1.02]'}
                            bg-slate-900/90 dark:bg-slate-800/90 
                            backdrop-blur-sm rounded-xl
                            border border-orange-100/10 dark:border-orange-500/10
-                           overflow-hidden
-                           cursor-pointer"
-                  onClick={() => handleGameSelect(game.path)}
+                           overflow-hidden`}
+                  onClick={() => !game.maintenance && handleGameSelect(game.path)}
+                  title={game.maintenance ? game.maintenanceMessage : ''}
                 >
                   <div 
                     className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
@@ -135,6 +140,7 @@ export default function PlaygroundPage() {
                     <div className="ml-6 flex-1">
                       <h3 className="text-lg text-[#FF8C00] mb-3 group-hover:text-[#FFA500] transition-colors duration-300 leading-relaxed">
                         {game.name}
+                        {game.maintenance && <span className="text-xs ml-2 text-yellow-500">🔧 Under Maintenance</span>}
                       </h3>
                       <p className="text-xs leading-[1.8] text-slate-300/80 group-hover:text-white/90 transition-all duration-300">
                         {game.summary}

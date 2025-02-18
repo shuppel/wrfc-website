@@ -8,7 +8,7 @@ export const useGameNavigation = () => {
 
   const handleNavigateToMenu = useCallback(() => {
     if (window.confirm('Are you sure you want to exit? Your progress will be lost.')) {
-      router.push('/games');
+      router.push('/pages/playground');
     }
   }, [router]);
 

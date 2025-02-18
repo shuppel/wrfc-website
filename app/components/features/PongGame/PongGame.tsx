@@ -698,7 +698,7 @@ export default function PongGame() {
   // Handle navigation back to menu.
   const handleNavigateToMenu = () => {
     if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
-      window.location.href = '/playground'
+      window.location.href = '/pages/playground';
     }
   }
 
