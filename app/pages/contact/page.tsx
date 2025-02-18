@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useForm as useFormspree } from '@formspree/react';
 import { Mail, Building2, User, Send, CheckCircle2, XCircle, Clock4, Zap, Shield } from 'lucide-react';
 import { HeroCard } from "@/app/components/ui/HeroCard";
 
@@ -17,8 +18,7 @@ interface FormData {
 }
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formspreeState, sendToFormspree] = useFormspree('xpwqkakj');
 
   const {
     register,
@@ -26,30 +26,21 @@ export default function ContactPage() {
     formState: { errors, isValid },
     reset
   } = useForm<FormData>({
-    mode: 'onChange',
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      sector: undefined,
-      service: undefined,
-      message: ''
-    }
+    mode: 'onChange'
   });
 
   const onSubmit = async (formData: FormData) => {
-    setIsSubmitting(true);
     try {
-      // TODO: Replace with actual API endpoint
-      console.log('Form submitted:', formData);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      reset();
+      await sendToFormspree({
+        ...formData,
+        _subject: `[nodetus-iq] Contact Form: ${formData.name} - ${formData.sector}`,
+      });
+      
+      if (formspreeState.succeeded) {
+        reset();
+      }
     } catch (err) {
       console.error('Form submission error:', err);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -261,10 +252,10 @@ export default function ContactPage() {
               <div className="flex items-center justify-center pt-4">
                 <button
                   type="submit"
-                  disabled={isSubmitting || !isValid}
+                  disabled={formspreeState.submitting || !isValid}
                   className="button-primary"
                 >
-                  {isSubmitting ? (
+                  {formspreeState.submitting ? (
                     <div className="flex items-center space-x-2">
                       <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -279,7 +270,7 @@ export default function ContactPage() {
               </div>
 
               {/* Success Message */}
-              {submitStatus === 'success' && (
+              {formspreeState.succeeded && (
                 <div className="text-center p-4 rounded-lg animate-fade-in card-gradient">
                   <div className="flex items-center justify-center space-x-2 text-emerald-600 dark:text-emerald-400">
                     <CheckCircle2 className="icon-base text-emerald-600 dark:text-emerald-400" />
@@ -289,7 +280,7 @@ export default function ContactPage() {
               )}
 
               {/* Error Message */}
-              {submitStatus === 'error' && (
+              {formspreeState.errors && Object.keys(formspreeState.errors).length > 0 && (
                 <div className="text-center p-4 rounded-lg animate-fade-in bg-red-50 dark:bg-red-900/20">
                   <div className="flex items-center justify-center space-x-2 text-red-600 dark:text-red-400">
                     <XCircle className="icon-base text-red-600 dark:text-red-400" />

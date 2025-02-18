@@ -4,7 +4,10 @@ WORKDIR /app
 
 # Install dependencies first for better caching
 COPY package*.json ./
-RUN npm ci
+
+# Clean install dependencies
+RUN npm cache clean --force
+RUN npm install
 
 # Copy the rest of the code
 COPY . .
@@ -14,6 +17,6 @@ RUN npm run build
 
 EXPOSE 3000
 
-# Use production mode for better performance
-ENV NODE_ENV=production
+# Use development mode for better debugging
+ENV NODE_ENV=development
 CMD ["npm", "run", "dev"] 

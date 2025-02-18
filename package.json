@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@formspree/react": "^2.5.1",
     "@mui/material": "^6.4.4",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-slot": "^1.1.1",
@@ -18,6 +19,7 @@
     "@react-spring/web": "^9.7.5",
     "@tanstack/react-query": "^5.66.0",
     "@types/axios": "^0.14.4",
+    "@types/nodemailer": "^6.4.17",
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
@@ -26,6 +28,7 @@
     "lucide-react": "^0.468.0",
     "next": "^14.2.16",
     "next-seo": "^6.6.0",
+    "nodemailer": "^6.10.0",
     "phaser": "^3.70.0",
     "reac": "^0.0.0",
     "react": "^18",
@@ -33,7 +36,8 @@
     "react-hook-form": "^7.54.2",
     "schema-dts": "^1.1.2",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/node": "^20",
