@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useForm as useFormspree } from '@formspree/react';
 import { Mail, Building2, User, Send, CheckCircle2, XCircle, Clock4, Zap, Shield } from 'lucide-react';
