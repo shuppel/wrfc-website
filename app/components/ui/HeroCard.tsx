@@ -65,7 +65,7 @@ export function HeroCard({
           </div>
           
           <div className="flex-1">
-            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] mb-4 font-nasalization tracking-wider group">
+            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FF8C00] to-[#FFA500] mb-4 font-nasalization tracking-wider group leading-relaxed pb-2">
               {title}
               {subtitle && (
                 <sup className="text-[0.4em] font-mono ml-2 text-[#FF8C00] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
