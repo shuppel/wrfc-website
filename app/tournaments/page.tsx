@@ -3,9 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from 'components/ui/card';
-import { Button } from 'components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'components/ui/tabs';
-import { Calendar, MapPin, Trophy, ChevronRight, ArrowRight, Users } from 'lucide-react';
+import { Calendar, MapPin, Trophy, ArrowRight, Users } from 'lucide-react';
 
 interface Tournament {
   id: string;
