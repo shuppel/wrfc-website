@@ -90,7 +90,7 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
                   Washington Rugby FC: The Most Famous American Club in the UK!
                 </h1>
                 <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-                  Featured in The Telegraph's special report on American rugby
+                  Featured in The Telegraph&apos;s special report on American rugby
                 </p>
               </div>
 
@@ -107,14 +107,14 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
                 </p>
 
                 <blockquote className="border-l-4 border-wrfc-red pl-4 italic">
-                  "It has been the most enjoyable three months of rugby I can remember playing. 
-                  Americans understand the ethos of rugby that many in England have forgotten."
+                  &quot;It has been the most enjoyable three months of rugby I can remember playing. 
+                  Americans understand the ethos of rugby that many in England have forgotten.&quot;
                 </blockquote>
 
                 <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg">
                   <h3 className="font-bold text-lg mb-3">Article Highlights:</h3>
                   <ul className="list-disc list-inside space-y-2">
-                    <li>WRFC's strong community and social culture</li>
+                    <li>WRFC&apos;s strong community and social culture</li>
                     <li>High-quality coaching from professional staff</li>
                     <li>The unique experience of playing at Wallenberg Field</li>
                     <li>Growing legacy in American rugby</li>

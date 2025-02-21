@@ -26,7 +26,7 @@ const tournaments: Tournament[] = [
     date: 'April 12-13, 2025',
     location: 'Liberty Sports Park, MD',
     coverImage: '/assets/pictures/2025_irish_ruck.jpg',
-    description: '57th Annual Cherry Blossom Tournament featuring Men\'s 15s, Collegiate 7s, and more.',
+    description: '57th Annual Cherry Blossom Tournament featuring Men&apos;s 15s, Collegiate 7s, and more.',
     divisions: ['Senior Men\'s 15s', 'Collegiate Men\'s 7s', 'High School Boy\'s 15s', 'Old Boy\'s 15s'],
     status: 'upcoming',
     year: 2025
