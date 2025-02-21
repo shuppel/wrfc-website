@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
+import ArticleDrawerWrapper from '../components/layout/ArticleDrawerWrapper'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -36,13 +37,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${bebasNeue.variable} ${titilliumWeb.variable} ${quantico.variable} font-sans min-h-screen bg-white dark:bg-gray-900 flex flex-col`}>
+      <body className={`${inter.variable} ${bebasNeue.variable} ${titilliumWeb.variable} ${quantico.variable} font-sans min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col`}>
         <ThemeProvider>
           <Header />
           <main className="flex-grow pt-24">
             {children}
           </main>
           <Footer />
+          <ArticleDrawerWrapper />
         </ThemeProvider>
       </body>
     </html>

@@ -2,56 +2,217 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trophy, Heart, Users, Building } from 'lucide-react';
+import { Trophy, Heart, Building, Info, MapPin, Tag, Shirt, Shield, Star } from 'lucide-react';
+import { useState } from 'react';
+
+interface Sponsor {
+  name: string;
+  logo: string;
+  type: 'premier' | 'club' | 'supporting';
+  description: string;
+  website?: string;
+  address?: string;
+  contribution?: string;
+  discount?: string;
+  since?: string;
+  badge?: 'gold' | 'silver' | 'bronze';
+}
+
+const SPONSORS: Sponsor[] = [
+  {
+    name: "Example Premier Sponsor",
+    logo: "/logos/placeholder-logo.png",
+    type: "premier",
+    description: "Premier sponsor supporting WRFC's mission",
+    website: "https://example.com",
+    address: "123 Rugby St, Washington, DC 20001",
+    contribution: "Premier Level Support",
+    since: "2023",
+    badge: "gold"
+  },
+  {
+    name: "Carlsberg",
+    logo: "/assets/sponsors/carlsberg-logo.png",
+    type: "premier",
+    description: "A premier global brewery known for its quality beer and long-standing support of sports and community events.",
+    website: "https://www.carlsberg.com",
+    contribution: "Premier Level Support",
+    since: "2024",
+    badge: "gold"
+  },
+  {
+    name: "Matet's Kitchen",
+    logo: "/assets/sponsors/matets-kitchen-logo.jpg",
+    type: "premier",
+    description: "A beloved local restaurant bringing delicious cuisine to the DC community while supporting local sports.",
+    website: "https://www.matets-kitchen.com",
+    contribution: "Premier Level Support",
+    since: "2024",
+    badge: "gold"
+  },
+  {
+    name: "The Queen Vic",
+    logo: "/assets/sponsors/queen-vic-logo.png",
+    type: "premier",
+    description: "An authentic British pub in the heart of DC, bringing rugby culture and community together.",
+    website: "https://www.thequeenvicdc.com",
+    contribution: "Premier Level Support",
+    since: "2024",
+    badge: "gold"
+  },
+  // Add more sponsors here...
+];
+
+const BADGE_COLORS = {
+  gold: 'bg-yellow-500',
+  silver: 'bg-gray-400',
+  bronze: 'bg-amber-700'
+};
 
 export default function Sponsors() {
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
+  const sponsorsByType = {
+    premier: SPONSORS.filter(s => s.type === 'premier'),
+    club: SPONSORS.filter(s => s.type === 'club'),
+    supporting: SPONSORS.filter(s => s.type === 'supporting')
+  };
+
+  const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
+    <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+      {/* Badge */}
+      {sponsor.badge && (
+        <div className={`absolute -top-3 -right-3 ${BADGE_COLORS[sponsor.badge]} text-white rounded-full p-2 shadow-lg`}>
+          <Shield className="w-4 h-4" />
+        </div>
+      )}
+
+      {/* Info Button */}
+      <button
+        onClick={() => setActiveTooltip(activeTooltip === sponsor.name ? null : sponsor.name)}
+        className="absolute top-2 right-2 p-2 text-gray-500 hover:text-wrfc-navy dark:text-gray-400 dark:hover:text-white transition-colors"
+        aria-label="Show sponsor information"
+      >
+        <Info className="w-5 h-5" />
+      </button>
+
+      {/* Sponsor Logo */}
+      <div className="relative w-full aspect-video mb-4">
+        <Image
+          src={sponsor.logo}
+          alt={sponsor.name}
+          fill
+          className="object-contain"
+        />
+      </div>
+
+      {/* Sponsor Name */}
+      <h3 className="text-xl font-bold mb-2">{sponsor.name}</h3>
+
+      {/* Since Year */}
+      {sponsor.since && (
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Partner since {sponsor.since}
+        </p>
+      )}
+
+      {/* Info Tooltip */}
+      {activeTooltip === sponsor.name && (
+        <div className="absolute left-0 right-0 top-full mt-2 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-10">
+          <p className="text-sm mb-3">{sponsor.description}</p>
+          
+          {sponsor.contribution && (
+            <div className="flex items-center gap-2 text-sm mb-2">
+              <Trophy className="w-4 h-4 text-wrfc-red" />
+              <span>{sponsor.contribution}</span>
+            </div>
+          )}
+          
+          {sponsor.discount && (
+            <div className="flex items-center gap-2 text-sm mb-2">
+              <Tag className="w-4 h-4 text-wrfc-teal" />
+              <span>{sponsor.discount}</span>
+            </div>
+          )}
+          
+          {sponsor.address && (
+            <div className="flex items-center gap-2 text-sm mb-2">
+              <MapPin className="w-4 h-4 text-wrfc-navy" />
+              <span>{sponsor.address}</span>
+            </div>
+          )}
+          
+          {sponsor.website && (
+            <a 
+              href={sponsor.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-wrfc-red hover:text-wrfc-red/80 text-sm font-medium mt-2 inline-block"
+            >
+              Visit Website →
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="hero-title mb-6">Our Sponsors</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We're proud to partner with organizations that share our passion for rugby and community. 
+          We&apos;re proud to partner with organizations that share our passion for rugby and community. 
           Our sponsors help make it possible for WRFC to continue its legacy of excellence.
         </p>
       </div>
 
-      {/* Sponsorship Tiers */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-          <Trophy className="w-12 h-12 text-wrfc-red mb-4" />
-          <h3 className="text-2xl font-bold mb-4">Premier Sponsors</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Our highest level of partnership, supporting WRFC's major initiatives and development programs.
-          </p>
-          {/* Add Premier Sponsors here */}
+      {/* Premier Sponsors */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-8">
+          <Trophy className="w-8 h-8 text-wrfc-red" />
+          <h2 className="text-3xl font-bold">Premier Sponsors</h2>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sponsorsByType.premier.map((sponsor, index) => (
+            <SponsorCard key={index} sponsor={sponsor} />
+          ))}
+        </div>
+      </section>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-          <Building className="w-12 h-12 text-wrfc-navy mb-4" />
-          <h3 className="text-2xl font-bold mb-4">Club Sponsors</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Key partners who contribute to our club's operations and community outreach.
-          </p>
-          {/* Add Club Sponsors here */}
+      {/* Club Sponsors */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-8">
+          <Building className="w-8 h-8 text-wrfc-navy" />
+          <h2 className="text-3xl font-bold">Club Sponsors</h2>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sponsorsByType.club.map((sponsor, index) => (
+            <SponsorCard key={index} sponsor={sponsor} />
+          ))}
+        </div>
+      </section>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
-          <Heart className="w-12 h-12 text-wrfc-teal mb-4" />
-          <h3 className="text-2xl font-bold mb-4">Supporting Partners</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
-            Local businesses and organizations that help sustain our rugby community.
-          </p>
-          {/* Add Supporting Partners here */}
+      {/* Supporting Partners */}
+      <section className="mb-16">
+        <div className="flex items-center gap-3 mb-8">
+          <Heart className="w-8 h-8 text-wrfc-teal" />
+          <h2 className="text-3xl font-bold">Supporting Partners</h2>
         </div>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sponsorsByType.supporting.map((sponsor, index) => (
+            <SponsorCard key={index} sponsor={sponsor} />
+          ))}
+        </div>
+      </section>
 
       {/* Become a Sponsor Section */}
       <div className="bg-gradient-to-r from-wrfc-navy to-wrfc-navy/90 text-white rounded-xl p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Become a Sponsor</h2>
           <p className="text-xl mb-8">
-            Join us in supporting one of DC's oldest and most successful rugby clubs. 
+            Join us in supporting one of DC&apos;s oldest and most successful rugby clubs. 
             Partner with WRFC and connect with our passionate community.
           </p>
           <Link 
@@ -60,18 +221,6 @@ export default function Sponsors() {
           >
             Contact Us About Sponsorship
           </Link>
-        </div>
-      </div>
-
-      {/* Current Sponsors Grid */}
-      <div className="mt-16">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Current Sponsors</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* Add sponsor logos here */}
-          <div className="aspect-video relative bg-white dark:bg-gray-800 rounded-lg p-4 flex items-center justify-center">
-            <p className="text-gray-400 text-center">Sponsor Logo</p>
-          </div>
-          {/* Repeat for other sponsors */}
         </div>
       </div>
     </div>

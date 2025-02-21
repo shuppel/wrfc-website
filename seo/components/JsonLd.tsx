@@ -11,9 +11,10 @@ export function OrganizationJsonLd() {
           "url": "https://www.wrfc.org",
           "logo": "https://www.wrfc.org/images/wrfc-logo.png",
           "sameAs": [
-            "https://www.facebook.com/WashingtonRugbyFC",
-            "https://twitter.com/WashingtonRugby",
-            "https://www.instagram.com/washingtonrugby"
+            "https://www.facebook.com/WashingtonRugbyFootballClub/",
+            "https://x.com/WRFC_DC",
+            "https://www.instagram.com/wrfc1963/",
+            "https://en.wikipedia.org/wiki/Washington_Rugby_Football_Club"
           ],
           "address": {
             "@type": "PostalAddress",

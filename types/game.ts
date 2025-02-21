@@ -742,6 +742,149 @@ export const SAMPLE_DATA = {
         awayScore: 19,
         status: 'FINAL'
       }
+    },
+    {
+      id: '2024-01',
+      homeTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'WRFC',
+        logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
+        id: 'norfolk',
+        name: 'Norfolk Blues',
+        shortName: 'Norfolk Blues',
+        logo: '/logos/norfolk-blues.png'
+      },
+      date: '2024-09-15',
+      time: '14:00',
+      venue: {
+        id: 'home',
+        name: 'WRFC Home Field',
+        city: 'Washington',
+        state: 'DC',
+        address: 'TBD',
+        coordinates: {
+          lat: 38.8977,
+          lng: -77.0365
+        }
+      },
+      season: '2024',
+      competition: 'LEAGUE',
+      isHome: true,
+      result: {
+        homeScore: 28,
+        awayScore: 24,
+        status: 'FINAL'
+      }
+    },
+    {
+      id: '2024-02',
+      homeTeam: {
+        id: 'rocky-gorge',
+        name: 'Rocky Gorge',
+        shortName: 'Rocky Gorge',
+        logo: '/logos/rocky-gorge.png'
+      },
+      awayTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'WRFC',
+        logo: '/logos/wrfc_logo.png'
+      },
+      date: '2024-09-22',
+      time: '13:00',
+      venue: {
+        id: 'away',
+        name: 'Rocky Gorge Field',
+        city: 'Columbia',
+        state: 'MD',
+        address: '8400 River Rd, Laurel, MD 20724',
+        coordinates: {
+          lat: 39.1046,
+          lng: -76.8241
+        }
+      },
+      season: '2024',
+      competition: 'LEAGUE',
+      isHome: false,
+      result: {
+        homeScore: 31,
+        awayScore: 35,
+        status: 'FINAL'
+      }
+    },
+    {
+      id: '2024-03',
+      homeTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'WRFC',
+        logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
+        id: 'baltimore',
+        name: 'Baltimore Chesapeake',
+        shortName: 'Baltimore',
+        logo: '/logos/baltimore-chesapeake.png'
+      },
+      date: '2024-10-06',
+      time: '14:00',
+      venue: {
+        id: 'home',
+        name: 'WRFC Home Field',
+        city: 'Washington',
+        state: 'DC',
+        address: 'TBD',
+        coordinates: {
+          lat: 38.8977,
+          lng: -77.0365
+        }
+      },
+      season: '2024',
+      competition: 'TOURNAMENT',
+      isHome: true,
+      result: {
+        homeScore: 42,
+        awayScore: 28,
+        status: 'FINAL'
+      }
+    },
+    {
+      id: '2024-04',
+      homeTeam: {
+        id: 'renegades',
+        name: 'Washington Renegades',
+        shortName: 'Renegades'
+      },
+      awayTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'WRFC',
+        logo: '/logos/wrfc_logo.png'
+      },
+      date: '2024-10-20',
+      time: '13:00',
+      venue: {
+        id: 'away',
+        name: 'Renegades Field',
+        city: 'Washington',
+        state: 'DC',
+        address: 'TBD',
+        coordinates: {
+          lat: 38.9072,
+          lng: -77.0369
+        }
+      },
+      season: '2024',
+      competition: 'SOCIAL',
+      isHome: false,
+      result: {
+        homeScore: 21,
+        awayScore: 21,
+        status: 'FINAL'
+      }
     }
   ] as Game[]
 } 
