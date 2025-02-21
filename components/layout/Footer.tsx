@@ -100,10 +100,15 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-gray-600 dark:text-gray-400 font-jetbrains">
-              © {new Date().getFullYear()} Washington Rugby Football Club. All rights reserved.
-            </p>
+          <div className="flex flex-col md:flex-row justify-between items-start space-y-4 md:space-y-0">
+            <div className="flex flex-col items-start space-y-1">
+              <p className="text-sm text-gray-600 dark:text-gray-400 font-jetbrains">
+                © {new Date().getFullYear()} Washington DC Rugby Foundation. All rights reserved.
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 font-jetbrains">
+                This website is powered by <a href="https://nodetus.com" target="_blank" rel="noopener noreferrer" className="text-wrfc-red hover:text-wrfc-red/80">Nodetus</a>, your friendly AI Integrators
+              </p>
+            </div>
             <div className="flex space-x-6 text-sm text-gray-600 dark:text-gray-400">
               <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Privacy Policy

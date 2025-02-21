@@ -60,6 +60,16 @@ const SPONSORS: Sponsor[] = [
     since: "2024",
     badge: "gold"
   },
+  {
+    name: "Nodetus Integrators LLC",
+    logo: "/assets/sponsors/nodetus_logo.png",
+    type: "club",
+    description: "Your friendly AI Integrators, powering digital transformation and innovation in sports technology.",
+    website: "https://nodetus.com",
+    contribution: "Technology Partner",
+    since: "2024",
+    badge: "silver"
+  },
   // Add more sponsors here...
 ];
 

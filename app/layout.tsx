@@ -28,6 +28,25 @@ export const metadata: Metadata = {
   title: 'WRFC - Washington Rugby Football Club',
   description: 'Home of Washington Rugby Football Club - Tradition, Excellence, Community',
   keywords: ['rugby', 'washington rugby', 'washington dc rugby', 'wrfc', 'washington rfc'],
+  icons: {
+    icon: [
+      {
+        url: '/logos/favicon.ico',
+        sizes: 'any',
+        type: 'image/x-icon',
+      },
+      {
+        url: '/logos/icon.png',
+        sizes: '28x32',
+        type: 'image/png',
+      }
+    ],
+    apple: {
+      url: '/logos/apple-icon.png',
+      sizes: '180x180',
+      type: 'image/png',
+    },
+  },
 }
 
 export default function RootLayout({
