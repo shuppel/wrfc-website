@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Youtube, Instagram, ChevronDown } from 'lucide-react';
 import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube';
 
@@ -24,7 +24,6 @@ export default function MediaPage() {
   const [activeTab, setActiveTab] = useState('videos');
   const [videoMetadata, setVideoMetadata] = useState<VideoMetadata[]>([]);
   const [visibleVideos, setVisibleVideos] = useState(VIDEOS_PER_PAGE);
-  const [isLoading, setIsLoading] = useState(true);
 
   // YouTube player options
   const opts: YouTubeProps['opts'] = {
@@ -55,8 +54,6 @@ export default function MediaPage() {
       // Add new metadata
       return [...prev, videoData];
     });
-
-    setIsLoading(false);
   };
 
   const loadMoreVideos = () => {

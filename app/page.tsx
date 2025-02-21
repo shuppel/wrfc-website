@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, ChevronRight, Star } from 'lucide-react'
-
-// Image gallery for the hero section background slideshow
-const heroImages = [
-  '/assets/pictures/2025_irish_ruck.jpg',
-  '/assets/pictures/huddle_2025_irish.jpg',
-  '/assets/pictures/2025_irish_harry.jpg'
-]
+import { Calendar, Trophy, Users, ArrowRight, ChevronRight } from 'lucide-react'
 
 export default function Home() {
   return (
@@ -143,8 +136,8 @@ export default function Home() {
             Ready to Join the Legacy?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
-            Whether you're an experienced player or new to rugby, WRFC welcomes athletes of all levels. 
-            Join us and be part of Washington's premier rugby club.
+            Whether you&apos;re an experienced player or new to rugby, WRFC welcomes athletes of all levels. 
+            Join us and be part of Washington&apos;s premier rugby club.
           </p>
           <Link 
             href="/membership" 
@@ -155,30 +148,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </div>
-  )
-}
-
-function HighlightCard({ image, title, description }: {
-  image: string
-  title: string
-  description: string
-}) {
-  return (
-    <div className="relative group overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg">
-      <div className="relative h-64 overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover transform group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-sm text-gray-200">{description}</p>
-      </div>
     </div>
   )
 }

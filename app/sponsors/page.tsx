@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trophy, Heart, Building, Info, MapPin, Tag, Shirt, Shield, Star } from 'lucide-react';
+import { Trophy, Heart, Building, Info, MapPin, Tag, Shield } from 'lucide-react';
 import { useState } from 'react';
 
 interface Sponsor {

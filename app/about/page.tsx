@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Shield, Users, History, Star, Trophy, Beer, Flag } from 'lucide-react'
+import { Shield, Users, History, Star, Trophy, Beer } from 'lucide-react'
 
 export default function AboutPage() {
   return (
