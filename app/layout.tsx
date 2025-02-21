@@ -1,27 +1,33 @@
 import type { Metadata } from 'next'
-import Header from '@/app/components/content-blocks/Header'
-import Footer from '@/app/components/content-blocks/Footer'
-import { ThemeProvider } from '@/app/contexts/ThemeContext'
+import Header from '../components/layout/Header'
+import Footer from '../components/layout/Footer'
+import { ThemeProvider } from '../contexts/ThemeContext'
 import './globals.css'
-import { Inter, Press_Start_2P } from 'next/font/google'
-import { defaultMetadata, viewport } from './seo/config'
-import { OrganizationJsonLd } from './seo/components/JsonLd'
-import { Analytics } from '@vercel/analytics/react'
+import { Inter } from 'next/font/google'
+import { Bebas_Neue, Titillium_Web, Quantico } from 'next/font/google'
 
-// Initialize fonts with optimized loading
-const inter = Inter({ 
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const pressStart2P = Press_Start_2P({
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const bebasNeue = Bebas_Neue({ 
   weight: '400',
   subsets: ['latin'],
-  display: 'swap',
+  variable: '--font-bebas-neue',
+})
+const titilliumWeb = Titillium_Web({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-titillium-web',
+})
+const quantico = Quantico({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-quantico',
 })
 
-export const metadata: Metadata = defaultMetadata
-export { viewport }
+export const metadata: Metadata = {
+  title: 'WRFC - Washington Rugby Football Club',
+  description: 'Home of Washington Rugby Football Club - Tradition, Excellence, Community',
+  keywords: ['rugby', 'washington rugby', 'washington dc rugby', 'wrfc', 'washington rfc'],
+}
 
 export default function RootLayout({
   children,
@@ -29,27 +35,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html 
-      lang="en" 
-      suppressHydrationWarning 
-      className={`${pressStart2P.className}`}
-    >
-      <head>
-        <OrganizationJsonLd />
-      </head>
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${bebasNeue.variable} ${titilliumWeb.variable} ${quantico.variable} font-sans min-h-screen bg-white dark:bg-gray-900 flex flex-col`}>
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen transition-colors duration-300">
-            <Header />
-            <main className="flex-grow relative z-10">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <Header />
+          <main className="flex-grow pt-24">
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   )
-}
-
+} 

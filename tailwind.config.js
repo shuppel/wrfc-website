@@ -1,9 +1,10 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './contexts/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -20,9 +21,18 @@ module.exports = {
           light: '#1A1A1A',
           dark: '#E0E0E0',
         },
+        'wrfc': {
+          navy: '#002B5C',
+          red: '#C8102E',
+          teal: '#00A7B5',
+          magenta: '#E31C79',
+        }
       },
       fontFamily: {
-        nasalization: ['var(--font-nasalization)'],
+        display: ['var(--font-bebas-neue)', 'sans-serif'],
+        heading: ['var(--font-titillium-web)', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        accent: ['var(--font-quantico)', 'monospace'],
         mono: ['var(--font-mono)'],
       },
       keyframes: {

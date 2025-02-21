@@ -153,11 +153,11 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-nasalization tracking-wide;
+    @apply font-heading tracking-wide;
   }
 
   body {
-    @apply font-mono antialiased;
+    @apply font-sans antialiased;
   }
 
   .title-gradient {
@@ -183,6 +183,92 @@
     vertical-align: sub;
     font-family: var(--font-mono);
     opacity: 0.8;
+  }
+
+  /* Display Text - Bebas Neue */
+  .display-large {
+    @apply font-display text-6xl md:text-7xl lg:text-8xl tracking-wide uppercase;
+  }
+  
+  .display-medium {
+    @apply font-display text-5xl md:text-6xl tracking-wide uppercase;
+  }
+  
+  .display-small {
+    @apply font-display text-4xl md:text-5xl tracking-wide uppercase;
+  }
+
+  /* Headings - Titillium Web */
+  h1 {
+    @apply font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply font-heading text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  
+  h3 {
+    @apply font-heading text-2xl md:text-3xl font-semibold;
+  }
+  
+  h4 {
+    @apply font-heading text-xl md:text-2xl font-semibold;
+  }
+
+  /* Body Text - Inter */
+  p {
+    @apply font-sans text-base md:text-lg leading-relaxed;
+  }
+
+  /* Navigation */
+  nav {
+    @apply font-heading text-base font-medium;
+  }
+
+  /* Accent Text - Quantico */
+  .accent-text {
+    @apply font-accent font-semibold tracking-wide;
+  }
+
+  /* Special Components */
+  .score-display {
+    @apply font-accent text-4xl md:text-5xl font-bold tracking-widest;
+  }
+
+  .stat-number {
+    @apply font-accent text-3xl md:text-4xl font-bold;
+  }
+
+  .competition-level {
+    @apply font-display text-lg uppercase tracking-wider;
+  }
+
+  /* Links */
+  .link-text {
+    @apply font-sans text-base font-medium hover:text-wrfc-red transition-colors;
+  }
+
+  /* Buttons */
+  .button-text {
+    @apply font-heading text-base md:text-lg font-semibold tracking-wide;
+  }
+
+  /* Tables */
+  table {
+    @apply font-sans text-sm md:text-base;
+  }
+
+  th {
+    @apply font-heading font-semibold;
+  }
+
+  /* Forms */
+  label {
+    @apply font-heading text-sm font-medium;
+  }
+
+  input, textarea {
+    @apply font-sans text-base;
   }
 }
 
@@ -380,6 +466,30 @@
   .hero-icon {
     @apply text-5xl md:text-6xl transform transition-transform duration-500
            hover:scale-110;
+  }
+
+  .hero-title {
+    @apply font-display text-7xl md:text-8xl lg:text-9xl uppercase tracking-wider text-wrfc-navy dark:text-white;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl font-bold tracking-tight text-wrfc-navy dark:text-white;
+  }
+
+  .stat-label {
+    @apply font-accent text-lg uppercase tracking-wider text-wrfc-red;
+  }
+
+  .date-display {
+    @apply font-accent text-lg font-semibold tracking-wider;
+  }
+
+  .team-name {
+    @apply font-display text-2xl md:text-3xl uppercase tracking-wide;
+  }
+
+  .score-box {
+    @apply font-accent text-5xl md:text-6xl font-bold tracking-widest text-wrfc-navy dark:text-white;
   }
 }
 

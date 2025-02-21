@@ -1,14 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: '/api/muckrock/:path*',
-        destination: 'https://www.muckrock.com/api_v1/:path*',
-        basePath: false
-      }
-    ]
-  },
   async headers() {
     return [
       {

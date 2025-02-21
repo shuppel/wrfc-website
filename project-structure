@@ -1,0 +1,49 @@
+├── src/
+│   ├── app/                      # New App Router (Next.js 13+)
+│   │   ├── layout.tsx           # Root layout
+│   │   ├── page.tsx            # Home page
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   ├── membership/
+│   │   │   └── page.tsx
+│   │   ├── schedule/
+│   │   │   └── page.tsx
+│   │   ├── team/
+│   │   │   └── page.tsx
+│   │   └── sponsors/
+│   │       └── page.tsx
+│   ├── pages/                    # Traditional Pages Router
+│   │   ├── _app.tsx
+│   │   ├── _document.tsx
+│   │   ├── api/                 # API routes
+│   │   │   └── [...].ts
+│   │   └── legacy-pages/        # Legacy pages using Pages Router
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   └── Layout.tsx
+│   │   ├── common/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Card.tsx
+│   │   │   ├── CountdownTimer.tsx
+│   │   │   └── Logo.tsx
+│   │   └── sections/
+│   │       ├── Hero.tsx
+│   │       ├── TeamRoster.tsx
+│   │       ├── SponsorGrid.tsx
+│   │       └── NewsGrid.tsx
+│   ├── styles/
+│   │   ├── globals.css
+│   │   └── colors.ts
+│   ├── types/
+│   │   └── index.ts
+│   └── utils/
+│       ├── constants.ts
+│       └── dates.ts
+├── public/                       # Static files
+│   ├── images/
+│   ├── fonts/
+│   └── favicon.ico
+└── package.json 

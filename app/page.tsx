@@ -1,46 +1,69 @@
-import Hero from '@/app/components/ui/hero'
-import MissionStatement from './components/content-blocks/MissionStatement'
-import CoreCompetencies from './components/content-blocks/CoreCompetencies'
-import QuickNav from './components/ui/QuickNav'
-import { Metadata } from 'next'
-import { defaultMetadata } from './seo/config'
+import Link from 'next/link'
 
-export const metadata: Metadata = {
-  ...defaultMetadata,
-  title: 'Home | Nodetus Integrators LLC',
-  description: 'Welcome to Nodetus - Your partner for strategic IT Advisory services. We specialize in Market Research, Technical Writing, and Digital Transformation.',
-  openGraph: {
-    ...defaultMetadata.openGraph,
-    title: 'Home | Nodetus Integrators LLC',
-    description: 'Welcome to Nodetus - Your partner for strategic IT Advisory services.',
-    type: 'website'
-  }
-}
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section with gradient overlay */}
-      <section id="top" className="relative bg-gradient-to-b from-background via-background to-paper">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <Hero />
+    <div className="flex flex-col items-center justify-center w-full">
+      {/* Hero Section */}
+      <section className="w-full min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-900 to-black text-white p-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Washington Rugby Football Club
+          </h1>
+          <p className="text-xl md:text-2xl mb-8">
+            Tradition. Excellence. Community.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link 
+              href="/membership" 
+              className="bg-white text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-100 transition-colors"
+            >
+              Join WRFC
+            </Link>
+            <Link 
+              href="/schedule" 
+              className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition-colors"
+            >
+              View Schedule
+            </Link>
+          </div>
+        </div>
       </section>
 
-      {/* Mission Statement with subtle parallax effect */}
-      <section id="mission" className="relative bg-paper scroll-mt-16">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/5 pointer-events-none"></div>
-        <MissionStatement />
+      {/* Quick Links Section */}
+      <section className="w-full py-16 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <QuickLinkCard 
+            title="Tournaments"
+            description="View upcoming tournaments and register your team"
+            href="/tournaments"
+          />
+          <QuickLinkCard 
+            title="Team Roster"
+            description="Meet our current squad and coaching staff"
+            href="/roster"
+          />
+          <QuickLinkCard 
+            title="Contact Us"
+            description="Get in touch with WRFC management"
+            href="/contact"
+          />
+        </div>
       </section>
-
-      {/* Core Competencies with animated transitions */}
-      <section id="competencies" className="relative bg-gradient-to-b from-slate-100 via-slate-200 to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 scroll-mt-16">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,140,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,140,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,140,0,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        <CoreCompetencies />
-      </section>
-
-      {/* Quick Navigation Menu */}
-      <QuickNav />
     </div>
   )
 }
 
+function QuickLinkCard({ title, description, href }: { 
+  title: string
+  description: string
+  href: string 
+}) {
+  return (
+    <Link href={href}>
+      <div className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-lg transition-all cursor-pointer">
+        <h3 className="text-2xl font-bold mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300">{description}</p>
+      </div>
+    </Link>
+  )
+} 

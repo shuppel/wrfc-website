@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
 Allow: /about
-Allow: /services
+Allow: /roster
+Allow: /schedule
+Allow: /membership
+Allow: /tournaments
 Allow: /contact
 
 # Protect private areas
@@ -14,4 +17,4 @@ Disallow: /*?*
 Crawl-delay: 10
 
 # Sitemap declaration
-Sitemap: https://www.nodetus.com/sitemap.xml 
+Sitemap: https://www.wrfc.org/sitemap.xml 
