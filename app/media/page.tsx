@@ -6,6 +6,7 @@ import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube';
 
 // YouTube video IDs from WRFC channel
 const initialVideoIds = [
+  'lvy4b81NYFw', '815_hQyjoBY', // Latest additions
   'Cw3scdQIYg4', 'YTJ1jS2s6NI', '5w6kA-UJEQY', 'XSu7IhJvU3E', 'tTwvUYXgRbc',
   'LGg2lXNpBN4', '9kl7ksXXtG0', 'AfsYqJrOwEs', 'ET8Cfyq9CFI', '9B6AF4pHt7w',
   'Xf9RWlbqjHU', '2jdRB2Q3Hp4', 'yvKZErCF6j8', 'A8XPIchxcwM', 'o2VcfKcanf0',
