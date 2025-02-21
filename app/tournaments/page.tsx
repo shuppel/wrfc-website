@@ -179,6 +179,7 @@ export default function TournamentsPage() {
                             key={tournament.id}
                             href={`/tournaments/${tournament.id}/${tournament.year}`}
                             className="group"
+                            aria-label={`View details for ${tournament.name} ${tournament.year}`}
                           >
                             <Card className="overflow-hidden h-full hover:shadow-xl transition-shadow border-2 border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
                               <div className="relative h-48">
