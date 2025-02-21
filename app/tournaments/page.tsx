@@ -76,7 +76,7 @@ export default function TournamentsPage() {
             WRFC Tournaments
           </h1>
           <p className="text-xl md:text-2xl font-quantico opacity-90">
-            Celebrating rugby excellence in the nation's capital
+            Celebrating rugby excellence in the nation&apos;s capital
           </p>
         </div>
       </section>
