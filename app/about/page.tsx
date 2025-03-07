@@ -1,9 +1,30 @@
 import Image from 'next/image'
 import { Shield, Users, History, Star, Trophy, Beer } from 'lucide-react'
+import { BreadcrumbJsonLd } from '../../components/JsonLd'
+import { generateMetadata, getStructuredData } from '../../utils/seo'
+import JsonLd from '../../components/JsonLd'
+
+// Generate metadata for the about page
+export const metadata = generateMetadata('about');
 
 export default function AboutPage() {
+  // Additional structured data specific to the about page
+  const structuredData = getStructuredData('about', {
+    foundingDate: '1963',
+    description: 'Washington Rugby Football Club (WRFC) was founded in 1963 and has grown to become one of the premier rugby clubs in the DC area.'
+  });
+
   return (
     <div className="flex flex-col items-center w-full">
+      {/* Structured Data */}
+      <BreadcrumbJsonLd 
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'About', item: '/about' }
+        ]} 
+      />
+      <JsonLd type="WebPage" data={structuredData} />
+
       {/* Hero Section */}
       <section className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}

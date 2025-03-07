@@ -1,10 +1,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Trophy, Users, ArrowRight, ChevronRight } from 'lucide-react'
+import { BreadcrumbJsonLd } from '../components/JsonLd'
 
 export default function Home() {
   return (
     <div className="flex flex-col w-full">
+      {/* Structured Data */}
+      <BreadcrumbJsonLd 
+        items={[
+          { name: 'Home', item: '/' }
+        ]} 
+      />
+      
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
