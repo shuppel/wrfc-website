@@ -28,27 +28,30 @@ const players: Player[] = [
   {
     id: 1,
     name: "Harry Higginbottom",
-    position: "Loose Head Prop",
+    position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     bio: "Club president and long-time club member. Captained the side in 2024. Tough. High work rate. Defensive menace.",
     division: 'D1',
+    height: "6'1\"",
+    weight: 107,
     badges: [
       { text: "President", variant: "glow" },
-      { text: "Captain", variant: "outline" }
     ]
   },
   {
     id: 2,
     name: "Matthew Bainbridge",
-    position: "Hooker/Front Row",
+    position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     bio: "Front row specialist, durable, balanced skillset.",
-    division: 'D1'
+    division: 'D1',
+    height: "6'0\"",
+    weight: 109
   },
   {
     id: 3,
     name: "Erikk Shupp",
-    position: "Prop/Hooker",
+    position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     bio: "Front row specialist with 6 DI caps. Anchors the scrum and scored a try in 2022 league win. Noted as a stocky, powerful prop in the scrum. Designated thrower and hard runner, played for club since 2017.",
     division: 'D1',
@@ -88,7 +91,7 @@ const players: Player[] = [
   {
     id: 7,
     name: "Xavier Landreville",
-    position: "Hooker",
+    position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     bio: "Young lock/flanker with 5 DI caps since 2022. High work rate in rucks earned him starts in key games. Tall frame with moderate build typical of a mobile lock.",
     division: 'D1',
@@ -97,7 +100,7 @@ const players: Player[] = [
   {
     id: 8,
     name: "Zachary Zuzelo",
-    position: "Hooker/Flanker",
+    position: "Utility Forward [Hooker/Flanker]",
     image: "/assets/art/player_profile_rugby.png",
     bio: "Versatile forward who plays for both D1 and D3 teams. Main thrower for D1 team. Good tackle, scrappy.",
     division: 'Both'
@@ -135,10 +138,13 @@ const players: Player[] = [
     name: "Christopher Miller",
     position: "Flanker/Number 8",
     image: "/assets/art/player_profile_rugby.png",
-    bio: "Versatile back row player. Key to the club's ball-carrying and defense",
+    bio: "Versatile back row player. Key to the club's ball-carrying and defense. Club captain leading by example on and off the field.",
     division: 'Both',
     height: "5'10\"",
-    weight: 90
+    weight: 90,
+    badges: [
+      { text: "Club Captain", variant: "glow" }
+    ]
   },
   {
     id: 13,

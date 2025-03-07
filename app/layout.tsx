@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import ArticleDrawerWrapper from '../components/layout/ArticleDrawerWrapper'
@@ -116,6 +117,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <ArticleDrawerWrapper />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
