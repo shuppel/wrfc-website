@@ -20,17 +20,6 @@ interface Sponsor {
 
 const SPONSORS: Sponsor[] = [
   {
-    name: "Example Premier Sponsor",
-    logo: "/logos/placeholder-logo.png",
-    type: "premier",
-    description: "Premier sponsor supporting WRFC's mission",
-    website: "https://example.com",
-    address: "123 Rugby St, Washington, DC 20001",
-    contribution: "Premier Level Support",
-    since: "2023",
-    badge: "gold"
-  },
-  {
     name: "Carlsberg",
     logo: "/assets/sponsors/carlsberg-logo.png",
     type: "premier",
@@ -45,7 +34,7 @@ const SPONSORS: Sponsor[] = [
     logo: "/assets/sponsors/matets-kitchen-logo.jpg",
     type: "premier",
     description: "A beloved local restaurant bringing delicious cuisine to the DC community while supporting local sports.",
-    website: "https://www.matets-kitchen.com",
+    website: "https://matetskitchen.com/",
     contribution: "Premier Level Support",
     since: "2024",
     badge: "gold"
