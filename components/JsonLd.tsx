@@ -1,8 +1,15 @@
 import React from 'react';
 
+type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[];
+interface JsonLdObject {
+  '@context'?: string;
+  '@type'?: string;
+  [key: string]: JsonLdValue | undefined;
+}
+
 interface JsonLdProps {
   type: 'Organization' | 'WebSite' | 'SportsTeam' | 'Event' | 'Person' | 'FAQPage' | 'Article' | 'WebPage';
-  data: Record<string, any>;
+  data: JsonLdObject;
 }
 
 export default function JsonLd({ type, data }: JsonLdProps) {
