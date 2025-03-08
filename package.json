@@ -48,6 +48,7 @@
     "react-day-picker": "^9.5.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
+    "react-square-web-payments-sdk": "^3.2.3",
     "react-youtube": "^10.1.0",
     "schema-dts": "^1.1.2",
     "square": "^41.0.0",
