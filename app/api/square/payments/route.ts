@@ -1,102 +1,90 @@
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 
-// Use require to avoid TypeScript errors
+// Server-side Square SDK import
 const square = require('square');
 
-// Initialize the Square client
+// Initialize Square client once at module level
 const client = new square.Client({
   bearerAuthCredentials: {
     accessToken: process.env.SQUARE_ACCESS_TOKEN
   },
-  environment: 'sandbox',
-  httpClientOptions: {
-    timeout: 30000, // 30 seconds
-    retryConfig: {
-      maxNumberOfRetries: 3,
-      maximumRetryWaitTime: 10000,
-    }
-  }
+  environment: 'sandbox'
 });
 
+// Get the payments API instance
 const { paymentsApi } = client;
 
+/**
+ * Server-side API route handler for processing Square payments
+ * This handles all payment processing logic
+ */
 export async function POST(request: Request) {
   console.log('Payment API route called');
   
   try {
-    // Validate environment variables
+    // 1. Environment validation
     if (!process.env.SQUARE_ACCESS_TOKEN) {
-      console.error('Missing Square access token');
+      console.error('Server error: Missing Square access token');
       return NextResponse.json({
         success: false,
-        error: 'Square access token is not configured'
+        error: 'Payment service is not properly configured'
       }, { status: 500 });
     }
     
     if (!process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID) {
-      console.error('Missing Square location ID');
+      console.error('Server error: Missing Square location ID');
       return NextResponse.json({
         success: false,
-        error: 'Square location ID is not configured'
+        error: 'Payment service is not properly configured'
       }, { status: 500 });
     }
 
-    // Parse request body
+    // 2. Parse and validate request body
     let body;
     try {
       body = await request.json();
-      console.log('Request body:', {
-        ...body,
-        sourceId: body.sourceId ? '***REDACTED***' : undefined
-      });
     } catch (error) {
-      console.error('Failed to parse request body:', error);
+      console.error('Invalid request body:', error);
       return NextResponse.json({
         success: false,
-        error: 'Invalid request body'
+        error: 'Invalid request format'
       }, { status: 400 });
     }
 
     const { sourceId, divisionId, divisionName, amount } = body;
 
-    // Validate required fields
+    // 3. Validate required fields
     if (!sourceId) {
-      console.error('Missing source ID');
       return NextResponse.json({
         success: false,
-        error: 'Source ID is required'
+        error: 'Payment token is missing'
       }, { status: 400 });
     }
     
-    if (!amount) {
-      console.error('Missing amount');
+    if (typeof amount !== 'number' || isNaN(amount) || amount <= 0) {
       return NextResponse.json({
         success: false,
-        error: 'Amount is required'
+        error: 'Invalid payment amount'
       }, { status: 400 });
     }
 
-    console.log('Creating payment:', {
+    // 4. Calculate final amount with fee
+    const amountInCents = Math.round(amount * 103); // Including 3% fee
+    
+    console.log('Processing payment:', {
       amount,
-      locationId: process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID,
+      amountWithFee: amount * 1.03,
       divisionId,
-      divisionName
+      divisionName,
+      locationId: process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID
     });
 
+    // 5. Create payment with Square API
     try {
-      // Calculate the total amount with 3% fee
-      const amountInCents = Math.round(amount * 103); // Including 3% fee
-      
-      console.log('Payment amount:', {
-        original: amount,
-        withFee: amount * 1.03,
-        inCents: amountInCents
-      });
-
       const paymentParams = {
         sourceId,
-        idempotencyKey: randomUUID(),
+        idempotencyKey: randomUUID(), // Prevents duplicate payments
         amountMoney: {
           amount: amountInCents,
           currency: 'USD'
@@ -105,43 +93,47 @@ export async function POST(request: Request) {
         note: `${divisionName} - ${divisionId}`
       };
       
-      console.log('Sending payment request to Square API');
+      console.log('Calling Square payment API');
       
-      const result = await paymentsApi.createPayment(paymentParams);
+      const response = await paymentsApi.createPayment(paymentParams);
       
       console.log('Payment successful:', {
-        id: result.result.payment?.id,
-        status: result.result.payment?.status
+        id: response.result.payment?.id,
+        status: response.result.payment?.status
       });
 
+      // 6. Return success response
       return NextResponse.json({
         success: true,
-        payment: result.result.payment
+        payment: response.result.payment,
+        transactionId: response.result.payment?.id,
+        amount: amountInCents / 100, // Convert back to dollars for display
+        status: response.result.payment?.status
       });
 
-    } catch (error: any) {
+    } catch (error) {
+      // 7. Handle Square API errors
       console.error('Square API Error:', {
-        message: error.message,
-        errors: error.errors || error.result?.errors,
-        jsonErrors: JSON.stringify(error.errors || error.result?.errors || {})
+        message: error instanceof Error ? error.message : 'Unknown error',
+        errors: error instanceof Error && 'result' in error ? (error as any).result?.errors : undefined
       });
 
       return NextResponse.json({
         success: false,
         error: 'Payment processing failed',
-        details: error.errors || error.result?.errors || [{ detail: error.message }]
+        message: error instanceof Error ? error.message : 'Payment was declined or failed to process',
+        details: error instanceof Error && 'result' in error 
+          ? (error as any).result?.errors 
+          : [{ detail: 'Payment processor error' }]
       }, { status: 400 });
     }
-  } catch (error: any) {
-    console.error('Unexpected server error:', {
-      message: error.message,
-      stack: error.stack
-    });
-
+  } catch (error) {
+    // 8. Handle unexpected server errors
+    console.error('Unexpected server error:', error);
     return NextResponse.json({
       success: false,
       error: 'An unexpected error occurred',
-      message: error.message
+      message: 'The server encountered an error while processing your payment'
     }, { status: 500 });
   }
 }

@@ -1,8 +1,10 @@
+'use client';
+
 import { PaymentForm, CreditCard } from 'react-square-web-payments-sdk';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { CreditCard as CreditCardIcon, ArrowRight, RefreshCw } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface SquarePaymentProps {
   divisionId: string;
@@ -12,102 +14,75 @@ interface SquarePaymentProps {
   onCancel: () => void;
 }
 
+// Client component for handling Square payment UI
 export default function SquarePayment({ divisionId, divisionName, amount, onSuccess, onCancel }: SquarePaymentProps) {
   const { toast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
-
-  // Function to handle payment with retry logic
+  
+  // Function to handle client-side token generation
+  // The actual payment processing happens on the server
   const handlePaymentFormSubmit = async (token: any) => {
+    if (!token || !token.token) {
+      setError('Failed to generate payment token');
+      return;
+    }
+    
     try {
       setIsProcessing(true);
       setError(null);
-      console.log('Payment token received:', token);
       
-      // Set a timeout for the API call
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      // Send the token to our API endpoint
+      const response = await fetch('/api/square/payments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sourceId: token.token,
+          divisionId,
+          divisionName,
+          amount
+        })
+      });
       
-      try {
-        const response = await fetch('/api/square/payments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            sourceId: token.token,
-            divisionId,
-            divisionName,
-            amount: amount
-          }),
-          signal: controller.signal
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        toast({
+          title: 'Payment Successful',
+          description: 'Your payment has been processed. You will receive a confirmation email shortly.',
         });
-
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`API error (${response.status}): ${errorText}`);
-        }
-
-        const data = await response.json();
-        console.log('Payment response:', data);
-
-        if (data.success) {
-          toast({
-            title: 'Payment Successful',
-            description: 'Your payment has been processed. You will receive a confirmation email shortly.',
-          });
-          onSuccess();
-          setIsOpen(false);
-          setIsProcessing(false);
-        } else {
-          const errorMessage = data.details?.[0]?.detail || data.error || 'Payment failed';
-          throw new Error(errorMessage);
-        }
-      } catch (fetchError: any) {
-        clearTimeout(timeoutId);
-        
-        if (fetchError.name === 'AbortError') {
-          throw new Error('Payment request timed out. Please try again.');
-        }
-        
-        if (retryCount < 2 && (fetchError.message.includes('Failed to fetch') || fetchError.message.includes('NetworkError'))) {
-          setRetryCount(prev => prev + 1);
-          setError(`Network error. Retrying... (${retryCount + 1}/3)`);
-          
-          // Wait a bit before retrying
-          setTimeout(() => handlePaymentFormSubmit(token), 2000);
-          return;
-        }
-        
-        throw fetchError;
+        onSuccess();
+        setIsOpen(false);
+      } else {
+        // Handle server-side errors
+        const errorMessage = data.message || data.error || 'Payment failed';
+        throw new Error(errorMessage);
       }
     } catch (error: any) {
       console.error('Payment Error:', error);
-      setError(error.message || 'There was an error processing your payment. Please try again.');
+      const errorMessage = error.message || 'There was an error processing your payment. Please try again.';
+      setError(errorMessage);
       toast({
         title: 'Payment Failed',
-        description: error.message || 'There was an error processing your payment. Please try again.',
+        description: errorMessage,
         variant: 'destructive',
       });
+    } finally {
       setIsProcessing(false);
     }
   };
 
   const handleRetry = () => {
     setError(null);
-    setRetryCount(0);
-    setIsProcessing(false);
   };
 
   const handleClose = () => {
-    if (!isProcessing) {
+    if (!isProcessing || error) {
       setIsOpen(false);
       setError(null);
-      setRetryCount(0);
       if (onCancel) onCancel();
     }
   };
@@ -118,7 +93,7 @@ export default function SquarePayment({ divisionId, divisionName, amount, onSucc
         variant="outline"
         className="w-full h-auto py-4 flex items-center justify-between border-2"
         onClick={() => setIsOpen(true)}
-        disabled={isProcessing}
+        disabled={isProcessing && !error}
       >
         <div className="flex items-center gap-3">
           <CreditCardIcon className="h-5 w-5 text-wrfc-navy" />
