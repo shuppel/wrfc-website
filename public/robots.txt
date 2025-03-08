@@ -16,5 +16,14 @@ Disallow: /*?*
 # Crawl delays to prevent server overload
 Crawl-delay: 10
 
+# Allow Google Images to index images
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /logos/
+
+# Allow Google Mobile to index mobile content
+User-agent: Googlebot-Mobile
+Allow: /
+
 # Sitemap declaration
 Sitemap: https://www.wrfc.org/sitemap.xml 

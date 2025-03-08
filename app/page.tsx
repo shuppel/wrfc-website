@@ -2,8 +2,34 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Trophy, Users, ArrowRight, ChevronRight } from 'lucide-react'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
+import { generateMetadata, getStructuredData } from './utils/seo'
+import JsonLd from '../components/JsonLd'
+
+// Generate metadata for the home page
+export const metadata = generateMetadata('home');
 
 export default function Home() {
+  // Additional structured data specific to the home page
+  const structuredData = getStructuredData('home', {
+    '@type': 'SportsOrganization',
+    foundingDate: '1963',
+    sport: {
+      '@type': 'Sport',
+      name: 'Rugby',
+      description: 'Rugby Union Football'
+    },
+    location: {
+      '@type': 'Place',
+      name: 'Washington, DC',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Washington',
+        addressRegion: 'DC',
+        addressCountry: 'US'
+      }
+    }
+  });
+
   return (
     <div className="flex flex-col w-full">
       {/* Structured Data */}
@@ -12,6 +38,7 @@ export default function Home() {
           { name: 'Home', item: '/' }
         ]} 
       />
+      <JsonLd type="Organization" data={structuredData} />
       
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">

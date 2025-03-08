@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from 'components/ui/button';
-import { Card } from 'components/ui/card';
-import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft, ArrowRight } from 'lucide-react';
+import TournamentRegistration from '@/components/TournamentRegistration';
 
 interface TournamentDetails {
   year: number;
@@ -16,14 +17,19 @@ interface TournamentDetails {
   divisions: {
     name: string;
     description?: string;
+    fee: number;
   }[];
   coverImage: string;
   galleryImages: string[];
-  results?: {
-    division: string;
-    champion: string;
-    runnerUp: string;
-  }[];
+  previousYear?: {
+    featuredTeams: string[];
+    totalTeams: number;
+    results: {
+      division: string;
+      champion: string;
+      runnerUp: string;
+    }[];
+  };
 }
 
 // This would eventually come from a database or CMS
@@ -35,10 +41,13 @@ const tournamentDetails: TournamentDetails = {
     address: '220 Prince George\'s Boulevard Upper Marlboro, MD 20774'
   },
   divisions: [
-    { name: 'Senior Men\'s 15s', description: 'Premier division for club teams' },
-    { name: 'Collegiate Men\'s 7s', description: 'CRC Qualifier' },
-    { name: 'High School Boy\'s 15s', description: 'Youth competition' },
-    { name: 'Old Boy\'s 15s', description: 'Veterans division' }
+    { name: 'Senior Men\'s 15s', description: 'Premier division for club teams', fee: 400 },
+    { name: 'Collegiate Men\'s 7s', description: 'CRC Qualifier', fee: 400 },
+    { name: 'Collegiate Women\'s 7s', description: 'CRC Qualifier', fee: 400 },
+    { name: 'High School Boy\'s 15s', description: 'Youth competition', fee: 350 },
+    { name: 'High School Girl\'s 15s', description: 'Youth women\'s competition', fee: 350 },
+    { name: 'Senior Women\'s 15s', description: 'Premier women\'s division for club teams', fee: 400 },
+    { name: 'Old Boy\'s 15s', description: 'Veterans division', fee: 350 }
   ],
   coverImage: '/assets/pictures/2025_irish_ruck.jpg',
   galleryImages: [
@@ -46,7 +55,25 @@ const tournamentDetails: TournamentDetails = {
     '/assets/pictures/huddle_2025_irish.jpg',
     '/assets/pictures/2025_irish_harry.jpg'
   ],
-  results: [] // Will be populated after the tournament
+  previousYear: {
+    featuredTeams: [
+      'Washington Irish',
+      'New York Reds',
+      'White Plains',
+      'Mount Saint Marys',
+      'Old Breed',
+      'Washington Old Boys',
+      'NoVA',
+      'Kutztown',
+      'Marysville',
+      'Cincinnati RFC'
+    ],
+    totalTeams: 31,
+    results: [
+      { division: 'Senior Men\'s 15s', champion: 'White Plains', runnerUp: 'New York Reds' },
+      { division: 'Collegiate Men\'s 7s', champion: 'Kutztown', runnerUp: 'St. Bonnaventure' }
+    ]
+  }
 };
 
 export default function CherryBlossomYearPage({ params }: { params: { year: string } }) {
@@ -81,6 +108,9 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               <span>{tournamentDetails.location.name}</span>
             </div>
           </div>
+          <Button size="lg" className="bg-wrfc-red hover:bg-wrfc-red/90 text-white px-8 py-6 text-lg">
+            Register Your Team
+          </Button>
         </div>
       </section>
 
@@ -106,10 +136,10 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                 Photos
               </Link>
               <Link 
-                href={`/tournaments/cherry-blossom/${params.year}/bracket`}
+                href="#past-results"
                 className="text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400"
               >
-                Bracket & Results
+                Last CBT Results
               </Link>
             </div>
           </div>
@@ -119,6 +149,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-8">
+          {/* Tournament Details Card */}
           <Card className="p-8">
             <h2 className="text-3xl font-bold mb-6 font-nasalization text-wrfc-navy dark:text-blue-400">
               Tournament Details
@@ -137,42 +168,74 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               <div className="flex items-start gap-4">
                 <Users className="w-6 h-6 text-wrfc-red shrink-0" />
                 <div>
-                  <h3 className="font-bold mb-2">Divisions</h3>
-                  <div className="space-y-2">
+                  <h3 className="font-bold mb-2">Divisions & Entry Fees</h3>
+                  <div className="space-y-3">
                     {tournamentDetails.divisions.map((division) => (
-                      <div key={division.name} className="flex items-center">
-                        <span className="w-2 h-2 bg-wrfc-red rounded-full mr-2" />
-                        <span>{division.name}</span>
+                      <div key={division.name} className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <span className="w-2 h-2 bg-wrfc-red rounded-full mr-2" />
+                          <span>{division.name}</span>
+                        </div>
+                        <span className="font-semibold">${division.fee}</span>
                       </div>
                     ))}
+                  </div>
+                  <div className="mt-8">
+                    <TournamentRegistration divisions={tournamentDetails.divisions} />
                   </div>
                 </div>
               </div>
             </div>
           </Card>
 
+          {/* Past Results Card */}
           <Card className="p-8">
             <h2 className="text-3xl font-bold mb-6 font-nasalization text-wrfc-navy dark:text-blue-400">
-              Quick Links
+              Last CBT Results
             </h2>
-            <div className="space-y-4">
-              <Link href={`/tournaments/cherry-blossom/${params.year}/photos`}>
-                <Button variant="outline" className="w-full justify-start">
-                  <Camera className="w-5 h-5 mr-2" />
-                  View Photo Gallery
-                </Button>
-              </Link>
-              <Link href={`/tournaments/cherry-blossom/${params.year}/bracket`}>
-                <Button variant="outline" className="w-full justify-start">
-                  <Trophy className="w-5 h-5 mr-2" />
-                  Tournament Bracket & Results
-                </Button>
-              </Link>
+            <div className="space-y-6">
+              {tournamentDetails.previousYear?.results.map((result) => (
+                <div key={result.division} className="border-b border-gray-200 dark:border-gray-700 pb-4">
+                  <h3 className="font-bold mb-2">{result.division}</h3>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Trophy className="w-4 h-4 text-wrfc-red" />
+                      <span className="font-semibold">Champion:</span>
+                      <span>{result.champion}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-4 h-4" /> {/* Spacer */}
+                      <span className="font-semibold">Runner-up:</span>
+                      <span>{result.runnerUp}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div>
+                <h3 className="font-bold mb-3">Last Year's Teams</h3>
+                <div className="space-y-2">
+                  <div className="flex flex-wrap gap-2">
+                    {tournamentDetails.previousYear?.featuredTeams.map((team, index) => (
+                      <span 
+                        key={team} 
+                        className="inline-flex items-center bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1 text-sm"
+                      >
+                        {team}
+                      </span>
+                    ))}
+                  </div>
+                  {tournamentDetails.previousYear && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      + {tournamentDetails.previousYear.totalTeams - tournamentDetails.previousYear.featuredTeams.length} other teams
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           </Card>
         </div>
 
-        {/* Preview Gallery */}
+        {/* Photo Highlights */}
         <div className="mt-16">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold font-nasalization text-wrfc-navy dark:text-blue-400">

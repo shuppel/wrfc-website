@@ -29,11 +29,16 @@ const quantico = Quantico({
 export const metadata: Metadata = {
   metadataBase: new URL('https://wrfc.org'),
   title: {
-    default: 'WRFC - Washington Rugby Football Club',
-    template: '%s | Washington Rugby Football Club'
+    default: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
+    template: '%s | WRFC - Washington Rugby Football Club'
   },
-  description: 'Home of Washington Rugby Football Club - Tradition, Excellence, Community since 1963',
-  keywords: ['rugby', 'washington rugby', 'washington dc rugby', 'wrfc', 'washington rfc', 'rugby club', 'sports team', 'DC sports'],
+  description: 'Washington Rugby Football Club (WRFC) is DC\'s premier rugby club, established in 1963. Join us for competitive matches, expert coaching, and a strong community of rugby enthusiasts.',
+  keywords: [
+    'rugby', 'washington rugby', 'washington dc rugby', 'wrfc', 
+    'washington rfc', 'rugby club', 'sports team', 'DC sports',
+    'rugby union', 'usa rugby', 'rugby training', 'rugby matches',
+    'rugby community', 'washington sports', 'rugby tournaments'
+  ],
   authors: [{ name: 'Washington Rugby Football Club' }],
   creator: 'Washington Rugby Football Club',
   publisher: 'Washington Rugby Football Club',
@@ -42,28 +47,43 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://wrfc.org'
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://wrfc.org',
     siteName: 'Washington Rugby Football Club',
-    title: 'WRFC - Washington Rugby Football Club',
-    description: 'Home of Washington Rugby Football Club - Tradition, Excellence, Community since 1963',
+    title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
+    description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',
     images: [
       {
         url: '/logos/wrfc_logo.png',
-        width: 800,
-        height: 600,
-        alt: 'Washington Rugby Football Club Logo',
+        width: 1200,
+        height: 630,
+        alt: 'Washington Rugby Football Club - DC Premier Rugby Since 1963',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WRFC - Washington Rugby Football Club',
-    description: 'Home of Washington Rugby Football Club - Tradition, Excellence, Community since 1963',
+    title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
+    description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',
     images: ['/logos/wrfc_logo.png'],
     creator: '@WRFC_DC',
+    site: '@WRFC_DC',
   },
   manifest: '/site.webmanifest',
   icons: {
@@ -93,8 +113,14 @@ export const metadata: Metadata = {
     ],
   },
   category: 'sports',
-  alternates: {
-    canonical: '/',
+  verification: {
+    google: 'YOUR-GOOGLE-VERIFICATION-ID', // You'll need to add this
+  },
+  other: {
+    'geo.region': 'US-DC',
+    'geo.placename': 'Washington',
+    'geo.position': '38.9072;-77.0369',
+    'ICBM': '38.9072, -77.0369'
   }
 }
 

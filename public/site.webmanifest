@@ -1,39 +1,99 @@
 {
   "name": "Washington Rugby Football Club",
   "short_name": "WRFC",
-  "description": "Home of Washington Rugby Football Club - Tradition, Excellence, Community since 1963",
+  "description": "Official website of the Washington Rugby Football Club - Tradition, Excellence, Community since 1963",
   "icons": [
     {
-      "src": "/logos/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
+      "src": "/logos/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/logos/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
+      "src": "/logos/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logos/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logos/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logos/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/logos/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logos/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/logos/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/logos/apple-icon.png",
-      "sizes": "180x180",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
   "theme_color": "#003366",
-  "background_color": "#ffffff",
+  "background_color": "#003366",
   "display": "standalone",
   "start_url": "/",
   "scope": "/",
-  "orientation": "portrait"
+  "orientation": "portrait-primary",
+  "shortcuts": [
+    {
+      "name": "Schedule",
+      "short_name": "Schedule",
+      "description": "View WRFC match schedule",
+      "url": "/schedule",
+      "icons": [{ "src": "/logos/schedule-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Join WRFC",
+      "short_name": "Join",
+      "description": "Become a member",
+      "url": "/membership",
+      "icons": [{ "src": "/logos/membership-icon.png", "sizes": "192x192" }]
+    }
+  ],
+  "categories": ["sports", "rugby", "club"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/home.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide"
+    },
+    {
+      "src": "/assets/screenshots/mobile.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "platform": "narrow"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://wrfc.org/manifest.json"
+    }
+  ],
+  "prefer_related_applications": false
 } 

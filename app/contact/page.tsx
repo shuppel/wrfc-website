@@ -1,13 +1,53 @@
 import { Metadata } from 'next'
+import { generateMetadata, getStructuredData } from '../utils/seo'
+import { BreadcrumbJsonLd } from '../../components/JsonLd'
+import JsonLd from '../../components/JsonLd'
 
-export const metadata: Metadata = {
-  title: 'Contact Us - Washington Rugby Football Club',
-  description: 'Get in touch with Washington Rugby Football Club. Contact us for inquiries about membership, sponsorship, or general information.',
-}
+// Generate metadata for the contact page
+export const metadata = generateMetadata('contact');
 
 export default function ContactPage() {
+  // Additional structured data specific to the contact page
+  const structuredData = getStructuredData('contact', {
+    '@type': 'WebPage',
+    mainEntity: {
+      '@type': 'ContactPage',
+      name: 'Contact WRFC',
+      description: 'Get in touch with Washington Rugby Football Club. Contact us about membership, sponsorship, or general inquiries.',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'general inquiries',
+        availableLanguage: 'English'
+      },
+      organization: {
+        '@type': 'SportsOrganization',
+        name: 'Washington Rugby Football Club',
+        url: 'https://wrfc.org',
+        location: {
+          '@type': 'Place',
+          name: 'Washington, DC',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Washington',
+            addressRegion: 'DC',
+            addressCountry: 'US'
+          }
+        }
+      }
+    }
+  });
+
   return (
     <div className="flex flex-col items-center w-full">
+      {/* Structured Data */}
+      <BreadcrumbJsonLd 
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'Contact', item: '/contact' }
+        ]} 
+      />
+      <JsonLd type="WebPage" data={structuredData} />
+
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
         <div className="container mx-auto px-4">

@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: cursorrules for general development of the website
 globs: *.tsx, *.json, *.yml, *.ts
 ---

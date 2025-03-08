@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Trophy, Heart, Building, Info, MapPin, Tag, Shield } from 'lucide-react';
 import { useState } from 'react';
+import { generateMetadata, getStructuredData } from '../utils/seo'
+import { BreadcrumbJsonLd } from '../../components/JsonLd'
+import JsonLd from '../../components/JsonLd'
 
 interface Sponsor {
   name: string;
@@ -68,6 +71,9 @@ const BADGE_COLORS = {
   bronze: 'bg-amber-700'
 };
 
+// Generate metadata for the sponsors page
+export const metadata = generateMetadata('sponsors');
+
 export default function Sponsors() {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
@@ -76,6 +82,28 @@ export default function Sponsors() {
     club: SPONSORS.filter(s => s.type === 'club'),
     supporting: SPONSORS.filter(s => s.type === 'supporting')
   };
+
+  // Additional structured data specific to the sponsors page
+  const structuredData = getStructuredData('sponsors', {
+    '@type': 'WebPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'WRFC Sponsors',
+      description: 'Our valued sponsors and partners who support Washington Rugby Football Club.',
+      member: [
+        {
+          '@type': 'Organization',
+          name: 'WRFC Sponsors',
+          description: 'Current sponsors of Washington Rugby Football Club'
+        }
+      ],
+      sponsor: {
+        '@type': 'Organization',
+        name: 'Sponsorship Opportunities',
+        description: 'Partner with Washington Rugby Football Club'
+      }
+    }
+  });
 
   const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
     <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
@@ -157,6 +185,18 @@ export default function Sponsors() {
   );
 
   return (
+    <div className="flex flex-col items-center w-full">
+      {/* Structured Data */}
+      <BreadcrumbJsonLd 
+        items={[
+          { name: 'Home', item: '/' },
+          { name: 'Sponsors', item: '/sponsors' }
+        ]} 
+      />
+      <JsonLd type="Organization" data={structuredData} />
+
+      <div className="container mx-auto px-4 py-12">
+        {/* Hero Section */}
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
       <div className="text-center mb-16">

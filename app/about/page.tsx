@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Shield, Users, History, Star, Trophy, Beer } from 'lucide-react'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
-import { generateMetadata, getStructuredData } from '../../utils/seo'
+import { generateMetadata, getStructuredData } from '../utils/seo'
 import JsonLd from '../../components/JsonLd'
 
 // Generate metadata for the about page
@@ -11,7 +11,23 @@ export default function AboutPage() {
   // Additional structured data specific to the about page
   const structuredData = getStructuredData('about', {
     foundingDate: '1963',
-    description: 'Washington Rugby Football Club (WRFC) was founded in 1963 and has grown to become one of the premier rugby clubs in the DC area.'
+    description: 'Washington Rugby Football Club (WRFC) was founded in 1963 and has grown to become one of the premier rugby clubs in the DC area.',
+    mainEntity: {
+      '@type': 'SportsOrganization',
+      name: 'Washington Rugby Football Club',
+      foundingDate: '1963',
+      description: 'Premier rugby club in Washington DC area, established in 1963',
+      location: {
+        '@type': 'Place',
+        name: 'Washington, DC',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Washington',
+          addressRegion: 'DC',
+          addressCountry: 'US'
+        }
+      }
+    }
   });
 
   return (

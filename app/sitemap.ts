@@ -1,56 +1,76 @@
 import { MetadataRoute } from 'next'
 
-const baseUrl = 'https://wrfc.org'
+type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const baseUrl = 'https://wrfc.org'
+  
+  // Main pages
+  const mainRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
+      changeFrequency: 'daily' as ChangeFreq,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as ChangeFreq,
       priority: 0.8,
     },
     {
       url: `${baseUrl}/roster`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as ChangeFreq,
       priority: 0.8,
     },
     {
       url: `${baseUrl}/schedule`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as ChangeFreq,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/tournaments`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
       priority: 0.9,
     },
     {
       url: `${baseUrl}/membership`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as ChangeFreq,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/tournaments/cherry-blossom`,
+      url: `${baseUrl}/sponsors`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.6,
     },
     {
-      url: `${baseUrl}/privacy`,
+      url: `${baseUrl}/media`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
+      changeFrequency: 'daily' as ChangeFreq,
+      priority: 0.8,
     },
   ]
+
+  // Tournament pages (dynamic)
+  const tournamentYears = ['2023', '2024', '2025']
+  const tournamentRoutes = tournamentYears.map(year => ({
+    url: `${baseUrl}/tournaments/cherry-blossom/${year}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as ChangeFreq,
+    priority: 0.7,
+  }))
+
+  return [...mainRoutes, ...tournamentRoutes]
 } 
