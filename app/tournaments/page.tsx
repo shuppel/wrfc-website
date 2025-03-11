@@ -11,6 +11,7 @@ import JsonLd from '../../components/JsonLd'
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import SquarePayment from '@/components/SquarePayment';
+import RegisterButton from '@/components/RegisterButton';
 
 interface Tournament {
   id: string;
@@ -236,53 +237,58 @@ export default function TournamentsPage() {
             {upcomingTournament && (
               <div className="space-y-12">
                 {/* Featured Tournament */}
-                <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`}>
-                  <div className="relative group cursor-pointer">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                    <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
-                      <div className="grid md:grid-cols-2 gap-8">
-                        <div className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
-                          <Image
-                            src={upcomingTournament.coverImage}
-                            alt={upcomingTournament.name}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-                          <div className="absolute top-6 left-6 px-4 py-2 bg-wrfc-red text-white rounded-full font-bold shadow-lg">
-                            Featured Event
-                          </div>
+                <div className="relative group cursor-pointer">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition-opacity" />
+                  <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`} className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
+                        <Image
+                          src={upcomingTournament.coverImage}
+                          alt={upcomingTournament.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+                        <div className="absolute top-6 left-6 px-4 py-2 bg-wrfc-red text-white rounded-full font-bold shadow-lg">
+                          Featured Event
                         </div>
-                        <div>
-                          <div className="flex items-center gap-2 text-wrfc-red font-semibold mb-2">
-                            <Trophy className="w-5 h-5" />
-                            <span>57th Annual Tournament</span>
-                          </div>
+                      </Link>
+                      <div>
+                        <div className="flex items-center gap-2 text-wrfc-red font-semibold mb-2">
+                          <Trophy className="w-5 h-5" />
+                          <span>57th Annual Tournament</span>
+                        </div>
+                        <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`}>
                           <h2 className="text-4xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
                             {upcomingTournament.name}
                           </h2>
-                          <div className="space-y-4 mb-8">
-                            <div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
-                              <Calendar className="w-5 h-5" />
-                              <span>{upcomingTournament.date}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
-                              <MapPin className="w-5 h-5" />
-                              <span>{upcomingTournament.location}</span>
-                            </div>
-                            <p className="text-gray-800 dark:text-gray-200 text-lg">
-                              {upcomingTournament.description}
-                            </p>
+                        </Link>
+                        <div className="space-y-4 mb-8">
+                          <div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+                            <Calendar className="w-5 h-5" />
+                            <span>{upcomingTournament.date}</span>
                           </div>
-                          <Button className="bg-wrfc-red hover:bg-wrfc-red/90 text-white group-hover:bg-wrfc-navy transition-colors">
-                            View Tournament Details
-                            <ArrowRight className="ml-2 w-4 h-4" />
-                          </Button>
+                          <div className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+                            <MapPin className="w-5 h-5" />
+                            <span>{upcomingTournament.location}</span>
+                          </div>
+                          <p className="text-gray-800 dark:text-gray-200 text-lg">
+                            {upcomingTournament.description}
+                          </p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`}>
+                            <Button className="bg-wrfc-navy hover:bg-wrfc-navy/90 text-white transition-colors">
+                              View Tournament Details
+                              <ArrowRight className="ml-2 w-4 h-4" />
+                            </Button>
+                          </Link>
+                          <RegisterButton />
                         </div>
                       </div>
-                    </Card>
-                  </div>
-                </Link>
+                    </div>
+                  </Card>
+                </div>
 
                 {/* Past Tournaments Preview */}
                 <div className="mt-16">

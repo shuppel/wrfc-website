@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import * as Select from "@radix-ui/react-select";
 import Link from 'next/link';
 import { DialogClose } from '@/components/ui/dialog';
+import PaymentButton from '../payment/PaymentButton';
 
 interface TournamentRegistrationProps {
   divisions: {
@@ -85,11 +86,7 @@ export default function TournamentRegistration({ divisions }: TournamentRegistra
               Thank you for registering. Please proceed to the payment page to complete your registration.
             </p>
             <div className="space-y-4">
-              <Link href="/tournaments/cherry-blossom/payment" className="block">
-                <Button className="w-full bg-wrfc-red hover:bg-wrfc-red/90 text-white">
-                  Proceed to Payment
-                </Button>
-              </Link>
+              <PaymentButton />
               <DialogClose asChild>
                 <Button variant="outline" className="w-full">Close</Button>
               </DialogClose>

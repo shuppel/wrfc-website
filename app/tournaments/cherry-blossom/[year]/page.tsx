@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft, ArrowRight } from 'lucide-react';
-import TournamentRegistration from '@/components/TournamentRegistration';
+import TournamentRegistration from '@/components/feature/tournament/TournamentRegistration';
+import TournamentRegisterButton from '@/components/feature/tournament/TournamentRegisterButton';
 
 interface TournamentDetails {
   year: number;
@@ -108,9 +109,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               <span>{tournamentDetails.location.name}</span>
             </div>
           </div>
-          <Button size="lg" className="bg-wrfc-red hover:bg-wrfc-red/90 text-white px-8 py-6 text-lg">
-            Register Your Team
-          </Button>
+          <TournamentRegisterButton year={params.year} />
         </div>
       </section>
 
