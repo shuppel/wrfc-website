@@ -90,7 +90,7 @@ export default function WelcomeModal() {
             
             <div className="relative h-64 w-full">
               <Image
-                src="/assets/art/tournament_banner_watercolor.png"
+                src={promotion.imageUrl}
                 alt={promotion.title}
                 fill
                 className="object-cover"

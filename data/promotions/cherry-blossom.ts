@@ -4,7 +4,7 @@ export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2025',
   title: 'Cherry Blossom Tournament 2025',
   description: 'Join us for the annual Cherry Blossom Rugby Tournament in Washington DC. Multiple divisions available for men\'s and women\'s teams.',
-  imageUrl: '/assets/art/tournament_banner_watercolor.png',
+  imageUrl: '/assets/pictures/cherry-blossom-banner.jpg',
   buttonText: 'Register Now',
   buttonUrl: 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6',
   startDate: '2025-01-01T00:00:00Z',
@@ -34,6 +34,6 @@ export const cherryBlossomPromotion: Promotion = {
       
       <p>Register your team today to secure your spot in this premier rugby event!</p>
     `,
-    imageUrl: '/assets/art/tournament_banner_watercolor.png'
+    imageUrl: '/assets/pictures/cherry-blossom-banner.jpg'
   }
 }; 

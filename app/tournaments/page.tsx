@@ -12,7 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import SquarePayment from '@/components/SquarePayment';
 import RegisterButton from '@/components/RegisterButton';
-import TournamentPromotions from '@/components/feature/promotion/TournamentPromotions';
 
 interface Tournament {
   id: string;
@@ -225,9 +224,6 @@ export default function TournamentsPage() {
           </p>
         </div>
       </section>
-
-      {/* Tournament Promotions */}
-      <TournamentPromotions />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
