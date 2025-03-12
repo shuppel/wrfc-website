@@ -86,9 +86,6 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="container mx-auto">
-        <h1 className="hero-title text-center mb-8">
-          2025 SCHEDULE
-        </h1>
 
         {/* View Navigation */}
         <div className="flex justify-center gap-8 mb-12">
