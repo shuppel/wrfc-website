@@ -8,7 +8,7 @@ import { Button } from 'components/ui/button';
 import { Input } from 'components/ui/input';
 import { Select } from 'components/ui/select';
 import { Card } from 'components/ui/card';
-import { generateMetadata, getStructuredData } from '../utils/seo'
+import { getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 
@@ -34,9 +34,6 @@ const membershipSchema = z.object({
 type MembershipForm = z.infer<typeof membershipSchema>;
 
 const steps = ['Personal Information', 'Rugby Experience', 'Emergency Contact', 'Review'];
-
-// Generate metadata for the membership page
-export const metadata = generateMetadata('membership');
 
 export default function MembershipPage() {
   // Additional structured data specific to the membership page

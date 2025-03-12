@@ -4,7 +4,6 @@ import { generateMetadata, getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import ScheduleView from '../../components/feature/schedule/ScheduleView';
-import { DivisionType, getGameDivision } from '../../components/feature/schedule/types';
 
 // Generate metadata for the schedule page
 export const metadata = generateMetadata('schedule');
