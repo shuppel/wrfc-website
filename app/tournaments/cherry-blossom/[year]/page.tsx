@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from 'lucide-react';
 import TournamentRegistration from '@/components/feature/tournament/TournamentRegistration';
 import TournamentRegisterButton from '@/components/feature/tournament/TournamentRegisterButton';
 
@@ -211,10 +211,10 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                 </div>
               ))}
               <div>
-                <h3 className="font-bold mb-3">Last Year's Teams</h3>
+                <h3 className="font-bold mb-3">Last Year&apos;s Teams</h3>
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
-                    {tournamentDetails.previousYear?.featuredTeams.map((team, index) => (
+                    {tournamentDetails.previousYear?.featuredTeams.map((team) => (
                       <span 
                         key={team} 
                         className="inline-flex items-center bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1 text-sm"

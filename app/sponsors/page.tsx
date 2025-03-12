@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { Trophy, Heart, Building } from 'lucide-react';
 import { generateMetadata, getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'

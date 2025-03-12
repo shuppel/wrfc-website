@@ -2,10 +2,9 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { CreditCard, Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
+import { Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
 import SquarePayment from '@/components/SquarePayment';
 import { useToast } from '@/components/ui/use-toast';
 import { useSearchParams } from 'next/navigation';
@@ -44,7 +43,7 @@ export default function PaymentPage() {
         description: 'Zelle number has been copied to your clipboard.',
       });
       setTimeout(() => setHasCopied(false), 2000);
-    } catch (err) {
+    } catch (_) {
       toast({
         title: 'Failed to copy',
         description: 'Please copy the number manually.',
@@ -311,8 +310,8 @@ export default function PaymentPage() {
               </div>
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <p className="text-sm text-yellow-800">
-                  Please include <strong>"CBT 2025 - {selectedDivision}"</strong>
-                  {teamName && <> for team <strong>"{teamName}"</strong></>} in the payment memo.
+                  Please include <strong>&quot;CBT 2025 - {selectedDivision}&quot;</strong>
+                  {teamName && <> for team <strong>&quot;{teamName}&quot;</strong></>} in the payment memo.
                 </p>
                 <p className="text-sm text-yellow-800 mt-2">
                   After sending Zelle payment, please email a screenshot of the confirmation to <strong>treasurer@wrfc.org</strong>
@@ -363,8 +362,8 @@ export default function PaymentPage() {
               </div>
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <p className="text-sm text-yellow-800">
-                  Please include <strong>"CBT 2025 - {selectedDivision}"</strong>
-                  {teamName && <> for team <strong>"{teamName}"</strong></>} in the check memo.
+                  Please include <strong>&quot;CBT 2025 - {selectedDivision}&quot;</strong>
+                  {teamName && <> for team <strong>&quot;{teamName}&quot;</strong></>} in the check memo.
                 </p>
                 <p className="text-sm text-yellow-800 mt-2">
                   <strong>Important:</strong> Please allow 10 business days for check processing. Check payments will not be accepted within 5 days of the tournament.
