@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface TournamentRegisterButtonProps {
   year: string;
@@ -12,6 +13,15 @@ export default function TournamentRegisterButton({
   year, 
   squareCheckoutUrl = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6' 
 }: TournamentRegisterButtonProps) {
+  const router = useRouter();
+  
+  const handleRegister = () => {
+    // For 2025, we'll direct users directly to the Square checkout URL
+    if (year === '2025') {
+      window.open(squareCheckoutUrl, '_blank');
+    }
+  };
+  
   if (year === '2025') {
     return (
       <div className="relative inline-block">
@@ -19,7 +29,7 @@ export default function TournamentRegisterButton({
         <Button 
           size="lg" 
           className="relative bg-wrfc-red hover:bg-wrfc-red/90 text-white px-8 py-6 text-lg font-bold tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          onClick={() => window.open(squareCheckoutUrl, '_blank')}
+          onClick={handleRegister}
           aria-label="Register your team for the 2025 Cherry Blossom Tournament"
         >
           <span className="flex items-center">

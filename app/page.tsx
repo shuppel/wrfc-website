@@ -4,6 +4,7 @@ import { Calendar, Trophy, Users, ArrowRight, ChevronRight } from 'lucide-react'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
+import HomePromotions from '@/components/feature/promotion/HomePromotions'
 
 // Generate metadata for the home page
 export const metadata = generateMetadata('home');
@@ -99,6 +100,9 @@ export default function Home() {
           <ChevronRight className="w-8 h-8 text-white rotate-90" />
         </div>
       </section>
+
+      {/* Promotions Section */}
+      <HomePromotions />
 
       {/* Features Section */}
       <section className="py-24 bg-white dark:bg-gray-800">
