@@ -65,12 +65,6 @@ const SPONSORS: Sponsor[] = [
 export const metadata = generateMetadata('sponsors');
 
 export default function Sponsors() {
-  const sponsorsByType = {
-    premier: SPONSORS.filter(s => s.type === 'premier'),
-    club: SPONSORS.filter(s => s.type === 'club'),
-    supporting: SPONSORS.filter(s => s.type === 'supporting')
-  };
-
   // Additional structured data specific to the sponsors page
   const structuredData = getStructuredData('sponsors', {
     '@type': 'WebPage',

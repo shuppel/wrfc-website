@@ -4,7 +4,7 @@ import { PaymentForm, CreditCard } from 'react-square-web-payments-sdk';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import { CreditCard as CreditCardIcon, ArrowRight, RefreshCw } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 interface SquarePaymentProps {
   divisionId: string;
@@ -12,6 +12,13 @@ interface SquarePaymentProps {
   amount: number;
   onSuccess: () => void;
   onCancel: () => void;
+}
+
+// Define a type for the token response from Square
+interface SquareTokenResponse {
+  token?: string;
+  status?: string;
+  errors?: Array<{ message: string }>;
 }
 
 // Client component for handling Square payment UI
@@ -23,7 +30,7 @@ export default function SquarePayment({ divisionId, divisionName, amount, onSucc
   
   // Function to handle client-side token generation
   // The actual payment processing happens on the server
-  const handlePaymentFormSubmit = async (token: any) => {
+  const handlePaymentFormSubmit = async (token: SquareTokenResponse) => {
     if (!token || !token.token) {
       setError('Failed to generate payment token');
       return;
@@ -61,9 +68,9 @@ export default function SquarePayment({ divisionId, divisionName, amount, onSucc
         const errorMessage = data.message || data.error || 'Payment failed';
         throw new Error(errorMessage);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Payment Error:', error);
-      const errorMessage = error.message || 'There was an error processing your payment. Please try again.';
+      const errorMessage = error instanceof Error ? error.message : 'There was an error processing your payment. Please try again.';
       setError(errorMessage);
       toast({
         title: 'Payment Failed',

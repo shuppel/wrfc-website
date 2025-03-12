@@ -3,11 +3,18 @@ interface SquareSDK {
   payments: (appId: string, locationId: string) => unknown;
 }
 
+// Define a type for the global window object with Square
+declare global {
+  interface Window {
+    Square?: SquareSDK;
+  }
+}
+
 export const loadSquareSdk = async () => {
   // Check if Square is already loaded
   if (typeof window !== 'undefined' && 'Square' in window) {
-    const square = (window as any).Square as SquareSDK;
-    return square.payments(
+    const square = window.Square;
+    return square?.payments(
       process.env.NEXT_PUBLIC_SQUARE_APP_ID || '', 
       process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || ''
     );
@@ -24,8 +31,8 @@ export const loadSquareSdk = async () => {
     document.head.appendChild(script);
     await loadPromise;
     
-    const square = (window as any).Square as SquareSDK;
-    return square.payments(
+    const square = window.Square;
+    return square?.payments(
       process.env.NEXT_PUBLIC_SQUARE_APP_ID || '', 
       process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || ''
     );

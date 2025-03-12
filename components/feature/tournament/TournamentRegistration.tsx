@@ -7,12 +7,13 @@ interface TournamentRegistrationProps {
   divisions: {
     name: string;
     fee: number;
+    description?: string;
   }[];
 }
 
 const SQUARE_CHECKOUT_URL = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6';
 
-export default function TournamentRegistration(_props: TournamentRegistrationProps) {
+export default function TournamentRegistration({ divisions }: TournamentRegistrationProps) {
   return (
     <div className="relative group">
       <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200" />
