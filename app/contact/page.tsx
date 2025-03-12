@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import { generateMetadata, getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'

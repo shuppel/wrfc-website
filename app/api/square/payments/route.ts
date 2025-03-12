@@ -1,15 +1,15 @@
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 
-// Server-side Square SDK import
-const square = require('square');
+// Server-side Square SDK import using ES modules
+import { Client, Environment } from 'square';
 
 // Initialize Square client once at module level
-const client = new square.Client({
+const client = new Client({
   bearerAuthCredentials: {
     accessToken: process.env.SQUARE_ACCESS_TOKEN
   },
-  environment: 'sandbox'
+  environment: Environment.Sandbox
 });
 
 // Get the payments API instance
@@ -110,12 +110,11 @@ export async function POST(request: Request) {
         amount: amountInCents / 100, // Convert back to dollars for display
         status: response.result.payment?.status
       });
-
     } catch (error) {
       // 7. Handle Square API errors
       console.error('Square API Error:', {
         message: error instanceof Error ? error.message : 'Unknown error',
-        errors: error instanceof Error && 'result' in error ? (error as any).result?.errors : undefined
+        errors: error instanceof Error && 'result' in error ? (error as SquareError).result?.errors : undefined
       });
 
       return NextResponse.json({
@@ -123,7 +122,7 @@ export async function POST(request: Request) {
         error: 'Payment processing failed',
         message: error instanceof Error ? error.message : 'Payment was declined or failed to process',
         details: error instanceof Error && 'result' in error 
-          ? (error as any).result?.errors 
+          ? (error as SquareError).result?.errors 
           : [{ detail: 'Payment processor error' }]
       }, { status: 400 });
     }
@@ -136,4 +135,15 @@ export async function POST(request: Request) {
       message: 'The server encountered an error while processing your payment'
     }, { status: 500 });
   }
+}
+
+// Define a type for Square API errors
+interface SquareError extends Error {
+  result?: {
+    errors?: Array<{
+      category?: string;
+      code?: string;
+      detail?: string;
+    }>;
+  };
 }

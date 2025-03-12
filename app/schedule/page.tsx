@@ -1,9 +1,8 @@
-import Image from 'next/image';
-import { Game, SAMPLE_DATA } from '@/types/game';
 import { generateMetadata, getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import ScheduleView from '../../components/feature/schedule/ScheduleView';
+import { SAMPLE_DATA } from '../../types/game';
 
 // Generate metadata for the schedule page
 export const metadata = generateMetadata('schedule');

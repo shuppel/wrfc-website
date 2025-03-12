@@ -1,7 +1,4 @@
-import Image from 'next/image';
-import { Card } from 'components/ui/card';
-import { Badge } from 'components/ui/badge';
-import { generateMetadata, getStructuredData } from '../utils/seo'
+import { generateMetadata } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import RosterList from '../../components/RosterList';

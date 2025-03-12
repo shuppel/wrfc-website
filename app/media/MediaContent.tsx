@@ -6,6 +6,14 @@ import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 
+// Define JsonLdObject type to match the one in JsonLd component
+type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[];
+interface JsonLdObject {
+  '@context'?: string;
+  '@type'?: string;
+  [key: string]: JsonLdValue | undefined;
+}
+
 // YouTube video IDs from WRFC channel
 const initialVideoIds = [
   'lvy4b81NYFw', '815_hQyjoBY', // Latest additions
@@ -22,7 +30,7 @@ interface VideoMetadata {
 }
 
 interface MediaContentProps {
-  structuredData: any;
+  structuredData: JsonLdObject;
 }
 
 const VIDEOS_PER_PAGE = 4;
