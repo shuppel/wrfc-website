@@ -24,11 +24,6 @@ export default function PromotionCarousel({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null);
 
-  // Skip rendering if no promotions
-  if (promotions.length === 0) {
-    return null;
-  }
-
   // Auto-advance the carousel
   useEffect(() => {
     if (autoplayInterval <= 0 || promotions.length <= 1) return;
@@ -39,6 +34,11 @@ export default function PromotionCarousel({
     
     return () => clearInterval(interval);
   }, [autoplayInterval, promotions.length]);
+
+  // Skip rendering if no promotions
+  if (promotions.length === 0) {
+    return null;
+  }
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => 

@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 interface TournamentRegisterButtonProps {
   year: string;
@@ -13,7 +12,6 @@ export default function TournamentRegisterButton({
   year, 
   squareCheckoutUrl = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6' 
 }: TournamentRegisterButtonProps) {
-  const router = useRouter();
   
   const handleRegister = () => {
     // For 2025, we'll direct users directly to the Square checkout URL
