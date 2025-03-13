@@ -4,7 +4,7 @@ export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2025',
   title: 'Cherry Blossom Tournament 2025',
   description: 'Join us for the annual Cherry Blossom Rugby Tournament in Washington DC. Multiple divisions available for men\'s and women\'s teams.',
-  imageUrl: '/assets/pictures/cherry-blossom-banner.jpg',
+  imageUrl: '/assets/pictures/tournament_banner_watercolor.png',
   buttonText: 'Register Now',
   buttonUrl: 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6',
   startDate: '2025-01-01T00:00:00Z',
@@ -30,10 +30,10 @@ export const cherryBlossomPromotion: Promotion = {
         <li>Old Boy's 15s - $350</li>
       </ul>
       
-      <p>Location: Liberty Sports Park, 220 Prince George's Boulevard Upper Marlboro, MD 20774</p>
+      <p class="text-center font-bold">Location: Liberty Sports Park, 220 Prince George's Boulevard Upper Marlboro, MD 20774</p>
       
       <p>Register your team today to secure your spot in this premier rugby event!</p>
     `,
-    imageUrl: '/assets/pictures/cherry-blossom-banner.jpg'
+    imageUrl: '/assets/pictures/tournament_banner_watercolor.png'
   }
 }; 

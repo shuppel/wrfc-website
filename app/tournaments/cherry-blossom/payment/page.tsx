@@ -16,14 +16,12 @@ export default function PaymentPage() {
   const selectedDivision = searchParams.get('division') || '';
   const teamName = searchParams.get('team') || '';
 
-  const [isSquareDialogOpen, setIsSquareDialogOpen] = useState(false);
   const [isZelleDialogOpen, setIsZelleDialogOpen] = useState(false);
   const [isCheckDialogOpen, setIsCheckDialogOpen] = useState(false);
   const [hasCopied, setHasCopied] = useState(false);
   const { toast } = useToast();
 
   const handlePaymentSuccess = () => {
-    setIsSquareDialogOpen(false);
     toast({
       title: 'Payment Successful',
       description: 'You will receive a confirmation email shortly.',
@@ -31,7 +29,7 @@ export default function PaymentPage() {
   };
 
   const handlePaymentCancel = () => {
-    setIsSquareDialogOpen(false);
+    // No need to set dialog state as it's handled by the SquarePayment component
   };
 
   const copyZelleInfo = async () => {
@@ -43,7 +41,7 @@ export default function PaymentPage() {
         description: 'Zelle number has been copied to your clipboard.',
       });
       setTimeout(() => setHasCopied(false), 2000);
-    } catch (_) {
+    } catch (error) {
       toast({
         title: 'Failed to copy',
         description: 'Please copy the number manually.',
@@ -329,7 +327,7 @@ export default function PaymentPage() {
                 onClick={() => handlePaymentConfirmation('zelle')}
                 className="bg-wrfc-red hover:bg-wrfc-red/90"
               >
-                I've Completed the Payment
+                I&apos;ve Completed the Payment
               </Button>
             </div>
           </DialogFooter>
@@ -378,7 +376,7 @@ export default function PaymentPage() {
                 onClick={() => handlePaymentConfirmation('check')}
                 className="bg-wrfc-red hover:bg-wrfc-red/90"
               >
-                I've Mailed the Check
+                I&apos;ve Mailed the Check
               </Button>
             </div>
           </DialogFooter>

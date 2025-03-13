@@ -28,7 +28,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-md md:max-w-lg">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold font-nasalization text-wrfc-navy dark:text-white">
             {promotion.modalContent.title || promotion.title}
@@ -44,7 +44,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
 
         <div className="space-y-6">
           {promotion.modalContent.imageUrl && (
-            <div className="relative h-64 w-full overflow-hidden rounded-lg">
+            <div className="relative h-56 w-full overflow-hidden rounded-lg">
               <Image
                 src={promotion.modalContent.imageUrl}
                 alt={promotion.title}
@@ -59,7 +59,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
             dangerouslySetInnerHTML={{ __html: promotion.modalContent.content }}
           />
 
-          <div className="flex justify-end space-x-4 pt-4">
+          <div className="flex justify-center space-x-4 pt-4">
             <Button variant="outline" onClick={onClose}>
               Close
             </Button>
