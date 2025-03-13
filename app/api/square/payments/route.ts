@@ -12,7 +12,7 @@ const client = new Client({
   bearerAuthCredentials: {
     accessToken: squareAccessToken
   },
-  environment: Environment.Sandbox
+  environment: process.env.NODE_ENV === 'production' ? Environment.Production : Environment.Sandbox
 });
 
 // Get the payments API instance
