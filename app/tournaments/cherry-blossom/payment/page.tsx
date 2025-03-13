@@ -41,7 +41,7 @@ export default function PaymentPage() {
         description: 'Zelle number has been copied to your clipboard.',
       });
       setTimeout(() => setHasCopied(false), 2000);
-    } catch (error) {
+    } catch {
       toast({
         title: 'Failed to copy',
         description: 'Please copy the number manually.',

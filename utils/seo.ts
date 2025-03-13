@@ -95,7 +95,7 @@ export function generateMetadata(pageKey: PageKey): Metadata {
 /**
  * Gets structured data for JSON-LD based on page type
  */
-export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, any>) {
+export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, unknown>) {
   // This would be expanded based on the specific page needs
   const baseData = getPageSEO(pageKey);
   

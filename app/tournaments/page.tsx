@@ -4,13 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, MapPin, Trophy, ArrowRight, Users } from 'lucide-react';
+import { Calendar, MapPin, Trophy, ArrowRight } from 'lucide-react';
 import { getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import SquarePayment from '@/components/SquarePayment';
 import RegisterButton from '@/components/RegisterButton';
 
 interface Tournament {
