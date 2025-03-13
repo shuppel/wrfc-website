@@ -123,7 +123,7 @@ export function generateMetadata(pageKey: PageKey): Metadata {
   };
 }
 
-export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, any>) {
+export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, unknown>) {
   const seoData = getPageSEO(pageKey);
   const baseUrl = 'https://wrfc.org';
   

@@ -3,14 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
-interface TournamentRegistrationProps {
-  divisions: {
-    name: string;
-    fee: number;
-    description?: string;
-  }[];
-}
-
 const SQUARE_CHECKOUT_URL = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6';
 
 export default function TournamentRegistration() {
