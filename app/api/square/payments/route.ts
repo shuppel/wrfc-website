@@ -4,10 +4,13 @@ import { NextResponse } from 'next/server';
 // Server-side Square SDK import using ES modules
 import { Client, Environment } from 'square';
 
+// Check if Square access token is available
+const squareAccessToken = process.env.SQUARE_ACCESS_TOKEN || '';
+
 // Initialize Square client once at module level
 const client = new Client({
   bearerAuthCredentials: {
-    accessToken: process.env.SQUARE_ACCESS_TOKEN
+    accessToken: squareAccessToken
   },
   environment: Environment.Sandbox
 });
