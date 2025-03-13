@@ -7,9 +7,19 @@ interface JsonLdObject {
   [key: string]: JsonLdValue | undefined;
 }
 
+// Extended interface to support specific structured data types
+interface ExtendedJsonLdObject extends JsonLdObject {
+  member?: JsonLdValue[] | Record<string, JsonLdValue>;
+  sport?: JsonLdObject;
+  location?: JsonLdObject;
+  mainEntity?: JsonLdObject;
+  organizer?: JsonLdObject;
+  eventStatus?: string;
+}
+
 interface JsonLdProps {
   type: 'Organization' | 'WebSite' | 'SportsTeam' | 'Event' | 'Person' | 'FAQPage' | 'Article' | 'WebPage';
-  data: JsonLdObject;
+  data: ExtendedJsonLdObject;
 }
 
 export default function JsonLd({ type, data }: JsonLdProps) {

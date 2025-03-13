@@ -168,7 +168,7 @@ export function getStructuredData(pageKey: PageKey, additionalData?: Record<stri
           '@type': 'Sport',
           name: 'Rugby'
         },
-        member: additionalData?.players || []
+        member: Array.isArray(additionalData?.players) ? additionalData.players : []
       };
     case 'tournaments':
       return {
