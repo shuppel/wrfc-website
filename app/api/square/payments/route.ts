@@ -5,7 +5,7 @@
 
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function POST() {
   return NextResponse.json({
     success: false,
     error: 'Payment processing has been moved to external Square site',

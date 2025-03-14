@@ -4,22 +4,11 @@ import { Button } from '@/components/ui/button';
 import { CreditCard as CreditCardIcon, ArrowRight } from 'lucide-react';
 
 interface SquarePaymentProps {
-  divisionId: string;
-  divisionName: string;
-  amount: number;
-  squarePaymentLink: string; // New prop for external payment link
-  onCancel: () => void;
+  squarePaymentLink: string;
 }
 
 // Client component for handling Square payment UI
-export default function SquarePayment({ 
-  divisionId, 
-  divisionName, 
-  amount, 
-  squarePaymentLink,
-  onCancel 
-}: SquarePaymentProps) {
-  
+export default function SquarePayment({ squarePaymentLink }: SquarePaymentProps) {
   const handlePaymentClick = () => {
     // Redirect to external Square payment page
     window.location.href = squarePaymentLink;
