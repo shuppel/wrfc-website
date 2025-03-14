@@ -7,16 +7,49 @@ import { Client, Environment } from 'square';
 // Check if Square access token is available
 const squareAccessToken = process.env.SQUARE_ACCESS_TOKEN || '';
 
-// Initialize Square client once at module level
-const client = new Client({
-  bearerAuthCredentials: {
-    accessToken: squareAccessToken
-  },
-  environment: process.env.NODE_ENV === 'production' ? Environment.Production : Environment.Sandbox
-});
+// Log environment details for debugging
+console.log('Node Environment:', process.env.NODE_ENV);
+console.log('Square Access Token Present:', !!squareAccessToken);
 
-// Get the payments API instance
-const { paymentsApi } = client;
+// Validate Square environment
+const getSquareEnvironment = () => {
+  // Explicitly check environment and return appropriate value
+  if (process.env.NODE_ENV === 'production') {
+    console.log('Using Square Production Environment');
+    return Environment.Production;
+  }
+  
+  console.log('Using Square Sandbox Environment');
+  return Environment.Sandbox;
+};
+
+// Safely initialize Square client
+let client: Client | null = null;
+let paymentsApi: any = null;
+
+try {
+  // Validate access token
+  if (!squareAccessToken) {
+    throw new Error('Square access token is missing');
+  }
+
+  // Initialize Square client
+  client = new Client({
+    bearerAuthCredentials: {
+      accessToken: squareAccessToken
+    },
+    environment: getSquareEnvironment()
+  });
+
+  // Get the payments API instance
+  paymentsApi = client.paymentsApi;
+
+  console.log('Square client initialized successfully');
+} catch (error) {
+  console.error('Failed to initialize Square client:', error);
+  client = null;
+  paymentsApi = null;
+}
 
 /**
  * Server-side API route handler for processing Square payments
@@ -25,6 +58,15 @@ const { paymentsApi } = client;
 export async function POST(request: Request) {
   console.log('Payment API route called');
   
+  // Check if Square client is initialized
+  if (!client || !paymentsApi) {
+    console.error('Square client not properly initialized');
+    return NextResponse.json({
+      success: false,
+      error: 'Payment service is not properly configured'
+    }, { status: 500 });
+  }
+
   try {
     // 1. Environment validation
     if (!process.env.SQUARE_ACCESS_TOKEN) {

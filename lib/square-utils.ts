@@ -22,7 +22,7 @@ export const loadSquareSdk = async () => {
 
   try {
     const script = document.createElement('script');
-    script.src = 'https://sandbox.web.squarecdn.com/v1/square.js';
+    script.src = 'https://web.squarecdn.com/v1/square.js';
     script.async = true;
     const loadPromise = new Promise<boolean>((resolve, reject) => {
       script.onload = () => resolve(true);
