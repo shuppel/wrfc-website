@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { CheckCircle, Calendar, MapPin, ClipboardList, Users } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function PaymentConfirmationPage() {
+function ConfirmationContent() {
   const searchParams = useSearchParams();
   const teamName = searchParams.get('team') || '';
   const division = searchParams.get('division') || '';
@@ -119,5 +119,21 @@ export default function PaymentConfirmationPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PaymentConfirmationPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto py-12 px-4 text-center">
+        <div className="animate-pulse">
+          <div className="h-20 w-20 bg-gray-200 rounded-full mx-auto mb-6"></div>
+          <div className="h-8 bg-gray-200 max-w-md mx-auto mb-4 rounded"></div>
+          <div className="h-6 bg-gray-200 max-w-sm mx-auto rounded"></div>
+        </div>
+      </div>
+    }>
+      <ConfirmationContent />
+    </Suspense>
   );
 } 
