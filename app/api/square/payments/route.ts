@@ -23,9 +23,36 @@ const getSquareEnvironment = () => {
   return Environment.Sandbox;
 };
 
+// Define a type for the payment parameters
+interface PaymentParams {
+  sourceId: string;
+  idempotencyKey: string;
+  amountMoney: {
+    amount: number;
+    currency: string;
+  };
+  locationId: string;
+  note?: string;
+}
+
+// Define a type for the payment response
+interface PaymentResponse {
+  result: {
+    payment?: {
+      id?: string;
+      status?: string;
+    };
+  };
+}
+
+// Define a type for the payments API
+interface SquarePaymentsApi {
+  createPayment: (params: PaymentParams) => Promise<PaymentResponse>;
+}
+
 // Safely initialize Square client
 let client: Client | null = null;
-let paymentsApi: any = null;
+let paymentsApi: SquarePaymentsApi | null = null;
 
 try {
   // Validate access token
@@ -42,7 +69,7 @@ try {
   });
 
   // Get the payments API instance
-  paymentsApi = client.paymentsApi;
+  paymentsApi = client.paymentsApi as SquarePaymentsApi;
 
   console.log('Square client initialized successfully');
 } catch (error) {
