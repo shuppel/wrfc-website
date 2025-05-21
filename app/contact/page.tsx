@@ -1,9 +1,6 @@
-import { generateMetadata, getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
-
-// Generate metadata for the contact page
-export const metadata = generateMetadata('contact');
+import { getStructuredData } from '../utils/seo'
 
 export default function ContactPage() {
   // Additional structured data specific to the contact page

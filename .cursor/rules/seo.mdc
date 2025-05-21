@@ -1,5 +1,278 @@
 ---
-description: 
+description: This rule is helpful around SEO (search engine optimization) and helping create high SEO.
 globs: 
 alwaysApply: false
 ---
+# SEO-NextJS.mdc Rules
+
+## Metadata & Head Configuration
+
+- [ ] **Page Title**
+  - Descriptive, keyword-rich title under 60 characters
+  - Unique for each page
+  - Format: `Primary Keyword | Brand Name`
+
+- [ ] **Meta Description**
+  - Compelling description under 155-160 characters
+  - Contains target keywords naturally
+  - Describes page content accurately
+  - Includes call-to-action when appropriate
+
+- [ ] **Meta Tags**
+  - Implement proper robots meta tag
+  - Include proper viewport settings
+  - Set correct charset
+  - Include canonical URL meta tag to prevent duplicate content issues
+
+- [ ] **Open Graph & Twitter Cards**
+  - OG title matches page title
+  - OG description provides preview text
+  - OG image (1200×630px) exists for social sharing
+  - OG type, locale, and URL are properly set
+  - Twitter card type and appropriate fields set
+
+## JSON-LD Structured Data
+
+- [ ] **Base Schema Implementation**
+  - Include appropriate schema type based on content (Article, Product, FAQ, etc.)
+  - Validate structured data using Google's Rich Results Test
+  - Implement using standard JSON-LD format
+
+- [ ] **Schema Completeness**
+  - All required properties for each schema type added
+  - Include recommended properties for richer search results
+  - Date fields use ISO 8601 format
+  - Author and publisher information included where applicable
+
+- [ ] **Organization/Local Business Schema**
+  - Add Organization schema to homepage
+  - Include logo, contact info, social profiles
+  - Add location data for local businesses
+
+## Performance Optimization
+
+- [ ] **Core Web Vitals**
+  - LCP (Largest Contentful Paint) < 2.5s
+  - FID (First Input Delay) < 100ms
+  - CLS (Cumulative Layout Shift) < 0.1
+  - INP (Interaction to Next Paint) < 200ms
+
+- [ ] **Image Optimization**
+  - Use Next.js Image component for all images
+  - Set explicit width and height to prevent layout shifts
+  - Add descriptive alt text for all images
+  - Add priority attribute for LCP images
+  - Use responsive images with appropriate sizes
+
+- [ ] **Font Optimization**
+  - Use next/font to optimize font loading
+  - Implement font-display strategy
+  - Subset fonts when possible
+  - Minimize font variations
+
+- [ ] **JavaScript Optimization**
+  - Minimize unused JavaScript
+  - Use dynamic imports for non-critical components
+  - Implement code splitting where appropriate
+  - Use lightweight alternatives when possible
+
+## Rendering Strategy
+
+- [ ] **Page Rendering Method**
+  - Use SSG for static content pages
+  - Use SSR for dynamic, personalized content
+  - Use ISR for semi-dynamic content
+  - Implement proper data fetching methods (getStaticProps, getServerSideProps)
+
+- [ ] **Hydration Strategy**
+  - Minimize client-side JavaScript for faster hydration
+  - Use React.lazy and Suspense for client components
+  - Implement streaming SSR where appropriate
+  - Test hydration errors and performance
+
+## URL Structure & Navigation
+
+- [ ] **URL Optimization**
+  - Create clean, descriptive URLs (no IDs or parameters when possible)
+  - Include target keywords in URLs
+  - Use hyphens to separate words
+  - Keep URLs concise and logical
+
+- [ ] **Navigation Structure**
+  - Implement breadcrumbs with structured data
+  - Ensure logical site hierarchy
+  - Limit navigation depth (max 3 clicks from homepage)
+  - Include XML sitemap linked from robots.txt
+
+- [ ] **Internal Linking**
+  - Link related pages with descriptive anchor text
+  - Add relevant internal links in content
+  - Implement a flat site architecture
+  - Link to important pages from homepage
+
+## Mobile Optimization
+
+- [ ] **Responsive Design**
+  - Test on multiple devices and screen sizes
+  - Ensure tap targets are properly sized (min 48×48px)
+  - Implement proper viewport settings
+  - Test with Chrome DevTools mobile emulation
+
+- [ ] **Mobile Performance**
+  - Ensure mobile page speed score >90
+  - Optimize for mobile-first indexing
+  - Test scrolling performance
+  - Remove intrusive interstitials
+
+## Content Quality
+
+- [ ] **Content Structure**
+  - Use proper heading hierarchy (H1, H2, H3)
+  - Include target keyword in H1
+  - Keep content organized with subheadings
+  - Use short paragraphs and bulleted lists when appropriate
+
+- [ ] **Content Depth**
+  - Create comprehensive content that answers user intent
+  - Ensure appropriate content length based on topic
+  - Include relevant LSI keywords
+  - Use multimedia (images, videos) to enhance content
+
+## Technical SEO
+
+- [ ] **Sitemap**
+  - Generate XML sitemap with next-sitemap
+  - Include all important pages
+  - Exclude low-value pages
+  - Submit to Google Search Console
+
+- [ ] **Robots.txt**
+  - Create proper robots.txt file
+  - Block unimportant directories
+  - Allow important directories
+  - Link to sitemap
+
+- [ ] **Canonical Tags**
+  - Implement canonical tags for all pages
+  - Handle pagination with rel="next" and rel="prev"
+  - Properly handle multi-language content with hreflang
+
+- [ ] **Status Codes**
+  - Return proper HTTP status codes (200, 301, 404, etc.)
+  - Implement custom 404 page
+  - Set up 301 redirects for changed URLs
+  - Monitor and fix 404 errors
+
+## Analytics & Monitoring
+
+- [ ] **Analytics Setup**
+  - Implement Google Analytics or alternative
+  - Set up conversion tracking
+  - Configure enhanced ecommerce (if applicable)
+  - Create custom events for important interactions
+
+- [ ] **Search Console**
+  - Verify property in Google Search Console
+  - Submit sitemap
+  - Monitor and fix crawl errors
+  - Check for manual actions
+
+- [ ] **Monitoring Tools**
+  - Set up automated monitoring for broken links
+  - Monitor core web vitals
+  - Set up alerts for traffic drops
+  - Track keyword rankings
+
+## Next.js Specific Optimizations
+
+- [ ] **Script Optimization**
+  - Use Next.js Script component with proper strategy
+  - Implement proper script loading priorities
+  - Load third-party scripts appropriately
+  - Minimize render-blocking scripts
+
+- [ ] **Route Optimization**
+  - Implement dynamic routes efficiently
+  - Preload critical routes
+  - Use shallow routing where appropriate
+  - Implement prefetching for likely navigations
+
+- [ ] **API Routes**
+  - Implement API caching
+  - Optimize API response times
+  - Secure API endpoints
+  - Handle errors gracefully
+
+- [ ] **Next-SEO Implementation**
+  - Consider using next-seo package
+  - Set default SEO settings in _app.js
+  - Override SEO settings on a page-by-page basis
+  - Implement required JSON-LD components
+
+## Advanced SEO
+
+- [ ] **Internationalization**
+  - Implement hreflang tags for language variations
+  - Use proper URL structure for multilingual content
+  - Configure language detection
+  - Create language switcher
+
+- [ ] **Schema Expansion**
+  - Implement BreadcrumbList schema
+  - Add FAQ schema for question-based content
+  - Implement HowTo schema for instructional content
+  - Use appropriate schema for video content
+
+- [ ] **Progressive Web App**
+  - Implement service workers
+  - Create app manifest
+  - Enable offline functionality
+  - Implement push notifications
+
+- [ ] **E-commerce Optimizations**
+  - Add product schema with reviews
+  - Implement proper faceted navigation
+  - Handle out-of-stock products appropriately
+  - Optimize category pages
+
+## Security
+
+- [ ] **HTTPS Implementation**
+  - Ensure all pages use HTTPS
+  - Implement proper SSL certificate
+  - Set up HSTS headers
+  - Redirect HTTP to HTTPS
+
+- [ ] **Content Security**
+  - Implement CSP headers
+  - Set up XSS protection
+  - Prevent clickjacking
+  - Secure cookies and localStorage
+
+## Testing & Validation
+
+- [ ] **SEO Validation**
+  - Test with Lighthouse
+  - Validate structured data
+  - Check mobile friendliness
+  - Verify indexability
+
+- [ ] **Accessibility**
+  - Meet WCAG 2.1 AA standards
+  - Implement proper ARIA attributes
+  - Ensure keyboard navigation
+  - Provide alternative text for non-text elements
+
+## Deployment
+
+- [ ] **CDN Configuration**
+  - Deploy on a CDN (Vercel, Netlify, etc.)
+  - Enable edge caching
+  - Configure cache headers
+  - Implement image CDN if needed
+
+- [ ] **CI/CD**
+  - Include SEO checks in CI pipeline
+  - Test SEO metrics before deployment
+  - Monitor post-deployment performance
+  - Implement canary deployments

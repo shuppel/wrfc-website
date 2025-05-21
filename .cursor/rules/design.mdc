@@ -1,4 +1,9 @@
 ---
+description: 
+globs: 
+alwaysApply: false
+---
+---
 description: Using fundamentals of best design practices from groups such as Nielsen Norman Group. Use Claude Sonnet 3.5 or higher.
 globs: *.tsx, *.svg
 ---
