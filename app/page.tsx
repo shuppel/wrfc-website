@@ -174,21 +174,29 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/90" />
         </div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-nasalization text-white">
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-nasalization text-white text-center">
             Ready to Join the Legacy?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200 text-center">
             Whether you&apos;re an experienced player or new to rugby, WRFC welcomes athletes of all levels. 
             Join us and be part of Washington DC&apos;s premier men&apos;s rugby club.
           </p>
-          <Link 
-            href="/membership" 
-            className="inline-flex items-center bg-wrfc-red px-8 py-4 rounded-lg font-bold hover:bg-wrfc-red/90 transition-all transform hover:scale-105 hover:shadow-lg group text-white"
-          >
-            Become a Member
-            <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-          </Link>
+          
+          {/* Embedded Google Form */}
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdirbLQUa8h2sRBAIxSCzbncdcOJgvBXjON-S1yx7NfBXgTyA/viewform?embedded=true" 
+              width="100%" 
+              height="800" 
+              frameBorder="0" 
+              marginHeight={0} 
+              marginWidth={0}
+              className="w-full"
+            >
+              Loading…
+            </iframe>
+          </div>
         </div>
       </section>
     </div>
