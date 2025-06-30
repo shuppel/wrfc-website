@@ -21,11 +21,11 @@ interface PageSEOData {
 
 const pageSEOConfig: Record<PageKey, PageSEOData> = {
   home: {
-    title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
-    description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',
-    keywords: ['washington rugby', 'dc rugby club', 'rugby union', 'wrfc', 'join rugby team'],
+    title: 'Washington Rugby Football Club | DC Men\'s Rugby Club Since 1963',
+    description: 'Join DC\'s premier men\'s rugby club. Washington Rugby Football Club (WRFC) is the top men\'s rugby team in Washington DC, offering competitive matches, expert coaching, and a strong community since 1963.',
+    keywords: ['washington rugby mens club', 'dc rugby', 'washington dc rugby', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'dc rugby club', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club'],
     imagePath: '/assets/pictures/huddle_2025_irish.jpg',
-    imageAlt: 'WRFC Team Huddle'
+    imageAlt: 'WRFC Men\'s Rugby Team Huddle'
   },
   about: {
     title: 'About WRFC | History & Tradition Since 1963',
@@ -92,7 +92,7 @@ export function getPageSEO(pageKey: PageKey): PageSEOData {
 export function generateMetadata(pageKey: PageKey): Metadata {
   const seoData = getPageSEO(pageKey);
   const { title, description, keywords, imagePath, imageAlt } = seoData;
-  const url = `https://wrfc.org/${pageKey === 'home' ? '' : pageKey}`;
+  const url = `https://washingtonrugby.org/${pageKey === 'home' ? '' : pageKey}`;
 
   return {
     title,
@@ -125,7 +125,7 @@ export function generateMetadata(pageKey: PageKey): Metadata {
 
 export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, unknown>) {
   const seoData = getPageSEO(pageKey);
-  const baseUrl = 'https://wrfc.org';
+  const baseUrl = 'https://washingtonrugby.org';
   
   const baseStructuredData = {
     '@context': 'https://schema.org',

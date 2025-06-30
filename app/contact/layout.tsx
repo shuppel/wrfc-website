@@ -1,4 +1,4 @@
-import { generateMetadata, getStructuredData } from '../utils/seo';
+import { generateMetadata } from '../utils/seo';
 import { WebsiteJsonLd, OrganizationJsonLd } from '../../components/JsonLd';
 import { Metadata } from 'next';
 
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     yandex: 'verification_token',  // Replace with actual Yandex verification token if needed
   },
   alternates: {
-    canonical: 'https://wrfc.org/contact',
+    canonical: 'https://washingtonrugby.org/contact',
     languages: {
-      'en-US': 'https://wrfc.org/contact',
+      'en-US': 'https://washingtonrugby.org/contact',
     },
   },
 };

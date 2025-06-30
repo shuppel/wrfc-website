@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { getAllBlogPosts } from '@/lib/contentful';
 import { formatDate } from '@/lib/utils';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
-import { generateMetadata, getStructuredData } from '../utils/seo';
 
 export const metadata: Metadata = {
   title: 'Blog | Washington Rugby Football Club',

@@ -39,7 +39,7 @@ export function SEO({
   type = 'website'
 }: SEOProps) {
   const router = useRouter()
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.wrfc.org'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.washingtonrugby.org'
   const fullUrl = `${siteUrl}${router.asPath}`
   const finalCanonicalUrl = canonicalUrl || fullUrl
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`

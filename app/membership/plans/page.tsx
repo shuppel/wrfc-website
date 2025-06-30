@@ -63,7 +63,7 @@ export default async function MembershipPlansPage() {
           
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">What's included in membership?</h3>
+              <h3 className="text-lg font-semibold mb-2">What&apos;s included in membership?</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 Membership includes access to training sessions, eligibility for matches, club gear discounts, 
                 and social events. Specific benefits vary by membership type.

@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <ArticleJsonLd
         title={title}
         description={post.fields.excerpt}
-        url={`https://wrfc.org/blog/${params.slug}`}
+        url={`https://washingtonrugby.org/blog/${params.slug}`}
         images={featuredImage?.fields?.file?.url ? [`https:${featuredImage.fields.file.url}`] : []}
         datePublished={publishDate}
         authorName={author?.fields?.name || 'WRFC Staff'}

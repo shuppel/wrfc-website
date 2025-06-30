@@ -16,12 +16,12 @@ export default function MediaPage() {
         '@type': 'SportsTeam',
         name: 'Washington Rugby Football Club',
         sport: 'Rugby',
-        url: 'https://wrfc.org'
+        url: 'https://washingtonrugby.org'
       },
       publisher: {
         '@type': 'Organization',
         name: 'Washington Rugby Football Club',
-        url: 'https://wrfc.org'
+        url: 'https://washingtonrugby.org'
       }
     }
   });

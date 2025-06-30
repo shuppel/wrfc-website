@@ -1,4 +1,4 @@
-import { createClient } from 'contentful';
+import { createClient, Document } from 'contentful';
 
 // Initialize Contentful client
 const client = createClient({
@@ -39,7 +39,7 @@ export interface BlogPost {
       };
     };
     excerpt: string;
-    content: any; // Rich text content
+    content: Document; // Rich text content
     author: {
       fields: {
         name: string;

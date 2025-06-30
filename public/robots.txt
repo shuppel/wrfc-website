@@ -26,4 +26,4 @@ User-agent: Googlebot-Mobile
 Allow: /
 
 # Sitemap declaration
-Sitemap: https://www.wrfc.org/sitemap.xml 
+Sitemap: https://www.washingtonrugby.org/sitemap.xml 

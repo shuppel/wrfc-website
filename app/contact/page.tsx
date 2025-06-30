@@ -18,7 +18,7 @@ export default function ContactPage() {
       organization: {
         '@type': 'SportsOrganization',
         name: 'Washington Rugby Football Club',
-        url: 'https://wrfc.org',
+        url: 'https://washingtonrugby.org',
         location: {
           '@type': 'Place',
           name: 'Washington, DC',

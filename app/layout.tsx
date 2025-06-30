@@ -27,7 +27,7 @@ const quantico = Quantico({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wrfc.org'),
+  metadataBase: new URL('https://washingtonrugby.org'),
   title: {
     default: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
     template: '%s | WRFC - Washington Rugby Football Club'
@@ -59,12 +59,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://wrfc.org'
+    canonical: 'https://washingtonrugby.org'
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://wrfc.org',
+    url: 'https://washingtonrugby.org',
     siteName: 'Washington Rugby Football Club',
     title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
     description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',

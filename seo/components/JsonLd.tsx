@@ -8,8 +8,8 @@ export function OrganizationJsonLd() {
           "@type": "SportsTeam",
           "name": "Washington Rugby Football Club",
           "alternateName": "WRFC",
-          "url": "https://www.wrfc.org",
-          "logo": "https://www.wrfc.org/images/wrfc-logo.png",
+          "url": "https://www.washingtonrugby.org",
+          "logo": "https://www.washingtonrugby.org/images/wrfc-logo.png",
           "sameAs": [
             "https://www.facebook.com/WashingtonRugbyFootballClub/",
             "https://x.com/WRFC_DC",
@@ -46,12 +46,12 @@ export function WebsiteJsonLd() {
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "url": "https://www.wrfc.org",
+          "url": "https://www.washingtonrugby.org",
           "name": "Washington Rugby Football Club",
           "description": "Official website of the Washington Rugby Football Club (WRFC)",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.wrfc.org/search?q={search_term_string}",
+            "target": "https://www.washingtonrugby.org/search?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         })

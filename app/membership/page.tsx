@@ -47,13 +47,13 @@ export default function MembershipPage() {
       offers: {
         '@type': 'Offer',
         availability: 'https://schema.org/InStock',
-        url: 'https://wrfc.org/membership',
+        url: 'https://washingtonrugby.org/membership',
         validFrom: '2024-01-01'
       },
       brand: {
         '@type': 'SportsOrganization',
         name: 'Washington Rugby Football Club',
-        url: 'https://wrfc.org'
+        url: 'https://washingtonrugby.org'
       }
     }
   });

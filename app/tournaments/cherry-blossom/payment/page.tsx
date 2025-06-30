@@ -312,7 +312,7 @@ export default function PaymentPage() {
                   {teamName && <> for team <strong>&quot;{teamName}&quot;</strong></>} in the payment memo.
                 </p>
                 <p className="text-sm text-yellow-800 mt-2">
-                  After sending Zelle payment, please email a screenshot of the confirmation to <strong>treasurer@wrfc.org</strong>
+                  After sending Zelle payment, please email a screenshot of the confirmation to <strong>treasurer@washingtonrugby.org</strong>
                 </p>
                 <p className="text-sm text-yellow-800 mt-2">
                   ⏱️ Please allow up to 48 hours for payment verification

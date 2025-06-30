@@ -27,7 +27,7 @@ export default function Schedule() {
     organizer: {
       '@type': 'SportsOrganization',
       name: 'Washington Rugby Football Club',
-      url: 'https://wrfc.org'
+      url: 'https://washingtonrugby.org'
     }
   });
 

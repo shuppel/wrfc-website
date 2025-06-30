@@ -168,7 +168,7 @@ export default function TournamentsPage() {
     organizer: {
       '@type': 'SportsOrganization',
       name: 'Washington Rugby Football Club',
-      url: 'https://wrfc.org'
+      url: 'https://washingtonrugby.org'
     },
     location: {
       '@type': 'Place',
@@ -182,7 +182,7 @@ export default function TournamentsPage() {
     },
     offers: {
       '@type': 'Offer',
-      url: 'https://wrfc.org/tournaments',
+      url: 'https://washingtonrugby.org/tournaments',
       availability: 'https://schema.org/InStock',
       validFrom: '2024-01-01'
     }

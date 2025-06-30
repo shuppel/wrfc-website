@@ -512,10 +512,10 @@ export default function RosterPage() {
       description: 'Rugby Union Football'
     },
     description: 'Washington Rugby Football Club roster featuring Division 1 and Division 3 teams for the 2024 season',
-    url: 'https://wrfc.org/roster',
+    url: 'https://washingtonrugby.org/roster',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://wrfc.org/logos/wrfc-logo.png'
+      url: 'https://washingtonrugby.org/logos/wrfc-logo.png'
     },
     coach: {
       '@type': 'Person',

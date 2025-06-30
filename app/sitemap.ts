@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://wrfc.org'
+  const baseUrl = 'https://washingtonrugby.org'
   
   // Main pages
   const mainRoutes: MetadataRoute.Sitemap = [

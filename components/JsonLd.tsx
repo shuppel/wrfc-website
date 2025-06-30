@@ -43,8 +43,8 @@ export function OrganizationJsonLd() {
     '@type': 'SportsTeam',
     name: 'Washington Rugby Football Club',
     alternateName: 'WRFC',
-    url: 'https://wrfc.org',
-    logo: 'https://wrfc.org/logos/wrfc_logo.png',
+    url: 'https://washingtonrugby.org',
+    logo: 'https://washingtonrugby.org/logos/wrfc_logo.png',
     sameAs: [
       'https://www.facebook.com/WashingtonRugbyFootballClub/',
       'https://twitter.com/WRFC_DC',
@@ -89,12 +89,12 @@ export function WebsiteJsonLd() {
         __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
-          url: 'https://wrfc.org',
+          url: 'https://washingtonrugby.org',
           name: 'Washington Rugby Football Club',
           description: 'Official website of the Washington Rugby Football Club (WRFC)',
           potentialAction: {
             '@type': 'SearchAction',
-            target: 'https://wrfc.org/search?q={search_term_string}',
+            target: 'https://washingtonrugby.org/search?q={search_term_string}',
             'query-input': 'required name=search_term_string',
           },
         }),
@@ -115,7 +115,7 @@ export function BreadcrumbJsonLd({ items }: { items: { name: string; item: strin
             '@type': 'ListItem',
             position: index + 1,
             name: item.name,
-            item: `https://wrfc.org${item.item}`,
+            item: `https://washingtonrugby.org${item.item}`,
           })),
         }),
       }}
@@ -161,7 +161,7 @@ export function SportEventJsonLd({
           },
           description,
           image,
-          url: url || 'https://wrfc.org',
+          url: url || 'https://washingtonrugby.org',
           competitor: [
             {
               '@type': 'SportsTeam',

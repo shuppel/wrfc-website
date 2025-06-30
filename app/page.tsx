@@ -121,7 +121,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Users className="w-12 h-12 text-wrfc-navy" />}
               title="Strong Community"
-              description="Join a brotherhood of passionate rugby players and supporters in the heart of DC."
+              description="Join a brotherhood of passionate men's rugby players and supporters in the heart of Washington DC."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
             <FeatureCard 
@@ -180,7 +180,7 @@ export default function Home() {
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
             Whether you&apos;re an experienced player or new to rugby, WRFC welcomes athletes of all levels. 
-            Join us and be part of Washington&apos;s premier rugby club.
+            Join us and be part of Washington DC&apos;s premier men&apos;s rugby club.
           </p>
           <Link 
             href="/membership" 
