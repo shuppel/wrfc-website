@@ -129,18 +129,27 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-6">
                 <ContactInfo
-                  title="General Inquiries"
-                  content="info@wrfc.com"
+                  title="Location"
+                  content="Washington, DC"
+                  icon={<LocationIcon />}
+                />
+                <ContactInfo
+                  title="Marketing & General Inquiries"
+                  content="washingtonrugbyfc1963@gmail.com"
                   icon={<EmailIcon />}
                 />
                 <ContactInfo
-                  title="Membership"
-                  content="membership@wrfc.com"
-                  icon={<UserIcon />}
+                  title="Primary Training Ground"
+                  content="Rosedale Recreation Center"
+                  address="1701 Gales St NE, Washington, DC 20002"
+                  mapLink="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002"
+                  icon={<LocationIcon />}
                 />
                 <ContactInfo
-                  title="Training Ground"
-                  content="123 Rugby Field, Washington, DC 20001"
+                  title="Backup Training Ground"
+                  content="Trinidad Community Center"
+                  address="1310 Childress St NE, Washington, DC 20002"
+                  mapLink="https://maps.google.com/maps?q=Trinidad+Community+Center+1310+Childress+St+NE+Washington+DC+20002"
                   icon={<LocationIcon />}
                 />
               </div>
@@ -150,9 +159,19 @@ export default function ContactPage() {
                   Training Hours
                 </h3>
                 <ul className="space-y-2 font-jetbrains text-gray-700 dark:text-gray-300">
-                  <li>Tuesday: 7:00 PM - 9:00 PM</li>
-                  <li>Thursday: 7:00 PM - 9:00 PM</li>
-                  <li>Saturday: 10:00 AM - 12:00 PM</li>
+                  <li><strong>Regular Season:</strong> 8:00 PM - 10:00 PM</li>
+                  <li><strong>Summer 7s Training:</strong> 7:00 PM - 9:00 PM</li>
+                  <li className="text-sm mt-3">
+                    <strong>Summer 7s Locations:</strong>
+                    <br />
+                    <a href="https://maps.app.goo.gl/YgkGvG25ZMvrzYWk9" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      Wallenberg Field
+                    </a> (Rugby field behind Holocaust Museum, Raoul Wallenberg Pl SW)
+                    <br />
+                    <a href="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      Rosedale Recreation Center
+                    </a> (1701 Gales St NE)
+                  </li>
                 </ul>
               </div>
             </div>
@@ -163,7 +182,7 @@ export default function ContactPage() {
   )
 }
 
-function ContactInfo({ title, content, icon }: { title: string; content: string; icon: React.ReactNode }) {
+function ContactInfo({ title, content, address, mapLink, icon }: { title: string; content: string; address?: string; mapLink?: string; icon: React.ReactNode }) {
   return (
     <div className="flex items-start space-x-4">
       <div className="text-blue-600 dark:text-blue-400">
@@ -172,6 +191,17 @@ function ContactInfo({ title, content, icon }: { title: string; content: string;
       <div>
         <h3 className="font-bold mb-1 font-nasalization text-gray-900 dark:text-gray-100">{title}</h3>
         <p className="font-jetbrains text-gray-700 dark:text-gray-300">{content}</p>
+        {address && (
+          <p className="font-jetbrains text-sm text-gray-600 dark:text-gray-400 mt-1">
+            {mapLink ? (
+              <a href={mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 underline">
+                {address}
+              </a>
+            ) : (
+              address
+            )}
+          </p>
+        )}
       </div>
     </div>
   )

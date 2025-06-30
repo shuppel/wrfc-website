@@ -5,6 +5,9 @@ type PageKey =
   | 'about'
   | 'roster'
   | 'schedule'
+  | 'practice-schedule'
+  | 'game-schedule'
+  | 'events'
   | 'tournaments'
   | 'membership'
   | 'sponsors'
@@ -47,6 +50,27 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
     keywords: ['rugby schedule', 'dc rugby matches', 'rugby games dc', 'wrfc calendar'],
     imagePath: '/assets/pictures/match_action.jpg',
     imageAlt: 'WRFC Match Action'
+  },
+  'practice-schedule': {
+    title: 'WRFC Practice Schedule | Training Times & Philosophy',
+    description: 'View Washington Rugby Football Club practice schedule, training philosophy, and detailed session breakdown. Join our regular training sessions.',
+    keywords: ['rugby practice', 'training schedule', 'wrfc practice', 'rugby training dc', 'practice times'],
+    imagePath: '/assets/pictures/team_practice.jpg',
+    imageAlt: 'WRFC Practice Session'
+  },
+  'game-schedule': {
+    title: 'WRFC Game Schedule | Match Fixtures & Results',
+    description: 'View Washington Rugby Football Club game schedule, upcoming fixtures, and match results for the current season.',
+    keywords: ['rugby games', 'match schedule', 'wrfc fixtures', 'rugby matches dc', 'game results'],
+    imagePath: '/assets/pictures/match_action.jpg',
+    imageAlt: 'WRFC Match Action'
+  },
+  events: {
+    title: 'WRFC Events & Tournaments | Annual Calendar',
+    description: 'Explore WRFC annual events including 30 Under 30, Cherry Blossom Tournament, banquets, and international tours.',
+    keywords: ['rugby events', 'wrfc tournaments', 'cherry blossom', 'rugby banquet', 'rugby tour'],
+    imagePath: '/assets/pictures/tournament_action.jpg',
+    imageAlt: 'WRFC Events and Tournaments'
   },
   tournaments: {
     title: 'Rugby Tournaments | WRFC Events & Championships',

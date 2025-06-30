@@ -3,9 +3,14 @@ Allow: /
 Allow: /about
 Allow: /roster
 Allow: /schedule
+Allow: /schedule/practice
+Allow: /schedule/game
+Allow: /schedule/events
 Allow: /membership
 Allow: /tournaments
 Allow: /contact
+Allow: /media
+Allow: /sponsors
 
 # Protect private areas
 Disallow: /admin/

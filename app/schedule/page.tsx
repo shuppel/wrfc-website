@@ -1,38 +1,38 @@
-import { generateMetadata, getStructuredData } from '../utils/seo'
+import Link from 'next/link'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
-import ScheduleView from '../../components/feature/schedule/ScheduleView';
-import { SAMPLE_DATA } from '../../types/game';
+import { getStructuredData } from '../utils/seo'
 
-// Generate metadata for the schedule page
-export const metadata = generateMetadata('schedule');
-
-export default function Schedule() {
-  // Enhanced structured data for the schedule page
+export default function SchedulePage() {
   const structuredData = getStructuredData('schedule', {
-    '@type': 'SportsEvent',
-    name: 'WRFC Rugby Schedule',
-    description: 'Washington Rugby Football Club match schedule for the current season',
-    startDate: SAMPLE_DATA.games[0]?.date,
-    location: {
-      '@type': 'Place',
-      name: 'Various Rugby Fields',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Washington',
-        addressRegion: 'DC',
-        addressCountry: 'US'
-      }
-    },
-    organizer: {
-      '@type': 'SportsOrganization',
-      name: 'Washington Rugby Football Club',
-      url: 'https://washingtonrugby.org'
-    }
+    '@type': 'WebPage',
+    name: 'Schedule - WRFC',
+    description: 'Washington Rugby Football Club schedule hub - practice times, game fixtures, and events.'
   });
 
+  const scheduleLinks = [
+    {
+      href: '/schedule/practice',
+      title: 'Practice Schedule',
+      description: 'Training times, locations, and session breakdown',
+      icon: '🏃'
+    },
+    {
+      href: '/schedule/game',
+      title: 'Game Schedule',
+      description: 'Match fixtures, results, and upcoming games',
+      icon: '🏉'
+    },
+    {
+      href: '/schedule/events',
+      title: 'Events & Tournaments',
+      description: 'Annual events, tours, and special occasions',
+      icon: '📅'
+    }
+  ];
+
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="flex flex-col items-center w-full">
       {/* Structured Data */}
       <BreadcrumbJsonLd 
         items={[
@@ -40,19 +40,42 @@ export default function Schedule() {
           { name: 'Schedule', item: '/schedule' }
         ]} 
       />
-      <JsonLd type="Event" data={structuredData} />
+      <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="hero-title mb-6">Match Schedule</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          View upcoming and past matches for Washington Rugby Football Club. 
-          Check game times, locations, and results for our Division 1 and Division 3 teams.
-        </p>
-      </div>
+      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+            Schedule
+          </h1>
+          <p className="text-xl text-center max-w-3xl mx-auto font-jetbrains">
+            Everything you need to know about when and where
+          </p>
+        </div>
+      </section>
 
-      {/* Schedule View - Client Component */}
-      <ScheduleView games={SAMPLE_DATA.games} />
+      {/* Schedule Links */}
+      <section className="w-full py-16 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-6">
+            {scheduleLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
+              >
+                <div className="text-5xl mb-4 text-center">{item.icon}</div>
+                <h2 className="text-2xl font-bold mb-3 font-nasalization text-blue-900 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center">
+                  {item.title}
+                </h2>
+                <p className="text-gray-700 dark:text-gray-300 font-jetbrains text-center">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 } 

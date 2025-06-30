@@ -184,18 +184,34 @@ export default function Home() {
           </p>
           
           {/* Embedded Google Form */}
-          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-            <iframe 
-              src="https://docs.google.com/forms/d/e/1FAIpQLSdirbLQUa8h2sRBAIxSCzbncdcOJgvBXjON-S1yx7NfBXgTyA/viewform?embedded=true" 
-              width="100%" 
-              height="800" 
-              frameBorder="0" 
-              marginHeight={0} 
-              marginWidth={0}
-              className="w-full"
-            >
-              Loading…
-            </iframe>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
+              <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfrwiFB_oUzIvE8UHwtv9lz9JAACoPjDpWJ2LCo4xq_P01Atg/viewform?embedded=true" 
+                className="w-full h-[600px] md:h-[800px] lg:h-[1000px]"
+                frameBorder="0" 
+                marginHeight={0} 
+                marginWidth={0}
+                loading="lazy"
+                title="WRFC Membership Form"
+              >
+                Loading…
+              </iframe>
+            </div>
+            
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-500">
+                Having trouble viewing the form? 
+                <a 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfrwiFB_oUzIvE8UHwtv9lz9JAACoPjDpWJ2LCo4xq_P01Atg/viewform" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="ml-1 text-blue-600 hover:underline"
+                >
+                  Open in new tab
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>

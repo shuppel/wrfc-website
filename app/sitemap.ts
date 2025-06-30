@@ -32,6 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/schedule/practice`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/schedule/game`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as ChangeFreq,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/schedule/events`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/tournaments`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as ChangeFreq,

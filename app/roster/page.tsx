@@ -30,7 +30,7 @@ const players: Player[] = [
     position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
-    height: "6'1\"",
+    height: "6'4\"",
     weight: 107,
     d1Caps: 8,
     badges: [
