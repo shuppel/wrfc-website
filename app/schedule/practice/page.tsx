@@ -1,6 +1,6 @@
-import { BreadcrumbJsonLd } from '../../components/JsonLd'
-import JsonLd from '../../components/JsonLd'
-import { getStructuredData } from '../utils/seo'
+import { BreadcrumbJsonLd } from '../../../components/JsonLd'
+import JsonLd from '../../../components/JsonLd'
+import { getStructuredData } from '../../utils/seo'
 
 export default function PracticeSchedulePage() {
   const structuredData = getStructuredData('practice-schedule', {
