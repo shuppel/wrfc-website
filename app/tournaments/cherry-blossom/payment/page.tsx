@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
 import SquarePayment from '@/components/SquarePayment';
@@ -11,7 +11,7 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-export default function PaymentPage() {
+function PaymentContent() {
   const searchParams = useSearchParams();
   const selectedDivision = searchParams.get('division') || '';
   const teamName = searchParams.get('team') || '';
@@ -21,16 +21,6 @@ export default function PaymentPage() {
   const [hasCopied, setHasCopied] = useState(false);
   const { toast } = useToast();
 
-  const handlePaymentSuccess = () => {
-    toast({
-      title: 'Payment Successful',
-      description: 'You will receive a confirmation email shortly.',
-    });
-  };
-
-  const handlePaymentCancel = () => {
-    // No need to set dialog state as it's handled by the SquarePayment component
-  };
 
   const copyZelleInfo = async () => {
     try {
@@ -83,11 +73,7 @@ export default function PaymentPage() {
           <CardContent className="space-y-4 bg-white">
             <div className="grid gap-4">
               <SquarePayment
-                divisionId="cherry-blossom-2025"
-                divisionName={`Cherry Blossom Tournament 2025 - ${selectedDivision}`}
-                amount={400}
-                onSuccess={handlePaymentSuccess}
-                onCancel={handlePaymentCancel}
+                squarePaymentLink="https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6"
               />
 
               <Button 
@@ -383,5 +369,13 @@ export default function PaymentPage() {
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PaymentContent />
+    </Suspense>
   );
 } 

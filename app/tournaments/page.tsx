@@ -95,7 +95,7 @@ const tournaments: Tournament[] = [
         registrationDeadline: '2025-03-15'
       }
     ],
-    status: 'upcoming',
+    status: 'past',
     year: 2025
   },
   {

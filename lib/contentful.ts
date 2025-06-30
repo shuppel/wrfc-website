@@ -1,24 +1,27 @@
-import { createClient, Document } from 'contentful';
+import { createClient } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
 // Initialize Contentful client
 const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID || '',
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
+  space: process.env.CONTENTFUL_SPACE_ID || 'dummy-space-id',
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || 'dummy-access-token',
   environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
 });
 
 // Validation function to ensure required environment variables are set
-export function validateContentfulConfig() {
+export function validateContentfulConfig(): boolean {
   const requiredEnvVars = [
     'CONTENTFUL_SPACE_ID',
     'CONTENTFUL_ACCESS_TOKEN',
   ];
 
   for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-      throw new Error(`Contentful configuration error: Environment variable ${envVar} is not set`);
+    if (!process.env[envVar] || process.env[envVar] === '') {
+      console.warn(`Contentful configuration warning: Environment variable ${envVar} is not set. Returning empty data.`);
+      return false;
     }
   }
+  return true;
 }
 
 // Define types for content models
@@ -114,60 +117,95 @@ export type MembershipPlanCollection = {
 
 // Fetch all blog posts
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  validateContentfulConfig();
-  const response = await client.getEntries({
-    content_type: 'blogPost',
-    order: '-fields.publishDate',
-  });
-  return response.items as unknown as BlogPost[];
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'blogPost',
+      order: ['-fields.publishDate'],
+    });
+    return response.items as unknown as BlogPost[];
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
 }
 
 // Fetch a single blog post by slug
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  validateContentfulConfig();
-  const response = await client.getEntries({
-    content_type: 'blogPost',
-    'fields.slug': slug,
-    limit: 1,
-  });
-  
-  return response.items.length > 0 
-    ? response.items[0] as unknown as BlogPost 
-    : null;
+  if (!validateContentfulConfig()) {
+    return null;
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'blogPost',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as BlogPost 
+      : null;
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
+    return null;
+  }
 }
 
 // Fetch all player profiles
 export async function getAllPlayerProfiles(): Promise<PlayerProfile[]> {
-  validateContentfulConfig();
-  const response = await client.getEntries({
-    content_type: 'playerProfile',
-    order: 'fields.number',
-  });
-  return response.items as unknown as PlayerProfile[];
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'playerProfile',
+      order: ['fields.number'],
+    });
+    return response.items as unknown as PlayerProfile[];
+  } catch (error) {
+    console.error('Error fetching player profiles:', error);
+    return [];
+  }
 }
 
 // Fetch a single player profile by slug
 export async function getPlayerProfileBySlug(slug: string): Promise<PlayerProfile | null> {
-  validateContentfulConfig();
-  const response = await client.getEntries({
-    content_type: 'playerProfile',
-    'fields.slug': slug,
-    limit: 1,
-  });
-  
-  return response.items.length > 0 
-    ? response.items[0] as unknown as PlayerProfile 
-    : null;
+  if (!validateContentfulConfig()) {
+    return null;
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'playerProfile',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as PlayerProfile 
+      : null;
+  } catch (error) {
+    console.error('Error fetching player profile:', error);
+    return null;
+  }
 }
 
 // Fetch all membership plans
 export async function getAllMembershipPlans(): Promise<MembershipPlan[]> {
-  validateContentfulConfig();
-  const response = await client.getEntries({
-    content_type: 'membershipPlan',
-    order: 'fields.price',
-  });
-  return response.items as unknown as MembershipPlan[];
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'membershipPlan',
+      order: ['fields.price'],
+    });
+    return response.items as unknown as MembershipPlan[];
+  } catch (error) {
+    console.error('Error fetching membership plans:', error);
+    return [];
+  }
 }
 
 export default client;

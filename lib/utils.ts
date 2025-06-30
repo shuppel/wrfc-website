@@ -3,4 +3,21 @@ import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export function formatDate(dateString: string, format?: string): string {
+  const date = new Date(dateString);
+  
+  if (format === 'MMM yyyy') {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+    });
+  }
+  
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 } 

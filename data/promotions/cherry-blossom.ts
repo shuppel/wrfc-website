@@ -10,7 +10,7 @@ export const cherryBlossomPromotion: Promotion = {
   startDate: '2025-01-01T00:00:00Z',
   endDate: '2025-04-10T23:59:59Z',
   priority: 100,
-  isActive: true,
+  isActive: false,
   type: 'tournament',
   tags: ['rugby', 'tournament', 'cherry blossom', '2025'],
   ctaType: 'external',
