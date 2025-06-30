@@ -47,7 +47,7 @@ export default function PracticeSchedulePage() {
             </p>
             <p className="text-gray-700 dark:text-gray-300 font-jetbrains">
               Every practice follows a structured approach that ensures players of all levels can improve 
-              their game while contributing to the team's overall success. We emphasize fundamentals, 
+              their game while contributing to the team&apos;s overall success. We emphasize fundamentals, 
               fitness, and fostering a positive rugby culture.
             </p>
           </div>
