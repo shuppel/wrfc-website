@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { ChevronDown, Users, Mail, Phone, Crown, Star, DollarSign, FileText, Shield, Heart, Hash, Target, HandshakeIcon, Megaphone, PartyPopper, Camera } from 'lucide-react'
+import { Users, Mail, Phone, Crown, Star, DollarSign, FileText, Shield, Heart, Hash, Target, HandshakeIcon, PartyPopper, Camera } from 'lucide-react'
 import ECAccordion from '@/components/ECAccordion'
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -253,8 +253,8 @@ export default function ExecutiveCommitteePage() {
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-white max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Get Involved</h2>
             <p className="text-lg mb-6">
-              Interested in contributing to WRFC's leadership? We welcome members who are 
-              passionate about rugby and committed to the club's success.
+              Interested in contributing to WRFC&apos;s leadership? We welcome members who are 
+              passionate about rugby and committed to the club&apos;s success.
             </p>
             <a 
               href="/contact"

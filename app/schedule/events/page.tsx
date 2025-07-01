@@ -109,11 +109,6 @@ export default function EventsPage() {
                       <span className="font-semibold text-gray-900 dark:text-gray-100">When: </span>
                       <span className="text-gray-600 dark:text-gray-400">{event.timing}</span>
                     </div>
-                    {event.recentNote && (
-                      <div className="mt-2 text-sm text-green-600 dark:text-green-400 font-jetbrains">
-                        ✓ {event.recentNote}
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>

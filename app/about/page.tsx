@@ -215,12 +215,12 @@ export default function AboutPage() {
               <div className="absolute bottom-8 left-8 text-white max-w-xl">
                 <h3 className="text-2xl font-bold mb-4 font-nasalization">Community & Competition</h3>
                 <p className="text-lg opacity-90 mb-4">
-                  At WRFC, we believe that "compete" means to strive together. We are a club built on both 
+                  At WRFC, we believe that &quot;compete&quot; means to strive together. We are a club built on both 
                   community and competition, where bonds are forged through shared effort and celebration.
                 </p>
                 <p className="text-lg opacity-90">
-                  Every Thursday practice ends with a pint at the pub - because rugby culture isn't just about 
-                  what happens on the pitch. It's about the unity, brotherhood, and lasting friendships that 
+                  Every Thursday practice ends with a pint at the pub - because rugby culture isn&apos;t just about 
+                  what happens on the pitch. It&apos;s about the unity, brotherhood, and lasting friendships that 
                   make us more than just a team.
                 </p>
               </div>
