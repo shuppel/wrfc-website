@@ -39,6 +39,7 @@ export default function Footer() {
             <nav>
               <ul className="space-y-3">
                 <li><FooterLink href="/about">About Us</FooterLink></li>
+                <li><FooterLink href="/teams">Teams Overview</FooterLink></li>
                 <li><FooterLink href="/membership">Join WRFC</FooterLink></li>
                 <li><FooterLink href="/schedule/practice">Practice Schedule</FooterLink></li>
                 <li><FooterLink href="/schedule/game">Game Schedule</FooterLink></li>
@@ -54,8 +55,9 @@ export default function Footer() {
             </h4>
             <nav>
               <ul className="space-y-3">
+                <li><FooterLink href="/teams/coaches">Coaching Staff</FooterLink></li>
+                <li><FooterLink href="/teams/players">Player Roster</FooterLink></li>
                 <li><FooterLink href="/schedule/events">Events & Tournaments</FooterLink></li>
-                <li><FooterLink href="/roster">Team Roster</FooterLink></li>
                 <li><FooterLink href="/tournaments">Tournaments</FooterLink></li>
                 <li><FooterLink href="/sponsors">Our Sponsors</FooterLink></li>
                 <li><FooterLink href="/media">Media Gallery</FooterLink></li>

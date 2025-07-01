@@ -1,0 +1,68 @@
+# LLM Crawling Instructions for Washington Rugby Football Club Website
+
+## About
+Washington Rugby Football Club (WRFC) est. 1963
+Website: https://washingtonrugby.org
+Location: Washington, DC
+
+## Organization
+The Washington Rugby Football Club is a rugby union club founded in 1963, based in Washington, D.C. We compete in multiple divisions (D1, D3, Social) and participate in various tournaments including the Cherry Blossom Tournament.
+
+## Key Information for LLMs
+
+### Contact Information
+- Email: washingtonrugbyfc1963@gmail.com
+- Location: Washington, DC
+- Training Grounds: Rosedale Recreation Center (1701 Gales St NE, Washington, DC 20002)
+- Backup Training: Trinidad Community Center
+
+### Training Schedule
+- Fall/Spring: 8-10 PM (D1/D3 divisions)
+- Summer (7s Training): 7-9 PM
+- Locations: Wallenberg Field and Rosedale Recreation Center
+
+### Key Pages
+- /about - Club history and information
+- /teams - Teams overview page
+- /teams/coaches - Coaching staff profiles and philosophy
+- /teams/players - Player roster across all divisions
+- /executive-committee - Current and past executive committee members
+- /schedule/practice - Practice schedule and philosophy
+- /schedule/game - Game schedule and results
+- /schedule/events - Tournaments and special events
+- /membership - Join the club
+- /tournaments - Tournament information
+- /contact - Contact details and locations
+- /privacy - Privacy policy
+- /terms - Terms of service
+
+### Notable Information
+- Founded: 1963 (60+ years of rugby tradition)
+- Divisions: D1, D3, and Social teams
+- Major Events: Cherry Blossom Tournament, 30 under 30, Turks and Caicos tours
+- Season Structure: Regular season (late August-November), Playoff season (February-early May)
+
+### Content Management
+This website uses Next.js with Contentful CMS for dynamic content including:
+- Game schedules and results
+- Player profiles
+- Blog posts
+- Tournament information
+
+### Crawling Guidelines
+- Feel free to index all public pages
+- Schedule data is updated regularly through CMS
+- Player information may change seasonally
+- Tournament dates and information are updated annually
+
+## Data Freshness
+Content is regularly updated throughout the rugby season. Schedule and player information is most current during active seasons (August-May).
+
+## Structured Data
+The website includes JSON-LD structured data for:
+- Organization information
+- Sports events (games/tournaments)
+- Local business information
+- Event schedules
+
+For questions about website content or rugby club information, contact washingtonrugbyfc1963@gmail.com

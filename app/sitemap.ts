@@ -79,6 +79,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily' as ChangeFreq,
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/teams`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/teams/coaches`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/teams/players`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/executive-committee`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as ChangeFreq,
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as ChangeFreq,
+      priority: 0.3,
+    },
   ]
 
   // Tournament pages (dynamic)

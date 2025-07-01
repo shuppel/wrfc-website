@@ -8,7 +8,15 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 
 const NAV_LINKS = [
   { href: '/about', label: 'About' },
-  { href: '/roster', label: 'Team' },
+  { 
+    href: '/teams', 
+    label: 'Teams',
+    dropdown: [
+      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
+      { href: '/teams/players', label: 'Player Roster', icon: '🏃‍♂️' },
+      { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
+    ]
+  },
   { 
     href: '/schedule', 
     label: 'Schedule',
@@ -99,13 +107,16 @@ export default function Header() {
                 >
                   {link.dropdown ? (
                     <>
-                      <button className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1">
+                      <Link 
+                        href={link.href}
+                        className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
+                      >
                         {link.label}
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
                           hoveredDropdown === link.href ? 'rotate-180' : ''
                         }`} />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
-                      </button>
+                      </Link>
                       
                       {/* Dropdown Menu */}
                       <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${

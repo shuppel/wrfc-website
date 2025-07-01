@@ -1,10 +1,17 @@
+import { Metadata } from 'next'
 import Link from 'next/link'
-import { generateMetadata } from '../utils/seo'
-import { BreadcrumbJsonLd } from '../../components/JsonLd'
-import JsonLd from '../../components/JsonLd'
-import RosterList from '../../components/RosterList';
+import { generateSEOMetadata } from '../../utils/seo'
+import { getAllPlayerProfiles } from '@/lib/contentful'
+import PlayerRosterClient from '@/components/PlayerRosterClient'
 
-export interface Player {
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Player Roster',
+  description: 'Meet the players of Washington Rugby Football Club. Our diverse roster includes talented athletes from all backgrounds united by their love of rugby.',
+  path: '/teams/players'
+})
+
+// Real WRFC player data from roster
+interface RosterPlayer {
   id: number;
   name: string;
   position: string;
@@ -12,8 +19,8 @@ export interface Player {
   image: string;
   experience?: string;
   division: 'D1' | 'D3' | 'Both';
-  height?: string; // in format '6\'2"' or similar
-  weight?: number; // in kg
+  height?: string;
+  weight?: number;
   d1Caps?: number;
   d3Caps?: number;
   badges?: {
@@ -22,9 +29,8 @@ export interface Player {
   }[];
 }
 
-// This would typically come from an API or database
-const players: Player[] = [
-  // Division 1 (Men's D1) Roster
+const realPlayers: RosterPlayer[] = [
+  // Division 1 Leadership
   {
     id: 1,
     name: "Harry Higginbottom",
@@ -39,6 +45,45 @@ const players: Player[] = [
     ]
   },
   {
+    id: 12,
+    name: "Christopher Miller",
+    position: "Flanker/Number 8",
+    image: "/assets/art/player_profile_rugby.png",
+    division: 'Both',
+    height: "5'10\"",
+    weight: 90,
+    d1Caps: 7,
+    d3Caps: 3,
+    badges: [
+      { text: "Club Captain", variant: "glow" }
+    ]
+  },
+  {
+    id: 14,
+    name: "Thomas Demetriou",
+    position: "Number 8",
+    image: "/assets/art/player_profile_rugby.png",
+    division: 'D1',
+    height: "6'2\"",
+    weight: 109,
+    d1Caps: 5,
+    badges: [
+      { text: "Vice Captain", variant: "outline" }
+    ]
+  },
+  {
+    id: 19,
+    name: "Leo Fangmeyer",
+    position: "Fly-half",
+    image: "/assets/art/player_profile_rugby.png",
+    division: 'D1',
+    badges: [
+      { text: "Captain (Early 2024)", variant: "outline" }
+    ]
+  },
+
+  // D1 Front Row
+  {
     id: 2,
     name: "Matthew Bainbridge",
     position: "Front Row",
@@ -51,10 +96,10 @@ const players: Player[] = [
   {
     id: 3,
     name: "Erikk Shupp",
-    position: "Front Row",
+    position: "Hooker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
-    height: "5'9.5\"",
+    height: "5'10\"",
     weight: 113,
     d1Caps: 6
   },
@@ -98,10 +143,12 @@ const players: Player[] = [
     height: "6'2\"",
     d1Caps: 5
   },
+
+  // D1 Forwards
   {
     id: 8,
     name: "Zachary Zuzelo",
-    position: "Utility Forward [Hooker/Flanker]",
+    position: "Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
     d1Caps: 3,
@@ -137,20 +184,6 @@ const players: Player[] = [
     d1Caps: 4
   },
   {
-    id: 12,
-    name: "Christopher Miller",
-    position: "Flanker/Number 8",
-    image: "/assets/art/player_profile_rugby.png",
-    division: 'Both',
-    height: "5'10\"",
-    weight: 90,
-    d1Caps: 7,
-    d3Caps: 3,
-    badges: [
-      { text: "Club Captain", variant: "glow" }
-    ]
-  },
-  {
     id: 13,
     name: "Stephen Okala",
     position: "Flanker/Center",
@@ -161,19 +194,6 @@ const players: Player[] = [
     d1Caps: 6
   },
   {
-    id: 14,
-    name: "Thomas Demetriou",
-    position: "Number 8",
-    image: "/assets/art/player_profile_rugby.png",
-    division: 'D1',
-    height: "6'2\"",
-    weight: 109,
-    d1Caps: 5,
-    badges: [
-      { text: "Vice Captain", variant: "outline" }
-    ]
-  },
-  {
     id: 15,
     name: "Samuel Follansbee",
     position: "Flanker",
@@ -182,6 +202,8 @@ const players: Player[] = [
     height: "6'2\"",
     weight: 240
   },
+
+  // D1 Backs
   {
     id: 16,
     name: "Nicholas Barone",
@@ -204,16 +226,6 @@ const players: Player[] = [
     position: "Scrum-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
-  },
-  {
-    id: 19,
-    name: "Leo Fangmeyer",
-    position: "Fly-half",
-    image: "/assets/art/player_profile_rugby.png",
-    division: 'D1',
-    badges: [
-      { text: "Captain (Early 2024)", variant: "outline" }
-    ]
   },
   {
     id: 20,
@@ -291,15 +303,8 @@ const players: Player[] = [
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both'
   },
-  
-  // Division 3 (Men's D3) Roster - adding new players only (not duplicating D1/Both players)
-  {
-    id: 30,
-    name: "Austin Mack",
-    position: "Prop",
-    image: "/assets/art/player_profile_rugby.png",
-    division: 'D3'
-  },
+
+  // D3 Leadership and Key Players
   {
     id: 31,
     name: "John Veras",
@@ -309,6 +314,13 @@ const players: Player[] = [
     badges: [
       { text: "D3 Captain", variant: "outline" }
     ]
+  },
+  {
+    id: 30,
+    name: "Austin Mack",
+    position: "Prop",
+    image: "/assets/art/player_profile_rugby.png",
+    division: 'D3'
   },
   {
     id: 32,
@@ -474,103 +486,79 @@ const players: Player[] = [
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
   }
-];
+]
 
-// Generate metadata for the roster page
-export const metadata = {
-  ...generateMetadata('roster'),
-  openGraph: {
-    ...generateMetadata('roster').openGraph,
-    type: 'website',
-    title: 'WRFC Team Roster 2024 | Division 1 & Division 3 Players',
-    description: 'Meet the Washington Rugby Football Club players - featuring our Division 1 and Division 3 teams. View player profiles, positions, and stats for the 2024 season.',
-    images: [
-      {
-        url: '/assets/pictures/team_roster.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'WRFC 2024 Team Roster'
-      },
-      {
-        url: '/assets/pictures/team_action.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'WRFC Match Action'
-      }
-    ]
-  }
-};
-
-export default function RosterPage() {
-  // Enhanced structured data for the roster page
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'SportsTeam',
-    name: 'Washington Rugby Football Club',
-    sport: {
-      '@type': 'Sport',
-      name: 'Rugby Union',
-      description: 'Rugby Union Football'
-    },
-    description: 'Washington Rugby Football Club roster featuring Division 1 and Division 3 teams for the 2024 season',
-    url: 'https://washingtonrugby.org/roster',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://washingtonrugby.org/logos/wrfc-logo.png'
-    },
-    coach: {
-      '@type': 'Person',
-      name: 'WRFC Coaching Staff'
-    },
-    athlete: players.map(player => ({
-      '@type': 'Person',
-      name: player.name,
-      height: player.height,
-      weight: player.weight ? `${player.weight}kg` : undefined,
-      jobTitle: player.position,
-      memberOf: {
-        '@type': 'SportsTeam',
-        name: `Washington Rugby Football Club ${player.division === 'Both' ? 'D1/D3' : player.division}`
-      }
-    }))
-  };
+export default async function PlayersPage() {
+  // Try to fetch from Contentful, fallback to sample data
+  const contentfulPlayers = await getAllPlayerProfiles()
+  const hasContentfulData = contentfulPlayers.length > 0
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Structured Data */}
-      <BreadcrumbJsonLd 
-        items={[
-          { name: 'Home', item: '/' },
-          { name: 'Roster', item: '/roster' }
-        ]} 
-      />
-      <JsonLd type="SportsTeam" data={structuredData} />
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
+      <div className="container mx-auto px-4">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Player Roster
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Meet the talented athletes who make up Washington Rugby Football Club. 
+            Our players come from diverse backgrounds but share a common passion for rugby excellence.
+          </p>
+        </div>
 
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="hero-title mb-6">Team Roster</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Meet the Washington Rugby Football Club players for the 2024 season. 
-          Our roster features talented athletes across both our Division 1 and Division 3 teams.
-        </p>
-        <div className="mt-6 flex justify-center gap-4">
-          <Link 
-            href="/teams/coaches"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Meet Our Coaches
-          </Link>
-          <Link 
-            href="/teams"
-            className="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            View Teams Overview
-          </Link>
+        {/* Player Roster with Filtering */}
+        <PlayerRosterClient 
+          players={realPlayers}
+          hasContentfulData={hasContentfulData}
+          contentfulPlayers={contentfulPlayers}
+        />
+
+        {/* Stats Summary */}
+        <div className="mt-12 grid md:grid-cols-4 gap-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+              50+
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">Active Players</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+            <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+              3
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">Divisions</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+              15+
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">Nationalities</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+            <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
+              60+
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">Years of Rugby</p>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-12 text-center">
+          <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-8 text-white max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Join Our Team</h2>
+            <p className="text-lg mb-6">
+              Interested in playing rugby? We welcome players of all skill levels. 
+              Come to a practice and see what WRFC is all about!
+            </p>
+            <Link 
+              href="/membership"
+              className="inline-block bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Become a Member
+            </Link>
+          </div>
         </div>
       </div>
-
-      {/* Roster List - Client Component */}
-      <RosterList players={players} />
     </div>
-  );
-} 
+  )
+}

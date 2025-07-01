@@ -113,10 +113,10 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6 font-jetbrains text-gray-700 dark:text-gray-300">
                 <p className="text-lg leading-relaxed">
-                  Founded in 1963, Washington Rugby Football Club has been a cornerstone of rugby 
-                  in the nation&apos;s capital for over half a century. What began as a small group 
-                  of dedicated players has grown into one of the most respected rugby clubs in 
-                  the region.
+                  Founded in 1963, Washington Rugby Football Club is the oldest rugby club in the DC metro area 
+                  and has been a cornerstone of rugby in the nation&apos;s capital for over half a century. 
+                  What began as a small group of dedicated players has grown into one of the most respected 
+                  rugby clubs in the region.
                 </p>
                 <p className="text-lg leading-relaxed">
                   Throughout our history, WRFC has competed at the highest levels of American 
@@ -180,7 +180,7 @@ export default function AboutPage() {
             />
             <ValueCard 
               title="Community"
-              description="Building strong relationships and supporting each other as a rugby family."
+              description="We compete together, celebrate together, and support each other as a rugby family. From the pitch to the pub, we believe in the power of unity."
               icon={<Users className="w-12 h-12 text-wrfc-navy dark:text-blue-400" />}
               image="/assets/pictures/turkscaicosdc2025.png"
             />
@@ -213,10 +213,15 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-8 left-8 text-white max-w-xl">
-                <h3 className="text-2xl font-bold mb-4 font-nasalization">More Than Just Rugby</h3>
+                <h3 className="text-2xl font-bold mb-4 font-nasalization">Community & Competition</h3>
+                <p className="text-lg opacity-90 mb-4">
+                  At WRFC, we believe that "compete" means to strive together. We are a club built on both 
+                  community and competition, where bonds are forged through shared effort and celebration.
+                </p>
                 <p className="text-lg opacity-90">
-                  From holiday celebrations to community service, WRFC is a brotherhood that extends well beyond the pitch.
-                  Our social events and traditions build lasting friendships and strengthen our club culture.
+                  Every Thursday practice ends with a pint at the pub - because rugby culture isn't just about 
+                  what happens on the pitch. It's about the unity, brotherhood, and lasting friendships that 
+                  make us more than just a team.
                 </p>
               </div>
             </div>

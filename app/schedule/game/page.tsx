@@ -1,9 +1,16 @@
+import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
-import { getStructuredData } from '../../utils/seo'
+import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
 import ScheduleView from '../../../components/feature/schedule/ScheduleView'
 import { SAMPLE_DATA } from '../../../types/game'
 import { getAllGames } from '../../../lib/contentful'
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Game Schedule',
+  description: 'Washington Rugby Football Club game schedule, fixtures, and results. Follow WRFC matches in MAC Conference D1 and Capital Conference D3 competitions.',
+  path: '/schedule/game'
+})
 
 export default async function GameSchedulePage() {
   const structuredData = getStructuredData('game-schedule', {

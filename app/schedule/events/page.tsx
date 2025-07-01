@@ -1,6 +1,13 @@
+import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
-import { getStructuredData } from '../../utils/seo'
+import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Events & Tournaments',
+  description: 'Washington Rugby Football Club events, tournaments, and special occasions. Join us for the Cherry Blossom Tournament, 30 Under 30 game, and annual tours.',
+  path: '/schedule/events'
+})
 
 export default function EventsPage() {
   const structuredData = getStructuredData('events', {
@@ -36,7 +43,6 @@ export default function EventsPage() {
       type: "Tour",
       description: "International rugby tour and team bonding experience",
       timing: "Annual Tour",
-      recentNote: "Completed 2 weeks ago",
       icon: "✈️"
     },
     {

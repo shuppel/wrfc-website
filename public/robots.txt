@@ -11,6 +11,12 @@ Allow: /tournaments
 Allow: /contact
 Allow: /media
 Allow: /sponsors
+Allow: /teams
+Allow: /teams/coaches
+Allow: /teams/players
+Allow: /executive-committee
+Allow: /privacy
+Allow: /terms
 
 # Protect private areas
 Disallow: /admin/

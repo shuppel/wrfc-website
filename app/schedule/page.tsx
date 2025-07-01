@@ -1,7 +1,14 @@
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
-import { getStructuredData } from '../utils/seo'
+import { getStructuredData, generateSEOMetadata } from '../utils/seo'
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Schedule',
+  description: 'Washington Rugby Football Club schedule hub - practice times, game fixtures, events, and tournaments. Find all upcoming activities and training sessions.',
+  path: '/schedule'
+})
 
 export default function SchedulePage() {
   const structuredData = getStructuredData('schedule', {

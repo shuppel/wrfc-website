@@ -1,6 +1,13 @@
+import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
-import { getStructuredData } from '../../utils/seo'
+import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Practice Schedule',
+  description: 'Washington Rugby Football Club practice schedule and training sessions. Join us for D1, D3, and social rugby practices at Wallenberg Field and Rosedale Recreation Center.',
+  path: '/schedule/practice'
+})
 
 export default function PracticeSchedulePage() {
   const structuredData = getStructuredData('practice-schedule', {

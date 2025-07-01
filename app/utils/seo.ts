@@ -147,6 +147,44 @@ export function generateMetadata(pageKey: PageKey): Metadata {
   };
 }
 
+// Custom metadata generator for dynamic pages
+export function generateSEOMetadata({ title, description, path }: {
+  title: string;
+  description: string;
+  path: string;
+}): Metadata {
+  const fullTitle = `${title} | Washington Rugby Football Club`;
+  const url = `https://washingtonrugby.org${path}`;
+  const imagePath = '/assets/pictures/wrfc_logo_og.jpg';
+  
+  return {
+    title: fullTitle,
+    description,
+    openGraph: {
+      title: fullTitle,
+      description,
+      url,
+      images: [{
+        url: imagePath,
+        width: 1200,
+        height: 630,
+        alt: title
+      }]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description,
+      images: [imagePath],
+      creator: '@WRFC_DC',
+      site: '@WRFC_DC'
+    },
+    alternates: {
+      canonical: url
+    }
+  };
+}
+
 export function getStructuredData(pageKey: PageKey, additionalData?: Record<string, unknown>) {
   const seoData = getPageSEO(pageKey);
   const baseUrl = 'https://washingtonrugby.org';
