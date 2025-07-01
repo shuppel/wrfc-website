@@ -42,6 +42,20 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
         : dateB.getTime() - dateA.getTime();
     });
 
+  // Group games by year
+  const gamesByYear = games.reduce((acc, game) => {
+    const year = new Date(game.date).getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(game);
+    return acc;
+  }, {} as Record<number, Game[]>);
+
+  const sortedYears = Object.keys(gamesByYear)
+    .map(Number)
+    .sort((a, b) => activeView === 'upcoming' ? a - b : b - a);
+
   // Calculate records from past games
   const calculateRecords = () => {
     const records: { [key in DivisionType]: TeamRecord } = {
@@ -76,12 +90,6 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
   };
 
   const records = calculateRecords();
-
-  function formatGameDateTime(game: Game) {
-    const date = format(parseISO(game.date), 'MMM d, yyyy').toUpperCase();
-    const time = format(parseISO(`2000-01-01T${game.time}`), 'h:mm a');
-    return `${date} | ${time}`;
-  }
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -159,118 +167,308 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             </div>
           </>
         ) : (
-          /* Game Cards Grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {games.map((game) => (
-              <div
-                key={game.id}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700"
-              >
-                {/* Competition Level */}
-                <div className="bg-wrfc-navy text-white py-2 px-4 flex items-center justify-center gap-2">
-                  <Trophy className="w-4 h-4" />
-                  <span className="competition-level">{game.competition}</span>
-                </div>
-
-                {/* Past Game Status */}
-                {isPast(parseISO(game.date)) && (
-                  <div className="bg-wrfc-red text-white py-1 px-4 flex items-center justify-center gap-2">
-                    <History className="w-4 h-4" />
-                    <span className="accent-text">Past Game</span>
-                  </div>
-                )}
-
-                {/* Teams Section */}
-                <div className="p-6 flex items-center justify-between">
-                  <div className="flex flex-col items-center flex-1">
-                    <div className="w-20 h-20 relative mb-2">
-                      <Image
-                        src={getLogoForTeam(game.homeTeam.name, game.homeTeam.logo)}
-                        alt={game.homeTeam.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="team-name text-center">
-                      {game.homeTeam.shortName || game.homeTeam.name}
-                    </span>
+          <>
+            {/* Modern Table View - Desktop */}
+            <div className="hidden lg:block space-y-8">
+              {sortedYears.map((year) => (
+                <div key={year} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                  {/* Year Header */}
+                  <div className="bg-gradient-to-r from-blue-900 to-blue-700 dark:from-blue-800 dark:to-blue-600 px-6 py-4">
+                    <h2 className="text-2xl font-bold text-white font-nasalization">
+                      {year} Season
+                    </h2>
                   </div>
                   
-                  <div className="flex items-center justify-center px-4">
-                    {game.result ? (
-                      <div className="flex items-center space-x-3">
-                        <span className="score-box text-3xl md:text-4xl">
-                          {game.result.homeScore}
-                        </span>
-                        <span className="text-gray-400 font-accent">-</span>
-                        <span className="score-box text-3xl md:text-4xl">
-                          {game.result.awayScore}
-                        </span>
-                      </div>
-                    ) : (
-                      <span className="display-medium text-wrfc-navy">VS</span>
-                    )}
-                  </div>
+                  {/* Table for this year */}
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-gray-50 dark:bg-gray-900">
+                        <tr>
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            Date & Time
+                          </th>
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            Matchup
+                          </th>
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            {activeView === 'past' ? 'Score' : 'Time'}
+                          </th>
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            Venue
+                          </th>
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            Competition
+                          </th>
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                        {gamesByYear[year].map((game, index) => {
+                          const gameDate = parseISO(game.date);
+                          const wrfcTeam = game.isHome ? game.homeTeam : game.awayTeam;
+                          const opponentTeam = game.isHome ? game.awayTeam : game.homeTeam;
+                          const wrfcScore = game.result ? (game.isHome ? game.result.homeScore : game.result.awayScore) : null;
+                          const opponentScore = game.result ? (game.isHome ? game.result.awayScore : game.result.homeScore) : null;
+                          
+                          return (
+                            <tr 
+                              key={game.id} 
+                              className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                                index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50/50 dark:bg-gray-750'
+                              }`}
+                            >
+                              {/* Date & Time */}
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="flex flex-col">
+                                  <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                                    {format(gameDate, 'MMM d, yyyy')}
+                                  </div>
+                                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                                    {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
+                                  </div>
+                                </div>
+                              </td>
 
-                  <div className="flex flex-col items-center flex-1">
-                    <div className="w-20 h-20 relative mb-2">
-                      <Image
-                        src={getLogoForTeam(game.awayTeam.name, game.awayTeam.logo)}
-                        alt={game.awayTeam.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="team-name text-center">
-                      {game.awayTeam.shortName || game.awayTeam.name}
-                    </span>
+                              {/* Matchup */}
+                              <td className="px-6 py-4">
+                                <div className="flex items-center justify-center space-x-4">
+                                  {/* WRFC Team */}
+                                  <div className="flex items-center space-x-3">
+                                    <div className="w-10 h-10 relative flex-shrink-0">
+                                      <Image
+                                        src={getLogoForTeam(wrfcTeam.name, wrfcTeam.logo)}
+                                        alt={wrfcTeam.name}
+                                        fill
+                                        className="object-contain"
+                                      />
+                                    </div>
+                                    <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                      {wrfcTeam.shortName || wrfcTeam.name}
+                                    </span>
+                                  </div>
+
+                                  {/* VS or @ indicator */}
+                                  <div className="flex items-center">
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                                      {game.isHome ? 'vs' : '@'}
+                                    </span>
+                                  </div>
+
+                                  {/* Opponent Team */}
+                                  <div className="flex items-center space-x-3">
+                                    <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                      {opponentTeam.shortName || opponentTeam.name}
+                                    </span>
+                                    <div className="w-10 h-10 relative flex-shrink-0">
+                                      <Image
+                                        src={getLogoForTeam(opponentTeam.name, opponentTeam.logo)}
+                                        alt={opponentTeam.name}
+                                        fill
+                                        className="object-contain"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+
+                              {/* Score or Time */}
+                              <td className="px-6 py-4 text-center">
+                                {game.result ? (
+                                  <div className="flex items-center justify-center space-x-3">
+                                    <span className={`text-lg font-bold ${
+                                      wrfcScore !== null && opponentScore !== null && wrfcScore > opponentScore 
+                                        ? 'text-green-600 dark:text-green-400' 
+                                        : wrfcScore !== null && opponentScore !== null && wrfcScore < opponentScore
+                                        ? 'text-red-600 dark:text-red-400'
+                                        : 'text-gray-600 dark:text-gray-400'
+                                    }`}>
+                                      {wrfcScore}
+                                    </span>
+                                    <span className="text-gray-400">-</span>
+                                    <span className={`text-lg font-bold ${
+                                      wrfcScore !== null && opponentScore !== null && opponentScore > wrfcScore 
+                                        ? 'text-green-600 dark:text-green-400'
+                                        : wrfcScore !== null && opponentScore !== null && opponentScore < wrfcScore
+                                        ? 'text-red-600 dark:text-red-400'
+                                        : 'text-gray-600 dark:text-gray-400'
+                                    }`}>
+                                      {opponentScore}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                                    {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
+                                  </div>
+                                )}
+                              </td>
+
+                              {/* Venue */}
+                              <td className="px-6 py-4">
+                                <div className="flex flex-col">
+                                  <div className="text-sm font-medium text-gray-900 dark:text-white">
+                                    {game.venue.name === 'TBD' ? 'Venue TBD' : game.venue.name}
+                                  </div>
+                                  {game.venue.name !== 'TBD' && (
+                                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                                      {game.venue.city}, {game.venue.state}
+                                    </div>
+                                  )}
+                                </div>
+                              </td>
+
+                              {/* Competition */}
+                              <td className="px-6 py-4 text-center">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                  {game.competition}
+                                </span>
+                              </td>
+
+                              {/* Actions */}
+                              <td className="px-6 py-4 text-center">
+                                <div className="flex items-center justify-center space-x-2">
+                                  {game.venue.name !== 'TBD' && (
+                                    <a
+                                      href={getGoogleMapsUrl(game.venue)}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                                      title="Get Directions"
+                                    >
+                                      <MapPin className="w-4 h-4" />
+                                    </a>
+                                  )}
+                                  {game.ticketsUrl && (
+                                    <a
+                                      href={game.ticketsUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-800 transition-colors"
+                                      title="Buy Tickets"
+                                    >
+                                      <Trophy className="w-4 h-4" />
+                                    </a>
+                                  )}
+                                  {game.broadcastUrl && (
+                                    <a
+                                      href={game.broadcastUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
+                                      title="Watch Live"
+                                    >
+                                      <History className="w-4 h-4" />
+                                    </a>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
+              ))}
 
-                {/* Game Info */}
-                <div className="text-center p-4 border-t border-gray-200 dark:border-gray-700">
-                  <h3 className="section-title mb-2">
-                    {game.isHome ? 'Home' : 'Away'} vs. {game.isHome ? game.awayTeam.shortName : game.homeTeam.shortName}
-                  </h3>
-                  <p className="date-display mb-2">
-                    {formatGameDateTime(game)}
-                  </p>
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <MapPin className="w-5 h-5 text-wrfc-red" />
-                    <p className="accent-text text-wrfc-red uppercase">
-                      {game.venue.name === 'TBD' ? (
-                        <span className="text-gray-500">Venue TBD</span>
-                      ) : (
-                        <>
-                          {game.venue.name}
-                          <span className="block text-sm font-normal">
-                            {game.venue.city}, {game.venue.state}
-                          </span>
-                        </>
-                      )}
-                    </p>
+              {/* Empty State */}
+              {games.length === 0 && (
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-12 text-center">
+                  <div className="text-gray-500 dark:text-gray-400">
+                    <Trophy className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                    <p className="text-lg font-medium">No games found</p>
+                    <p className="text-sm">Check back later for upcoming fixtures</p>
                   </div>
-
-                  {/* Action Buttons */}
-                  {game.venue.name !== 'TBD' && (
-                    <div className="flex justify-center">
-                      <a
-                        href={getGoogleMapsUrl(game.venue)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="button-text flex items-center gap-2 bg-wrfc-navy text-white px-6 py-2 rounded hover:bg-blue-900 transition-colors"
-                      >
-                        <MapPin className="w-5 h-5" />
-                        GET DIRECTIONS
-                      </a>
-                    </div>
-                  )}
                 </div>
-              </div>
-            ))}
-          </div>
+              )}
+            </div>
+
+            {/* Mobile-Responsive Card View */}
+            <div className="lg:hidden space-y-8">
+              {sortedYears.map((year) => (
+                <div key={`mobile-${year}`}>
+                  <h2 className="text-xl font-bold text-blue-900 dark:text-blue-400 font-nasalization mb-4 px-4">
+                    {year} Season
+                  </h2>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                    {gamesByYear[year].map((game) => {
+                      const gameDate = parseISO(game.date);
+                      const wrfcTeam = game.isHome ? game.homeTeam : game.awayTeam;
+                      const opponentTeam = game.isHome ? game.awayTeam : game.homeTeam;
+                      const wrfcScore = game.result ? (game.isHome ? game.result.homeScore : game.result.awayScore) : null;
+                      const opponentScore = game.result ? (game.isHome ? game.result.awayScore : game.result.homeScore) : null;
+                      
+                      return (
+                        <div key={`mobile-${game.id}`} className="border-t border-gray-200 dark:border-gray-700 p-4 first:border-t-0">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="text-sm font-semibold text-gray-900 dark:text-white">
+                              {format(gameDate, 'MMM d, yyyy')} • {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
+                            </div>
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                              {game.competition}
+                            </span>
+                          </div>
+                          
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 relative">
+                                <Image
+                                  src={getLogoForTeam(wrfcTeam.name, wrfcTeam.logo)}
+                                  alt={wrfcTeam.name}
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                              <span className="text-sm font-semibold">{wrfcTeam.shortName}</span>
+                            </div>
+                            
+                            <div className="flex items-center space-x-3">
+                              {game.result ? (
+                                <span className="text-lg font-bold">{wrfcScore} - {opponentScore}</span>
+                              ) : (
+                                <span className="text-sm text-gray-500">{game.isHome ? 'vs' : '@'}</span>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center space-x-3">
+                              <span className="text-sm font-semibold">{opponentTeam.shortName}</span>
+                              <div className="w-8 h-8 relative">
+                                <Image
+                                  src={getLogoForTeam(opponentTeam.name, opponentTeam.logo)}
+                                  alt={opponentTeam.name}
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            {game.venue.name === 'TBD' ? 'Venue TBD' : `${game.venue.name}, ${game.venue.city}, ${game.venue.state}`}
+                          </div>
+                          
+                          {game.venue.name !== 'TBD' && (
+                            <a
+                              href={getGoogleMapsUrl(game.venue)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center space-x-1 text-blue-600 dark:text-blue-400 text-sm hover:underline"
+                            >
+                              <MapPin className="w-4 h-4" />
+                              <span>Get Directions</span>
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>
   );
-} 
+}
