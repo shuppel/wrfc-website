@@ -3,13 +3,21 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '../ThemeToggle'
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 const NAV_LINKS = [
   { href: '/about', label: 'About' },
   { href: '/roster', label: 'Team' },
-  { href: '/schedule', label: 'Schedule' },
+  { 
+    href: '/schedule', 
+    label: 'Schedule',
+    dropdown: [
+      { href: '/schedule/practice', label: 'Practice Schedule', icon: '🏃' },
+      { href: '/schedule/game', label: 'Game Schedule', icon: '🏉' },
+      { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
+    ]
+  },
   { href: '/media', label: 'Media' },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/sponsors', label: 'Sponsors' },
@@ -19,6 +27,8 @@ const NAV_LINKS = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Handle scroll effect
   useEffect(() => {
@@ -27,6 +37,29 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Handle dropdown hover with delay
+  const handleDropdownEnter = (linkHref: string) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current)
+    }
+    setHoveredDropdown(linkHref)
+  }
+
+  const handleDropdownLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setHoveredDropdown(null)
+    }, 150) // Small delay before closing
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current)
+      }
+    }
   }, [])
 
   return (
@@ -58,7 +91,49 @@ export default function Header() {
           <div className="hidden lg:flex flex-1 justify-end items-center">
             <div className="flex items-center space-x-1">
               {NAV_LINKS.map((link) => (
-                <NavLink key={link.href} href={link.href}>{link.label}</NavLink>
+                <div 
+                  key={link.href} 
+                  className="relative"
+                  onMouseEnter={() => link.dropdown && handleDropdownEnter(link.href)}
+                  onMouseLeave={() => link.dropdown && handleDropdownLeave()}
+                >
+                  {link.dropdown ? (
+                    <>
+                      <button className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1">
+                        {link.label}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                          hoveredDropdown === link.href ? 'rotate-180' : ''
+                        }`} />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
+                      </button>
+                      
+                      {/* Dropdown Menu */}
+                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
+                        hoveredDropdown === link.href 
+                          ? 'opacity-100 translate-y-0 visible' 
+                          : 'opacity-0 -translate-y-2 invisible'
+                      }`}>
+                        <div className="py-2">
+                          {link.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.href}
+                              href={dropdownItem.href}
+                              className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
+                              onClick={() => setHoveredDropdown(null)}
+                            >
+                              <span className="text-lg group-hover:scale-110 transition-transform duration-200">
+                                {dropdownItem.icon}
+                              </span>
+                              <span className="font-medium">{dropdownItem.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <NavLink href={link.href}>{link.label}</NavLink>
+                  )}
+                </div>
               ))}
               <Link 
                 href="/membership" 
@@ -119,14 +194,36 @@ export default function Header() {
             {/* Navigation Links */}
             <div className="p-4 divide-y divide-gray-200 dark:divide-gray-700">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block py-3 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                <div key={link.href}>
+                  {link.dropdown ? (
+                    <>
+                      <div className="py-3 text-gray-600 dark:text-gray-300 font-medium">
+                        {link.label}
+                      </div>
+                      <div className="pl-4 space-y-1">
+                        {link.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <span>{dropdownItem.icon}</span>
+                            <span>{dropdownItem.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="block py-3 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -160,7 +257,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link 
       href={href}
-      className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-colors relative group"
+      className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
     >
       {children}
       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
