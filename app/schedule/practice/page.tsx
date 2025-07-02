@@ -40,23 +40,51 @@ export default function PracticeSchedulePage() {
         </div>
       </section>
 
-      {/* Training Philosophy */}
+      {/* Coaching Philosophy */}
       <section className="w-full py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 font-nasalization text-blue-900 dark:text-blue-400 text-center">
-            Our Training Philosophy
+            Our Coaching Philosophy
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
-            <p className="text-gray-700 dark:text-gray-300 mb-6 font-jetbrains">
-              At WRFC, we believe in comprehensive rugby development that balances physical conditioning, 
-              technical skills, and tactical understanding. Our training sessions are designed to build 
-              not just better rugby players, but stronger athletes and cohesive team units.
-            </p>
-            <p className="text-gray-700 dark:text-gray-300 font-jetbrains">
-              Every practice follows a structured approach that ensures players of all levels can improve 
-              their game while contributing to the team&apos;s overall success. We emphasize fundamentals, 
-              fitness, and fostering a positive rugby culture.
-            </p>
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8 mb-8">
+              <h3 className="text-xl font-bold mb-4 font-nasalization text-blue-900 dark:text-blue-400">
+                Excellence Through Technical Mastery
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-4 font-jetbrains">
+                Our coaching methodology centers on the meticulous development of fundamental rugby skills and tactical nuance. 
+                We believe that true rugby excellence emerges from precision in the basics—every pass, every tackle, every decision 
+                executed with technical proficiency and situational awareness.
+              </p>
+            </div>
+
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-8 mb-8">
+              <h3 className="text-xl font-bold mb-4 font-nasalization text-green-800 dark:text-green-400">
+                Collective Purpose & Unity
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-4 font-jetbrains">
+                Rugby is the ultimate team sport, demanding unwavering commitment to collective success over individual achievement. 
+                Our training philosophy emphasizes playing for one another—each player understanding their role within the greater 
+                tactical framework while maintaining accountability to their teammates both on and off the field.
+              </p>
+            </div>
+
+            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-8">
+              <h3 className="text-xl font-bold mb-4 font-nasalization text-purple-800 dark:text-purple-400">
+                Competitive Integrity & Sportsmanship
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 font-jetbrains">
+                Victory and defeat are both temporary states that test character. We compete with intensity and purpose, 
+                but conduct ourselves with dignity and respect regardless of outcome. True champions demonstrate grace 
+                in victory and resilience in defeat, embodying the values that make rugby the gentleman's game.
+              </p>
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 dark:text-gray-400 font-jetbrains italic">
+                "Excellence is not a skill, it's an attitude cultivated through disciplined practice and collective commitment."
+              </p>
+            </div>
           </div>
         </div>
       </section>
