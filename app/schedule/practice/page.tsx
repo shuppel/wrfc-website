@@ -76,13 +76,13 @@ export default function PracticeSchedulePage() {
               <p className="text-gray-700 dark:text-gray-300 font-jetbrains">
                 Victory and defeat are both temporary states that test character. We compete with intensity and purpose, 
                 but conduct ourselves with dignity and respect regardless of outcome. True champions demonstrate grace 
-                in victory and resilience in defeat, embodying the values that make rugby the gentleman's game.
+                in victory and resilience in defeat, embodying the values that make rugby the gentleman&apos;s game.
               </p>
             </div>
 
             <div className="mt-8 text-center">
               <p className="text-gray-600 dark:text-gray-400 font-jetbrains italic">
-                "Excellence is not a skill, it's an attitude cultivated through disciplined practice and collective commitment."
+                &ldquo;Excellence is not a skill, it&apos;s an attitude cultivated through disciplined practice and collective commitment.&rdquo;
               </p>
             </div>
           </div>
