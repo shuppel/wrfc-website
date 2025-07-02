@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 type PageKey = 
   | 'home'
   | 'about'
-  | 'roster'
+  | 'players'
   | 'schedule'
   | 'practice-schedule'
   | 'game-schedule'
@@ -37,10 +37,10 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
     imagePath: '/assets/pictures/team_photo.jpg',
     imageAlt: 'WRFC Team Photo'
   },
-  roster: {
-    title: 'WRFC Team Roster | Meet Our Players',
-    description: 'Meet the Washington Rugby Football Club players and coaching staff. View our current roster and team leadership.',
-    keywords: ['wrfc players', 'washington rugby team', 'rugby roster', 'dc rugby players'],
+  players: {
+    title: 'WRFC Team Players | Meet Our Players',
+    description: 'Meet the Washington Rugby Football Club players and coaching staff. View individual player profiles and team information.',
+    keywords: ['wrfc players', 'washington rugby team', 'rugby players', 'dc rugby players', 'player profiles'],
     imagePath: '/assets/pictures/team_roster.jpg',
     imageAlt: 'WRFC Players'
   },
@@ -222,7 +222,7 @@ export function getStructuredData(pageKey: PageKey, additionalData?: Record<stri
           }
         }
       };
-    case 'roster':
+    case 'players':
       return {
         ...baseStructuredData,
         '@type': 'SportsTeam',

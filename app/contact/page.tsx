@@ -64,7 +64,11 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
                 Send Us a Message
               </h2>
-              <form className="space-y-6">
+              <form 
+                action="https://formspree.io/f/xjkrlqdy" 
+                method="POST"
+                className="space-y-6"
+              >
                 <div>
                   <label htmlFor="name" className="block mb-2 font-jetbrains text-gray-700 dark:text-gray-300">
                     Name

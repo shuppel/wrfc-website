@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Card } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { Player } from '../app/roster/page';
+import Link from 'next/link';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Player } from '@/data/players';
 
 interface RosterListProps {
   players: Player[];
@@ -78,7 +79,12 @@ export default function RosterList({ players }: RosterListProps) {
             </div>
             <div className="p-4">
               <div className="flex justify-between items-center mb-2">
-                <h3 className="text-xl font-semibold">{player.name}</h3>
+                <Link 
+                  href={`/roster/players/${player.slug}`}
+                  className="text-xl font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {player.name}
+                </Link>
                 {player.number && (
                 <span className="text-2xl font-bold text-primary">#{player.number}</span>
                 )}

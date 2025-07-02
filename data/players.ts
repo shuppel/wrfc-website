@@ -1,19 +1,14 @@
-import Link from 'next/link'
-import { generateMetadata } from '../utils/seo'
-import { BreadcrumbJsonLd } from '../../components/JsonLd'
-import JsonLd from '../../components/JsonLd'
-import RosterList from '../../components/RosterList';
-
 export interface Player {
   id: number;
   name: string;
+  slug: string;
   position: string;
   number?: number;
   image: string;
   experience?: string;
   division: 'D1' | 'D3' | 'Both';
-  height?: string; // in format '6\'2"' or similar
-  weight?: number; // in kg
+  height?: string;
+  weight?: number;
   d1Caps?: number;
   d3Caps?: number;
   badges?: {
@@ -22,12 +17,19 @@ export interface Player {
   }[];
 }
 
-// This would typically come from an API or database
-const players: Player[] = [
+function createSlug(name: string): string {
+  return name.toLowerCase()
+    .replace(/[^a-z0-9 ]/g, '')
+    .replace(/\s+/g, '-')
+    .trim();
+}
+
+export const players: Player[] = [
   // Division 1 (Men's D1) Roster
   {
     id: 1,
     name: "Harry Higginbottom",
+    slug: createSlug("Harry Higginbottom"),
     position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -41,6 +43,7 @@ const players: Player[] = [
   {
     id: 2,
     name: "Matthew Bainbridge",
+    slug: createSlug("Matthew Bainbridge"),
     position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -51,6 +54,7 @@ const players: Player[] = [
   {
     id: 3,
     name: "Erikk Shupp",
+    slug: createSlug("Erikk Shupp"),
     position: "Front Row",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -61,6 +65,7 @@ const players: Player[] = [
   {
     id: 4,
     name: "Benjamin Goodlet",
+    slug: createSlug("Benjamin Goodlet"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -71,6 +76,7 @@ const players: Player[] = [
   {
     id: 5,
     name: "Diamond Jones",
+    slug: createSlug("Diamond Jones"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -81,6 +87,7 @@ const players: Player[] = [
   {
     id: 6,
     name: "Austin Longo",
+    slug: createSlug("Austin Longo"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
@@ -92,6 +99,7 @@ const players: Player[] = [
   {
     id: 7,
     name: "Xavier Landreville",
+    slug: createSlug("Xavier Landreville"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -101,6 +109,7 @@ const players: Player[] = [
   {
     id: 8,
     name: "Zachary Zuzelo",
+    slug: createSlug("Zachary Zuzelo"),
     position: "Utility Forward [Hooker/Flanker]",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
@@ -110,6 +119,7 @@ const players: Player[] = [
   {
     id: 9,
     name: "Anton Meyer",
+    slug: createSlug("Anton Meyer"),
     position: "Lock",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
@@ -119,6 +129,7 @@ const players: Player[] = [
   {
     id: 10,
     name: "Raymond Gajkowski",
+    slug: createSlug("Raymond Gajkowski"),
     position: "Lock",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -129,6 +140,7 @@ const players: Player[] = [
   {
     id: 11,
     name: "Douglas Mulliken",
+    slug: createSlug("Douglas Mulliken"),
     position: "Lock",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -139,6 +151,7 @@ const players: Player[] = [
   {
     id: 12,
     name: "Christopher Miller",
+    slug: createSlug("Christopher Miller"),
     position: "Flanker/Number 8",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
@@ -153,6 +166,7 @@ const players: Player[] = [
   {
     id: 13,
     name: "Stephen Okala",
+    slug: createSlug("Stephen Okala"),
     position: "Flanker/Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -163,6 +177,7 @@ const players: Player[] = [
   {
     id: 14,
     name: "Thomas Demetriou",
+    slug: createSlug("Thomas Demetriou"),
     position: "Number 8",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -176,6 +191,7 @@ const players: Player[] = [
   {
     id: 15,
     name: "Samuel Follansbee",
+    slug: createSlug("Samuel Follansbee"),
     position: "Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -185,6 +201,7 @@ const players: Player[] = [
   {
     id: 16,
     name: "Nicholas Barone",
+    slug: createSlug("Nicholas Barone"),
     position: "Scrum-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -194,6 +211,7 @@ const players: Player[] = [
   {
     id: 17,
     name: "Nicholas Lami",
+    slug: createSlug("Nicholas Lami"),
     position: "Scrum-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -201,6 +219,7 @@ const players: Player[] = [
   {
     id: 18,
     name: "Justin Owens",
+    slug: createSlug("Justin Owens"),
     position: "Scrum-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -208,6 +227,7 @@ const players: Player[] = [
   {
     id: 19,
     name: "Leo Fangmeyer",
+    slug: createSlug("Leo Fangmeyer"),
     position: "Fly-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -218,6 +238,7 @@ const players: Player[] = [
   {
     id: 20,
     name: "Gareth Davies",
+    slug: createSlug("Gareth Davies"),
     position: "Fly-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both'
@@ -225,6 +246,7 @@ const players: Player[] = [
   {
     id: 21,
     name: "Tyler Sammann",
+    slug: createSlug("Tyler Sammann"),
     position: "Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -232,6 +254,7 @@ const players: Player[] = [
   {
     id: 22,
     name: "Dewayne Jones",
+    slug: createSlug("Dewayne Jones"),
     position: "Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both',
@@ -242,6 +265,7 @@ const players: Player[] = [
   {
     id: 23,
     name: "Joseph Rombalski",
+    slug: createSlug("Joseph Rombalski"),
     position: "Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -249,6 +273,7 @@ const players: Player[] = [
   {
     id: 24,
     name: "Jaehyun Christopher Park",
+    slug: createSlug("Jaehyun Christopher Park"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -256,6 +281,7 @@ const players: Player[] = [
   {
     id: 25,
     name: "Andrew Klock",
+    slug: createSlug("Andrew Klock"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -263,6 +289,7 @@ const players: Player[] = [
   {
     id: 26,
     name: "Noah Davidson",
+    slug: createSlug("Noah Davidson"),
     position: "Fullback",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -270,6 +297,7 @@ const players: Player[] = [
   {
     id: 27,
     name: "Ryan Dodds",
+    slug: createSlug("Ryan Dodds"),
     position: "Utility Back",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1',
@@ -280,6 +308,7 @@ const players: Player[] = [
   {
     id: 28,
     name: "Joseph Phiri",
+    slug: createSlug("Joseph Phiri"),
     position: "Back",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D1'
@@ -287,6 +316,7 @@ const players: Player[] = [
   {
     id: 29,
     name: "Luke Hoffman",
+    slug: createSlug("Luke Hoffman"),
     position: "Forward",
     image: "/assets/art/player_profile_rugby.png",
     division: 'Both'
@@ -296,6 +326,7 @@ const players: Player[] = [
   {
     id: 30,
     name: "Austin Mack",
+    slug: createSlug("Austin Mack"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -303,6 +334,7 @@ const players: Player[] = [
   {
     id: 31,
     name: "John Veras",
+    slug: createSlug("John Veras"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3',
@@ -313,6 +345,7 @@ const players: Player[] = [
   {
     id: 32,
     name: "Joshua Pullman",
+    slug: createSlug("Joshua Pullman"),
     position: "Hooker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -320,6 +353,7 @@ const players: Player[] = [
   {
     id: 33,
     name: "Christopher DeVore",
+    slug: createSlug("Christopher DeVore"),
     position: "Prop",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -327,6 +361,7 @@ const players: Player[] = [
   {
     id: 34,
     name: "Pierre Maltais",
+    slug: createSlug("Pierre Maltais"),
     position: "Hooker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -334,6 +369,7 @@ const players: Player[] = [
   {
     id: 35,
     name: "Max Humphrey",
+    slug: createSlug("Max Humphrey"),
     position: "Lock",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -341,6 +377,7 @@ const players: Player[] = [
   {
     id: 36,
     name: "Kieran Corcoran",
+    slug: createSlug("Kieran Corcoran"),
     position: "Lock",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -348,6 +385,7 @@ const players: Player[] = [
   {
     id: 37,
     name: "Ashton DeLano",
+    slug: createSlug("Ashton DeLano"),
     position: "Lock/Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -355,6 +393,7 @@ const players: Player[] = [
   {
     id: 38,
     name: "Casey Ling",
+    slug: createSlug("Casey Ling"),
     position: "Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -362,6 +401,7 @@ const players: Player[] = [
   {
     id: 39,
     name: "Grant Two Bulls",
+    slug: createSlug("Grant Two Bulls"),
     position: "Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -369,6 +409,7 @@ const players: Player[] = [
   {
     id: 40,
     name: "Jonathan Fuentecilla",
+    slug: createSlug("Jonathan Fuentecilla"),
     position: "Number 8",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -376,6 +417,7 @@ const players: Player[] = [
   {
     id: 41,
     name: "Roberto Agrusta",
+    slug: createSlug("Roberto Agrusta"),
     position: "Flanker",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -383,6 +425,7 @@ const players: Player[] = [
   {
     id: 42,
     name: "Liam Garven",
+    slug: createSlug("Liam Garven"),
     position: "Scrum-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -390,6 +433,7 @@ const players: Player[] = [
   {
     id: 43,
     name: "Wesley Leckie",
+    slug: createSlug("Wesley Leckie"),
     position: "Fly-half",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -397,6 +441,7 @@ const players: Player[] = [
   {
     id: 44,
     name: "Saxon Bryant",
+    slug: createSlug("Saxon Bryant"),
     position: "Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -404,6 +449,7 @@ const players: Player[] = [
   {
     id: 45,
     name: "Marcus McIntyre",
+    slug: createSlug("Marcus McIntyre"),
     position: "Center",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -411,6 +457,7 @@ const players: Player[] = [
   {
     id: 46,
     name: "Juwamer Hawrami",
+    slug: createSlug("Juwamer Hawrami"),
     position: "Center/Fullback",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3',
@@ -421,6 +468,7 @@ const players: Player[] = [
   {
     id: 47,
     name: "Adrian Vigil-Coello",
+    slug: createSlug("Adrian Vigil-Coello"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -428,6 +476,7 @@ const players: Player[] = [
   {
     id: 48,
     name: "Ryunosuke Hashimoto",
+    slug: createSlug("Ryunosuke Hashimoto"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -435,6 +484,7 @@ const players: Player[] = [
   {
     id: 49,
     name: "Rene Esteves",
+    slug: createSlug("Rene Esteves"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -442,6 +492,7 @@ const players: Player[] = [
   {
     id: 50,
     name: "Nicholas Cipollone",
+    slug: createSlug("Nicholas Cipollone"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -449,6 +500,7 @@ const players: Player[] = [
   {
     id: 51,
     name: "Domenic Boresta",
+    slug: createSlug("Domenic Boresta"),
     position: "Fullback",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -456,6 +508,7 @@ const players: Player[] = [
   {
     id: 52,
     name: "Ian Elzinga",
+    slug: createSlug("Ian Elzinga"),
     position: "Wing/Fullback",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -463,6 +516,7 @@ const players: Player[] = [
   {
     id: 53,
     name: "Koki Mori",
+    slug: createSlug("Koki Mori"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
@@ -470,107 +524,17 @@ const players: Player[] = [
   {
     id: 54,
     name: "Benjamin Sando",
+    slug: createSlug("Benjamin Sando"),
     position: "Wing",
     image: "/assets/art/player_profile_rugby.png",
     division: 'D3'
   }
 ];
 
-// Generate metadata for the roster page
-export const metadata = {
-  ...generateMetadata('roster'),
-  openGraph: {
-    ...generateMetadata('roster').openGraph,
-    type: 'website',
-    title: 'WRFC Team Roster 2024 | Division 1 & Division 3 Players',
-    description: 'Meet the Washington Rugby Football Club players - featuring our Division 1 and Division 3 teams. View player profiles, positions, and stats for the 2024 season.',
-    images: [
-      {
-        url: '/assets/pictures/team_roster.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'WRFC 2024 Team Roster'
-      },
-      {
-        url: '/assets/pictures/team_action.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'WRFC Match Action'
-      }
-    ]
-  }
-};
+export function getPlayerBySlug(slug: string): Player | undefined {
+  return players.find(player => player.slug === slug);
+}
 
-export default function RosterPage() {
-  // Enhanced structured data for the roster page
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'SportsTeam',
-    name: 'Washington Rugby Football Club',
-    sport: {
-      '@type': 'Sport',
-      name: 'Rugby Union',
-      description: 'Rugby Union Football'
-    },
-    description: 'Washington Rugby Football Club roster featuring Division 1 and Division 3 teams for the 2024 season',
-    url: 'https://washingtonrugby.org/roster',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://washingtonrugby.org/logos/wrfc-logo.png'
-    },
-    coach: {
-      '@type': 'Person',
-      name: 'WRFC Coaching Staff'
-    },
-    athlete: players.map(player => ({
-      '@type': 'Person',
-      name: player.name,
-      height: player.height,
-      weight: player.weight ? `${player.weight}kg` : undefined,
-      jobTitle: player.position,
-      memberOf: {
-        '@type': 'SportsTeam',
-        name: `Washington Rugby Football Club ${player.division === 'Both' ? 'D1/D3' : player.division}`
-      }
-    }))
-  };
-
-  return (
-    <div className="container mx-auto px-4 py-12">
-      {/* Structured Data */}
-      <BreadcrumbJsonLd 
-        items={[
-          { name: 'Home', item: '/' },
-          { name: 'Roster', item: '/roster' }
-        ]} 
-      />
-      <JsonLd type="SportsTeam" data={structuredData} />
-
-      {/* Hero Section */}
-      <div className="text-center mb-16">
-        <h1 className="hero-title mb-6">Team Roster</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Meet the Washington Rugby Football Club players for the 2024 season. 
-          Our roster features talented athletes across both our Division 1 and Division 3 teams.
-        </p>
-        <div className="mt-6 flex justify-center gap-4">
-          <Link 
-            href="/teams/coaches"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Meet Our Coaches
-          </Link>
-          <Link 
-            href="/teams"
-            className="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            View Teams Overview
-          </Link>
-        </div>
-      </div>
-
-      {/* Roster List - Client Component */}
-      <RosterList players={players} />
-    </div>
-  );
-} 
+export function getAllPlayerSlugs(): string[] {
+  return players.map(player => player.slug);
+}

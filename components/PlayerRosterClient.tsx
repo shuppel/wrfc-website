@@ -7,6 +7,7 @@ import Link from 'next/link'
 interface RosterPlayer {
   id: number;
   name: string;
+  slug: string;
   position: string;
   number?: number;
   image: string;
@@ -150,7 +151,7 @@ export default function PlayerRosterClient({
           {contentfulPlayers?.map((player) => (
             <Link
               key={player.sys.id}
-              href={`/roster/players/${player.fields.slug}`}
+              href={`/teams/players/${player.fields.slug}`}
               className="group"
             >
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
@@ -233,7 +234,7 @@ export default function PlayerRosterClient({
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link 
-                        href={`/roster`}
+                        href={`/teams/players/${player.slug}`}
                         className="text-blue-600 dark:text-blue-400 hover:underline font-semibold"
                       >
                         {player.name}

@@ -15,11 +15,11 @@ const SEO_DATA = {
     imagePath: '/assets/about-cover.jpg',
     keywords: ['rugby history', 'washington rugby history', 'wrfc history', 'dc rugby club'],
   },
-  roster: {
-    title: 'Team Roster | Washington Rugby Football Club',
-    description: 'Meet the players and coaching staff of Washington Rugby Football Club',
+  players: {
+    title: 'Team Players | Washington Rugby Football Club',
+    description: 'Meet the players of Washington Rugby Football Club - view individual player profiles and team roster',
     imagePath: '/assets/team-photo.jpg',
-    keywords: ['rugby players', 'washington rugby team', 'wrfc roster', 'dc rugby players'],
+    keywords: ['rugby players', 'washington rugby team', 'wrfc players', 'dc rugby players', 'player profiles'],
   },
   schedule: {
     title: 'Match Schedule | Washington Rugby Football Club',
@@ -108,7 +108,7 @@ export function getStructuredData(pageKey: PageKey, additionalData?: Record<stri
         description: baseData.description,
         ...additionalData
       };
-    case 'roster':
+    case 'players':
       return {
         '@type': 'SportsTeam',
         name: 'Washington Rugby Football Club',

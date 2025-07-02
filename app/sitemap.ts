@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { getAllPlayerSlugs } from '@/data/players'
 
 type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 
@@ -17,12 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as ChangeFreq,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/roster`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as ChangeFreq,
       priority: 0.8,
     },
     {
@@ -126,5 +121,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...mainRoutes, ...tournamentRoutes]
+  // Player profile pages
+  const playerSlugs = getAllPlayerSlugs()
+  const playerRoutes = playerSlugs.map(slug => ({
+    url: `${baseUrl}/teams/players/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as ChangeFreq,
+    priority: 0.6,
+  }))
+
+  return [...mainRoutes, ...tournamentRoutes, ...playerRoutes]
 } 
