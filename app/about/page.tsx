@@ -69,19 +69,8 @@ export default function AboutPage() {
 
       {/* Mission Section */}
       <section className="w-full py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
-          <Image
-            src="/assets/rugby_ball_icon_blue_light.png"
-            alt="Rugby Ball Icon"
-            fill
-            className="object-contain dark:hidden"
-          />
-          <Image
-            src="/assets/rugby_ball_icon_blue_dark.png"
-            alt="Rugby Ball Icon"
-            fill
-            className="object-contain hidden dark:block"
-          />
+        <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+          <Trophy className="w-full h-full text-wrfc-navy dark:text-blue-400" />
         </div>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">

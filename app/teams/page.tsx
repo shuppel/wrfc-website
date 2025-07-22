@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, UserCheck, Trophy, Target } from 'lucide-react'
+import { Users, UserCheck, Trophy, Target, GraduationCap, Heart, Calendar, Award } from 'lucide-react'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Teams',
@@ -81,6 +81,66 @@ export default function TeamsPage() {
           </Link>
         </div>
 
+        {/* Core Values Section */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+            Our Core Values
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {/* Excellence */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Excellence
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Striving for the highest standards in every aspect of the game, from training to match day performance
+              </p>
+            </div>
+
+            {/* Teamwork */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+                <Heart className="w-8 h-8 text-green-600 dark:text-green-300" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Teamwork
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Building unbreakable bonds on and off the field through trust, communication, and mutual support
+              </p>
+            </div>
+
+            {/* Development */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
+                <GraduationCap className="w-8 h-8 text-purple-600 dark:text-purple-300" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Development
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Continuous improvement through expert coaching, skill progression, and personal growth
+              </p>
+            </div>
+
+            {/* Commitment */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
+                <Award className="w-8 h-8 text-red-600 dark:text-red-300" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Commitment
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Dedication to the club, teammates, and the sport through consistent effort and participation
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Division Overview */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
@@ -88,59 +148,89 @@ export default function TeamsPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* D1 Division */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">
-              <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-10 h-10 text-blue-600 dark:text-blue-300" />
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Division 1
+                </h3>
+                <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Division 1
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Our premier competitive division competing at the highest level of local rugby
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Our premier competitive division competing at the highest level in the MAC Conference
               </p>
-              <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <p>• MAC Conference Competition</p>
-                <p>• Advanced skill level</p>
-                <p>• 3x weekly training</p>
-                <p>• Championship contenders</p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Practice Schedule</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">2x weekly training sessions</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Target className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Competition Level</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">MAC Conference championship contenders</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* D3 Division */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">
-              <div className="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-10 h-10 text-green-600 dark:text-green-300" />
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Division 3
+                </h3>
+                <Users className="w-8 h-8 text-green-600 dark:text-green-300" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Division 3
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Competitive rugby with focus on skill development and team building
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Competitive rugby with a balanced focus on skill development and team building
               </p>
-              <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <p>• Capital Conference</p>
-                <p>• Developing players</p>
-                <p>• 2x weekly training</p>
-                <p>• Growth focused</p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Practice Schedule</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">2x weekly training sessions</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Development Focus</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Capital Conference growth pathway</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Social Division */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">
-              <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-10 h-10 text-purple-600 dark:text-purple-300" />
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Social Rugby
+                </h3>
+                <Heart className="w-8 h-8 text-purple-600 dark:text-purple-300" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Social Rugby
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                Recreational rugby emphasizing fun, fitness, and friendship
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Recreational rugby emphasizing fun, fitness, and friendship for all skill levels
               </p>
-              <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <p>• Friendly matches</p>
-                <p>• All skill levels</p>
-                <p>• Flexible schedule</p>
-                <p>• Social events</p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Flexible Schedule</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Adaptable training times</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Users className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Community Focus</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">Social events and friendly matches</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

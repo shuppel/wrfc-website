@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '../ThemeToggle'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
 
 const NAV_LINKS = [
   { href: '/about', label: 'About' },
@@ -149,27 +149,22 @@ export default function Header() {
               ))}
               <Link 
                 href="/membership" 
-                className="ml-4 px-6 py-2 bg-wrfc-red dark:bg-white text-white dark:text-wrfc-navy font-bold rounded-md hover:bg-wrfc-red/90 dark:hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-lg group flex items-center gap-2"
+                className="ml-6 px-8 py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl group flex items-center gap-3 relative"
               >
-                <span className="inline-block transform group-hover:-translate-y-px transition-transform whitespace-nowrap">
+                <span className="relative z-10 inline-block transform group-hover:-translate-y-px transition-transform font-semibold tracking-wide">
                   <span className="hidden xl:inline">JOIN THE LEGACY</span>
-                  <span className="xl:hidden">JOIN!</span>
+                  <span className="xl:hidden">JOIN</span>
                 </span>
-                <span className="inline-block transform group-hover:scale-110 transition-transform relative w-5 h-5 xl:block hidden" aria-hidden="true">
-                  <Image
-                    src="/assets/rugby_ball_icon_blue_light.png"
-                    alt=""
-                    fill
-                    className="object-contain block dark:hidden"
-                  />
-                  <div className="absolute -right-2 -top-2 w-9 h-9 hidden dark:block">
-                    <Image
-                      src="/assets/rugby_ball_icon_blue_dark.png"
-                      alt=""
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" />
+                {/* Subtle gleaming border effect */}
+                <span className="absolute inset-0 rounded-lg pointer-events-none">
+                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
+                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
+                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
+                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
+                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
+                  </span>
                 </span>
               </Link>
               <div className="pl-4 border-l border-gray-200 dark:border-gray-700">
@@ -254,10 +249,21 @@ export default function Header() {
               <ThemeToggle />
               <Link 
                 href="/membership"
-                className="px-6 py-2 bg-wrfc-red dark:bg-white text-white dark:text-wrfc-navy font-bold rounded-md hover:bg-wrfc-red/90 dark:hover:bg-gray-100 transition-colors text-center"
+                className="px-6 py-2.5 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 relative group"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                JOIN!
+                <span className="relative z-10 font-semibold tracking-wide">JOIN</span>
+                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                {/* Subtle gleaming border effect */}
+                <span className="absolute inset-0 rounded-lg pointer-events-none">
+                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
+                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
+                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
+                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
+                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
+                  </span>
+                </span>
               </Link>
             </div>
           </div>
