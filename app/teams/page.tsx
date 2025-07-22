@@ -194,6 +194,14 @@ export default function TeamsPage() {
               >
                 Become a Member
               </Link>
+              <a 
+                href="https://www.zeffy.com/ticketing/wrfc-player-dues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors"
+              >
+                Pay Dues
+              </a>
               <Link 
                 href="/schedule/practice"
                 className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors"

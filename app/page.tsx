@@ -89,12 +89,14 @@ export default function Home() {
                 Join WRFC
                 <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link 
-                href="/schedule" 
+              <a 
+                href="https://www.zeffy.com/ticketing/wrfc-player-dues" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg"
               >
-                View Schedule
-              </Link>
+                Pay Dues
+              </a>
             </div>
           </div>
         </div>

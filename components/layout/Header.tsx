@@ -29,6 +29,7 @@ const NAV_LINKS = [
   { href: '/media', label: 'Media' },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/sponsors', label: 'Sponsors' },
+  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -142,7 +143,7 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                    <NavLink href={link.href}>{link.label}</NavLink>
+                    <NavLink href={link.href} external={link.external}>{link.label}</NavLink>
                   )}
                 </div>
               ))}
@@ -225,6 +226,16 @@ export default function Header() {
                         ))}
                       </div>
                     </>
+                  ) : link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block py-3 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
                   ) : (
                     <Link
                       href={link.href}
@@ -264,11 +275,27 @@ export default function Header() {
   )
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink({ href, children, external }: { href: string; children: React.ReactNode; external?: boolean }) {
+  const linkClass = "px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
+  
+  if (external) {
+    return (
+      <a 
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClass}
+      >
+        {children}
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
+      </a>
+    )
+  }
+  
   return (
     <Link 
       href={href}
-      className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
+      className={linkClass}
     >
       {children}
       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
