@@ -7,7 +7,17 @@ import { useState, useEffect, useRef } from 'react'
 import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
 
 const NAV_LINKS = [
-  { href: '/about', label: 'About' },
+  { 
+    href: '/about', 
+    label: 'About',
+    dropdown: [
+      { href: '/about', label: 'About WRFC', icon: '🏉' },
+      { href: '/about/history', label: 'Our History', icon: '📜' },
+      { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: '🏆' },
+      { href: '/about/championships', label: 'Championships', icon: '👑' },
+      { href: '/about/international-players', label: 'Player Commendations', icon: '⭐' },
+    ]
+  },
   { 
     href: '/teams', 
     label: 'Teams',
@@ -29,7 +39,7 @@ const NAV_LINKS = [
   { href: '/media', label: 'Media' },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true },
+  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -143,7 +153,7 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                    <NavLink href={link.href} external={link.external}>{link.label}</NavLink>
+                    <NavLink href={link.href} external={link.external} highlight={link.highlight}>{link.label}</NavLink>
                   )}
                 </div>
               ))}
@@ -226,7 +236,11 @@ export default function Header() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block py-3 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                      className={`block py-3 rounded-md transition-colors ${
+                        link.highlight 
+                          ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+                          : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                      }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}
@@ -234,7 +248,11 @@ export default function Header() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="block py-3 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                      className={`block py-3 rounded-md transition-colors ${
+                        link.highlight 
+                          ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+                          : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                      }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}
@@ -281,8 +299,11 @@ export default function Header() {
   )
 }
 
-function NavLink({ href, children, external }: { href: string; children: React.ReactNode; external?: boolean }) {
-  const linkClass = "px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
+function NavLink({ href, children, external, highlight }: { href: string; children: React.ReactNode; external?: boolean; highlight?: boolean }) {
+  const baseClass = "px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
+  const linkClass = highlight 
+    ? `${baseClass} text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300`
+    : `${baseClass} text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white`
   
   if (external) {
     return (
@@ -293,7 +314,9 @@ function NavLink({ href, children, external }: { href: string; children: React.R
         className={linkClass}
       >
         {children}
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
+        <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
+          highlight ? 'bg-wrfc-red' : 'bg-wrfc-red'
+        }`} />
       </a>
     )
   }
@@ -304,7 +327,9 @@ function NavLink({ href, children, external }: { href: string; children: React.R
       className={linkClass}
     >
       {children}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
+      <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
+        highlight ? 'bg-wrfc-red' : 'bg-wrfc-red'
+      }`} />
     </Link>
   )
 } 
