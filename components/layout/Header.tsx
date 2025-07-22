@@ -47,6 +47,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Handle scroll effect
@@ -186,7 +187,12 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex flex-1 justify-end">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen)
+                if (!isMobileMenuOpen) {
+                  setMobileOpenDropdown(null)
+                }
+              }}
               className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle mobile menu"
             >
@@ -209,26 +215,41 @@ export default function Header() {
         >
           <div className="mx-4 rounded-lg bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
             {/* Navigation Links */}
-            <div className="p-4 divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="p-4 space-y-2">
               {NAV_LINKS.map((link) => (
                 <div key={link.href}>
                   {link.dropdown ? (
                     <>
-                      <div className="py-3 text-gray-600 dark:text-gray-300 font-medium">
-                        {link.label}
-                      </div>
-                      <div className="pl-4 space-y-1">
-                        {link.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.href}
-                            href={dropdownItem.href}
-                            className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            <span>{dropdownItem.icon}</span>
-                            <span>{dropdownItem.label}</span>
-                          </Link>
-                        ))}
+                      <button
+                        onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.href ? null : link.href)}
+                        className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-300 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
+                      >
+                        <span>{link.label}</span>
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            mobileOpenDropdown === link.href ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        mobileOpenDropdown === link.href ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      }`}>
+                        <div className="pl-4 pb-2 space-y-1">
+                          {link.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.href}
+                              href={dropdownItem.href}
+                              className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false)
+                                setMobileOpenDropdown(null)
+                              }}
+                            >
+                              <span>{dropdownItem.icon}</span>
+                              <span>{dropdownItem.label}</span>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </>
                   ) : link.external ? (
