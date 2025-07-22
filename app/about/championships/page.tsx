@@ -275,7 +275,7 @@ export default function ChampionshipsPage() {
               Championship Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              WRFC's {totalChampionships} championships across six decades represent sustained excellence rarely 
+              WRFC&apos;s {totalChampionships} championships across six decades represent sustained excellence rarely 
               achieved in American rugby. From the early Blume Trophy victories through the unprecedented nine 
               consecutive PRU titles to the recent Capital Region championship, WRFC continues to set the standard 
               for competitive excellence in American club rugby.

@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
 import { Calendar, Trophy, Users, Globe, Award, School, Building, ExternalLink } from 'lucide-react'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
@@ -109,7 +108,7 @@ export default function HistoryPage() {
               The History of WRFC
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              Six decades of rugby excellence in the nation's capital
+              Six decades of rugby excellence in the nation&apos;s capital
             </p>
             <div className="flex items-center justify-center gap-8 text-lg">
               <div className="flex items-center gap-2">
@@ -138,11 +137,11 @@ export default function HistoryPage() {
             </h2>
             <div className="prose prose-lg max-w-none dark:prose-invert">
               <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                The Washington Rugby Football Club stands as the oldest rugby institution in the nation's capital, 
+                The Washington Rugby Football Club stands as the oldest rugby institution in the nation&apos;s capital, 
                 having shaped American rugby for over six decades. Founded in February 1963, WRFC emerged during 
-                the crucial revival period of American rugby, becoming a cornerstone of the sport's modern development. 
+                the crucial revival period of American rugby, becoming a cornerstone of the sport&apos;s modern development. 
                 This comprehensive history reveals how a club started by diplomatic expatriates evolved into a 
-                nationally significant rugby institution that produced Hall of Fame players, created one of America's 
+                nationally significant rugby institution that produced Hall of Fame players, created one of America&apos;s 
                 largest tournaments, and pioneered youth rugby development in underserved communities.
               </p>
             </div>
@@ -242,9 +241,9 @@ export default function HistoryPage() {
               A Living Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              Washington Rugby Football Club's 62-year history represents far more than a single club's journey - 
+              Washington Rugby Football Club&apos;s 62-year history represents far more than a single club&apos;s journey - 
               it chronicles the development of American rugby itself. As WRFC enters its seventh decade, it remains 
-              what it has always been: not just Washington's oldest rugby club, but a foundational pillar of 
+              what it has always been: not just Washington&apos;s oldest rugby club, but a foundational pillar of 
               American rugby whose influence extends far beyond any single match or championship.
             </p>
             

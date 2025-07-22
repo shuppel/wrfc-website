@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Award, Star, Trophy, Globe, Calendar, ArrowLeft } from 'lucide-react'
+import { Award, Star, Trophy, Globe, ArrowLeft } from 'lucide-react'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -119,7 +119,7 @@ export default function HallOfFamePage() {
               <Award className="w-12 h-12 text-yellow-400" />
             </div>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              Celebrating WRFC's legendary contributions to American rugby
+              Celebrating WRFC&apos;s legendary contributions to American rugby
             </p>
             <div className="flex items-center justify-center gap-8 text-lg">
               <div className="flex items-center gap-2">
@@ -161,7 +161,7 @@ export default function HallOfFamePage() {
             </h2>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
               The Washington Rugby Football Club has produced four USA Rugby Hall of Fame inductees, 
-              representing the highest honor in American rugby. These legendary figures exemplify WRFC's 
+              representing the highest honor in American rugby. These legendary figures exemplify WRFC&apos;s 
               60+ year tradition of developing world-class talent while maintaining the community spirit 
               and excellence that defines our club. Beyond our Hall of Fame inductees, WRFC has produced 
               over 20 USA Eagles and international players who have represented their countries at the highest levels.
@@ -250,7 +250,7 @@ export default function HallOfFamePage() {
               Join the Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              These Hall of Fame legends started their journeys at WRFC. Whether you're an experienced player 
+              These Hall of Fame legends started their journeys at WRFC. Whether you&apos;re an experienced player 
               or new to rugby, you could be the next WRFC player to represent the USA Eagles on the world stage.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

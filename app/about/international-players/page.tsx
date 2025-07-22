@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Globe, Trophy, Star, ArrowLeft, Calendar } from 'lucide-react'
+import { Globe, Trophy, Star, ArrowLeft } from 'lucide-react'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -76,7 +76,6 @@ const capitalSelectsPlayers = [
 
 export default function InternationalPlayersPage() {
   const totalUSAEagles = usaEagles.length
-  const worldCupPlayers = usaEagles.filter(player => player.worldCup).length
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
@@ -286,7 +285,7 @@ export default function InternationalPlayersPage() {
               <p className="text-gray-700 dark:text-gray-300 mb-6">
                 Capital Selects is part of the High Performance Program at Capital Rugby Union. The program helps 
                 develop players at all levels in preparation for higher level competition around the world. 
-                This semi-professional men's club select side represents the pinnacle of regional rugby excellence.
+                This semi-professional men&apos;s club select side represents the pinnacle of regional rugby excellence.
               </p>
             </div>
 
@@ -340,7 +339,7 @@ export default function InternationalPlayersPage() {
               Continuing the Legacy of Excellence
             </h2>
             <p className="text-lg leading-relaxed mb-8">
-              From the 1970s USA Eagles through today's Capital Selects and Major League Rugby players, 
+              From the 1970s USA Eagles through today&apos;s Capital Selects and Major League Rugby players, 
               WRFC has consistently developed talent that achieves recognition at elite levels. This tradition 
               of excellence continues today as we develop the next generation of rugby players across all competitive levels. 
               Join WRFC and follow in the footsteps of our distinguished alumni.
