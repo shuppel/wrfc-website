@@ -258,7 +258,7 @@ export default function AlumniPage() {
               Keep up with WRFC news, alumni updates, and exclusive events
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex justify-center mb-8">
               <Link 
                 href="/contact"
                 className="inline-flex items-center bg-wrfc-navy hover:bg-wrfc-navy/90 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg group"

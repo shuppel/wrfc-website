@@ -24,7 +24,7 @@ interface PageSEOData {
 
 const pageSEOConfig: Record<PageKey, PageSEOData> = {
   home: {
-    title: 'Washington Rugby Football Club | DC Men\'s Rugby Club Since 1963',
+    title: 'Washington Rugby Football Club | DC\'s First Rugby Club',
     description: 'Join DC\'s premier men\'s rugby club. Washington Rugby Football Club (WRFC) is the top men\'s rugby team in Washington DC, offering competitive matches, expert coaching, and a strong community since 1963.',
     keywords: ['washington rugby mens club', 'dc rugby', 'washington dc rugby', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'dc rugby club', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club'],
     imagePath: '/assets/pictures/huddle_2025_irish.jpg',

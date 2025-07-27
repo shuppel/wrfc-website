@@ -22,12 +22,11 @@ const NAV_LINKS = [
     href: '/teams', 
     label: 'Teams',
     dropdown: [
-      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
       { href: '/teams/players', label: 'Player Roster', icon: '🏃‍♂️' },
+      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
       { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
     ]
   },
-  { href: '/alumni', label: 'Alumni' },
   { 
     href: '/schedule', 
     label: 'Schedule',
@@ -39,9 +38,10 @@ const NAV_LINKS = [
   },
   { href: '/media', label: 'Media' },
   { href: '/tournaments', label: 'Tournaments' },
+  { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true },
   { href: '/contact', label: 'Contact' },
+  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true },
 ]
 
 export default function Header() {
@@ -179,7 +179,7 @@ export default function Header() {
                   </span>
                 </span>
               </Link>
-              <div className="pl-4 border-l border-gray-200 dark:border-gray-700">
+              <div className="ml-4">
                 <ThemeToggle />
               </div>
             </div>
