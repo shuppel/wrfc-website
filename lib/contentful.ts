@@ -99,6 +99,37 @@ export interface MembershipPlan {
   };
 }
 
+export interface AlumniSpotlight {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    slug: string;
+    graduationYear: number;
+    currentRole?: string;
+    location?: string;
+    category: 'Community Service' | 'Professional Achievement' | 'Rugby Development' | 'Coaching';
+    shortBio: string;
+    fullStory: Document; // Rich text content
+    photo?: {
+      fields: {
+        file: {
+          url: string;
+        };
+        title: string;
+      };
+    };
+    socialLinks?: {
+      linkedin?: string;
+      twitter?: string;
+      website?: string;
+    };
+    featured: boolean;
+    publishDate: string;
+  };
+}
+
 export interface ContentfulTeam {
   sys: {
     id: string;
@@ -173,6 +204,11 @@ export type MembershipPlanCollection = {
 
 export type ContentfulGameCollection = {
   items: ContentfulGame[];
+  total: number;
+};
+
+export type AlumniSpotlightCollection = {
+  items: AlumniSpotlight[];
   total: number;
 };
 
@@ -266,6 +302,63 @@ export async function getAllMembershipPlans(): Promise<MembershipPlan[]> {
   } catch (error) {
     console.error('Error fetching membership plans:', error);
     return [];
+  }
+}
+
+// Fetch all alumni spotlights
+export async function getAllAlumniSpotlights(): Promise<AlumniSpotlight[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'alumniSpotlight',
+      order: ['-fields.publishDate'],
+    });
+    return response.items as unknown as AlumniSpotlight[];
+  } catch (error) {
+    console.error('Error fetching alumni spotlights:', error);
+    return [];
+  }
+}
+
+// Fetch featured alumni spotlights
+export async function getFeaturedAlumniSpotlights(): Promise<AlumniSpotlight[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'alumniSpotlight',
+      'fields.featured': true,
+      order: ['-fields.publishDate'],
+      limit: 3,
+    });
+    return response.items as unknown as AlumniSpotlight[];
+  } catch (error) {
+    console.error('Error fetching featured alumni spotlights:', error);
+    return [];
+  }
+}
+
+// Fetch a single alumni spotlight by slug
+export async function getAlumniSpotlightBySlug(slug: string): Promise<AlumniSpotlight | null> {
+  if (!validateContentfulConfig()) {
+    return null;
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'alumniSpotlight',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as AlumniSpotlight 
+      : null;
+  } catch (error) {
+    console.error('Error fetching alumni spotlight:', error);
+    return null;
   }
 }
 

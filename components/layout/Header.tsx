@@ -27,6 +27,7 @@ const NAV_LINKS = [
       { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
     ]
   },
+  { href: '/alumni', label: 'Alumni' },
   { 
     href: '/schedule', 
     label: 'Schedule',
