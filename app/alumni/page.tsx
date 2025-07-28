@@ -112,7 +112,7 @@ export default function AlumniPage() {
                 <Users className="w-12 h-12 text-wrfc-navy mx-auto mb-4" />
                 <h3 className="font-bold text-xl mb-2">Alumni Events</h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Annual reunions, golf tournaments, and exclusive alumni gatherings
+                  Under 30 Over 30 match, reunions, and exclusive alumni gatherings
                 </p>
               </div>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -213,9 +213,9 @@ export default function AlumniPage() {
           
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <EventCard 
-              title="Annual Alumni Match"
-              date="Spring 2026"
-              description="Old Boys vs Current Squad - followed by BBQ and awards"
+              title="Under 30 Over 30 Match"
+              date="June-July (Annual)"
+              description="Young alumni vs veteran Old Boys - the highlight of our alumni calendar"
               icon={<Trophy className="w-6 h-6 text-wrfc-red" />}
             />
             <EventCard 

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { BreadcrumbJsonLd } from '../../../components/JsonLd'
+import { BreadcrumbJsonLd, SportEventJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
 import ScheduleView from '../../../components/feature/schedule/ScheduleView'
@@ -34,6 +34,39 @@ export default async function GameSchedulePage() {
         ]} 
       />
       <JsonLd type="WebPage" data={structuredData} />
+      
+      {/* Add Event Schema for upcoming games */}
+      {games
+        .filter(game => new Date(game.date) >= new Date())
+        .slice(0, 3) // Show schema for next 3 games
+        .map((game, index) => {
+          const opponent = game.isHome ? game.awayTeam : game.homeTeam;
+          const matchName = game.isHome 
+            ? `WRFC vs ${opponent.name}`
+            : `${opponent.name} vs WRFC`;
+          
+          return (
+            <SportEventJsonLd
+              key={index}
+              name={matchName}
+              startDate={`${game.date}T${game.time}:00`}
+              location={{
+                name: game.venue.name,
+                address: `${game.venue.address}, ${game.venue.city}, ${game.venue.state}`
+              }}
+              description={`Washington Rugby Football Club ${game.competition} match`}
+              url={`https://washingtonrugby.org/schedule/game`}
+              competitor1={{ 
+                name: game.homeTeam.name, 
+                url: game.homeTeam.id === 'wrfc' ? 'https://washingtonrugby.org' : undefined 
+              }}
+              competitor2={{ 
+                name: game.awayTeam.name,
+                url: game.awayTeam.id === 'wrfc' ? 'https://washingtonrugby.org' : undefined
+              }}
+            />
+          );
+        })}
 
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">

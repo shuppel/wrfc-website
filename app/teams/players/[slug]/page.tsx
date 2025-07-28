@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import { getAllPlayerProfiles, getPlayerProfileBySlug } from '@/lib/contentful';
 import { formatDate } from '@/lib/utils';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
+import JsonLd from '@/components/JsonLd';
 import { getPlayerBySlug, getAllPlayerSlugs } from '@/data/players';
 import { Badge } from '@/components/ui/badge';
 

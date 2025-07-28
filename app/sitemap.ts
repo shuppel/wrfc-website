@@ -75,6 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as ChangeFreq,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/alumni`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/alumni/spotlights`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/teams`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as ChangeFreq,
@@ -109,6 +127,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'yearly' as ChangeFreq,
       priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/local`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/local/capitol-hill`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/local/georgetown`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as ChangeFreq,
+      priority: 0.7,
     },
   ]
 
