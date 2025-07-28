@@ -13,7 +13,13 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default async function PlayersPage() {
   // Try to fetch from Contentful, fallback to hardcoded data
-  const contentfulPlayers = await getAllPlayerProfiles()
+  let contentfulPlayers: Awaited<ReturnType<typeof getAllPlayerProfiles>>;
+  try {
+    contentfulPlayers = await getAllPlayerProfiles();
+  } catch (error) {
+    console.warn('Failed to fetch players from Contentful:', error);
+    contentfulPlayers = [];
+  }
   const hasContentfulData = contentfulPlayers.length > 0
 
   return (

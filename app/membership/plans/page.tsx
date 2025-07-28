@@ -10,8 +10,14 @@ export const metadata: Metadata = {
 };
 
 export default async function MembershipPlansPage() {
-  // Fetch membership plans from Contentful
-  const plans = await getAllMembershipPlans();
+  // Fetch membership plans from Contentful with error handling
+  let plans: Awaited<ReturnType<typeof getAllMembershipPlans>>;
+  try {
+    plans = await getAllMembershipPlans();
+  } catch (error) {
+    console.warn('Failed to fetch membership plans from Contentful:', error);
+    plans = [];
+  }
   
   // Separate featured and regular plans
   const featuredPlans = plans.filter(plan => plan.fields.featured);

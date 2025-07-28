@@ -42,11 +42,17 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
 
 // Generate static paths for all events
 export async function generateStaticParams() {
-  const events = await getAllEvents();
-  
-  return events.map((event) => ({
-    slug: event.fields.slug,
-  }));
+  try {
+    const events = await getAllEvents();
+    
+    return events.map((event) => ({
+      slug: event.fields.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to fetch events for static generation:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 export default async function EventPage({ params }: EventPageProps) {

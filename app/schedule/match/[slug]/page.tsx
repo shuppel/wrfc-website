@@ -40,11 +40,17 @@ export async function generateMetadata({ params }: MatchPageProps): Promise<Meta
 
 // Generate static paths for all matches
 export async function generateStaticParams() {
-  const matches = await getAllMatches();
-  
-  return matches.map((match) => ({
-    slug: match.fields.slug,
-  }));
+  try {
+    const matches = await getAllMatches();
+    
+    return matches.map((match) => ({
+      slug: match.fields.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to fetch matches for static generation:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 export default async function MatchPage({ params }: MatchPageProps) {

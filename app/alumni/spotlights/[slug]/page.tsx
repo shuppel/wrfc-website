@@ -43,11 +43,17 @@ export async function generateMetadata({ params }: AlumniSpotlightPageProps): Pr
 
 // Generate static paths for all alumni spotlights
 export async function generateStaticParams() {
-  const spotlights = await getAllAlumniSpotlights();
-  
-  return spotlights.map((spotlight) => ({
-    slug: spotlight.fields.slug,
-  }));
+  try {
+    const spotlights = await getAllAlumniSpotlights();
+    
+    return spotlights.map((spotlight) => ({
+      slug: spotlight.fields.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to fetch alumni spotlights for static generation:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps) {

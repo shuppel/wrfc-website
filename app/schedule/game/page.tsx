@@ -21,7 +21,13 @@ export default async function GameSchedulePage() {
   });
 
   // Fetch matches from Contentful, fallback to sample data if not available
-  const contentfulMatches = await getAllMatches();
+  let contentfulMatches: Awaited<ReturnType<typeof getAllMatches>>;
+  try {
+    contentfulMatches = await getAllMatches();
+  } catch (error) {
+    console.warn('Failed to fetch matches from Contentful:', error);
+    contentfulMatches = [];
+  }
   const games = contentfulMatches.length > 0 
     ? contentfulMatches.map(transformMatch) 
     : SAMPLE_DATA.games;

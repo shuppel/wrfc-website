@@ -46,11 +46,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 // Generate static paths for all blog posts
 export async function generateStaticParams() {
-  const posts = await getAllBlogPosts();
-  
-  return posts.map((post) => ({
-    slug: post.fields.slug,
-  }));
+  try {
+    const posts = await getAllBlogPosts();
+    
+    return posts.map((post) => ({
+      slug: post.fields.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to fetch blog posts for static generation:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

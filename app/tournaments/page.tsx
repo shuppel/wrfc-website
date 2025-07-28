@@ -161,8 +161,14 @@ const tournaments: Tournament[] = [
 ];
 
 export default async function TournamentsPage() {
-  // Fetch tournaments from Contentful
-  const contentfulTournaments = await getAllTournaments();
+  // Fetch tournaments from Contentful with error handling
+  let contentfulTournaments: Awaited<ReturnType<typeof getAllTournaments>>;
+  try {
+    contentfulTournaments = await getAllTournaments();
+  } catch (error) {
+    console.warn('Failed to fetch tournaments from Contentful:', error);
+    contentfulTournaments = [];
+  }
   // Additional structured data specific to the tournaments page
   const structuredData = getStructuredData('tournaments', {
     '@type': 'Event',

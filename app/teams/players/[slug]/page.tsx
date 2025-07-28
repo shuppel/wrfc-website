@@ -70,18 +70,27 @@ export async function generateMetadata({ params }: PlayerProfilePageProps): Prom
 
 // Generate static paths for all player profiles
 export async function generateStaticParams() {
-  const contentfulPlayers = await getAllPlayerProfiles();
-  const hardcodedPlayerSlugs = getAllPlayerSlugs();
-  
-  const contentfulSlugs = contentfulPlayers.map((player) => ({
-    slug: player.fields.slug,
-  }));
-  
-  const hardcodedSlugs = hardcodedPlayerSlugs.map((slug) => ({
-    slug: slug,
-  }));
-  
-  return [...contentfulSlugs, ...hardcodedSlugs];
+  try {
+    const contentfulPlayers = await getAllPlayerProfiles();
+    const hardcodedPlayerSlugs = getAllPlayerSlugs();
+    
+    const contentfulSlugs = contentfulPlayers.map((player) => ({
+      slug: player.fields.slug,
+    }));
+    
+    const hardcodedSlugs = hardcodedPlayerSlugs.map((slug) => ({
+      slug: slug,
+    }));
+    
+    return [...contentfulSlugs, ...hardcodedSlugs];
+  } catch (error) {
+    console.warn('Failed to fetch Contentful players for static generation:', error);
+    // Fall back to hardcoded players only
+    const hardcodedPlayerSlugs = getAllPlayerSlugs();
+    return hardcodedPlayerSlugs.map((slug) => ({
+      slug: slug,
+    }));
+  }
 }
 
 export default async function PlayerProfilePage({ params }: PlayerProfilePageProps) {

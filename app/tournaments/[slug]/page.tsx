@@ -43,11 +43,17 @@ export async function generateMetadata({ params }: TournamentPageProps): Promise
 
 // Generate static paths for all tournaments
 export async function generateStaticParams() {
-  const tournaments = await getAllTournaments();
-  
-  return tournaments.map((tournament) => ({
-    slug: tournament.fields.slug,
-  }));
+  try {
+    const tournaments = await getAllTournaments();
+    
+    return tournaments.map((tournament) => ({
+      slug: tournament.fields.slug,
+    }));
+  } catch (error) {
+    console.warn('Failed to fetch tournaments for static generation:', error);
+    // Return empty array to prevent build failure
+    return [];
+  }
 }
 
 export default async function TournamentPage({ params }: TournamentPageProps) {
