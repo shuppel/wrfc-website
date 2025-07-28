@@ -19,6 +19,7 @@ interface InternationalPlayer {
   specialization?: string[]
   worldCup?: boolean
   notes?: string
+  wikiLink?: string
 }
 
 const usaEagles: InternationalPlayer[] = [
@@ -31,10 +32,10 @@ const usaEagles: InternationalPlayer[] = [
   { name: 'Chris Doherty', position: 'Center', country: 'USA', years: '1984, 1987', specialization: ['7s'] },
   { name: 'Michael Lancaster', position: 'Prop', country: 'USA', years: '1978' },
   { name: 'Rory Lewis', position: 'Wing', country: 'USA', years: '1990-1991', specialization: ['7s'] },
-  { name: 'Dan Lyle', position: 'Lock', country: 'USA', years: '1993(B) 1993', specialization: ['7s', '15s Captain'], caps: 45, worldCup: true, notes: 'Hall of Fame 2016' },
+  { name: 'Dan Lyle', position: 'Lock', country: 'USA', years: '1993(B) 1993', specialization: ['7s', '15s Captain'], caps: 45, worldCup: true, notes: 'Hall of Fame 2016', wikiLink: 'https://en.wikipedia.org/wiki/Dan_Lyle' },
   { name: 'Gerry McDonald', position: 'Prop', country: 'USA', years: '1988(B) 1989 1995-1996', notes: 'Also Scotland U21s' },
   { name: 'John Robbins', position: 'Hooker', country: 'USA', years: '1988(B)' },
-  { name: 'Paul Sheehy', position: 'Fullback', country: 'USA', years: '1991-1993', specialization: ['7s'], worldCup: true, notes: '1991 World Cup Player' },
+  { name: 'Paul Sheehy', position: 'Fullback', country: 'USA', years: '1991-1993', specialization: ['7s'], worldCup: true, notes: '1991 World Cup Player', wikiLink: 'https://en.wikipedia.org/wiki/Paul_Sheehy' },
   { name: 'Tom Smith', position: 'Wing', country: 'USA', years: '1978, 1980', notes: 'Hall of Fame 2017' },
   { name: 'Scott Stephens', position: 'Flank', country: 'USA', years: '1991-1993', specialization: ['7s'] },
   { name: 'George Sucher', position: 'Prop', country: 'USA', years: '1998', worldCup: true, notes: '1999 World Cup' },
@@ -167,9 +168,24 @@ export default function InternationalPlayersPage() {
               {usaEagles.map((player, index) => (
                 <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                      {player.name}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        {player.name}
+                      </h3>
+                      {player.wikiLink && (
+                        <a 
+                          href={player.wikiLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                          title={`View ${player.name} on Wikipedia`}
+                        >
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
                     {player.worldCup && (
                       <Trophy className="w-5 h-5 text-yellow-500 flex-shrink-0" />
                     )}

@@ -22,8 +22,8 @@ const NAV_LINKS = [
     href: '/teams', 
     label: 'Teams',
     dropdown: [
-      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
       { href: '/teams/players', label: 'Player Roster', icon: '🏃‍♂️' },
+      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
       { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
     ]
   },
@@ -36,11 +36,20 @@ const NAV_LINKS = [
       { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
     ]
   },
-  { href: '/media', label: 'Media' },
+  { 
+    href: '/media', 
+    label: 'Media',
+    dropdown: [
+      { href: '/blog', label: 'Blog', icon: '📝' },
+      { href: '/media/film', label: 'Film Room', icon: '🎬' },
+      { href: '/media/social', label: 'Social Media', icon: '📱' },
+    ]
+  },
   { href: '/tournaments', label: 'Tournaments' },
+  { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: 'https://www.zeffy.com/embed/ticketing/wrfc-player-dues?modal=true', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
   { href: '/contact', label: 'Contact' },
+  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true },
 ]
 
 export default function Header() {
@@ -178,7 +187,7 @@ export default function Header() {
                   </span>
                 </span>
               </Link>
-              <div className="pl-4 border-l border-gray-200 dark:border-gray-700">
+              <div className="ml-4">
                 <ThemeToggle />
               </div>
             </div>

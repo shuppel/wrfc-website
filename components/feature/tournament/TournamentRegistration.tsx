@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { ZEFFY_LINKS } from '@/data/zeffy-links';
 
 interface Division {
   name: string;
@@ -14,7 +15,7 @@ interface TournamentRegistrationProps {
 }
 
 export default function TournamentRegistration({ divisions }: TournamentRegistrationProps) {
-  const SQUARE_CHECKOUT_URL = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6';
+  const ZEFFY_CHECKOUT_URL = ZEFFY_LINKS.cherryBlossom.registration;
 
   return (
     <div>
@@ -22,7 +23,7 @@ export default function TournamentRegistration({ divisions }: TournamentRegistra
         <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200" />
         <Button 
           className="relative w-full bg-wrfc-red hover:bg-wrfc-red/90 text-white py-6 text-lg font-bold tracking-wide shadow-lg group-hover:shadow-xl transition-all duration-200 overflow-hidden"
-          onClick={() => window.open(SQUARE_CHECKOUT_URL, '_blank')}
+          onClick={() => window.open(ZEFFY_CHECKOUT_URL, '_blank')}
           aria-label="Register your team for the Cherry Blossom Tournament"
         >
           <div className="relative z-10 flex items-center justify-center gap-2">

@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useState, Suspense } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
-import SquarePayment from '@/components/SquarePayment';
+import ZeffyPaymentButton from '@/components/ZeffyPaymentButton';
+import { ZEFFY_LINKS } from '@/data/zeffy-links';
 import { useToast } from '@/components/ui/use-toast';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
@@ -72,8 +73,10 @@ function PaymentContent() {
           </CardHeader>
           <CardContent className="space-y-4 bg-white">
             <div className="grid gap-4">
-              <SquarePayment
-                squarePaymentLink="https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6"
+              <ZeffyPaymentButton
+                paymentLink={ZEFFY_LINKS.cherryBlossom.registration}
+                buttonText="Pay with Credit Card (via Zeffy)"
+                className="w-full bg-wrfc-red hover:bg-wrfc-red/90 text-white"
               />
 
               <Button 
@@ -140,23 +143,18 @@ function PaymentContent() {
                 <span className="text-lg font-semibold" id="fee-amount">$400.00</span>
               </div>
               
-              <div className="flex justify-between items-center border-b pb-2">
-                <span className="font-medium">Processing Fee (Square only)</span>
-                <span className="text-lg font-semibold text-gray-600">+$12.00</span>
-              </div>
-              
               <div className="flex justify-between items-center pt-2">
                 <span className="font-bold">Total Due</span>
                 <div className="text-right">
                   <div className="text-xl font-bold text-wrfc-navy">$400.00</div>
-                  <div className="text-sm text-gray-600">($412.00 via Square)</div>
+                  <div className="text-sm text-gray-600">(No fees with Zeffy!)</div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-              <p className="text-sm text-yellow-800">
-                💡 <strong>Tip:</strong> Save on processing fees by paying with Zelle or check!
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-sm text-green-800">
+                ✅ <strong>Good News:</strong> Zeffy is 100% free - no processing fees on any payment method!
               </p>
             </div>
           </CardContent>
@@ -213,7 +211,7 @@ function PaymentContent() {
             <AccordionContent className="px-6 pb-4">
               <div className="prose prose-blue max-w-none">
                 <p className="text-gray-700">
-                  Card payments through Square incur a 3% processing fee. Zelle and check payments have no additional fees.
+                  No! Zeffy is 100% free for nonprofits. There are no processing fees on credit cards, debit cards, or any other payment method. Zeffy is supported by optional donor tips.
                 </p>
                 <div className="mt-2 p-3 bg-blue-50 rounded-md border border-blue-200">
                   <p className="text-sm text-blue-800">

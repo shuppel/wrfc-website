@@ -28,9 +28,10 @@ const quantico = Quantico({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://washingtonrugby.org'),
+  applicationName: 'Washington Rugby Football Club',
   title: {
-    default: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
-    template: '%s | WRFC - Washington Rugby Football Club'
+    default: 'Washington Rugby Football Club | DC\'s First Rugby Club',
+    template: '%s | Washington Rugby Football Club'
   },
   description: 'Washington Rugby Football Club (WRFC) is DC\'s premier rugby club, established in 1963. Join us for competitive matches, expert coaching, and a strong community of rugby enthusiasts.',
   keywords: [
@@ -65,21 +66,21 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://washingtonrugby.org',
-    siteName: 'Washington Rugby Football Club',
-    title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
+    siteName: 'Washington Rugby FC',
+    title: 'Washington Rugby Football Club | DC\'s First Rugby Club',
     description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',
     images: [
       {
         url: '/logos/wrfc_logo.png',
         width: 1200,
         height: 630,
-        alt: 'Washington Rugby Football Club - DC Premier Rugby Since 1963',
+        alt: 'Washington Rugby Football Club - DC\'s First Rugby Club',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Washington Rugby Football Club | DC Premier Rugby Since 1963',
+    title: 'Washington Rugby Football Club | DC\'s First Rugby Club',
     description: 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts since 1963.',
     images: ['/logos/wrfc_logo.png'],
     creator: '@WRFC_DC',
@@ -137,6 +138,7 @@ export default function RootLayout({
         <script src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
       </head>
       <body className={`${inter.variable} ${bebasNeue.variable} ${titilliumWeb.variable} ${quantico.variable} font-sans min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col`}>
+        <meta name="application-name" content="Washington Rugby Football Club" />
         <ThemeProvider>
           <Header />
           <main className="flex-grow pt-24">

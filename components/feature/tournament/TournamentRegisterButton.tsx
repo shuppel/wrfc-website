@@ -2,21 +2,22 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { ZEFFY_LINKS } from '@/data/zeffy-links';
 
 interface TournamentRegisterButtonProps {
   year: string;
-  squareCheckoutUrl?: string;
+  zeffyCheckoutUrl?: string;
 }
 
 export default function TournamentRegisterButton({ 
   year, 
-  squareCheckoutUrl = 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6' 
+  zeffyCheckoutUrl = ZEFFY_LINKS.cherryBlossom.registration
 }: TournamentRegisterButtonProps) {
   
   const handleRegister = () => {
-    // For 2025, we'll direct users directly to the Square checkout URL
+    // For 2025, we'll direct users directly to the Zeffy checkout URL
     if (year === '2025') {
-      window.open(squareCheckoutUrl, '_blank');
+      window.open(zeffyCheckoutUrl, '_blank');
     }
   };
   
