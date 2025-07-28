@@ -25,16 +25,16 @@ interface PageSEOData {
 
 const pageSEOConfig: Record<PageKey, PageSEOData> = {
   home: {
-    title: 'Washington Rugby Football Club | DC\'s First Rugby Club',
-    description: 'Join DC\'s premier men\'s rugby club. Washington Rugby Football Club (WRFC) is the top men\'s rugby team in Washington DC, offering competitive matches, expert coaching, and a strong community since 1963.',
-    keywords: ['washington rugby mens club', 'dc rugby', 'washington dc rugby', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'dc rugby club', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club'],
+    title: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
+    description: 'Join DC\'s premier men\'s rugby club and top DC rugby team. Washington Rugby Football Club (WRFC) is the leading DC rugby club, offering competitive DC rugby matches, expert coaching, and the strongest DC rugby community since 1963.',
+    keywords: ['dc rugby', 'dc rugby club', 'dc rugby team', 'washington dc rugby', 'rugby dc', 'best dc rugby', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club'],
     imagePath: '/assets/pictures/huddle_2025_irish.jpg',
     imageAlt: 'WRFC Men\'s Rugby Team Huddle'
   },
   about: {
-    title: 'About WRFC | History & Tradition Since 1963',
-    description: 'Learn about Washington Rugby Football Club\'s rich history, traditions, and commitment to excellence in rugby since 1963.',
-    keywords: ['wrfc history', 'washington rugby history', 'dc rugby tradition', 'rugby club history'],
+    title: 'About WRFC | DC Rugby History & Tradition Since 1963',
+    description: 'Learn about Washington Rugby Football Club\'s rich DC rugby history, traditions, and commitment to excellence as DC\'s premier rugby club since 1963.',
+    keywords: ['wrfc history', 'washington rugby history', 'dc rugby tradition', 'dc rugby history', 'rugby club history', 'dc rugby club history'],
     imagePath: '/assets/pictures/team_photo.jpg',
     imageAlt: 'WRFC Team Photo'
   },
@@ -81,9 +81,9 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
     imageAlt: 'WRFC Tournament Action'
   },
   membership: {
-    title: 'Join WRFC | Rugby Club Membership',
-    description: 'Become a member of Washington Rugby Football Club. Learn about membership benefits, dues, and how to join our rugby community.',
-    keywords: ['join rugby club', 'rugby membership', 'wrfc registration', 'dc rugby join'],
+    title: 'Join DC Rugby | WRFC Membership - Best DC Rugby Club',
+    description: 'Become a member of Washington Rugby Football Club, DC\'s premier rugby club. Learn about DC rugby membership benefits, dues, and how to join the top DC rugby community.',
+    keywords: ['join rugby club', 'rugby membership', 'wrfc registration', 'dc rugby join', 'join dc rugby', 'dc rugby membership', 'best dc rugby club'],
     imagePath: '/assets/pictures/team_practice.jpg',
     imageAlt: 'WRFC Team Practice'
   },

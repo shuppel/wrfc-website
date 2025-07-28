@@ -78,8 +78,8 @@ export default function Home() {
               <span className="block text-wrfc-red">Football Club</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">
-              Tradition. Excellence. Community.
-              <span className="block text-lg mt-2 text-gray-300">Est. 1963</span>
+              DC&apos;s Premier Rugby Club - Tradition. Excellence. Community.
+              <span className="block text-lg mt-2 text-gray-300">Est. 1963 - Leading DC Rugby Since Day One</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
@@ -122,8 +122,8 @@ export default function Home() {
             />
             <FeatureCard 
               icon={<Users className="w-12 h-12 text-wrfc-navy" />}
-              title="Strong Community"
-              description="Join a brotherhood of passionate men's rugby players and supporters in the heart of Washington DC."
+              title="DC Rugby Community"
+              description="Join the strongest DC rugby brotherhood of passionate men's rugby players and supporters in the heart of Washington DC."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
             <FeatureCard 
@@ -181,8 +181,8 @@ export default function Home() {
             Ready to Join the Legacy?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200 text-center">
-            Whether you&apos;re an experienced player or new to rugby, WRFC welcomes athletes of all levels. 
-            Join us and be part of Washington DC&apos;s premier men&apos;s rugby club.
+            Whether you&apos;re an experienced player or new to DC rugby, WRFC welcomes athletes of all levels. 
+            Join us and be part of Washington DC&apos;s premier men&apos;s rugby club and the top DC rugby team.
           </p>
           
           {/* Embedded Google Form */}
