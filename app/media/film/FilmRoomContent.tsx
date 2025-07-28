@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Play, ChevronDown, Calendar, Eye } from 'lucide-react';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import Image from 'next/image';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent } from '@/components/ui/card';
@@ -189,10 +190,11 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
               onClick={() => setSelectedVideo(video)}
             >
               <div className="relative aspect-video bg-gray-200 dark:bg-gray-800 group">
-                <img
+                <Image
                   src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                   alt={video.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Play className="w-16 h-16 text-white" />

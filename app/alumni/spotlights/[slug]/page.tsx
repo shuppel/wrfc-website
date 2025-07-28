@@ -153,7 +153,7 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
             <CardContent className="pt-6">
               <Quote className="w-8 h-8 text-wrfc-red mb-4" />
               <blockquote className="text-xl md:text-2xl italic text-gray-700 dark:text-gray-300">
-                "{quote}"
+                &ldquo;{quote}&rdquo;
               </blockquote>
               <p className="mt-4 text-right text-gray-600 dark:text-gray-400">— {name}</p>
             </CardContent>
@@ -176,7 +176,7 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
         <div className="mt-12 text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4">Share Your Story</h3>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-            Are you a WRFC alumni? We'd love to feature your rugby journey and hear about your experiences with the club.
+            Are you a WRFC alumni? We&apos;d love to feature your rugby journey and hear about your experiences with the club.
           </p>
           <Link href="/contact">
             <Button size="lg" className="bg-wrfc-red hover:bg-red-700">

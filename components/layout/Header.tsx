@@ -6,7 +6,22 @@ import { ThemeToggle } from '../ThemeToggle'
 import { useState, useEffect, useRef } from 'react'
 import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
 
-const NAV_LINKS = [
+interface NavDropdownItem {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+interface NavLink {
+  href: string;
+  label: string;
+  dropdown?: NavDropdownItem[];
+  external?: boolean;
+  highlight?: boolean;
+  isZeffy?: boolean;
+}
+
+const NAV_LINKS: NavLink[] = [
   { 
     href: '/about', 
     label: 'About',
@@ -49,7 +64,7 @@ const NAV_LINKS = [
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
   { href: '/contact', label: 'Contact' },
-  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true },
+  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]
 
 export default function Header() {
@@ -163,8 +178,7 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                    <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={(link as any).isZeffy}>{link.label}</NavLink>
-                  )}
+                     <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={link.isZeffy}>{link.label}</NavLink>                  )}
                 </div>
               ))}
               <Link 
@@ -262,8 +276,7 @@ export default function Header() {
                       </div>
                     </>
                   ) : link.external ? (
-                    (link as any).isZeffy ? (
-                      <a
+                     link.isZeffy ? (                      <a
                         zeffy-form-link={link.href}
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
