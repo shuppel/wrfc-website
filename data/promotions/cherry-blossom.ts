@@ -1,4 +1,5 @@
 import { Promotion } from './index';
+import { ZEFFY_LINKS } from '@/data/zeffy-links';
 
 export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2025',
@@ -6,7 +7,7 @@ export const cherryBlossomPromotion: Promotion = {
   description: 'Join us for the annual Cherry Blossom Rugby Tournament in Washington DC. Multiple divisions available for men\'s and women\'s teams.',
   imageUrl: '/assets/pictures/tournament_banner_watercolor.png',
   buttonText: 'Register Now',
-  buttonUrl: 'https://checkout.square.site/merchant/W1AZ3RW1C2M9K/checkout/C6FSYI5DTSWWHGQDNKCUYTE6',
+  buttonUrl: ZEFFY_LINKS.cherryBlossom.registration,
   startDate: '2025-01-01T00:00:00Z',
   endDate: '2025-04-10T23:59:59Z',
   priority: 100,

@@ -25,6 +25,30 @@ export function validateContentfulConfig(): boolean {
 }
 
 // Define types for content models
+export interface Author {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    slug: string;
+    picture?: {
+      fields: {
+        file: {
+          url: string;
+        };
+        title?: string;
+      };
+    };
+    bio?: string;
+    title?: string;
+    email?: string;
+    linkedinUrl?: string;
+    instagramUrl?: string;
+    websiteUrl?: string;
+  };
+}
+
 export interface BlogPost {
   sys: {
     id: string;
@@ -43,18 +67,7 @@ export interface BlogPost {
     };
     excerpt: string;
     content: Document; // Rich text content
-    author: {
-      fields: {
-        name: string;
-        picture: {
-          fields: {
-            file: {
-              url: string;
-            };
-          };
-        };
-      };
-    };
+    author?: Author;
     categories: string[];
     tags: string[];
   };

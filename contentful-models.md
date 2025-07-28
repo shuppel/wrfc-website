@@ -21,14 +21,19 @@ This document provides templates for creating content models in Contentful's web
 ## 2. Author Content Model
 
 **Content Type ID**: `author`
+**Description**: Determining the data fields and author who created an article, curated content, etc.
 
 | Field ID | Field Name | Field Type | Required | Settings |
 |----------|------------|------------|----------|----------|
 | `name` | Name | Short text | Yes | - |
+| `slug` | slug | Short text | Yes | Unique |
 | `picture` | Picture | Media (Image) | No | - |
 | `bio` | Bio | Long text | No | - |
 | `title` | Title | Short text | No | - |
-| `email` | Email | Short text | No | - |
+| `email` | Email | Short text | No | Email validation |
+| `linkedinUrl` | LinkedinUrl | Short text | No | - |
+| `instagramUrl` | Instagram Url | Short text | No | - |
+| `websiteUrl` | Website Url | Short text | No | - |
 
 ## 3. Player Profile Content Model
 

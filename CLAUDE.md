@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-WRFC-website is a Next.js web application for the Washington Rugby Football Club. It's built using Next.js App Router architecture with TypeScript and styled using TailwindCSS. The website includes features like club information, roster listings, schedule management, tournament registration, and Square payment integration.
+WRFC-website is a Next.js web application for the Washington Rugby Football Club. It's built using Next.js App Router architecture with TypeScript and styled using TailwindCSS. The website includes features like club information, roster listings, schedule management, tournament registration, and Zeffy payment integration.
 
 ## Commands
 
@@ -53,10 +53,10 @@ The project has a strong focus on SEO:
 
 ### Payment Processing
 
-- Integrates with Square for payment processing
-- Currently uses external Square payment links rather than direct integration
-- Square utils in `/lib/square-utils.ts` for SDK loading
-- Component implementation in `/components/SquarePayment.tsx`
+- Integrates with Zeffy for payment processing (100% free for nonprofits)
+- Uses external Zeffy payment links for all transactions
+- Payment links configured in `/data/zeffy-links.ts`
+- Component implementation in `/components/ZeffyPaymentButton.tsx`
 
 ## File Structure Highlights
 
@@ -100,7 +100,7 @@ When making changes:
 2. Use TypeScript for all new code
 3. Utilize TailwindCSS for styling following the project's design system
 4. Maintain SEO best practices for any new or modified pages
-5. Use the Square payment integration for any payment-related features
+5. Use the Zeffy payment integration for any payment-related features
 6. Add new content types to Contentful when extending dynamic content
 
 The codebase follows a component-based approach with a clear separation of UI components, layout elements, and feature implementations. For dynamic content, use the Contentful integration rather than hardcoding data.

@@ -12,7 +12,8 @@ type PageKey =
   | 'membership'
   | 'sponsors'
   | 'contact'
-  | 'media';
+  | 'media'
+  | 'blog';
 
 interface PageSEOData {
   title: string;
@@ -106,6 +107,13 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
     keywords: ['rugby photos', 'wrfc media', 'rugby videos', 'dc rugby news'],
     imagePath: '/assets/pictures/media_gallery.jpg',
     imageAlt: 'WRFC Media Gallery'
+  },
+  blog: {
+    title: 'Blog | WRFC News & Updates',
+    description: 'Read the latest news, match reports, and updates from Washington Rugby Football Club. Stay informed about club activities, player features, and tournament coverage.',
+    keywords: ['WRFC blog', 'rugby news', 'Washington rugby updates', 'match reports', 'rugby articles'],
+    imagePath: '/assets/pictures/blog_hero.jpg',
+    imageAlt: 'WRFC Blog'
   }
 };
 

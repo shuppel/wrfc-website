@@ -36,7 +36,15 @@ const NAV_LINKS = [
       { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
     ]
   },
-  { href: '/media', label: 'Media' },
+  { 
+    href: '/media', 
+    label: 'Media',
+    dropdown: [
+      { href: '/blog', label: 'Blog', icon: '📝' },
+      { href: '/media/film', label: 'Film Room', icon: '🎬' },
+      { href: '/media/social', label: 'Social Media', icon: '📱' },
+    ]
+  },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
