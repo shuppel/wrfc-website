@@ -231,7 +231,7 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
         <div className="text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4">Subscribe for More Content</h3>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-            Don't miss any of our latest match highlights and exclusive content
+            Don&apos;t miss any of our latest match highlights and exclusive content
           </p>
           <a 
             href="https://www.youtube.com/@washingtonrugby7666"

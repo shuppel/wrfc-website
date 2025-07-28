@@ -4,24 +4,27 @@ import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
 import ScheduleView from '../../../components/feature/schedule/ScheduleView'
 import { SAMPLE_DATA } from '../../../types/game'
-import { getAllGames } from '../../../lib/contentful'
+import { getAllMatches } from '../../../lib/contentful'
+import { transformMatch } from '../../../lib/contentful'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Game Schedule',
-  description: 'Washington Rugby Football Club game schedule, fixtures, and results. Follow WRFC matches in MAC Conference D1 and Capital Conference D3 competitions.',
+  title: 'Match Schedule',
+  description: 'Washington Rugby Football Club match schedule, fixtures, and results. Follow WRFC matches in MAC Conference D1 and Capital Conference D3 competitions.',
   path: '/schedule/game'
 })
 
 export default async function GameSchedulePage() {
   const structuredData = getStructuredData('game-schedule', {
     '@type': 'WebPage',
-    name: 'Game Schedule - WRFC',
-    description: 'Washington Rugby Football Club game schedule, fixtures, and match information.'
+    name: 'Match Schedule - WRFC',
+    description: 'Washington Rugby Football Club match schedule, fixtures, and match information.'
   });
 
-  // Fetch games from Contentful, fallback to sample data if not available
-  const contentfulGames = await getAllGames();
-  const games = contentfulGames.length > 0 ? contentfulGames : SAMPLE_DATA.games;
+  // Fetch matches from Contentful, fallback to sample data if not available
+  const contentfulMatches = await getAllMatches();
+  const games = contentfulMatches.length > 0 
+    ? contentfulMatches.map(transformMatch) 
+    : SAMPLE_DATA.games;
 
   return (
     <div className="flex flex-col items-center w-full">

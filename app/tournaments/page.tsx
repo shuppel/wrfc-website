@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
@@ -10,6 +8,8 @@ import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import { Button } from '@/components/ui/button';
 import RegisterButton from '@/components/RegisterButton';
+import { getAllTournaments } from '@/lib/contentful';
+import { formatDate } from '@/lib/utils';
 
 interface Tournament {
   id: string;
@@ -160,7 +160,9 @@ const tournaments: Tournament[] = [
   }
 ];
 
-export default function TournamentsPage() {
+export default async function TournamentsPage() {
+  // Fetch tournaments from Contentful
+  const contentfulTournaments = await getAllTournaments();
   // Additional structured data specific to the tournaments page
   const structuredData = getStructuredData('tournaments', {
     '@type': 'Event',
@@ -188,7 +190,24 @@ export default function TournamentsPage() {
     }
   });
 
-  const upcomingTournament = tournaments.find(t => t.status === 'upcoming');
+  // Use Contentful tournaments if available, otherwise fall back to hardcoded data
+  const displayTournaments = contentfulTournaments.length > 0 
+    ? contentfulTournaments.map(t => ({
+        id: t.fields.slug,
+        name: t.fields.name,
+        date: `${formatDate(t.fields.startDate)} - ${formatDate(t.fields.endDate)}`,
+        location: 'Washington DC Area', // You might want to add this to Contentful
+        coverImage: t.fields.heroImage?.fields.file.url 
+          ? `https:${t.fields.heroImage.fields.file.url}`
+          : '/assets/pictures/2025_irish_ruck.jpg',
+        description: 'Premier rugby tournament in Washington DC', // Default description
+        divisions: [], // You might want to add divisions to Contentful
+        status: t.fields.active && new Date(t.fields.startDate) > new Date() ? 'upcoming' : 'past',
+        year: t.fields.year
+      }))
+    : tournaments;
+
+  const upcomingTournament = displayTournaments.find(t => t.status === 'upcoming');
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -239,7 +258,7 @@ export default function TournamentsPage() {
                   <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition-opacity" />
                   <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
                     <div className="grid md:grid-cols-2 gap-8">
-                      <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`} className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
+                      <Link href={`/tournaments/${upcomingTournament.id}`} className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
                         <Image
                           src={upcomingTournament.coverImage}
                           alt={upcomingTournament.name}
@@ -256,7 +275,7 @@ export default function TournamentsPage() {
                           <Trophy className="w-5 h-5" />
                           <span>57th Annual Tournament</span>
                         </div>
-                        <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`}>
+                        <Link href={`/tournaments/${upcomingTournament.id}`}>
                           <h2 className="text-4xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
                             {upcomingTournament.name}
                           </h2>
@@ -275,7 +294,7 @@ export default function TournamentsPage() {
                           </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <Link href={`/tournaments/${upcomingTournament.id}/${upcomingTournament.year}`}>
+                          <Link href={`/tournaments/${upcomingTournament.id}`}>
                             <Button className="bg-wrfc-navy hover:bg-wrfc-navy/90 text-white transition-colors">
                               View Tournament Details
                               <ArrowRight className="ml-2 w-4 h-4" />
@@ -294,13 +313,13 @@ export default function TournamentsPage() {
                     Past Tournaments
                   </h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {tournaments
+                    {displayTournaments
                       .filter(t => t.status === 'past')
                       .slice(0, 3)
                       .map(tournament => (
                         <Link
                           key={tournament.id}
-                          href={`/tournaments/${tournament.id}/${tournament.year}`}
+                          href={`/tournaments/${tournament.id}`}
                           className="group"
                         >
                           <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
@@ -328,7 +347,7 @@ export default function TournamentsPage() {
 
           <TabsContent value="archive">
             <div className="space-y-8">
-              {Array.from(new Set(tournaments.filter(t => t.status === 'past').map(t => t.year)))
+              {Array.from(new Set(displayTournaments.filter(t => t.status === 'past').map(t => t.year)))
                 .sort((a, b) => b - a)
                 .map(year => (
                   <div key={year} className="space-y-6">
@@ -336,12 +355,12 @@ export default function TournamentsPage() {
                       {year} Tournaments
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {tournaments
+                      {displayTournaments
                         .filter(t => t.status === 'past' && t.year === year)
                         .map(tournament => (
                           <Link
                             key={tournament.id}
-                            href={`/tournaments/${tournament.id}/${tournament.year}`}
+                            href={`/tournaments/${tournament.id}`}
                             className="group"
                           >
                             <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">

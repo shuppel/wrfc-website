@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Youtube, Instagram, FileText, ArrowRight, Calendar, User, Clock } from 'lucide-react';
+import { Youtube, Instagram, FileText, ArrowRight, Calendar, Clock } from 'lucide-react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -59,7 +58,7 @@ const mockBlogPosts = [
 ];
 
 export default function MediaContent({ structuredData }: MediaContentProps) {
-  const [latestVideo, setLatestVideo] = useState<string>('lvy4b81NYFw'); // Latest WRFC video
+  const [latestVideo] = useState<string>('lvy4b81NYFw'); // Latest WRFC video
 
   return (
     <div className="flex flex-col items-center w-full">

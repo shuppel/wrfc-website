@@ -67,11 +67,11 @@ export default function GeorgetownPage() {
               Rugby in Georgetown
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              DC's Premier Rugby Club for Georgetown Professionals
+              DC&apos;s Premier Rugby Club for Georgetown Professionals
             </p>
             <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-200">
               Perfect for Georgetown, Foggy Bottom, and West End residents. 
-              Join fellow professionals in DC's most established rugby club.
+              Join fellow professionals in DC&apos;s most established rugby club.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -154,7 +154,7 @@ export default function GeorgetownPage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
-            Join Georgetown's Rugby Community
+            Join Georgetown&apos;s Rugby Community
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -247,7 +247,7 @@ export default function GeorgetownPage() {
             Start Your Rugby Journey from Georgetown
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
-            Join DC's premier rugby club and experience the perfect blend of 
+            Join DC&apos;s premier rugby club and experience the perfect blend of 
             competitive sport and professional networking. New players welcome!
           </p>
           

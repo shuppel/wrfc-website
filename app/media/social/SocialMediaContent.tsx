@@ -202,7 +202,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
         <div className="text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
-            Don't miss any updates from WRFC. Follow us on all our social media channels to stay informed about matches, events, and club news.
+            Don&apos;t miss any updates from WRFC. Follow us on all our social media channels to stay informed about matches, events, and club news.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a 

@@ -67,7 +67,7 @@ export default function CapitolHillPage() {
               Rugby in Capitol Hill
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              Washington DC's Premier Rugby Club
+              Washington DC&apos;s Premier Rugby Club
             </p>
             <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-200">
               Join WRFC and train with passionate rugby players from Capitol Hill, 
@@ -195,9 +195,9 @@ export default function CapitolHillPage() {
             Start Your Rugby Journey in Capitol Hill
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
-            Whether you're new to rugby or an experienced player, WRFC welcomes 
+            Whether you&apos;re new to rugby or an experienced player, WRFC welcomes 
             all Capitol Hill residents. Join us for a practice and experience 
-            the camaraderie of DC's premier rugby club.
+            the camaraderie of DC&apos;s premier rugby club.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

@@ -88,7 +88,7 @@ export default function LocalPage() {
           </div>
           
           <div className="mt-16 text-center">
-            <h3 className="text-2xl font-bold mb-4">Don't See Your Neighborhood?</h3>
+            <h3 className="text-2xl font-bold mb-4">Don&apos;t See Your Neighborhood?</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
               WRFC welcomes players from all DC neighborhoods including Dupont Circle, 
               Adams Morgan, Columbia Heights, Shaw, and beyond.

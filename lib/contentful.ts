@@ -119,13 +119,7 @@ export interface AlumniSpotlight {
   fields: {
     name: string;
     slug: string;
-    graduationYear: number;
-    currentRole?: string;
-    location?: string;
-    category: 'Community Service' | 'Professional Achievement' | 'Rugby Development' | 'Coaching';
-    shortBio: string;
-    fullStory: Document; // Rich text content
-    photo?: {
+    featuredImage?: {
       fields: {
         file: {
           url: string;
@@ -133,13 +127,12 @@ export interface AlumniSpotlight {
         title: string;
       };
     };
-    socialLinks?: {
-      linkedin?: string;
-      twitter?: string;
-      website?: string;
-    };
-    featured: boolean;
+    yearsPlayed: string; // e.g., "2010-2015"
+    hometown: string; // Location/city
+    story: Document; // Rich text content
+    quote: string; // Featured quote
     publishDate: string;
+    featured: boolean;
   };
 }
 
@@ -149,7 +142,7 @@ export interface ContentfulTeam {
   };
   fields: {
     name: string;
-    shortName: string;
+    slug: string;
     logo?: {
       fields: {
         file: {
@@ -159,7 +152,8 @@ export interface ContentfulTeam {
       };
     };
     city: string;
-    state: string;
+    division: 'D1' | 'D2' | 'D3' | 'D4';
+    isWRFC: boolean;
   };
 }
 
@@ -169,33 +163,74 @@ export interface ContentfulVenue {
   };
   fields: {
     name: string;
-    city: string;
-    state: string;
+    slug: string;
+    venueType: 'Rugby Field' | 'Training Ground' | 'Social Venue' | 'Stadium' | 'Multi-Sport Complex';
     address: string;
-    latitude: number;
-    longitude: number;
+    googleMapsUrl?: string;
+    parkingInfo?: Document; // Rich text
   };
 }
 
-export interface ContentfulGame {
+export interface Match {
   sys: {
     id: string;
   };
   fields: {
-    gameId: string;
-    date: string;
-    kickoffTime: string;
+    title: string; // e.g., "WRFC vs Georgetown"
+    slug: string;
+    matchType: 'League' | 'Friendly' | 'Tournament' | 'Playoff';
+    date: string; // Match date and time
     homeTeam: ContentfulTeam;
     awayTeam: ContentfulTeam;
     venue: ContentfulVenue;
-    division: 'D1' | 'D3' | 'Social';
-    competition: string;
-    homeScore?: number;
-    awayScore?: number;
-    status: 'SCHEDULED' | 'FINAL' | 'FORFEIT' | 'CANCELLED' | 'POSTPONED';
-    notes?: string;
-    ticketUrl?: string;
-    broadcastUrl?: string;
+    wrfcDivisions: ('D1' | 'D2' | 'D3' | 'D4')[];
+    scoreHome?: number;
+    scoreAway?: number;
+    status: 'Scheduled' | 'Final' | 'Postponed' | 'Cancelled';
+    matchReport?: Document; // Rich text
+    highlightsUrl?: string;
+  };
+}
+
+export interface Tournament {
+  sys: {
+    id: string;
+  };
+  fields: {
+    name: string;
+    slug: string;
+    year: number;
+    startDate: string;
+    endDate: string;
+    description: Document; // Rich text
+    heroImage?: {
+      fields: {
+        file: {
+          url: string;
+        };
+        title: string;
+      };
+    };
+    registrationLink?: string; // Zeffy link
+    schedule?: Document; // Rich text
+    active: boolean;
+  };
+}
+
+export interface Event {
+  sys: {
+    id: string;
+  };
+  fields: {
+    title: string;
+    slug: string;
+    eventType: 'Social' | 'Fundraiser' | 'Training' | 'Meeting';
+    startTime: string; // Event start date/time
+    endTime: string; // Event end date/time
+    venue: ContentfulVenue;
+    description: Document; // Rich text
+    registrationLink?: string; // Zeffy or external link
+    featured: boolean;
   };
 }
 
@@ -215,8 +250,18 @@ export type MembershipPlanCollection = {
   total: number;
 };
 
-export type ContentfulGameCollection = {
-  items: ContentfulGame[];
+export type MatchCollection = {
+  items: Match[];
+  total: number;
+};
+
+export type TournamentCollection = {
+  items: Tournament[];
+  total: number;
+};
+
+export type EventCollection = {
+  items: Event[];
   total: number;
 };
 
@@ -375,116 +420,107 @@ export async function getAlumniSpotlightBySlug(slug: string): Promise<AlumniSpot
   }
 }
 
-// Map Contentful competition values to Game interface
-function mapCompetition(competition: string): 'LEAGUE' | 'FRIENDLY' | 'PLAYOFF' | 'TOURNAMENT' | 'SOCIAL' {
-  const lowerCompetition = competition.toLowerCase();
-  if (lowerCompetition.includes('league') || lowerCompetition.includes('regular')) return 'LEAGUE';
-  if (lowerCompetition.includes('friendly')) return 'FRIENDLY';
-  if (lowerCompetition.includes('playoff') || lowerCompetition.includes('championship')) return 'PLAYOFF';
-  if (lowerCompetition.includes('tournament') || lowerCompetition.includes('cup')) return 'TOURNAMENT';
-  if (lowerCompetition.includes('social')) return 'SOCIAL';
-  return 'FRIENDLY'; // Default fallback
-}
 
-// Transform Contentful game data to app Game interface
-function transformContentfulGame(contentfulGame: ContentfulGame): import('../types/game').Game {
-  const { fields } = contentfulGame;
+
+// Transform Contentful match data to app Game interface
+export function transformMatch(match: Match): import('../types/game').Game {
+  const { fields } = match;
   const gameDate = new Date(fields.date);
   const season = gameDate.getFullYear().toString();
   
   // Determine if WRFC is home team
-  const isHome = fields.homeTeam.fields.name.toLowerCase().includes('washington rugby') || 
-                 fields.homeTeam.fields.name.toLowerCase().includes('wrfc');
+  const isHome = fields.homeTeam.fields.isWRFC;
   
   return {
-    id: fields.gameId,
+    id: match.sys.id,
     date: fields.date,
-    time: fields.kickoffTime,
+    time: fields.date, // Using same date field for time
     season,
     isHome,
     homeTeam: {
       id: fields.homeTeam.sys.id,
       name: fields.homeTeam.fields.name,
-      shortName: fields.homeTeam.fields.shortName,
+      shortName: fields.homeTeam.fields.name, // Using name as shortName for now
       logo: fields.homeTeam.fields.logo?.fields.file.url ? `https:${fields.homeTeam.fields.logo.fields.file.url}` : undefined,
       city: fields.homeTeam.fields.city,
-      state: fields.homeTeam.fields.state,
+      state: '', // Not in new schema
     },
     awayTeam: {
       id: fields.awayTeam.sys.id,
       name: fields.awayTeam.fields.name,
-      shortName: fields.awayTeam.fields.shortName,
+      shortName: fields.awayTeam.fields.name, // Using name as shortName for now
       logo: fields.awayTeam.fields.logo?.fields.file.url ? `https:${fields.awayTeam.fields.logo.fields.file.url}` : undefined,
       city: fields.awayTeam.fields.city,
-      state: fields.awayTeam.fields.state,
+      state: '', // Not in new schema
     },
     venue: {
       id: fields.venue.sys.id,
       name: fields.venue.fields.name,
-      city: fields.venue.fields.city,
-      state: fields.venue.fields.state,
+      city: '', // Not in new schema
+      state: '', // Not in new schema
       address: fields.venue.fields.address,
       coordinates: {
-        lat: fields.venue.fields.latitude,
-        lng: fields.venue.fields.longitude,
+        lat: 0, // Not in new schema
+        lng: 0, // Not in new schema
       },
     },
-    competition: mapCompetition(fields.competition),
-    result: (fields.status === 'FINAL' || fields.status === 'FORFEIT') && 
-            fields.homeScore !== undefined && fields.awayScore !== undefined ? {
-      homeScore: fields.homeScore,
-      awayScore: fields.awayScore,
-      status: fields.status,
-      notes: fields.notes,
+    competition: fields.matchType === 'League' ? 'LEAGUE' : 
+                 fields.matchType === 'Friendly' ? 'FRIENDLY' :
+                 fields.matchType === 'Tournament' ? 'TOURNAMENT' : 'PLAYOFF',
+    result: fields.status === 'Final' && 
+            fields.scoreHome !== undefined && fields.scoreAway !== undefined ? {
+      homeScore: fields.scoreHome,
+      awayScore: fields.scoreAway,
+      status: 'FINAL',
+      notes: undefined,
     } : undefined,
-    ticketsUrl: fields.ticketUrl,
-    broadcastUrl: fields.broadcastUrl,
+    ticketsUrl: undefined,
+    broadcastUrl: fields.highlightsUrl,
   };
 }
 
-// Fetch all games from Contentful
-export async function getAllGames(): Promise<import('../types/game').Game[]> {
+// Fetch all matches from Contentful
+export async function getAllMatches(): Promise<Match[]> {
   if (!validateContentfulConfig()) {
     return [];
   }
   try {
     const response = await client.getEntries({
-      content_type: 'game',
+      content_type: 'match',
       order: ['fields.date'],
       include: 2, // Include linked entries (teams and venues)
     });
-    return response.items.map(item => transformContentfulGame(item as unknown as ContentfulGame));
+    return response.items as unknown as Match[];
   } catch (error) {
-    console.error('Error fetching games from Contentful:', error);
+    console.error('Error fetching matches from Contentful:', error);
     return [];
   }
 }
 
-// Fetch games by season/year
-export async function getGamesBySeason(year: number): Promise<import('../types/game').Game[]> {
+// Fetch a single match by slug
+export async function getMatchBySlug(slug: string): Promise<Match | null> {
   if (!validateContentfulConfig()) {
-    return [];
+    return null;
   }
   try {
-    const startDate = `${year}-01-01T00:00:00.000Z`;
-    const endDate = `${year}-12-31T23:59:59.999Z`;
-    
     const response = await client.getEntries({
-      content_type: 'game',
-      'fields.date[gte]': startDate,
-      'fields.date[lte]': endDate,
-      order: ['fields.date'],
+      content_type: 'match',
+      'fields.slug': slug,
+      limit: 1,
       include: 2,
     });
-    return response.items.map(item => transformContentfulGame(item as unknown as ContentfulGame));
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as Match 
+      : null;
   } catch (error) {
-    console.error('Error fetching games by season:', error);
-    return [];
+    console.error('Error fetching match:', error);
+    return null;
   }
 }
 
-// Fetch upcoming games
-export async function getUpcomingGames(limit: number = 10): Promise<import('../types/game').Game[]> {
+// Fetch upcoming matches
+export async function getUpcomingMatches(limit: number = 10): Promise<Match[]> {
   if (!validateContentfulConfig()) {
     return [];
   }
@@ -492,21 +528,21 @@ export async function getUpcomingGames(limit: number = 10): Promise<import('../t
     const now = new Date().toISOString();
     
     const response = await client.getEntries({
-      content_type: 'game',
+      content_type: 'match',
       'fields.date[gte]': now,
       order: ['fields.date'],
       limit,
       include: 2,
     });
-    return response.items.map(item => transformContentfulGame(item as unknown as ContentfulGame));
+    return response.items as unknown as Match[];
   } catch (error) {
-    console.error('Error fetching upcoming games:', error);
+    console.error('Error fetching upcoming matches:', error);
     return [];
   }
 }
 
-// Fetch past games (with results)
-export async function getPastGames(limit: number = 20): Promise<import('../types/game').Game[]> {
+// Fetch past matches (with results)
+export async function getPastMatches(limit: number = 20): Promise<Match[]> {
   if (!validateContentfulConfig()) {
     return [];
   }
@@ -514,17 +550,158 @@ export async function getPastGames(limit: number = 20): Promise<import('../types
     const now = new Date().toISOString();
     
     const response = await client.getEntries({
-      content_type: 'game',
+      content_type: 'match',
       'fields.date[lt]': now,
       order: ['-fields.date'], // Most recent first
       limit,
       include: 2,
     });
-    return response.items.map(item => transformContentfulGame(item as unknown as ContentfulGame));
+    return response.items as unknown as Match[];
   } catch (error) {
-    console.error('Error fetching past games:', error);
+    console.error('Error fetching past matches:', error);
     return [];
   }
+}
+
+// Tournament functions
+export async function getAllTournaments(): Promise<Tournament[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'tournament',
+      order: ['-fields.startDate'],
+    });
+    return response.items as unknown as Tournament[];
+  } catch (error) {
+    console.error('Error fetching tournaments:', error);
+    return [];
+  }
+}
+
+export async function getActiveTournaments(): Promise<Tournament[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'tournament',
+      'fields.active': true,
+      order: ['fields.startDate'],
+    });
+    return response.items as unknown as Tournament[];
+  } catch (error) {
+    console.error('Error fetching active tournaments:', error);
+    return [];
+  }
+}
+
+export async function getTournamentBySlug(slug: string): Promise<Tournament | null> {
+  if (!validateContentfulConfig()) {
+    return null;
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'tournament',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as Tournament 
+      : null;
+  } catch (error) {
+    console.error('Error fetching tournament:', error);
+    return null;
+  }
+}
+
+// Event functions
+export async function getAllEvents(): Promise<Event[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'event',
+      order: ['fields.startTime'],
+      include: 2, // Include venue
+    });
+    return response.items as unknown as Event[];
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    return [];
+  }
+}
+
+export async function getUpcomingEvents(limit: number = 10): Promise<Event[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const now = new Date().toISOString();
+    
+    const response = await client.getEntries({
+      content_type: 'event',
+      'fields.startTime[gte]': now,
+      order: ['fields.startTime'],
+      limit,
+      include: 2,
+    });
+    return response.items as unknown as Event[];
+  } catch (error) {
+    console.error('Error fetching upcoming events:', error);
+    return [];
+  }
+}
+
+export async function getFeaturedEvents(): Promise<Event[]> {
+  if (!validateContentfulConfig()) {
+    return [];
+  }
+  try {
+    const now = new Date().toISOString();
+    
+    const response = await client.getEntries({
+      content_type: 'event',
+      'fields.featured': true,
+      'fields.startTime[gte]': now,
+      order: ['fields.startTime'],
+      limit: 3,
+    });
+    return response.items as unknown as Event[];
+  } catch (error) {
+    console.error('Error fetching featured events:', error);
+    return [];
+  }
+}
+
+export async function getEventBySlug(slug: string): Promise<Event | null> {
+  if (!validateContentfulConfig()) {
+    return null;
+  }
+  try {
+    const response = await client.getEntries({
+      content_type: 'event',
+      'fields.slug': slug,
+      limit: 1,
+      include: 2,
+    });
+    
+    return response.items.length > 0 
+      ? response.items[0] as unknown as Event 
+      : null;
+  } catch (error) {
+    console.error('Error fetching event:', error);
+    return null;
+  }
+}
+
+// For backward compatibility - will be removed later
+export async function getAllGames(): Promise<import('../types/game').Game[]> {
+  const matches = await getAllMatches();
+  return matches.map(transformMatch);
 }
 
 export default client;

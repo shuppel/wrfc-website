@@ -54,6 +54,7 @@ We'll use Contentful for content that changes frequently and needs editorial con
 **Fields:**
 - **Name** (Short text, Required) - Venue name
 - **Slug** (Short text, Required, Unique) - URL slug
+- **Venue Type** (Dropdown, Required) - Rugby Field, Training Ground, Social Venue, Stadium, Multi-Sport Complex
 - **Address** (Long text, Required) - Full address
 - **Google Maps URL** (Short text) - Direct link to maps
 - **Parking Info** (Rich text) - Simple parking instructions
@@ -66,7 +67,7 @@ We'll use Contentful for content that changes frequently and needs editorial con
 - **Slug** (Short text, Required, Unique) - URL slug
 - **Featured Image** (Media) - Main photo
 - **Years Played** (Short text) - e.g., "2010-2015"
-- **Current Role** (Short text) - What they do now
+- **Hometown** (Short text) - Location/city
 - **Story** (Rich text) - Their WRFC story
 - **Quote** (Long text) - Featured quote
 - **Published Date** (Date & time) - When to publish
@@ -94,8 +95,9 @@ We'll use Contentful for content that changes frequently and needs editorial con
 - **Title** (Short text, Required) - Event name
 - **Slug** (Short text, Required, Unique) - URL slug
 - **Event Type** (Dropdown) - Social, Fundraiser, Training, Meeting
-- **Date** (Date & time, Required) - Event date/time
-- **Location** (Short text) - Where it's happening
+- **Start Time** (Date & time, Required) - Event start date/time
+- **End Time** (Date & time, Required) - Event end date/time
+- **Venue** (Reference to Venue) - Link to Venue content
 - **Description** (Rich text) - Event details
 - **Registration Link** (Short text) - Zeffy or external link
 - **Featured** (Boolean) - Highlight this event?
@@ -190,12 +192,61 @@ interface MembershipPlan {
 - ✅ Set up Contentful environment variables
 - ✅ Created Media section structure
 - ✅ Built Blog, Film Room, and Social Media pages
+- ✅ Created all 6 core content models in Contentful
 
-### Next Steps:
-1. Create content models in Contentful
-2. Update `/lib/contentful.ts` with new types
-3. Create sample content for testing
-4. Update components to use real data
+### Media Components Checklist:
+1. **Blog Section** (`/app/blog/`)
+   - [ ] Update to use real Contentful blog posts
+   - [ ] Implement filtering by category/tag
+   - [ ] Add author information display
+   - [ ] Create featured posts section
+   - [ ] Add pagination for blog list
+
+2. **Film Room** (`/app/media/film/`)
+   - [ ] Create YouTube playlist integration
+   - [ ] Add video categories (Highlights, Training, Full Matches)
+   - [ ] Implement video search/filter
+   - [ ] Add view count tracking
+
+3. **Social Media** (`/app/media/social/`)
+   - [ ] Fix import error for SocialMediaContent
+   - [ ] Add Instagram feed integration
+   - [ ] Add Facebook feed integration
+   - [ ] Create social media aggregation
+
+### Contentful API Integration Steps:
+1. **Update `/lib/contentful.ts`**
+   - [ ] Add TypeScript interfaces for all 6 content types
+   - [ ] Create fetch functions for each content type
+   - [ ] Add preview API support
+   - [ ] Implement error handling
+
+2. **Remove Dummy Data**
+   - [ ] `/data/players.ts` - Keep until Jazz implementation
+   - [ ] Blog posts in `/app/blog/page.tsx`
+   - [ ] Match data in schedule components
+   - [ ] Event data in event components
+   - [ ] Tournament data
+   - [ ] Alumni spotlights
+
+3. **Update Components**
+   - [ ] Blog components to use Contentful data
+   - [ ] Schedule components for matches
+   - [ ] Event listing components
+   - [ ] Tournament pages
+   - [ ] Alumni spotlight components
+
+4. **Add Dynamic Routes**
+   - [ ] `/blog/[slug]` - Individual blog posts
+   - [ ] `/schedule/match/[slug]` - Match details
+   - [ ] `/events/[slug]` - Event details
+   - [ ] `/alumni/[slug]` - Alumni profiles
+
+### Next Immediate Steps:
+1. Fix the social media import error
+2. Update `/lib/contentful.ts` with new content types
+3. Create sample content in Contentful for testing
+4. Start replacing dummy data with real Contentful queries
 5. Test and refine
 
 ## Environment Variables Required

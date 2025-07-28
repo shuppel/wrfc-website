@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
+import { BlogPost } from '@/lib/contentful';
 
 // Define JsonLdObject type
 type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[];
@@ -21,7 +22,7 @@ interface JsonLdObject {
 
 interface BlogContentProps {
   structuredData: JsonLdObject;
-  posts?: any[]; // Will be replaced with proper BlogPost type
+  posts?: BlogPost[];
 }
 
 // Blog categories
@@ -39,7 +40,7 @@ const CATEGORIES = [
 
 export default function BlogContent({ structuredData, posts = [] }: BlogContentProps) {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPostCardData[]>([]);
 
   // Mock data for demonstration - will be replaced with Contentful data
   const mockPosts = [
@@ -96,8 +97,30 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
     }
   ];
 
-  // Use mock data if no posts from Contentful
-  const displayPosts = posts.length > 0 ? posts : mockPosts;
+  // Transform Contentful posts to match component structure
+  const transformedPosts = posts.map(post => ({
+    id: post.sys.id,
+    title: post.fields.title,
+    slug: post.fields.slug,
+    excerpt: post.fields.excerpt,
+    publishDate: post.fields.publishDate,
+    featuredImage: post.fields.featuredImage ? {
+      url: `https:${post.fields.featuredImage.fields.file.url}`
+    } : null,
+    author: post.fields.author ? {
+      name: post.fields.author.fields.name,
+      picture: post.fields.author.fields.picture ? {
+        url: `https:${post.fields.author.fields.picture.fields.file.url}`
+      } : null,
+      title: post.fields.author.fields.title || ''
+    } : null,
+    categories: post.fields.categories || [],
+    tags: post.fields.tags || [],
+    readingTime: '3 min read' // Calculate based on content length if needed
+  }));
+
+  // Use transformed posts or mock data if no posts from Contentful
+  const displayPosts = transformedPosts.length > 0 ? transformedPosts : mockPosts;
 
   useEffect(() => {
     if (selectedCategory === 'All') {
@@ -234,7 +257,24 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
   );
 }
 
-function BlogPostCard({ post }: { post: any }) {
+interface BlogPostCardData {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  publishDate: string;
+  featuredImage?: { url: string } | null;
+  author?: {
+    name: string;
+    picture?: { url: string } | null;
+    title?: string;
+  } | null;
+  categories?: string[];
+  tags?: string[];
+  readingTime: string;
+}
+
+function BlogPostCard({ post }: { post: BlogPostCardData }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group">
       <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300">
