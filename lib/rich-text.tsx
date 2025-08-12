@@ -78,7 +78,7 @@ const options = {
       if (__typename === 'BlogPost') {
         href = `/blog/${slug}`;
       } else if (__typename === 'PlayerProfile') {
-        href = `/roster/${slug}`;
+        href = `/teams/players/${slug}`;
       }
 
       return (

@@ -6,7 +6,7 @@ export const siteConfig = {
   routes: [
     { path: '/', priority: 1.0 },
     { path: '/about', priority: 0.8 },
-    { path: '/roster', priority: 0.8 },
+    { path: '/teams/players', priority: 0.8 },
     { path: '/schedule', priority: 0.8 },
     { path: '/membership', priority: 0.8 },
     { path: '/tournaments/cherry-blossom', priority: 0.8 },

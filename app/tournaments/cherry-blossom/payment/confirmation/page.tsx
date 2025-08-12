@@ -111,11 +111,7 @@ function ConfirmationContent() {
               Return to Tournament Page
             </Button>
           </Link>
-          <Link href="/tournaments/cherry-blossom/2025/roster">
-            <Button>
-              Complete Team Roster
-            </Button>
-          </Link>
+
         </div>
       </div>
     </div>
