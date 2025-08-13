@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Card } from "components/ui/card"
-import { cn } from "@/app/utils"
+import { cn } from "@/lib/utils"
 
 interface ChevronCardProps {
   icon: ReactNode;

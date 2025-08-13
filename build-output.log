@@ -1,0 +1,26 @@
+
+> wrfc-website@0.1.1 build
+> next build
+
+  ▲ Next.js 14.2.24
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · optimizeCss
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/(public)/media/social/page.tsx:25:30
+Type error: Type '{ '@type': string; name: string; description: string; } | { '@type': string; name: string; member: {}; }' is not assignable to type 'JsonLdObject'.
+  Type '{ '@type': string; name: string; member: {}; }' is not assignable to type 'JsonLdObject'.
+    Property 'member' is incompatible with index signature.
+      Type '{}' is not assignable to type 'JsonLdValue | undefined'.
+
+[0m [90m 23 |[39m   })[33m;[39m[0m
+[0m [90m 24 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 25 |[39m   [36mreturn[39m [33m<[39m[33mSocialMediaContent[39m structuredData[33m=[39m{structuredData} [33m/[39m[33m>[39m[33m;[39m[0m
+[0m [90m    |[39m                              [31m[1m^[22m[39m[0m
+[0m [90m 26 |[39m }[0m
+Next.js build worker exited with code: 1 and signal: null

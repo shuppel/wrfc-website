@@ -2,10 +2,17 @@
 
 import { useTheme } from '../contexts/ThemeContext'
 import { Sun, Moon } from 'lucide-react'
-import { Button } from 'components/ui/button'
+import { Button } from '@/components/ui/button'
 
 export function ThemeToggle() {
-  const { toggleTheme } = useTheme()
+  const { toggleTheme, mounted } = useTheme()
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse" />
+    )
+  }
 
   return (
     <Button

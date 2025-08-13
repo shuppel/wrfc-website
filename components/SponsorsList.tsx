@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { Trophy, Heart, Building, Info, MapPin, Tag, Shield } from 'lucide-react';
-import { Sponsor } from '../app/sponsors/page';
+import { Sponsor } from '../app/(public)/sponsors/page';
 
 const BADGE_COLORS = {
   gold: 'bg-yellow-500',

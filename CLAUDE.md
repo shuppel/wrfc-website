@@ -86,12 +86,24 @@ The website uses Contentful as a headless CMS to manage dynamic content. The fol
 
 ### Environment Setup
 
-To work with the CMS, you need to set up the following environment variables:
+To work with the CMS and Supabase, you need to set up the following environment variables:
 ```
+# Contentful CMS
 CONTENTFUL_SPACE_ID=your_space_id_here
 CONTENTFUL_ACCESS_TOKEN=your_access_token_here
 CONTENTFUL_ENVIRONMENT=master
+
+# Supabase Database
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+
+## Database Integration
+
+The project uses Supabase as the database solution:
+- Supabase client is configured in `/lib/supabase.ts`
+- Uses the `@supabase/supabase-js` client library
+- Environment variables must be prefixed with `NEXT_PUBLIC_` to be accessible in the browser
 
 ## Working with the Codebase
 

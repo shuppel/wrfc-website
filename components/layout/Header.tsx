@@ -2,9 +2,15 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ThemeToggle } from '../ThemeToggle'
+import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
+
+// Dynamically import ThemeToggle to prevent hydration issues
+const ThemeToggle = dynamic(() => import('../ThemeToggle').then(mod => ({ default: mod.ThemeToggle })), {
+  ssr: false,
+  loading: () => <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800" />
+})
 
 interface NavDropdownItem {
   href: string;
@@ -64,7 +70,6 @@ const NAV_LINKS: NavLink[] = [
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
   { href: '/contact', label: 'Contact' },
-  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]
 
 export default function Header() {
@@ -178,27 +183,36 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                     <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={link.isZeffy}>{link.label}</NavLink>                  )}
+                      <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={link.isZeffy}>{link.label}</NavLink>                  )}
                 </div>
               ))}
+              
+              {/* Pay Dues */}
+              <a 
+                zeffy-form-link="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
+                className="ml-4 px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105 text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300"
+                style={{ cursor: 'pointer' }}
+              >
+                Pay Dues
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
+              </a>
+              
+              {/* Player Login */}
+              <Link 
+                href="/portal/login"
+                className="px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105 text-wrfc-navy dark:text-blue-400 font-bold hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                Player Login
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-navy group-hover:w-full transition-all duration-300" />
+              </Link>
+              
+              {/* Join Us! Button */}
               <Link 
                 href="/membership" 
-                className="ml-6 px-8 py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl group flex items-center gap-3 relative"
+                className="ml-6 px-8 py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative"
               >
                 <span className="relative z-10 inline-block transform group-hover:-translate-y-px transition-transform font-semibold tracking-wide">
-                  <span className="hidden xl:inline">JOIN THE LEGACY</span>
-                  <span className="xl:hidden">JOIN</span>
-                </span>
-                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" />
-                {/* Subtle gleaming border effect */}
-                <span className="absolute inset-0 rounded-lg pointer-events-none">
-                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
-                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
-                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
-                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
-                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
-                  </span>
+                  JOIN US!
                 </span>
               </Link>
               <div className="ml-4">
@@ -318,6 +332,25 @@ export default function Header() {
                   )}
                 </div>
               ))}
+              
+              {/* Pay Dues link */}
+              <a
+                zeffy-form-link="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
+                className="block py-3 rounded-md transition-colors text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20"
+                style={{ cursor: 'pointer' }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Pay Dues
+              </a>
+              
+              {/* Player Login link */}
+              <Link
+                href="/portal/login"
+                className="block py-3 rounded-md transition-colors text-wrfc-navy dark:text-blue-400 font-bold hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Player Login
+              </Link>
             </div>
 
             {/* Theme Toggle and Join Button Container */}
@@ -325,21 +358,10 @@ export default function Header() {
               <ThemeToggle />
               <Link 
                 href="/membership"
-                className="px-6 py-2.5 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 relative group"
+                className="px-6 py-2.5 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="relative z-10 font-semibold tracking-wide">JOIN</span>
-                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                {/* Subtle gleaming border effect */}
-                <span className="absolute inset-0 rounded-lg pointer-events-none">
-                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
-                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
-                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
-                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
-                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
-                  </span>
-                </span>
+                <span className="relative z-10 font-semibold tracking-wide">JOIN US!</span>
               </Link>
             </div>
           </div>

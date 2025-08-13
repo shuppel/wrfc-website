@@ -358,6 +358,11 @@ export async function getAllMembershipPlans(): Promise<MembershipPlan[]> {
     });
     return response.items as unknown as MembershipPlan[];
   } catch (error) {
+    // Handle the specific case where content type doesn't exist or has no entries
+    if (error instanceof Error && (error.message?.includes('unknownContentType') || error.message?.includes('DOESNOTEXIST'))) {
+      console.warn('Membership plans content type not found in Contentful. Using empty array.');
+      return [];
+    }
     console.error('Error fetching membership plans:', error);
     return [];
   }
