@@ -260,8 +260,8 @@ export default function ProfilePage() {
     
     const file = e.target.files[0]
     const fileExt = file.name.split('.').pop()
-    const fileName = `${player?.id}-${Date.now()}.${fileExt}`
-    const filePath = `profile-images/${fileName}`
+    const fileName = `${Date.now()}.${fileExt}`
+    const filePath = `${player?.id}/profile-images/${fileName}`
     
     setUploadingImage(true)
     
@@ -549,7 +549,7 @@ export default function ProfilePage() {
             <CardTitle>Rugby Information</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="position">Position</Label>
                 <Select
@@ -583,13 +583,10 @@ export default function ProfilePage() {
                   placeholder="1-99"
                 />
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="member_since" className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  Playing for club since (Year)
+                  Member Since (Year)
                 </Label>
                 <Input
                   id="member_since"
@@ -598,7 +595,7 @@ export default function ProfilePage() {
                   max={new Date().getFullYear()}
                   value={formData.member_since}
                   onChange={(e) => handleChange('member_since', e.target.value)}
-                  placeholder={`e.g., ${new Date().getFullYear() - 5}`}
+                  placeholder={`e.g., ${new Date().getFullYear() - 2}`}
                 />
               </div>
             </div>
