@@ -20,7 +20,7 @@ import {
 } from 'lucide-react'
 import type { DuesPayment, PlayerStanding } from '@/lib/supabase/types'
 
-const ZEFFY_DUES_LINK = 'https://www.zeffy.com/en-US/membership/wrfc-player-dues' // TODO: Replace with actual link
+const ZEFFY_DUES_LINK = 'https://www.zeffy.com/en-US/ticketing/wrfc-player-dues'
 const SEASON_YEAR = new Date().getFullYear()
 const DUES_AMOUNT = {
   full: 300,
