@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, UserCircle2, CreditCard } from 'lucide-react'
 
 // Dynamically import ThemeToggle to prevent hydration issues
 const ThemeToggle = dynamic(() => import('../ThemeToggle').then(mod => ({ default: mod.ThemeToggle })), {
@@ -27,6 +27,7 @@ interface NavLink {
   isZeffy?: boolean;
 }
 
+// Simplified nav structure for better mobile experience
 const NAV_LINKS: NavLink[] = [
   { 
     href: '/about', 
@@ -52,24 +53,13 @@ const NAV_LINKS: NavLink[] = [
     href: '/schedule', 
     label: 'Schedule',
     dropdown: [
-      { href: '/schedule/practice', label: 'Practice Schedule', icon: '🏃' },
-      { href: '/schedule/game', label: 'Game Schedule', icon: '🏉' },
-      { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
-    ]
-  },
-  { 
-    href: '/media', 
-    label: 'Media',
-    dropdown: [
-      { href: '/blog', label: 'Blog', icon: '📝' },
-      { href: '/media/film', label: 'Film Room', icon: '🎬' },
-      { href: '/media/social', label: 'Social Media', icon: '📱' },
+      { href: '/schedule/practice', label: 'Practice', icon: '🏃' },
+      { href: '/schedule/game', label: 'Games', icon: '🏉' },
+      { href: '/schedule/events', label: 'Events', icon: '📅' },
     ]
   },
   { href: '/tournaments', label: 'Tournaments' },
-  { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Header() {
@@ -78,6 +68,7 @@ export default function Header() {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [showSecondaryNav, setShowSecondaryNav] = useState(false)
 
   // Handle scroll effect
   useEffect(() => {
@@ -115,16 +106,15 @@ export default function Header() {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/95 dark:bg-gray-900/95 shadow-md' : 'bg-white/90 dark:bg-gray-900/90'
     } backdrop-blur-md border-b border-gray-200 dark:border-gray-800`}>
-      <nav className="container mx-auto px-4 pt-3">
-        <div className="flex items-center h-16">
-          {/* Logo Container */}
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3">
+        <div className="flex items-center justify-between h-14 sm:h-16">
+          {/* Logo Container - Smaller on mobile */}
           <div className="flex-shrink-0">
             <Link 
               href="/" 
-              className="relative w-32 h-32 -mb-8 hover:opacity-90 transition-opacity group block"
-              style={{ marginTop: '-0.25rem' }}
+              className="relative hover:opacity-90 transition-opacity group block"
             >
-              <div className="relative w-full h-full pt-2">
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 -mb-6 sm:-mb-7 lg:-mb-8">
                 <Image
                   src="/logos/wrfc_logo.png"
                   alt="WRFC Logo"
@@ -136,9 +126,9 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex flex-1 justify-end items-center">
-            <div className="flex items-center space-x-1">
+          {/* Desktop Navigation - Simplified */}
+          <div className="hidden xl:flex flex-1 justify-end items-center">
+            <div className="flex items-center gap-1 lg:gap-2">
               {NAV_LINKS.map((link) => (
                 <div 
                   key={link.href} 

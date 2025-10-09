@@ -1,22 +1,37 @@
 import { createClient } from './client'
 
 export async function signUp(email: string, password: string, metadata?: { first_name: string, last_name: string }) {
-  const supabase = createClient()
-  
-  const redirectTo = typeof window !== 'undefined' 
-    ? `${window.location.origin}/portal/auth/callback`
-    : `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/portal/auth/callback`
-  
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: metadata,
-      emailRedirectTo: redirectTo
+  try {
+    const supabase = createClient()
+    
+    const redirectTo = typeof window !== 'undefined' 
+      ? `${window.location.origin}/portal/auth/callback`
+      : `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/portal/auth/callback`
+    
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: metadata,
+        emailRedirectTo: redirectTo
+      }
+    })
+    
+    if (error) {
+      console.error('Supabase signUp error:', error)
     }
-  })
-  
-  return { data, error }
+    
+    return { data, error }
+  } catch (err) {
+    console.error('Failed to sign up:', err)
+    return { 
+      data: null, 
+      error: { 
+        message: 'Unable to connect to authentication service. Please check your internet connection or contact support.',
+        name: 'ConnectionError'
+      } as any
+    }
+  }
 }
 
 export async function signIn(email: string, password: string) {

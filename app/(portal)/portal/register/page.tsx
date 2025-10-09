@@ -199,12 +199,22 @@ export default function RegisterPage() {
       })
       
       if (error) {
-        setServerError(error.message)
-      } else if (data.user) {
+        // Check for specific error types
+        if (error.message.includes('authentication service') || error.message.includes('configuration')) {
+          setServerError('The authentication service is currently unavailable. Please try again later or contact support at admin@wrfc.org')
+        } else if (error.message.includes('already registered')) {
+          setServerError('This email is already registered. Please sign in or use a different email.')
+        } else {
+          setServerError(error.message)
+        }
+      } else if (data?.user) {
         router.push('/portal/register/success')
+      } else {
+        setServerError('Registration failed. Please try again.')
       }
-    } catch {
-      setServerError('An unexpected error occurred. Please try again later.')
+    } catch (err) {
+      console.error('Registration error:', err)
+      setServerError('Unable to complete registration. Please check your internet connection and try again.')
     } finally {
       setLoading(false)
     }

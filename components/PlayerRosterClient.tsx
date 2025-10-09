@@ -188,9 +188,14 @@ export default function PlayerRosterClient({ initialPlayers }: PlayerRosterClien
 
                 {/* Player Info */}
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                    {player.display_name || `${player.first_name} ${player.last_name}`}
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    {player.first_name} {player.last_name}
                   </h3>
+                  {player.display_name && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-1">
+                      &quot;{player.display_name}&quot;
+                    </p>
+                  )}
                   
                   <p className="text-wrfc-red dark:text-wrfc-teal font-semibold mb-2">
                     {player.position || 'Position TBD'}

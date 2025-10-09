@@ -3,14 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { 
   CheckCircle, 
-  Mail, 
   ArrowRight, 
   Trophy,
   Users,
   Calendar,
   Sparkles,
   MessageSquare,
-  Shield
+  CreditCard,
+  Smartphone,
+  ExternalLink,
+  ClipboardCheck
 } from 'lucide-react'
 
 export default function RegisterSuccessPage() {
@@ -53,60 +55,124 @@ export default function RegisterSuccessPage() {
             </div>
 
             <CardContent className="pt-8 px-8 pb-8">
-              {/* Email Verification Notice */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 mb-8 border border-blue-200 dark:border-blue-800">
+              {/* Important Next Steps - Highlighted */}
+              <div className="bg-gradient-to-br from-wrfc-red/10 to-red-50 dark:from-wrfc-red/20 dark:to-red-950/20 rounded-xl p-6 mb-8 border-2 border-wrfc-red/30">
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 dark:bg-blue-800/50 rounded-full p-3">
-                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  <div className="bg-wrfc-red rounded-full p-3">
+                    <ClipboardCheck className="h-6 w-6 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg text-blue-900 dark:text-blue-100 mb-2">
-                      Check Your Email
+                    <h3 className="font-bold text-lg text-wrfc-red mb-3">
+                      ⚠️ Important: Complete These Steps to Join WRFC
                     </h3>
-                    <p className="text-blue-800 dark:text-blue-200 mb-3">
-                      We&apos;ve sent a verification email to your inbox. Please click the link to activate your account.
-                    </p>
-                    <p className="text-sm text-blue-700 dark:text-blue-300 italic">
-                      Can&apos;t find it? Check your spam folder or request a new email below.
-                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
+                        <p className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                          Step 1: Register on Rugby Xplorer (CIPP)
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          All players must be CIPP registered to participate in USA Rugby sanctioned activities
+                        </p>
+                      </div>
+                      <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
+                        <p className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                          Step 2: Pay Your Club Dues
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Complete your membership by paying annual dues
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* What's Next Section */}
+              {/* Two Main CTAs */}
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                {/* Rugby Xplorer CTA */}
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-blue-100 dark:bg-blue-800/50 rounded-full p-2">
+                      <Smartphone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <h4 className="font-bold text-lg">Register on Rugby Xplorer</h4>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    Complete your USA Rugby CIPP registration by joining <strong>&quot;Washington Rugby Football Club&quot;</strong> on Rugby Xplorer.
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-4 italic">
+                    CIPP registration is required for all players to participate in USA Rugby sanctioned activities.
+                  </p>
+                  <Button 
+                    asChild 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <a 
+                      href="https://xplorer.rugby/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Go to Rugby Xplorer
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 text-center">
+                    Search for: <strong>Washington Rugby Football Club</strong>
+                  </p>
+                </div>
+
+                {/* Pay Dues CTA */}
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-green-100 dark:bg-green-800/50 rounded-full p-2">
+                      <CreditCard className="h-6 w-6 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h4 className="font-bold text-lg">Pay Your Dues</h4>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    Complete your membership by paying your annual dues to participate in team activities and matches.
+                  </p>
+                  <Button 
+                    asChild 
+                    className="w-full bg-green-600 hover:bg-green-700 text-white"
+                  >
+                    <a 
+                      href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Pay Dues Now
+                      <CreditCard className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+                    Secure payment via Zeffy
+                  </p>
+                </div>
+              </div>
+
+              {/* Additional Steps */}
               <div className="mb-8">
-                <h3 className="text-xl font-bold mb-6 text-center">What Happens Next?</h3>
+                <h3 className="text-xl font-bold mb-6 text-center">After Registration & Payment</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                    <div className="bg-wrfc-red/10 rounded-full p-2">
-                      <Shield className="h-5 w-5 text-wrfc-red" />
+                    <div className="bg-gray-100 dark:bg-gray-800 rounded-full p-2">
+                      <Users className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">1. Verify Your Email</h4>
+                      <h4 className="font-semibold mb-1">Complete Your Profile</h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Click the link in your email to activate your account
+                        Add your rugby experience, position preferences, and emergency contacts
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                    <div className="bg-wrfc-red/10 rounded-full p-2">
-                      <Users className="h-5 w-5 text-wrfc-red" />
+                    <div className="bg-gray-100 dark:bg-gray-800 rounded-full p-2">
+                      <Calendar className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">2. Complete Your Profile</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Add your rugby experience, position preferences, and contact info
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                    <div className="bg-wrfc-red/10 rounded-full p-2">
-                      <Calendar className="h-5 w-5 text-wrfc-red" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">3. Join Practice</h4>
+                      <h4 className="font-semibold mb-1">Join Practice</h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
                         Check the schedule and come to your first training session
                       </p>
@@ -114,31 +180,34 @@ export default function RegisterSuccessPage() {
                   </div>
 
                   <div className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                    <div className="bg-wrfc-red/10 rounded-full p-2">
-                      <Trophy className="h-5 w-5 text-wrfc-red" />
+                    <div className="bg-gray-100 dark:bg-gray-800 rounded-full p-2">
+                      <Trophy className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">4. Get Your Gear</h4>
+                      <h4 className="font-semibold mb-1">Order Your Kit</h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Order your WRFC kit and join the team on the field
+                        WRFC kit information will be provided at practice
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Secondary Action Buttons */}
               <div className="space-y-3">
-                <Button asChild className="w-full bg-wrfc-red hover:bg-red-700 text-white" size="lg">
-                  <Link href="/portal/login">
-                    Go to Login
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="bg-white dark:bg-gray-950 px-4 text-gray-500">Or continue to</span>
+                  </div>
+                </div>
                 
                 <Button asChild variant="outline" className="w-full" size="lg">
-                  <Link href="/">
-                    Return to Website
+                  <Link href="/portal/login">
+                    Login to Player Portal
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>

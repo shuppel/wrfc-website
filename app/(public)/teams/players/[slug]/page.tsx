@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createServerClient } from '@/lib/supabase-server'
 import { generateSEOMetadata } from '../../../utils/seo'
 import { Badge } from '@/components/ui/portal-badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -47,6 +47,8 @@ export async function generateMetadata({ params }: PlayerDetailPageProps): Promi
 }
 
 async function getPlayerBySlug(slug: string): Promise<Player | null> {
+  const supabase = createServerClient()
+  
   // Parse slug to get first and last name
   const nameParts = slug.split('-')
   if (nameParts.length < 2) return null
@@ -108,13 +110,13 @@ export default async function PlayerDetailPage({ params }: PlayerDetailPageProps
             <div className="md:w-1/3 bg-gradient-to-br from-wrfc-navy to-wrfc-red">
               <div className="aspect-w-3 aspect-h-4 relative h-96 md:h-full">
                 {player.profile_image_url ? (
-                  <Image
-                    src={player.profile_image_url}
-                    alt={fullName}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
+                    <Image
+                      src={player.profile_image_url}
+                      alt={`${player.first_name} ${player.last_name}`}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
@@ -131,9 +133,14 @@ export default async function PlayerDetailPage({ params }: PlayerDetailPageProps
             <div className="md:w-2/3 p-8">
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                    {fullName}
+                  <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-1">
+                    {player.first_name} {player.last_name}
                   </h1>
+                  {player.display_name && (
+                    <p className="text-lg text-gray-600 dark:text-gray-400 italic mb-2">
+                      &quot;{player.display_name}&quot;
+                    </p>
+                  )}
                   <p className="text-2xl text-wrfc-red dark:text-wrfc-teal font-semibold">
                     {player.position || 'Position TBD'}
                   </p>

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import Header from './Header'
+import HeaderImproved from './HeaderImproved'
 import Footer from './Footer'
 
 interface LayoutProps {
@@ -9,7 +9,7 @@ interface LayoutProps {
 export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <HeaderImproved />
       <main className="flex-grow">
         {children}
       </main>
