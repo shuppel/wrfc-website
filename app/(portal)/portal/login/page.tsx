@@ -12,6 +12,8 @@ import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, Mail, Lock, AlertCircle, Eye, EyeOff, Shield, ArrowLeft } from 'lucide-react'
 import Image from 'next/image'
+import PortalDisclaimer from '@/components/portal/PortalDisclaimer'
+import { isFeatureEnabled } from '@/lib/feature-flags'
 
 // Zod schema for form validation
 const loginSchema = z.object({
@@ -28,6 +30,7 @@ type FormErrors = Partial<Record<keyof LoginFormData, string>>
 
 export default function LoginPage() {
   const router = useRouter()
+  const showDisclaimer = isFeatureEnabled('PORTAL_LOGIN_DISCLAIMER')
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: ''
@@ -138,6 +141,10 @@ export default function LoginPage() {
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {showDisclaimer && (
+                <PortalDisclaimer />
+              )}
+              
               {serverError && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
