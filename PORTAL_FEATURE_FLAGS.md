@@ -10,10 +10,7 @@ This document explains how to use the new feature flag system for the player por
 - **Default**: `false` (disabled)
 - **Purpose**: Shows/hides a disclaimer message on the login page
 
-### 2. Portal Maintenance Mode  
-- **Flag**: `NEXT_PUBLIC_PORTAL_MAINTENANCE`
-- **Default**: `false` (disabled)
-- **Purpose**: Redirects portal users to an "in-progress" page instead of login
+
 
 ## How to Enable/Disable
 
@@ -21,11 +18,8 @@ This document explains how to use the new feature flag system for the player por
 Add to your `.env.local` file:
 
 ```bash
-# Enable disclaimer on login page
+# Enable disclaimer (redirects /portal to disclaimer page)
 NEXT_PUBLIC_FF_PORTAL_LOGIN_DISCLAIMER=true
-
-# Enable maintenance mode (redirects to in-progress page)
-NEXT_PUBLIC_PORTAL_MAINTENANCE=true
 ```
 
 ### Method 2: Update Default Values
@@ -41,41 +35,47 @@ const DEFAULT_FLAGS: FeatureFlags = {
 
 ### Normal Operation (Default)
 - `PORTAL_LOGIN_DISCLAIMER=false`
-- `PORTAL_MAINTENANCE=false`
-- Portal redirects to login page
+- Portal (`/portal`) redirects directly to login page (`/portal/login`)
 - No disclaimer shown
 
-### Disclaimer Mode
+### Disclaimer Mode  
 - `PORTAL_LOGIN_DISCLAIMER=true`
-- `PORTAL_MAINTENANCE=false`
-- Portal redirects to login page
-- Orange disclaimer banner shown on login page
-
-### Maintenance Mode
-- `PORTAL_MAINTENANCE=true`
-- Portal redirects to `/portal/in-progress` page
-- Users see "Under Development" message with links back to main site
+- Portal (`/portal`) redirects to disclaimer page (`/portal/disclaimer`)
+- Disclaimer page shows warning and "Continue to Portal" button
+- Users can proceed to login after acknowledging the disclaimer
 
 ## Files Created/Modified
 
 ### New Files
 - `lib/feature-flags.ts` - Feature flag system
 - `components/portal/PortalDisclaimer.tsx` - Disclaimer component
-- `app/(portal)/portal/in-progress/page.tsx` - Maintenance page
+- `app/(portal)/portal/in-progress/page.tsx` - Full maintenance page
+- `app/(portal)/portal/disclaimer/page.tsx` - Disclaimer landing page
 
 ### Modified Files
-- `app/(portal)/portal/page.tsx` - Added maintenance mode redirect
-- `app/(portal)/portal/login/page.tsx` - Added disclaimer integration
+- `app/(portal)/portal/page.tsx` - Added feature flag routing logic
+- `app/(portal)/portal/login/page.tsx` - Added disclaimer integration  
+- `components/layout/HeaderImproved.tsx` - Updated portal links to use `/portal`
 - `.env.example` - Added feature flag examples
 
 ## Testing
 
-1. **Test Disclaimer**: Set `NEXT_PUBLIC_FF_PORTAL_LOGIN_DISCLAIMER=true` and visit `/portal`
-2. **Test Maintenance**: Set `NEXT_PUBLIC_PORTAL_MAINTENANCE=true` and visit `/portal`
-3. **Test Normal**: Keep both flags `false` and verify normal login flow
+1. **Test Normal Flow**: Keep flag `false` and visit `/portal` → should redirect to `/portal/login`
+2. **Test Disclaimer**: Set `NEXT_PUBLIC_FF_PORTAL_LOGIN_DISCLAIMER=true` and visit `/portal` → should redirect to `/portal/disclaimer`
 
 ## Current Status
 - ✅ Feature flag system implemented
 - ✅ Disclaimer component created and integrated
 - ✅ In-progress fallback page created
+- ✅ Header portal buttons updated to use `/portal` (universal routing)
 - ✅ Both flags are **disabled by default** as requested
+
+## How It Works
+All portal links (header buttons, direct links) now point to `/portal` which acts as a simple router:
+
+1. **Header Portal Button** → `/portal` 
+2. **Portal Page Logic** checks the disclaimer flag and redirects accordingly:
+   - Disclaimer flag ON → `/portal/disclaimer` 
+   - Disclaimer flag OFF → `/portal/login` (default)
+
+This ensures consistent behavior across all entry points to the portal.

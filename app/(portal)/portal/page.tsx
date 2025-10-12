@@ -1,14 +1,13 @@
 import { redirect } from 'next/navigation'
-import { isFeatureEnabled } from '@/lib/feature-flags'
 
 export default function PortalPage() {
-  // Check if portal is in maintenance mode
-  const showInProgress = !isFeatureEnabled('PORTAL_LOGIN_DISCLAIMER') && process.env.NEXT_PUBLIC_PORTAL_MAINTENANCE === 'true'
+  // Check if disclaimer should be shown - direct env check
+  const showDisclaimer = process.env.NEXT_PUBLIC_FF_PORTAL_LOGIN_DISCLAIMER === 'true'
   
-  if (showInProgress) {
-    redirect('/portal/in-progress')
+  if (showDisclaimer) {
+    redirect('/portal/disclaimer')
   }
   
-  // Redirect to login by default
+  // Default: redirect to login
   redirect('/portal/login')
 }
