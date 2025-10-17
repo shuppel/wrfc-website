@@ -41,9 +41,21 @@ const SEO_DATA = {
   },
   contact: {
     title: 'Contact Us | Washington Rugby Football Club',
-    description: 'Get in touch with Washington Rugby Football Club. Contact information and form.',
+    description: 'Get in touch with Washington Rugby Football Club - join the team, ask questions, or learn more',
     imagePath: '/assets/contact.jpg',
     keywords: ['contact rugby club', 'washington rugby contact', 'wrfc info', 'dc rugby information'],
+  },
+  blog: {
+    title: 'Blog | Washington Rugby Football Club',
+    description: 'Latest news, match reports, and updates from Washington Rugby Football Club',
+    imagePath: '/logos/wrfc_logo.png',
+    keywords: ['rugby blog', 'washington rugby news', 'wrfc updates', 'dc rugby news'],
+  },
+  media: {
+    title: 'Media | Washington Rugby Football Club',
+    description: 'Photos, videos, and media coverage of Washington Rugby Football Club',
+    imagePath: '/logos/wrfc_logo.png',
+    keywords: ['rugby media', 'washington rugby photos', 'wrfc videos', 'dc rugby media'],
   },
 };
 

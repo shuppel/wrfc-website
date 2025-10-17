@@ -80,7 +80,7 @@ export default function RosterList({ players }: RosterListProps) {
             <div className="p-4">
               <div className="flex justify-between items-center mb-2">
                 <Link 
-                  href={`/roster/players/${player.slug}`}
+                  href={`/teams/players/${player.slug}`}
                   className="text-xl font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   {player.name}

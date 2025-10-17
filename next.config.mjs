@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Exclude the duplicate wrfc-website-dev directory from compilation
+  webpack: (config) => {
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/wrfc-website-dev/**', '**/node_modules/**']
+    }
+    return config
+  },
   async headers() {
     return [
       {
