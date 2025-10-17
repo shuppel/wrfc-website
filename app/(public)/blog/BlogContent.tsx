@@ -5,25 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, User, Clock, ChevronRight } from 'lucide-react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
-import JsonLd from '@/components/JsonLd';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
-import { BlogPost } from '@/lib/contentful';
-
-// Define JsonLdObject type
-type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[];
-interface JsonLdObject {
-  '@context'?: string;
-  '@type'?: string;
-  [key: string]: JsonLdValue | undefined;
-}
-
-interface BlogContentProps {
-  structuredData: JsonLdObject;
-  posts?: BlogPost[];
-}
 
 // Blog categories
 const CATEGORIES = [
@@ -36,104 +21,94 @@ const CATEGORIES = [
   'Alumni Stories'
 ];
 
+// Mock data for demonstration
+const mockPosts = [
+  {
+    id: '1',
+    title: 'WRFC Dominates in Season Opener Against Potomac',
+    slug: 'wrfc-dominates-season-opener',
+    excerpt: 'The Washington Rugby Football Club started their season with an impressive 45-12 victory over Potomac Athletic Club, showcasing strong offensive plays and solid defense.',
+    content: 'Full article content here...',
+    publishDate: '2025-01-15',
+    featuredImage: { url: '/assets/pictures/2022_d2_champs.png' },
+    author: {
+      name: 'WRFC Communications',
+      picture: { url: '/logos/wrfc_logo.png' },
+      title: 'Communications Team'
+    },
+    categories: ['Match Reports'],
+    tags: ['D1', 'League', 'Victory'],
+    readingTime: '3 min read'
+  },
+  {
+    id: '2',
+    title: 'Cherry Blossom Tournament 2025 Registration Now Open',
+    slug: 'cherry-blossom-2025-registration',
+    excerpt: 'Early bird registration is now available for the premier rugby tournament in the DC area. Multiple divisions available for all skill levels.',
+    content: 'Full article content here...',
+    publishDate: '2025-01-10',
+    featuredImage: { url: '/assets/art/tournament_banner_watercolor.png' },
+    author: {
+      name: 'Tournament Director',
+      picture: { url: '/logos/wrfc_logo.png' },
+      title: 'Tournament Committee'
+    },
+    categories: ['Tournaments', 'Club News'],
+    tags: ['Cherry Blossom', 'Registration', 'Tournament'],
+    readingTime: '2 min read'
+  },
+  {
+    id: '3',
+    title: 'Player Spotlight: John Smith\'s Journey to WRFC',
+    slug: 'player-spotlight-john-smith',
+    excerpt: 'From college rugby to the D1 squad, learn about flanker John Smith\'s rugby journey and his impact on the team.',
+    content: 'Full article content here...',
+    publishDate: '2025-01-05',
+    featuredImage: { url: '/assets/pictures/throw_skill_2025.png' },
+    author: {
+      name: 'Sarah Johnson',
+      picture: { url: '/logos/wrfc_logo.png' },
+      title: 'Content Writer'
+    },
+    categories: ['Player Features'],
+    tags: ['Player Profile', 'D1', 'Interview'],
+    readingTime: '5 min read'
+  }
+];
 
+interface BlogPostCardData {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  publishDate: string;
+  featuredImage?: { url: string } | null;
+  author?: {
+    name: string;
+    picture?: { url: string } | null;
+    title?: string;
+  } | null;
+  categories?: string[];
+  tags?: string[];
+  readingTime: string;
+}
 
-export default function BlogContent({ structuredData, posts = [] }: BlogContentProps) {
+export default function BlogContent() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [filteredPosts, setFilteredPosts] = useState<BlogPostCardData[]>([]);
-
-  // Mock data for demonstration - will be replaced with Contentful data
-  const mockPosts = [
-    {
-      id: '1',
-      title: 'WRFC Dominates in Season Opener Against Potomac',
-      slug: 'wrfc-dominates-season-opener',
-      excerpt: 'The Washington Rugby Football Club started their season with an impressive 45-12 victory over Potomac Athletic Club, showcasing strong offensive plays and solid defense.',
-      content: 'Full article content here...',
-      publishDate: '2025-01-15',
-      featuredImage: { url: '/assets/pictures/2022_d2_champs.png' },
-      author: {
-        name: 'WRFC Communications',
-        picture: { url: '/logos/wrfc_logo.png' },
-        title: 'Communications Team'
-      },
-      categories: ['Match Reports'],
-      tags: ['D1', 'League', 'Victory'],
-      readingTime: '3 min read'
-    },
-    {
-      id: '2',
-      title: 'Cherry Blossom Tournament 2025 Registration Now Open',
-      slug: 'cherry-blossom-2025-registration',
-      excerpt: 'Early bird registration is now available for the premier rugby tournament in the DC area. Multiple divisions available for all skill levels.',
-      content: 'Full article content here...',
-      publishDate: '2025-01-10',
-      featuredImage: { url: '/assets/art/tournament_banner_watercolor.png' },
-      author: {
-        name: 'Tournament Director',
-        picture: { url: '/logos/wrfc_logo.png' },
-        title: 'Tournament Committee'
-      },
-      categories: ['Tournaments', 'Club News'],
-      tags: ['Cherry Blossom', 'Registration', 'Tournament'],
-      readingTime: '2 min read'
-    },
-    {
-      id: '3',
-      title: 'Player Spotlight: John Smith\'s Journey to WRFC',
-      slug: 'player-spotlight-john-smith',
-      excerpt: 'From college rugby to the D1 squad, learn about flanker John Smith\'s rugby journey and his impact on the team.',
-      content: 'Full article content here...',
-      publishDate: '2025-01-05',
-      featuredImage: { url: '/assets/pictures/throw_skill_2025.png' },
-      author: {
-        name: 'Sarah Johnson',
-        picture: { url: '/logos/wrfc_logo.png' },
-        title: 'Content Writer'
-      },
-      categories: ['Player Features'],
-      tags: ['Player Profile', 'D1', 'Interview'],
-      readingTime: '5 min read'
-    }
-  ];
-
-  // Transform Contentful posts to match component structure
-  const transformedPosts = posts.map(post => ({
-    id: post.sys.id,
-    title: post.fields.title,
-    slug: post.fields.slug,
-    excerpt: post.fields.excerpt,
-    publishDate: post.fields.publishDate,
-    featuredImage: post.fields.featuredImage ? {
-      url: `https:${post.fields.featuredImage.fields.file.url}`
-    } : null,
-    author: post.fields.author ? {
-      name: post.fields.author.fields.name,
-      picture: post.fields.author.fields.picture ? {
-        url: `https:${post.fields.author.fields.picture.fields.file.url}`
-      } : null,
-      title: post.fields.author.fields.title || ''
-    } : null,
-    categories: post.fields.categories || [],
-    tags: post.fields.tags || [],
-    readingTime: '3 min read' // Calculate based on content length if needed
-  }));
-
-  // Use transformed posts or mock data if no posts from Contentful
-  const displayPosts = transformedPosts.length > 0 ? transformedPosts : mockPosts;
+  const [filteredPosts, setFilteredPosts] = useState<BlogPostCardData[]>(mockPosts);
 
   useEffect(() => {
     if (selectedCategory === 'All') {
-      setFilteredPosts(displayPosts);
+      setFilteredPosts(mockPosts);
     } else {
-      setFilteredPosts(displayPosts.filter(post => 
+      setFilteredPosts(mockPosts.filter(post => 
         post.categories?.includes(selectedCategory)
       ));
     }
-  }, [selectedCategory, displayPosts]);
+  }, [selectedCategory]);
 
   // Get featured post (most recent)
-  const featuredPost = displayPosts[0];
+  const featuredPost = mockPosts[0];
   const remainingPosts = filteredPosts.slice(1);
 
   return (
@@ -145,7 +120,6 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
           { name: 'Blog', item: '/blog' }
         ]} 
       />
-      <JsonLd type="WebPage" data={structuredData} />
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -185,7 +159,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
                       className="object-cover"
                     />
                     <div className="absolute top-4 left-4">
-                      <Badge className="bg-wrfc-red text-white" text="Featured" />
+                      <Badge text="Featured" className="bg-wrfc-red text-white" />
                     </div>
                   </div>
                   <CardContent className="p-8 flex flex-col justify-center">
@@ -212,7 +186,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
                     <div className="flex items-center justify-between">
                       <div className="flex gap-2">
                         {featuredPost.categories?.map((cat: string) => (
-                          <Badge key={cat} variant="outline" text={cat} />
+                          <Badge key={cat} text={cat} variant="outline" />
                         ))}
                       </div>
                       <span className="text-wrfc-red font-semibold flex items-center gap-2 group">
@@ -257,23 +231,6 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
   );
 }
 
-interface BlogPostCardData {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  publishDate: string;
-  featuredImage?: { url: string } | null;
-  author?: {
-    name: string;
-    picture?: { url: string } | null;
-    title?: string;
-  } | null;
-  categories?: string[];
-  tags?: string[];
-  readingTime: string;
-}
-
 function BlogPostCard({ post }: { post: BlogPostCardData }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group">
@@ -287,7 +244,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
           />
           {post.categories && post.categories[0] && (
             <div className="absolute top-4 left-4">
-              <Badge variant="outline" className="bg-white/90 backdrop-blur-sm" text={post.categories[0]} />
+              <Badge text={post.categories[0]} variant="outline" className="bg-white/90 backdrop-blur-sm" />
             </div>
           )}
         </div>

@@ -71,9 +71,9 @@ const SECONDARY_NAV_LINKS: NavLink[] = [
 
 export default function HeaderImproved() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
-  const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null)
+  // const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false) // TODO: Implement services dropdown
+  // const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false) // TODO: Implement nav dropdown
+  // const [openDropdown, setOpenDropdown] = useState<number | null>(null) // TODO: Implement dropdown management
   const [isScrolled, setIsScrolled] = useState(false)
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null)

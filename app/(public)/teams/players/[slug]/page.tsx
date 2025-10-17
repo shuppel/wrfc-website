@@ -89,8 +89,6 @@ export default async function PlayerDetailPage({ params }: PlayerDetailPageProps
   const heightInInches = player.height_cm ? Math.round((player.height_cm % 30.48) / 2.54) : null
   const weightInLbs = player.weight_kg ? Math.round(player.weight_kg * 2.205) : null
   
-  const fullName = player.display_name || `${player.first_name} ${player.last_name}`
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="container mx-auto px-4 max-w-6xl">
