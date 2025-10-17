@@ -1,10 +1,10 @@
 import { track } from '@vercel/analytics';
 
 // Helper to filter out undefined values for Vercel Analytics
-function cleanEventData(data: Record<string, any>): Record<string, any> {
-  const cleaned: Record<string, any> = {};
+function cleanEventData(data: Record<string, string | number | boolean | undefined | null>): Record<string, string | number | boolean> {
+  const cleaned: Record<string, string | number | boolean> = {};
   for (const [key, value] of Object.entries(data)) {
-    if (value !== undefined && value !== null) {
+    if (value !== undefined && value !== null && (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean')) {
       cleaned[key] = value;
     }
   }
@@ -123,19 +123,19 @@ class ProfileAnalytics {
     }));
   }
 
-  trackDatabaseOperation(operation: string, success: boolean, duration: number, error?: any) {
+  trackDatabaseOperation(operation: string, success: boolean, duration: number, error?: Error | { code?: string; message?: string }) {
     track('profile_database_operation', cleanEventData({
       operation,
       success,
       duration,
-      error_code: error?.code,
-      error_message: error?.message,
+      error_code: error && 'code' in error ? error.code : undefined,
+      error_message: error && 'message' in error ? error.message : undefined,
       timestamp: new Date().toISOString(),
       session_id: this.sessionId
     }));
   }
 
-  private storeEvent(category: string, event: any) {
+  private storeEvent(category: string, event: ProfileErrorEvent | ProfileSuccessEvent | ProfileInteractionEvent) {
     try {
       const key = `profile_analytics_${category}`;
       const existing = JSON.parse(localStorage.getItem(key) || '[]');
@@ -147,16 +147,16 @@ class ProfileAnalytics {
       }
       
       localStorage.setItem(key, JSON.stringify(existing));
-    } catch (e) {
+    } catch {
       // Silently fail if localStorage is not available
     }
   }
 
-  getStoredEvents(category: string): any[] {
+  getStoredEvents(category: string): (ProfileErrorEvent | ProfileSuccessEvent | ProfileInteractionEvent)[] {
     try {
       const key = `profile_analytics_${category}`;
       return JSON.parse(localStorage.getItem(key) || '[]');
-    } catch (e) {
+    } catch {
       return [];
     }
   }
@@ -171,7 +171,7 @@ class ProfileAnalytics {
           localStorage.removeItem(`profile_analytics_${cat}`);
         });
       }
-    } catch (e) {
+    } catch {
       // Silently fail
     }
   }

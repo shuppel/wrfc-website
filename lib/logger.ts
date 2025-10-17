@@ -10,8 +10,8 @@ interface ErrorDetails {
   code?: string;
   message: string;
   stack?: string;
-  supabaseError?: any;
-  formData?: any;
+  supabaseError?: Record<string, unknown>;
+  formData?: Record<string, unknown>;
   userAgent?: string;
 }
 
@@ -20,7 +20,7 @@ interface LogEntry {
   category: string;
   message: string;
   context: LogContext;
-  data?: any;
+  data?: Record<string, unknown>;
 }
 
 class ProfileLogger {
@@ -42,7 +42,7 @@ class ProfileLogger {
     return `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
 
-  private log(level: LogEntry['level'], category: string, message: string, data?: any) {
+  private log(level: LogEntry['level'], category: string, message: string, data?: Record<string, unknown>) {
     const entry: LogEntry = {
       level,
       category,
@@ -95,7 +95,7 @@ class ProfileLogger {
         existingErrors.shift();
       }
       localStorage.setItem('profile_errors', JSON.stringify(existingErrors));
-    } catch (e) {
+    } catch {
       // Silently fail if localStorage is not available
     }
   }
@@ -104,15 +104,15 @@ class ProfileLogger {
     this.context.action = action;
   }
 
-  auth(message: string, data?: any) {
+  auth(message: string, data?: Record<string, unknown>) {
     this.log('info', 'AUTH', message, data);
   }
 
-  database(message: string, data?: any) {
+  database(message: string, data?: Record<string, unknown>) {
     this.log('info', 'DATABASE', message, data);
   }
 
-  validation(message: string, data?: any) {
+  validation(message: string, data?: Record<string, unknown>) {
     this.log('info', 'VALIDATION', message, data);
   }
 
@@ -134,11 +134,11 @@ class ProfileLogger {
     });
   }
 
-  debug(message: string, data?: any) {
+  debug(message: string, data?: Record<string, unknown>) {
     this.log('debug', 'DEBUG', message, data);
   }
 
-  warn(message: string, data?: any) {
+  warn(message: string, data?: Record<string, unknown>) {
     this.log('warn', 'WARNING', message, data);
   }
 
@@ -156,7 +156,7 @@ class ProfileLogger {
   clearStoredErrors() {
     try {
       localStorage.removeItem('profile_errors');
-    } catch (e) {
+    } catch {
       // Silently fail if localStorage is not available
     }
   }

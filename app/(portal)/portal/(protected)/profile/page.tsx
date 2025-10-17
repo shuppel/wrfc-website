@@ -94,7 +94,11 @@ export default function ProfilePage() {
         logger.error('AUTH', {
           message: authError.message,
           code: authError.name,
-          supabaseError: authError
+          supabaseError: {
+            name: authError.name,
+            message: authError.message,
+            stack: authError.stack
+          }
         })
         profileAnalytics.trackAuthIssue('get_user_failed', user?.id)
         
@@ -154,7 +158,12 @@ export default function ProfilePage() {
             logger.error('DATABASE', {
               message: `Failed to ensure player record: ${upsertError.message}`,
               code: upsertError.code,
-              supabaseError: upsertError
+              supabaseError: {
+                message: upsertError.message,
+                code: upsertError.code,
+                details: upsertError.details,
+                hint: upsertError.hint
+              }
             })
             
             toast({
@@ -178,13 +187,18 @@ export default function ProfilePage() {
           .single()
         const dbDuration = performance.now() - startDb
         logger.performance('fetch_player_record', dbDuration)
-        profileAnalytics.trackDatabaseOperation('fetch_player', !error, dbDuration, error)
+        profileAnalytics.trackDatabaseOperation('fetch_player', !error, dbDuration, error || undefined)
         
         if (error) {
           logger.error('DATABASE', {
             message: error.message,
             code: error.code,
-            supabaseError: error
+            supabaseError: {
+              message: error.message,
+              code: error.code,
+              details: error.details,
+              hint: error.hint
+            }
           })
           
           // This shouldn't happen after upsert, but it's a critical error
@@ -221,13 +235,15 @@ export default function ProfilePage() {
           })
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error loading player data'
+      const errorStack = error instanceof Error ? error.stack : undefined
       logger.error('UNEXPECTED', {
-        message: error.message || 'Unknown error loading player data',
-        stack: error.stack
+        message: errorMessage,
+        stack: errorStack
       })
       profileAnalytics.trackError('unexpected_load_error', {
-        error_message: error.message
+        error_message: errorMessage
       })
       toast({
         title: 'Error',
@@ -302,7 +318,12 @@ export default function ProfilePage() {
           logger.error('DATABASE', {
             message: `Update failed: ${error.message}`,
             code: error.code,
-            supabaseError: error,
+            supabaseError: {
+              message: error.message,
+              code: error.code,
+              details: error.details,
+              hint: error.hint
+            },
             formData: updateData
           })
           
@@ -313,7 +334,7 @@ export default function ProfilePage() {
             form_field: fieldsBeingUpdated.join(',')
           })
           
-          profileAnalytics.trackDatabaseOperation('update_player', false, updateDuration, error)
+          profileAnalytics.trackDatabaseOperation('update_player', false, updateDuration, error || undefined)
           throw error
         }
         
@@ -338,11 +359,14 @@ export default function ProfilePage() {
         // Refresh player data
         await loadPlayerData()
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error during profile update'
+      const errorStack = error instanceof Error ? error.stack : undefined
+      const errorCode = error && typeof error === 'object' && 'code' in error ? (error as { code: string }).code : undefined
       logger.error('UPDATE_FAILED', {
-        message: error.message || 'Unknown error during profile update',
-        stack: error.stack,
-        code: error.code
+        message: errorMessage,
+        stack: errorStack,
+        code: errorCode
       })
       
       // Note: submitStart is not available here, using 0 as fallback
@@ -350,7 +374,7 @@ export default function ProfilePage() {
       
       toast({
         title: 'Error',
-        description: `Failed to update profile: ${error.message || 'Unknown error'}`,
+        description: `Failed to update profile: ${errorMessage}`,
         variant: 'destructive'
       })
     } finally {
