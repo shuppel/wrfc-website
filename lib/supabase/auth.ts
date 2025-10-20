@@ -29,7 +29,7 @@ export async function signUp(email: string, password: string, metadata?: { first
       error: { 
         message: 'Unable to connect to authentication service. Please check your internet connection or contact support.',
         name: 'ConnectionError'
-      } as any
+      } as { message: string; name: string }
     }
   }
 }

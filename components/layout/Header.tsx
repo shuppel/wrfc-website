@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, UserCircle2, CreditCard } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 // Dynamically import ThemeToggle to prevent hydration issues
 const ThemeToggle = dynamic(() => import('../ThemeToggle').then(mod => ({ default: mod.ThemeToggle })), {
@@ -68,7 +68,7 @@ export default function Header() {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const [showSecondaryNav, setShowSecondaryNav] = useState(false)
+  // const [showSecondaryNav, setShowSecondaryNav] = useState(false) // TODO: Implement secondary nav
 
   // Handle scroll effect
   useEffect(() => {

@@ -8,8 +8,8 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd'
 import JsonLd from '@/components/JsonLd'
 import { Button } from '@/components/ui/button';
 import RegisterButton from '@/components/RegisterButton';
-import { getAllTournaments } from '@/lib/contentful';
-import { formatDate } from '@/lib/utils';
+
+
 
 interface Tournament {
   id: string;
@@ -160,15 +160,7 @@ const tournaments: Tournament[] = [
   }
 ];
 
-export default async function TournamentsPage() {
-  // Fetch tournaments from Contentful with error handling
-  let contentfulTournaments: Awaited<ReturnType<typeof getAllTournaments>>;
-  try {
-    contentfulTournaments = await getAllTournaments();
-  } catch (error) {
-    console.warn('Failed to fetch tournaments from Contentful:', error);
-    contentfulTournaments = [];
-  }
+export default function TournamentsPage() {
   // Additional structured data specific to the tournaments page
   const structuredData = getStructuredData('tournaments', {
     '@type': 'Event',
@@ -196,22 +188,8 @@ export default async function TournamentsPage() {
     }
   });
 
-  // Use Contentful tournaments if available, otherwise fall back to hardcoded data
-  const displayTournaments = contentfulTournaments.length > 0 
-    ? contentfulTournaments.map(t => ({
-        id: t.fields.slug,
-        name: t.fields.name,
-        date: `${formatDate(t.fields.startDate)} - ${formatDate(t.fields.endDate)}`,
-        location: 'Washington DC Area', // You might want to add this to Contentful
-        coverImage: t.fields.heroImage?.fields.file.url 
-          ? `https:${t.fields.heroImage.fields.file.url}`
-          : '/assets/pictures/2025_irish_ruck.jpg',
-        description: 'Premier rugby tournament in Washington DC', // Default description
-        divisions: [], // You might want to add divisions to Contentful
-        status: t.fields.active && new Date(t.fields.startDate) > new Date() ? 'upcoming' : 'past',
-        year: t.fields.year
-      }))
-    : tournaments;
+  // Use hardcoded tournaments data
+  const displayTournaments = tournaments;
 
   const upcomingTournament = displayTournaments.find(t => t.status === 'upcoming');
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
@@ -25,9 +25,12 @@ import {
   AlertCircle,
   CheckCircle,
   Camera,
-  Upload
+  Upload,
+  Bug
 } from 'lucide-react'
 import type { Player } from '@/lib/supabase/types'
+import { ProfileLogger } from '@/lib/logger'
+import { profileAnalytics } from '@/lib/analytics'
 
 const POSITIONS = [
   'Prop', 'Hooker', 'Lock', 'Flanker', 'Number Eight', 
@@ -43,6 +46,8 @@ export default function ProfilePage() {
   const [saving, setSaving] = useState(false)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null)
+  const [showDebugPanel, setShowDebugPanel] = useState(false)
+  const loggerRef = useRef<ProfileLogger | null>(null)
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -67,11 +72,36 @@ export default function ProfilePage() {
   async function loadPlayerData() {
     const supabase = createClient()
     
+    // Initialize logger if not already done
+    if (!loggerRef.current) {
+      const { data: { user } } = await supabase.auth.getUser()
+      loggerRef.current = new ProfileLogger(user?.id, user?.email || undefined)
+    }
+    
+    const logger = loggerRef.current
+    logger.setAction('load_player_data')
+    
     try {
+      // Track page load
+      profileAnalytics.trackInteraction('profile_page_load')
+      
+      logger.auth('Fetching authenticated user')
+      const startAuth = performance.now()
       const { data: { user }, error: authError } = await supabase.auth.getUser()
+      logger.performance('auth_get_user', performance.now() - startAuth)
       
       if (authError) {
-        console.error('Auth error:', authError)
+        logger.error('AUTH', {
+          message: authError.message,
+          code: authError.name,
+          supabaseError: {
+            name: authError.name,
+            message: authError.message,
+            stack: authError.stack
+          }
+        })
+        profileAnalytics.trackAuthIssue('get_user_failed', user?.id)
+        
         toast({
           title: 'Authentication Error',
           description: authError.message,
@@ -82,74 +112,110 @@ export default function ProfilePage() {
       }
       
       if (user) {
-        console.log('User found:', user.id, user.email)
+        logger.auth('User authenticated successfully', { 
+          userId: user.id, 
+          email: user.email,
+          emailVerified: user.email_confirmed_at,
+          lastSignIn: user.last_sign_in_at
+        })
         
+        // First, try to call the RPC function to ensure player exists
+        logger.database('Ensuring player record exists via RPC', { userId: user.id })
+        const rpcStart = performance.now()
+        
+        const { data: rpcResult, error: rpcError } = await supabase
+          .rpc('get_or_create_player_profile')
+        
+        const rpcDuration = performance.now() - rpcStart
+        logger.performance('ensure_player_rpc', rpcDuration)
+        
+        if (rpcError) {
+          logger.warn('RPC failed, falling back to direct upsert', { error: rpcError.message })
+          
+          // Fallback: Try direct upsert if RPC fails
+          const upsertStart = performance.now()
+          
+          const { error: upsertError } = await supabase
+            .from('players')
+            .upsert({
+              id: user.id,
+              email: user.email!,
+              first_name: user.user_metadata?.first_name || user.email?.split('@')[0] || 'New',
+              last_name: user.user_metadata?.last_name || 'Player',
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            }, {
+              onConflict: 'id',
+              ignoreDuplicates: false
+            })
+            .select()
+            .single()
+          
+          const upsertDuration = performance.now() - upsertStart
+          logger.performance('upsert_player_record', upsertDuration)
+          
+          if (upsertError) {
+            logger.error('DATABASE', {
+              message: `Failed to ensure player record: ${upsertError.message}`,
+              code: upsertError.code,
+              supabaseError: {
+                message: upsertError.message,
+                code: upsertError.code,
+                details: upsertError.details,
+                hint: upsertError.hint
+              }
+            })
+            
+            toast({
+              title: 'Database Error',
+              description: 'Failed to create or load your profile. Please try again or contact support.',
+              variant: 'destructive'
+            })
+            return
+          }
+        } else {
+          logger.database('Player record ensured via RPC', { playerId: rpcResult?.id })
+        }
+        
+        // Now fetch the complete player record
+        logger.database('Fetching complete player record', { userId: user.id })
+        const startDb = performance.now()
         const { data: playerData, error } = await supabase
           .from('players')
           .select('*')
           .eq('id', user.id)
           .single()
+        const dbDuration = performance.now() - startDb
+        logger.performance('fetch_player_record', dbDuration)
+        profileAnalytics.trackDatabaseOperation('fetch_player', !error, dbDuration, error || undefined)
         
         if (error) {
-          console.error('Database error:', error)
-          
-          // If player record doesn't exist, try to create one
-          if (error.code === 'PGRST116') {
-            console.log('Player record not found, attempting to create...')
-            
-            const { data: newPlayer, error: insertError } = await supabase
-              .from('players')
-              .insert({
-                id: user.id,
-                email: user.email!,
-                first_name: user.user_metadata?.first_name || 'New',
-                last_name: user.user_metadata?.last_name || 'Player'
-              })
-              .select()
-              .single()
-            
-            if (insertError) {
-              console.error('Failed to create player record:', insertError)
-              toast({
-                title: 'Database Error',
-                description: 'Failed to create player profile. Please contact support.',
-                variant: 'destructive'
-              })
-            } else {
-              console.log('Player record created:', newPlayer)
-              setPlayer(newPlayer)
-              setFormData({
-                first_name: newPlayer.first_name || '',
-                last_name: newPlayer.last_name || '',
-                display_name: '',
-                phone: '',
-                date_of_birth: '',
-                position: '',
-                jersey_number: '',
-                height_cm: '',
-                weight_kg: '',
-                hometown: '',
-                occupation: '',
-                bio: '',
-                member_since: ''
-              })
-              toast({
-                title: 'Profile Created',
-                description: 'Your player profile has been created. Please update your information.',
-              })
+          logger.error('DATABASE', {
+            message: error.message,
+            code: error.code,
+            supabaseError: {
+              message: error.message,
+              code: error.code,
+              details: error.details,
+              hint: error.hint
             }
-          } else {
-            toast({
-              title: 'Database Error',
-              description: `Error: ${error.message}`,
-              variant: 'destructive'
-            })
-          }
+          })
+          
+          // This shouldn't happen after upsert, but it's a critical error
+          toast({
+            title: 'Database Error', 
+            description: `Failed to load profile: ${error.message}. Please refresh the page.`,
+            variant: 'destructive'
+          })
           return
         }
         
         if (playerData) {
-          console.log('Player data loaded:', playerData)
+          logger.database('Player data loaded successfully', { 
+            playerId: playerData.id,
+            hasProfile: !!playerData.phone || !!playerData.date_of_birth
+          })
+          profileAnalytics.trackSuccess('player_data_loaded')
           setPlayer(playerData)
           setProfileImageUrl(playerData.profile_image_url)
           setFormData({
@@ -169,8 +235,16 @@ export default function ProfilePage() {
           })
         }
       }
-    } catch (error) {
-      console.error('Unexpected error loading player data:', error)
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error loading player data'
+      const errorStack = error instanceof Error ? error.stack : undefined
+      logger.error('UNEXPECTED', {
+        message: errorMessage,
+        stack: errorStack
+      })
+      profileAnalytics.trackError('unexpected_load_error', {
+        error_message: errorMessage
+      })
       toast({
         title: 'Error',
         description: 'An unexpected error occurred. Please try refreshing the page.',
@@ -186,11 +260,18 @@ export default function ProfilePage() {
     setSaving(true)
 
     const supabase = createClient()
+    const logger = loggerRef.current!
+    logger.setAction('update_profile')
     
     try {
+      profileAnalytics.trackInteraction('form_submit_started')
+      const submitStart = performance.now()
+      
+      logger.auth('Verifying user session for update')
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
+        // Prepare update data
         const updateData = {
           ...formData,
           jersey_number: formData.jersey_number ? parseInt(formData.jersey_number) : null,
@@ -200,31 +281,75 @@ export default function ProfilePage() {
           updated_at: new Date().toISOString()
         }
 
-        console.log('FormData before update:', formData)
-        console.log('UpdateData being sent:', updateData)
-        console.log('User ID:', user.id)
+        // Log the data being sent
+        logger.database('Preparing profile update', {
+          userId: user.id,
+          fieldsToUpdate: Object.keys(updateData).filter(k => updateData[k as keyof typeof updateData] !== null),
+          hasChanges: true
+        })
         
+        // Track which fields are being updated
+        const fieldsBeingUpdated = Object.keys(updateData).filter(
+          key => updateData[key as keyof typeof updateData] !== null && 
+                 updateData[key as keyof typeof updateData] !== ''
+        )
+        
+        logger.database('Executing database update')
+        const updateStart = performance.now()
+        
+        // Use upsert to ensure the record exists and update it
         const { data: updatedPlayer, error } = await supabase
           .from('players')
-          .update(updateData)
-          .eq('id', user.id)
+          .upsert({
+            id: user.id,
+            email: user.email!,
+            ...updateData
+          }, {
+            onConflict: 'id',
+            ignoreDuplicates: false
+          })
           .select()
           .single()
+        
+        const updateDuration = performance.now() - updateStart
+        logger.performance('database_update', updateDuration)
 
         if (error) {
-          console.error('Update error:', error)
-          console.error('Error details:', {
-            message: error.message,
-            details: error.details,
-            hint: error.hint,
-            code: error.code
+          logger.error('DATABASE', {
+            message: `Update failed: ${error.message}`,
+            code: error.code,
+            supabaseError: {
+              message: error.message,
+              code: error.code,
+              details: error.details,
+              hint: error.hint
+            },
+            formData: updateData
           })
+          
+          profileAnalytics.trackError('update_failed', {
+            error_code: error.code,
+            error_message: error.message,
+            user_id: user.id,
+            form_field: fieldsBeingUpdated.join(',')
+          })
+          
+          profileAnalytics.trackDatabaseOperation('update_player', false, updateDuration, error || undefined)
           throw error
         }
         
-        console.log('Update response from Supabase:', updatedPlayer)
-        console.log('Fields that were sent:', Object.keys(updateData))
-        console.log('Fields in response:', Object.keys(updatedPlayer || {}))
+        logger.database('Profile update successful', {
+          playerId: updatedPlayer?.id,
+          fieldsUpdated: fieldsBeingUpdated,
+          responseFields: Object.keys(updatedPlayer || {})
+        })
+        
+        profileAnalytics.trackSuccess('profile_updated', {
+          duration: performance.now() - submitStart,
+          fields_updated: fieldsBeingUpdated
+        })
+        
+        profileAnalytics.trackDatabaseOperation('update_player', true, updateDuration)
 
         toast({
           title: 'Success',
@@ -234,11 +359,22 @@ export default function ProfilePage() {
         // Refresh player data
         await loadPlayerData()
       }
-    } catch (error) {
-      console.error('Error updating profile:', error)
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error during profile update'
+      const errorStack = error instanceof Error ? error.stack : undefined
+      const errorCode = error && typeof error === 'object' && 'code' in error ? (error as { code: string }).code : undefined
+      logger.error('UPDATE_FAILED', {
+        message: errorMessage,
+        stack: errorStack,
+        code: errorCode
+      })
+      
+      // Note: submitStart is not available here, using 0 as fallback
+      profileAnalytics.trackFormSubmission(false, 0)
+      
       toast({
         title: 'Error',
-        description: 'Failed to update profile',
+        description: `Failed to update profile: ${errorMessage}`,
         variant: 'destructive'
       })
     } finally {
@@ -247,10 +383,22 @@ export default function ProfilePage() {
   }
 
   function handleChange(field: string, value: string) {
-    console.log(`Changing ${field} to:`, value)
+    const logger = loggerRef.current
+    if (logger) {
+      logger.validation(`Field changed: ${field}`, { 
+        field, 
+        hasValue: !!value,
+        valueLength: value?.length 
+      })
+    }
+    
+    profileAnalytics.trackInteraction('field_change', {
+      field_name: field,
+      field_value: field.includes('password') ? '[REDACTED]' : value.substring(0, 50)
+    })
+    
     setFormData(prev => {
       const updated = { ...prev, [field]: value }
-      console.log('Updated formData:', updated)
       return updated
     })
   }
@@ -328,6 +476,110 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-6">
+      {/* Debug Panel - Only shown in development or when explicitly enabled */}
+      {(showDebugPanel || process.env.NODE_ENV === 'development') && (
+        <Card className="border-orange-500 bg-orange-50 dark:bg-orange-950">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <span className="flex items-center gap-2">
+                <Bug className="h-5 w-5" />
+                Debug Information
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowDebugPanel(false)}
+              >
+                Hide
+              </Button>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <h4 className="font-semibold mb-2">Session Info</h4>
+              <pre className="text-xs bg-black text-green-400 p-2 rounded overflow-x-auto">
+                {JSON.stringify({
+                  userId: player?.id,
+                  email: player?.email,
+                  hasProfile: !!(player?.phone && player?.date_of_birth && player?.position)
+                }, null, 2)}
+              </pre>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-2">Recent Logs</h4>
+              <pre className="text-xs bg-black text-green-400 p-2 rounded overflow-x-auto max-h-60 overflow-y-auto">
+                {loggerRef.current?.getLogs().slice(-10).map(log => 
+                  `[${log.level.toUpperCase()}] ${log.category}: ${log.message}`
+                ).join('\n') || 'No logs available'}
+              </pre>
+            </div>
+            
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const logs = loggerRef.current?.exportLogs()
+                  if (logs) {
+                    navigator.clipboard.writeText(logs)
+                    toast({
+                      title: 'Logs Copied',
+                      description: 'Debug logs copied to clipboard'
+                    })
+                  }
+                }}
+              >
+                Copy Logs
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  loggerRef.current?.clearStoredErrors()
+                  profileAnalytics.clearStoredEvents()
+                  toast({
+                    title: 'Debug Data Cleared',
+                    description: 'Local debug storage cleared'
+                  })
+                }}
+              >
+                Clear Debug Data
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const errors = profileAnalytics.getStoredEvents('errors')
+                  console.log('Stored Errors:', errors)
+                  toast({
+                    title: 'Check Console',
+                    description: `Found ${errors.length} stored errors in console`
+                  })
+                }}
+              >
+                Show Errors
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      
+      {/* Toggle Debug Panel Button - Always visible in development */}
+      {!showDebugPanel && process.env.NODE_ENV === 'development' && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="fixed bottom-4 right-4 z-50"
+          onClick={() => setShowDebugPanel(true)}
+        >
+          <Bug className="h-4 w-4 mr-2" />
+          Debug
+        </Button>
+      )}
+      
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           {/* Profile Photo in Header */}

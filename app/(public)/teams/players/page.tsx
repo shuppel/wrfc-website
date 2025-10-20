@@ -20,13 +20,24 @@ export const metadata: Metadata = generateSEOMetadata({
 })
 
 export default async function PlayersPage() {
-  const supabase = createServerClient()
+  let players = []
+  let error = null
   
-  const { data: players, error } = await supabase
-    .from('players')
-    .select('*')
-    .in('status', ['active', 'injured'])
-    .order('last_name', { ascending: true })
+  try {
+    const supabase = createServerClient()
+    const result = await supabase
+      .from('players')
+      .select('*')
+      .in('status', ['active', 'injured'])
+      .order('last_name', { ascending: true })
+    
+    players = result.data || []
+    error = result.error
+  } catch (e) {
+    console.warn('Supabase not available during build, using empty player list:', e)
+    // During build time, Supabase might not be available
+    // The client component will handle fetching data on the client side
+  }
 
   if (error) {
     console.error('Error fetching players:', error)
@@ -46,5 +57,5 @@ export default async function PlayersPage() {
     )
   }
 
-  return <PlayerRosterClient initialPlayers={players || []} />
+  return <PlayerRosterClient initialPlayers={players} />
 }
