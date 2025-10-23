@@ -262,9 +262,9 @@ export default function TeamsPage() {
             </div>
             <div>
               <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-2">
-                3
+                6
               </div>
-              <p className="text-gray-600 dark:text-gray-300">Elite Coaches</p>
+              <p className="text-gray-600 dark:text-gray-300">Coaching Staff</p>
             </div>
           </div>
         </div>
