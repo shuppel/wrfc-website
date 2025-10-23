@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { generateSEOMetadata } from '../../../utils/seo'
+import { generateSEOMetadata } from '@/app/utils/seo'
 import { Flag, Calendar, Trophy, Users, ChevronLeft } from 'lucide-react'
 
 export const metadata: Metadata = generateSEOMetadata({
