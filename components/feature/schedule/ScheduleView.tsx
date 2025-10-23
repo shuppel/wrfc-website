@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { format, parseISO, isPast } from 'date-fns';
-import { Game, getGoogleMapsUrl } from '@/types/game';
+import { Game } from '@/types/game';
 import { getLogoForTeam } from '@/utils/logoHelper';
-import { MapPin, Trophy, History, Table } from 'lucide-react';
+import { Trophy, Table } from 'lucide-react';
 import { DivisionType, getGameDivision } from './types';
 
 type ViewType = 'upcoming' | 'past' | 'standings';
