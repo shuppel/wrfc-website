@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getAllEvents, getEventBySlug } from '@/lib/contentful';
+import { getAllEvents, getEventBySlug } from '@/data/events';
 import { formatDate } from '@/lib/utils';
-import { renderRichText } from '@/lib/rich-text';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,9 +16,8 @@ interface EventPageProps {
   };
 }
 
-// Generate metadata for the event
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
-  const event = await getEventBySlug(params.slug);
+  const event = getEventBySlug(params.slug);
   
   if (!event) {
     return {
@@ -27,7 +25,7 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
     };
   }
 
-  const { title } = event.fields;
+  const { title } = event;
 
   return {
     title: `${title} | WRFC Events`,
@@ -40,23 +38,16 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
   };
 }
 
-// Generate static paths for all events
 export async function generateStaticParams() {
-  try {
-    const events = await getAllEvents();
-    
-    return events.map((event) => ({
-      slug: event.fields.slug,
-    }));
-  } catch (error) {
-    console.warn('Failed to fetch events for static generation:', error);
-    // Return empty array to prevent build failure
-    return [];
-  }
+  const events = getAllEvents();
+  
+  return events.map((event) => ({
+    slug: event.slug,
+  }));
 }
 
-export default async function EventPage({ params }: EventPageProps) {
-  const event = await getEventBySlug(params.slug);
+export default function EventPage({ params }: EventPageProps) {
+  const event = getEventBySlug(params.slug);
   
   if (!event) {
     notFound();
@@ -71,7 +62,7 @@ export default async function EventPage({ params }: EventPageProps) {
     description,
     registrationLink,
     featured
-  } = event.fields;
+  } = event;
 
   const isUpcoming = new Date(startTime) > new Date();
   const isPast = new Date(endTime) < new Date();
@@ -79,7 +70,6 @@ export default async function EventPage({ params }: EventPageProps) {
   
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Structured Data */}
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: '/' },
@@ -98,10 +88,10 @@ export default async function EventPage({ params }: EventPageProps) {
           endDate: endTime,
           location: {
             '@type': 'Place',
-            name: venue.fields.name,
+            name: venue.name,
             address: {
               '@type': 'PostalAddress',
-              streetAddress: venue.fields.address
+              streetAddress: venue.address
             }
           },
           description: `Washington Rugby Football Club ${eventType} event`,
@@ -115,7 +105,6 @@ export default async function EventPage({ params }: EventPageProps) {
       />
 
       <div className="max-w-4xl mx-auto">
-        {/* Back to events link */}
         <Link 
           href="/schedule/events" 
           className="inline-flex items-center text-wrfc-red hover:text-wrfc-red/80 mb-8"
@@ -126,7 +115,6 @@ export default async function EventPage({ params }: EventPageProps) {
           Back to Events
         </Link>
 
-        {/* Event Header */}
         <Card className="mb-8">
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
@@ -140,7 +128,6 @@ export default async function EventPage({ params }: EventPageProps) {
             <CardTitle className="text-3xl md:text-4xl">{title}</CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Event Details */}
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -182,11 +169,11 @@ export default async function EventPage({ params }: EventPageProps) {
                   <MapPin className="w-5 h-5 text-gray-500 mt-0.5" />
                   <div>
                     <p className="font-semibold">Location</p>
-                    <p className="text-gray-600 dark:text-gray-400">{venue.fields.name}</p>
-                    <p className="text-sm text-gray-500">{venue.fields.address}</p>
-                    {venue.fields.googleMapsUrl && (
+                    <p className="text-gray-600 dark:text-gray-400">{venue.name}</p>
+                    <p className="text-sm text-gray-500">{venue.address}</p>
+                    {venue.googleMapsUrl && (
                       <a 
-                        href={venue.fields.googleMapsUrl}
+                        href={venue.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-wrfc-red hover:underline"
@@ -199,7 +186,6 @@ export default async function EventPage({ params }: EventPageProps) {
               </div>
             </div>
 
-            {/* Registration Button */}
             {registrationLink && isUpcoming && (
               <div className="pt-6 border-t">
                 <a 
@@ -218,34 +204,33 @@ export default async function EventPage({ params }: EventPageProps) {
           </CardContent>
         </Card>
 
-        {/* Event Description */}
         <Card>
           <CardHeader>
             <CardTitle>Event Details</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="prose prose-lg max-w-none dark:prose-invert">
-              {renderRichText(description)}
-            </div>
+            <div 
+              className="prose prose-lg max-w-none dark:prose-invert"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           </CardContent>
         </Card>
 
-        {/* Venue Info */}
-        {venue.fields.parkingInfo && (
+        {venue.parkingInfo && (
           <Card className="mt-8">
             <CardHeader>
               <CardTitle>Venue Information</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-4">
-                <h4 className="font-semibold mb-2">Venue Type</h4>
-                <Badge variant="outline" text={venue.fields.venueType} />
-              </div>
+              {venue.venueType && (
+                <div className="mb-4">
+                  <h4 className="font-semibold mb-2">Venue Type</h4>
+                  <Badge variant="outline" text={venue.venueType} />
+                </div>
+              )}
               <div>
                 <h4 className="font-semibold mb-2">Parking</h4>
-                <div className="prose max-w-none dark:prose-invert">
-                  {renderRichText(venue.fields.parkingInfo)}
-                </div>
+                <p className="text-gray-600 dark:text-gray-300">{venue.parkingInfo}</p>
               </div>
             </CardContent>
           </Card>

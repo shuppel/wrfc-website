@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/utils';
-import { BlogPost } from '@/lib/contentful';
+import { BlogPost } from '@/data/blog';
 
 // Define JsonLdObject type
 type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[];
@@ -97,29 +97,27 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
     }
   ];
 
-  // Transform Contentful posts to match component structure
   const transformedPosts = posts.map(post => ({
-    id: post.sys.id,
-    title: post.fields.title,
-    slug: post.fields.slug,
-    excerpt: post.fields.excerpt,
-    publishDate: post.fields.publishDate,
-    featuredImage: post.fields.featuredImage ? {
-      url: `https:${post.fields.featuredImage.fields.file.url}`
+    id: post.slug,
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    publishDate: post.publishDate,
+    featuredImage: post.featuredImage ? {
+      url: post.featuredImage
     } : null,
-    author: post.fields.author ? {
-      name: post.fields.author.fields.name,
-      picture: post.fields.author.fields.picture ? {
-        url: `https:${post.fields.author.fields.picture.fields.file.url}`
+    author: {
+      name: post.author.name,
+      picture: post.author.picture ? {
+        url: post.author.picture
       } : null,
-      title: post.fields.author.fields.title || ''
-    } : null,
-    categories: post.fields.categories || [],
-    tags: post.fields.tags || [],
-    readingTime: '3 min read' // Calculate based on content length if needed
+      title: ''
+    },
+    categories: post.categories || [],
+    tags: post.tags || [],
+    readingTime: '3 min read'
   }));
 
-  // Use transformed posts or mock data if no posts from Contentful
   const displayPosts = transformedPosts.length > 0 ? transformedPosts : mockPosts;
 
   useEffect(() => {

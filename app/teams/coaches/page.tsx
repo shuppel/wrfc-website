@@ -1,233 +1,266 @@
 import { Metadata } from 'next'
-import { generateSEOMetadata } from '../../utils/seo'
-import { Trophy, Users, Calendar, Target } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { generateSEOMetadata } from '@/app/utils/seo'
+import { ChevronLeft, Award, Users, Target } from 'lucide-react'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Coaching Staff',
-  description: 'Meet the experienced coaching staff of Washington Rugby Football Club. Our coaches bring decades of rugby expertise and passion for developing players.',
+  title: 'Coaching Staff - Expert Rugby Coaches',
+  description: 'Meet the experienced coaching staff at Washington Rugby Football Club, including former USA Eagles captain Jamason Fa\'anana-Schultz and professional rugby player Thretton Palamo. Our dedicated coaches bring elite-level expertise in player development and rugby excellence.',
   path: '/teams/coaches'
 })
 
 interface Coach {
   name: string
   role: string
-  image?: string
+  title: string
+  tier: 'head' | 'assistant' | 'volunteer'
+  photo: string
   bio: string
-  experience: string[]
-  certifications?: string[]
+  specialties?: string[]
   email?: string
-  wikiLink?: string
+  wikiUrl?: string
 }
 
 const coaches: Coach[] = [
   {
-    name: "Thretton Palamo",
-    role: "Head Coach",
-    bio: "A distinguished rugby veteran, Coach Palamo brings elite international experience and deep tactical knowledge to WRFC. His playing career spanned the highest levels of the sport, and he now dedicates his expertise to developing the next generation of rugby talent.",
-    experience: [
-      "Former USA Rugby National Team player (2012-2019)",
-      "Played professionally in Major League Rugby (MLR)",
-      "Represented USA in Rugby World Cup 2015",
-      "Over 40 international caps for the Eagles",
-      "Professional experience in top-tier competitions"
-    ],
-    certifications: [
-      "USA Rugby Certified Coach",
-      "World Rugby Level 2 Coach"
-    ],
-    wikiLink: "https://en.wikipedia.org/wiki/Thretton_Palamo"
+    name: 'Thretton Palamo',
+    role: 'Head Coach',
+    title: 'Head Coach',
+    tier: 'head',
+    photo: '/assets/pictures/thretton-coach-headshot.jpg',
+    bio: 'Thretton brings exceptional international rugby experience to WRFC as a former USA Eagles player and professional rugby athlete. Having competed at the highest levels of the sport, his leadership and tactical expertise drive our competitive excellence and player development.',
+    specialties: ['Backs Development', 'Game Strategy', 'High Performance'],
+    wikiUrl: 'https://en.wikipedia.org/wiki/Thretton_Palamo'
   },
   {
-    name: "Anou Phaipanya",
-    role: "Assistant Coach",
-    bio: "Coach Phaipanya brings elite international rugby experience and deep institutional knowledge to WRFC. Having served as Head Coach from 2022-2024, he now contributes his Pacific 7s background, international experience, and intimate understanding of the club's culture and players.",
-    experience: [
-      "Former WRFC Head Coach (2022-2024)",
-      "Pacific 7s international player",
-      "International 7s circuit experience",
-      "Played men's club rugby in New Zealand",
-      "Deep understanding of WRFC culture and player development",
-      "Specializes in sevens skills and fast-paced game strategy"
-    ],
-    certifications: [
-      "USA Rugby Certified Coach",
-      "International playing credentials",
-      "Sevens specialist coaching methods"
-    ]
+    name: 'Jamason Fa\'anana-Schultz',
+    role: 'Lead Assistant Coach',
+    title: 'Lead Assistant Coach',
+    tier: 'head',
+    photo: '/assets/pictures/jama-coach-headshot.jpg',
+    bio: 'Jama serves as our Lead Assistant Coach, bringing elite-level rugby experience as a former USA Eagles captain and Old Glory DC captain. His deep rugby knowledge, leadership experience, and passion for player development make him instrumental to our success. His expertise in forward play and set pieces is unmatched.',
+    specialties: ['Forward Play', 'Set Pieces', 'Team Culture', 'Leadership'],
+    wikiUrl: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz'
   },
   {
-    name: "Doug Muilken",
-    role: "D3 Coach",
-    bio: "With over 20 years as a player and extensive international experience, Coach Muilken brings unparalleled knowledge of rugby at all levels. His global perspective and deep understanding of the game makes him the perfect leader for our D3 division.",
-    experience: [
-      "20+ years of playing experience",
-      "Played internationally for multiple teams",
-      "Professional experience in Glasgow, Scotland",
-      "Played rugby in South Africa",
-      "Competed at all levels of men's club rugby",
-      "Brings global rugby perspective to WRFC"
-    ],
-    certifications: [
-      "International rugby playing credentials",
-      "Extensive practical coaching experience"
-    ]
+    name: 'Roger Evans',
+    role: 'Assistant Coach',
+    title: 'Assistant Coach',
+    tier: 'assistant',
+    photo: '/assets/art/player_profile_rugby.png',
+    bio: 'Roger contributes valuable coaching experience and tactical insight to our program. His dedication to fundamentals and skill development helps players reach their full potential.',
+    specialties: ['Skills Development', 'Defense', 'Player Mentoring']
+  },
+  {
+    name: 'Eric Keys',
+    role: 'Assistant Coach',
+    title: 'Assistant Coach',
+    tier: 'assistant',
+    photo: '/assets/pictures/eric-coach-headshot.jpg',
+    bio: 'Eric brings technical expertise and a focus on continuous improvement to our coaching staff. His analytical approach helps optimize team performance.',
+    specialties: ['Technical Analysis', 'Conditioning', 'Match Preparation']
+  },
+  {
+    name: 'Doug Muilken',
+    role: 'Volunteer Coach',
+    title: 'Volunteer Coach / Player Coach',
+    tier: 'volunteer',
+    photo: '/assets/pictures/doug-coach-headshot.jpg',
+    bio: 'Doug serves as both a player and volunteer coach, offering unique on-field perspective and leadership. His dual role bridges the gap between coaching staff and players.',
+    specialties: ['Player Leadership', 'On-Field Coaching', 'Team Dynamics']
+  },
+  {
+    name: 'Trey Kierl',
+    role: 'Volunteer Coach',
+    title: 'Volunteer Coach / Player Coach',
+    tier: 'volunteer',
+    photo: '/assets/pictures/trey-coach-headshot.jpg',
+    bio: 'Trey contributes as a player coach, bringing energy and hands-on experience to training sessions. His commitment to team development enhances our coaching depth.',
+    specialties: ['Hands-on Training', 'Player Development', 'Game Preparation']
   }
 ]
 
+const tierConfig = {
+  head: {
+    label: 'Head Coaching Staff',
+    description: 'Leading our rugby program with vision and expertise',
+    color: 'from-blue-600 to-blue-800',
+    icon: Award
+  },
+  assistant: {
+    label: 'Assistant Coaches',
+    description: 'Supporting player development and team success',
+    color: 'from-green-600 to-green-800',
+    icon: Target
+  },
+  volunteer: {
+    label: 'Volunteer & Player Coaches',
+    description: 'Dedicated volunteers enhancing our coaching program',
+    color: 'from-purple-600 to-purple-800',
+    icon: Users
+  }
+}
+
 export default function CoachesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 dark:from-gray-900 dark:to-blue-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
       <div className="container mx-auto px-4">
-        {/* Header Section */}
+        <Link 
+          href="/teams" 
+          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5 mr-1" />
+          Back to Teams
+        </Link>
+
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Coaching Staff
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Our experienced coaches are dedicated to developing players at all levels, 
-            from beginners to seasoned veterans. With decades of combined experience, 
-            they bring passion, expertise, and a commitment to excellence.
+            Meet the dedicated coaches who guide Washington Rugby Football Club to excellence. 
+            Our coaching staff combines professional experience, tactical expertise, and a passion for player development.
           </p>
         </div>
 
-        {/* Coaching Philosophy */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-            Our Coaching Philosophy
+        {(['head', 'assistant', 'volunteer'] as const).map((tier) => {
+          const tierCoaches = coaches.filter(coach => coach.tier === tier)
+          const config = tierConfig[tier]
+          const Icon = config.icon
+
+          return (
+            <div key={tier} className="mb-16">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 mb-3">
+                  <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                    {config.label}
+                  </h2>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {config.description}
+                </p>
+              </div>
+
+              <div className={`grid ${tierCoaches.length === 2 ? 'md:grid-cols-2 max-w-5xl' : tierCoaches.length === 1 ? 'max-w-2xl' : 'md:grid-cols-2 lg:grid-cols-3'} gap-8 mx-auto`}>
+                {tierCoaches.map((coach) => (
+                  <div 
+                    key={coach.name}
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <div className="relative h-80 overflow-hidden">
+                      <Image
+                        src={coach.photo}
+                        alt={`${coach.name} - ${coach.title} at Washington Rugby Football Club`}
+                        title={`${coach.name}, ${coach.role}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        priority={coach.tier === 'head'}
+                        quality={90}
+                      />
+                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${config.color}`} />
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="text-center mb-4">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                          {coach.name}
+                        </h3>
+                        <p className="text-blue-600 dark:text-blue-400 font-semibold">
+                          {coach.title}
+                        </p>
+                      </div>
+
+                      <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+                        {coach.bio}
+                      </p>
+
+                      {coach.specialties && (
+                        <div className="mb-6">
+                          <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 text-center">
+                            Specialties
+                          </h4>
+                          <div className="flex flex-wrap gap-2 justify-center">
+                            {coach.specialties.map((specialty) => (
+                              <span 
+                                key={specialty}
+                                className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
+                              >
+                                {specialty}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {coach.wikiUrl && (
+                        <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
+                          <a 
+                            href={coach.wikiUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                          >
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm.1 19.5h-.2c-3.3 0-6-2.7-6-6V12c0-.6.4-1 1-1s1 .4 1 1v1.5c0 2.2 1.8 4 4 4h.1v-3.2l4.4 3.7-4.4 3.7v-2.2z"/>
+                            </svg>
+                            <span className="text-sm">View Wikipedia</span>
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+
+        <div className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+            Coaching Philosophy
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Excellence</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Pursuing the highest standards in training and competition
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-green-600 dark:text-green-300" />
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Teamwork</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Building strong bonds and collective success
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="w-8 h-8 text-purple-600 dark:text-purple-300" />
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Development</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Continuous improvement for every player
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-red-600 dark:text-red-300" />
-              </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Commitment</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Dedication to the sport and our community
-              </p>
-            </div>
+          <div className="space-y-4 text-gray-600 dark:text-gray-300">
+            <p>
+              Our coaching staff is committed to developing well-rounded players who excel both on and off the field. 
+              We emphasize:
+            </p>
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li>Technical excellence and fundamental skill development</li>
+              <li>Strategic thinking and tactical awareness</li>
+              <li>Physical conditioning and injury prevention</li>
+              <li>Leadership, sportsmanship, and team culture</li>
+              <li>Continuous learning and personal growth</li>
+            </ul>
+            <p>
+              Whether you&apos;re a seasoned player or new to rugby, our coaches are dedicated to helping you 
+              reach your full potential while fostering a supportive and competitive environment.
+            </p>
           </div>
         </div>
 
-        {/* Coaches Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {coaches.map((coach, index) => (
-            <div 
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-            >
-              {/* Coach Image Placeholder */}
-              <div className="h-64 bg-gradient-to-br from-blue-600 to-blue-800 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">
-                      {coach.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Coach Info */}
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {coach.name}
-                  </h3>
-                  {coach.wikiLink && (
-                    <a 
-                      href={coach.wikiLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                      title={`View ${coach.name} on Wikipedia`}
-                    >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clipRule="evenodd" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-                <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold mb-3">
-                  {coach.role}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {coach.bio}
-                </p>
-
-                {/* Experience */}
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Experience</h4>
-                  <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                    {coach.experience.map((exp, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        {exp}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Certifications */}
-                {coach.certifications && (
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Certifications</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {coach.certifications.map((cert, idx) => (
-                        <span 
-                          key={idx}
-                          className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded"
-                        >
-                          {cert}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
         <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-white max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Join Our Coaching Team</h2>
+          <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Train with the Best</h2>
             <p className="text-lg mb-6">
-              Are you passionate about rugby and player development? We&apos;re always looking 
-              for qualified coaches to join our staff.
+              Join WRFC and learn from experienced coaches committed to your development and success.
             </p>
-            <a 
-              href="/contact"
-              className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Get in Touch
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/membership"
+                className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Become a Member
+              </Link>
+              <Link 
+                href="/schedule/practice"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors"
+              >
+                View Practice Schedule
+              </Link>
+            </div>
           </div>
         </div>
       </div>

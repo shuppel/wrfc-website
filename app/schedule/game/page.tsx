@@ -4,12 +4,10 @@ import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
 import ScheduleView from '../../../components/feature/schedule/ScheduleView'
 import { SAMPLE_DATA } from '../../../types/game'
-import { getAllMatches } from '../../../lib/contentful'
-import { transformMatch } from '../../../lib/contentful'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Match Schedule',
-  description: 'Washington Rugby Football Club match schedule, fixtures, and results. Follow WRFC matches in MAC Conference D1 and Capital Conference D3 competitions.',
+  description: 'Washington Rugby Football Club match schedule, fixtures, and results. Follow WRFC matches in MAC 1 and Challenger D3 competitions.',
   path: '/schedule/game'
 })
 
@@ -20,17 +18,7 @@ export default async function GameSchedulePage() {
     description: 'Washington Rugby Football Club match schedule, fixtures, and match information.'
   });
 
-  // Fetch matches from Contentful, fallback to sample data if not available
-  let contentfulMatches: Awaited<ReturnType<typeof getAllMatches>>;
-  try {
-    contentfulMatches = await getAllMatches();
-  } catch (error) {
-    console.warn('Failed to fetch matches from Contentful:', error);
-    contentfulMatches = [];
-  }
-  const games = contentfulMatches.length > 0 
-    ? contentfulMatches.map(transformMatch) 
-    : SAMPLE_DATA.games;
+  const games = SAMPLE_DATA.games;
 
   return (
     <div className="flex flex-col items-center w-full">

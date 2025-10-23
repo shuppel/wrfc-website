@@ -75,6 +75,7 @@ const currentEC: ECMember[] = [
   {
     position: "Social Chair",
     name: "Austin 'Ox' Longo",
+    panel: ["Daniel Perez", "Joshua Quick"],
     icon: PartyPopper
   },
   {

@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { format, parseISO, isPast } from 'date-fns';
-import { Game, getGoogleMapsUrl } from '@/types/game';
+import { Game } from '@/types/game';
 import { getLogoForTeam } from '@/utils/logoHelper';
-import { MapPin, Trophy, History, Table } from 'lucide-react';
+import { Trophy, Table } from 'lucide-react';
 import { DivisionType, getGameDivision } from './types';
 
 type ViewType = 'upcoming' | 'past' | 'standings';
@@ -23,6 +23,7 @@ interface ScheduleViewProps {
 export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
   const [activeView, setActiveView] = useState<ViewType>('upcoming');
   const [activeDivision, setActiveDivision] = useState<DivisionType>('D1');
+  const [selectedSeason, setSelectedSeason] = useState<number>(2025);
 
   // Filter and sort games based on the active view
   const games = allGames
@@ -56,13 +57,9 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
     .map(Number)
     .sort((a, b) => activeView === 'upcoming' ? a - b : b - a);
 
-  // Calculate records from past games
-  const calculateRecords = () => {
-    const records: { [key in DivisionType]: TeamRecord } = {
-      'D1': { wins: 0, losses: 0, draws: 0 },
-      'D3': { wins: 0, losses: 0, draws: 0 },
-      'Social': { wins: 0, losses: 0, draws: 0 }
-    };
+  // Calculate records from past games by season
+  const calculateRecordsBySeason = () => {
+    const recordsBySeason: { [year: number]: { [key in DivisionType]: TeamRecord } } = {};
 
     const pastGames = allGames.filter(game => {
       const gameDate = parseISO(game.date);
@@ -70,6 +67,16 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
     });
 
     pastGames.forEach(game => {
+      const year = new Date(game.date).getFullYear();
+      
+      if (!recordsBySeason[year]) {
+        recordsBySeason[year] = {
+          'D1': { wins: 0, losses: 0, draws: 0 },
+          'D3': { wins: 0, losses: 0, draws: 0 },
+          'Social': { wins: 0, losses: 0, draws: 0 }
+        };
+      }
+
       const division = getGameDivision(game.competition);
       if (!division || !game.result) return;
 
@@ -78,22 +85,46 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
       const opponentScore = isHome ? game.result.awayScore : game.result.homeScore;
 
       if (wrfcScore > opponentScore) {
-        records[division].wins++;
+        recordsBySeason[year][division].wins++;
       } else if (wrfcScore < opponentScore) {
-        records[division].losses++;
+        recordsBySeason[year][division].losses++;
       } else {
-        records[division].draws++;
+        recordsBySeason[year][division].draws++;
       }
     });
 
-    return records;
+    return recordsBySeason;
   };
 
-  const records = calculateRecords();
+  const recordsBySeason = calculateRecordsBySeason();
+  const availableSeasons = Object.keys(recordsBySeason).map(Number).sort((a, b) => b - a);
+  const records = recordsBySeason[selectedSeason] || {
+    'D1': { wins: 0, losses: 0, draws: 0 },
+    'D3': { wins: 0, losses: 0, draws: 0 },
+    'Social': { wins: 0, losses: 0, draws: 0 }
+  };
 
   return (
     <div className="flex flex-col items-center w-full">
       <div className="container mx-auto">
+
+        {/* Instagram CTA for Venue Info */}
+        <div className="mb-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-3 text-center">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            📍 For venue details and game day updates, follow us on Instagram:
+            <a 
+              href="https://www.instagram.com/wrfc1963/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 inline-flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-semibold"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              @wrfc1963
+            </a>
+          </p>
+        </div>
 
         {/* View Navigation */}
         <div className="flex justify-center gap-8 mb-12">
@@ -134,6 +165,23 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
 
         {activeView === 'standings' ? (
           <>
+            {/* Season Selection */}
+            <div className="flex justify-center gap-4 mb-6">
+              {availableSeasons.map((year) => (
+                <button
+                  key={year}
+                  className={`px-4 py-2 rounded-md transition-colors ${
+                    selectedSeason === year
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                  onClick={() => setSelectedSeason(year)}
+                >
+                  {year} Season
+                </button>
+              ))}
+            </div>
+
             {/* Division Selection for Records */}
             <div className="flex justify-center gap-4 mb-8">
               {(['D1', 'D3', 'Social'] as DivisionType[]).map((division) => (
@@ -154,14 +202,14 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             {/* Simple Records Display */}
             <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
               <div className="text-center">
-                <h2 className="text-2xl font-bold mb-4">{activeDivision} Division Record</h2>
-                <div className="text-4xl font-bold text-wrfc-navy">
+                <h2 className="text-2xl font-bold mb-2">{selectedSeason} {activeDivision} Division</h2>
+                <div className="text-5xl font-bold text-wrfc-navy dark:text-blue-400 mb-4">
                   {records[activeDivision].wins}-{records[activeDivision].losses}
                   {records[activeDivision].draws > 0 ? `-${records[activeDivision].draws}` : ''}
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 mt-2">
-                  {records[activeDivision].wins} Wins, {records[activeDivision].losses} Losses
-                  {records[activeDivision].draws > 0 ? `, ${records[activeDivision].draws} Draws` : ''}
+                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                  {records[activeDivision].wins} Wins • {records[activeDivision].losses} Losses
+                  {records[activeDivision].draws > 0 ? ` • ${records[activeDivision].draws} Draws` : ''}
                 </p>
               </div>
             </div>
@@ -193,14 +241,8 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                           <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                             {activeView === 'past' ? 'Score' : 'Time'}
                           </th>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                            Venue
-                          </th>
                           <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
                             Competition
-                          </th>
-                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                            Actions
                           </th>
                         </tr>
                       </thead>
@@ -304,64 +346,17 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                                 )}
                               </td>
 
-                              {/* Venue */}
-                              <td className="px-6 py-4">
-                                <div className="flex flex-col">
-                                  <div className="text-sm font-medium text-gray-900 dark:text-white">
-                                    {game.venue.name === 'TBD' ? 'Venue TBD' : game.venue.name}
-                                  </div>
-                                  {game.venue.name !== 'TBD' && (
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                                      {game.venue.city}, {game.venue.state}
-                                    </div>
-                                  )}
-                                </div>
-                              </td>
-
                               {/* Competition */}
                               <td className="px-6 py-4 text-center">
-                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                  game.competition === 'D1' 
+                                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                    : game.competition === 'D3'
+                                    ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                    : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
+                                }`}>
                                   {game.competition}
                                 </span>
-                              </td>
-
-                              {/* Actions */}
-                              <td className="px-6 py-4 text-center">
-                                <div className="flex items-center justify-center space-x-2">
-                                  {game.venue.name !== 'TBD' && (
-                                    <a
-                                      href={getGoogleMapsUrl(game.venue)}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
-                                      title="Get Directions"
-                                    >
-                                      <MapPin className="w-4 h-4" />
-                                    </a>
-                                  )}
-                                  {game.ticketsUrl && (
-                                    <a
-                                      href={game.ticketsUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 hover:bg-green-200 dark:hover:bg-green-800 transition-colors"
-                                      title="Buy Tickets"
-                                    >
-                                      <Trophy className="w-4 h-4" />
-                                    </a>
-                                  )}
-                                  {game.broadcastUrl && (
-                                    <a
-                                      href={game.broadcastUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
-                                      title="Watch Live"
-                                    >
-                                      <History className="w-4 h-4" />
-                                    </a>
-                                  )}
-                                </div>
                               </td>
                             </tr>
                           );
@@ -405,7 +400,13 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                             <div className="text-sm font-semibold text-gray-900 dark:text-white">
                               {format(gameDate, 'MMM d, yyyy')} • {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
                             </div>
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                              game.competition === 'D1' 
+                                ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                : game.competition === 'D3'
+                                ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
+                            }`}>
                               {game.competition}
                             </span>
                           </div>
@@ -444,21 +445,6 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                             </div>
                           </div>
                           
-                          <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                            {game.venue.name === 'TBD' ? 'Venue TBD' : `${game.venue.name}, ${game.venue.city}, ${game.venue.state}`}
-                          </div>
-                          
-                          {game.venue.name !== 'TBD' && (
-                            <a
-                              href={getGoogleMapsUrl(game.venue)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center space-x-1 text-blue-600 dark:text-blue-400 text-sm hover:underline"
-                            >
-                              <MapPin className="w-4 h-4" />
-                              <span>Get Directions</span>
-                            </a>
-                          )}
                         </div>
                       );
                     })}

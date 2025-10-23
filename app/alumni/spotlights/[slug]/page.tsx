@@ -2,9 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getAllAlumniSpotlights, getAlumniSpotlightBySlug } from '@/lib/contentful';
+import { getAllAlumniSpotlights, getAlumniSpotlightBySlug } from '@/data/alumni';
 import { formatDate } from '@/lib/utils';
-import { renderRichText } from '@/lib/rich-text';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,9 +17,8 @@ interface AlumniSpotlightPageProps {
   };
 }
 
-// Generate metadata for the alumni spotlight
 export async function generateMetadata({ params }: AlumniSpotlightPageProps): Promise<Metadata> {
-  const spotlight = await getAlumniSpotlightBySlug(params.slug);
+  const spotlight = getAlumniSpotlightBySlug(params.slug);
   
   if (!spotlight) {
     return {
@@ -28,7 +26,7 @@ export async function generateMetadata({ params }: AlumniSpotlightPageProps): Pr
     };
   }
 
-  const { name, yearsPlayed } = spotlight.fields;
+  const { name, yearsPlayed } = spotlight;
 
   return {
     title: `${name} | WRFC Alumni Spotlight`,
@@ -41,23 +39,16 @@ export async function generateMetadata({ params }: AlumniSpotlightPageProps): Pr
   };
 }
 
-// Generate static paths for all alumni spotlights
 export async function generateStaticParams() {
-  try {
-    const spotlights = await getAllAlumniSpotlights();
-    
-    return spotlights.map((spotlight) => ({
-      slug: spotlight.fields.slug,
-    }));
-  } catch (error) {
-    console.warn('Failed to fetch alumni spotlights for static generation:', error);
-    // Return empty array to prevent build failure
-    return [];
-  }
+  const spotlights = getAllAlumniSpotlights();
+  
+  return spotlights.map((spotlight) => ({
+    slug: spotlight.slug,
+  }));
 }
 
-export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps) {
-  const spotlight = await getAlumniSpotlightBySlug(params.slug);
+export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps) {
+  const spotlight = getAlumniSpotlightBySlug(params.slug);
   
   if (!spotlight) {
     notFound();
@@ -72,11 +63,10 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
     quote,
     publishDate,
     featured
-  } = spotlight.fields;
+  } = spotlight;
   
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Structured Data */}
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: '/' },
@@ -106,12 +96,11 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           },
           description: `Alumni spotlight featuring ${name}, WRFC player from ${yearsPlayed}`,
           url: `https://washingtonrugby.org/alumni/spotlights/${params.slug}`,
-          image: featuredImage ? `https:${featuredImage.fields.file.url}` : undefined
+          image: featuredImage || undefined
         }} 
       />
 
       <div className="max-w-4xl mx-auto">
-        {/* Back to alumni link */}
         <Link 
           href="/alumni" 
           className="inline-flex items-center text-wrfc-red hover:text-wrfc-red/80 mb-8"
@@ -122,10 +111,9 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           Back to Alumni
         </Link>
 
-        {/* Alumni Header */}
         <div className="mb-8">
           {featured && (
-            <Badge variant="default" text="Featured Alumni" className="mb-4" />
+            <Badge text="Featured Alumni" variant="default" className="mb-4" />
           )}
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{name}</h1>
           <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
@@ -140,11 +128,10 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           </div>
         </div>
 
-        {/* Featured Image */}
         {featuredImage && (
           <div className="relative w-full h-[400px] md:h-[500px] mb-8 rounded-lg overflow-hidden">
             <Image
-              src={`https:${featuredImage.fields.file.url}`}
+              src={featuredImage}
               alt={name}
               fill
               className="object-cover"
@@ -153,7 +140,6 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           </div>
         )}
 
-        {/* Featured Quote */}
         {quote && (
           <Card className="mb-8 bg-gray-50 dark:bg-gray-800">
             <CardContent className="pt-6">
@@ -166,19 +152,18 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           </Card>
         )}
 
-        {/* Alumni Story */}
         <Card>
           <CardHeader>
             <CardTitle>Alumni Story</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="prose prose-lg max-w-none dark:prose-invert">
-              {renderRichText(story)}
-            </div>
+            <div 
+              className="prose prose-lg max-w-none dark:prose-invert"
+              dangerouslySetInnerHTML={{ __html: story }}
+            />
           </CardContent>
         </Card>
 
-        {/* Call to Action */}
         <div className="mt-12 text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4">Share Your Story</h3>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
@@ -191,7 +176,6 @@ export default async function AlumniSpotlightPage({ params }: AlumniSpotlightPag
           </Link>
         </div>
 
-        {/* Published Date */}
         <div className="mt-8 text-center text-sm text-gray-500">
           Published on {formatDate(publishDate)}
         </div>
