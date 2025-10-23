@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
-import { generateSEOMetadata } from '../../utils/seo'
+import { generateSEOMetadata } from '@/app/utils/seo'
 import { Trophy, Users, Calendar, Target } from 'lucide-react'
+import Image from 'next/image'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Coaching Staff',
@@ -23,6 +24,7 @@ const coaches: Coach[] = [
   {
     name: "Thretton Palamo",
     role: "Head Coach",
+    image: "/assets/pictures/thretton-coach-headshot.jpg",
     bio: "A distinguished rugby veteran, Coach Palamo brings elite international experience and deep tactical knowledge to WRFC. His playing career spanned the highest levels of the sport, and he now dedicates his expertise to developing the next generation of rugby talent.",
     experience: [
       "Former USA Rugby National Team player (2012-2019)",
@@ -38,26 +40,38 @@ const coaches: Coach[] = [
     wikiLink: "https://en.wikipedia.org/wiki/Thretton_Palamo"
   },
   {
-    name: "Anou Phaipanya",
+    name: "Jamason Fa'anana-Schultz",
     role: "Assistant Coach",
-    bio: "Coach Phaipanya brings elite international rugby experience and deep institutional knowledge to WRFC. Having served as Head Coach from 2022-2024, he now contributes his Pacific 7s background, international experience, and intimate understanding of the club's culture and players.",
+    image: "/assets/pictures/jama-coach-headshot.jpg",
+    bio: "Captain of Old Glory DC and the USA Eagles, Coach Fa'anana-Schultz brings championship leadership and elite-level rugby knowledge to WRFC. His experience leading teams at the highest levels of domestic and international rugby makes him an invaluable mentor for developing players.",
     experience: [
-      "Former WRFC Head Coach (2022-2024)",
-      "Pacific 7s international player",
-      "International 7s circuit experience",
-      "Played men's club rugby in New Zealand",
-      "Deep understanding of WRFC culture and player development",
-      "Specializes in sevens skills and fast-paced game strategy"
+      "Current USA Eagles Captain",
+      "Old Glory DC Captain (MLR)",
+      "USA Rugby National Team player",
+      "Professional Major League Rugby experience",
+      "Elite leadership and tactical expertise"
+    ],
+    wikiLink: "https://en.wikipedia.org/wiki/Jamason_Fa%CA%BBanana-Schultz"
+  },
+  {
+    name: "Eric Keys",
+    role: "Assistant Coach",
+    image: "/assets/pictures/eric-coach-headshot.jpg",
+    bio: "Coach Keys has been instrumental in developing WRFC players since 2022. His dedication to the fundamentals and player development has helped shape the club's competitive success.",
+    experience: [
+      "WRFC Assistant Coach (2022-2025)",
+      "Focus on skills development and fundamentals",
+      "Experience coaching at multiple levels",
+      "Strong technical knowledge of the game"
     ],
     certifications: [
-      "USA Rugby Certified Coach",
-      "International playing credentials",
-      "Sevens specialist coaching methods"
+      "USA Rugby Certified Coach"
     ]
   },
   {
     name: "Doug Muilken",
     role: "D3 Coach",
+    image: "/assets/pictures/doug-coach-headshot.jpg",
     bio: "With over 20 years as a player and extensive international experience, Coach Muilken brings unparalleled knowledge of rugby at all levels. His global perspective and deep understanding of the game makes him the perfect leader for our D3 division.",
     experience: [
       "20+ years of playing experience",
@@ -66,10 +80,38 @@ const coaches: Coach[] = [
       "Played rugby in South Africa",
       "Competed at all levels of men's club rugby",
       "Brings global rugby perspective to WRFC"
+    ]
+  }
+]
+
+const previousCoaches: Coach[] = [
+  {
+    name: "Anou Phaipanya",
+    role: "Head Coach (2022-2024)",
+    bio: "Coach Phaipanya brought elite international rugby experience and deep institutional knowledge to WRFC. His Pacific 7s background and international experience helped shape the club's modern era.",
+    experience: [
+      "WRFC Head Coach (2022-2024)",
+      "Pacific 7s international player",
+      "International 7s circuit experience",
+      "Played men's club rugby in New Zealand",
+      "Specialized in sevens skills and fast-paced game strategy"
     ],
     certifications: [
-      "International rugby playing credentials",
-      "Extensive practical coaching experience"
+      "USA Rugby Certified Coach",
+      "International playing credentials"
+    ]
+  },
+  {
+    name: "Jo Fotofilli",
+    role: "Coach (2017-2022)",
+    bio: "Coach Fotofilli led WRFC through a significant period of growth and development, establishing many of the club's current traditions and competitive standards.",
+    experience: [
+      "WRFC Coach (2017-2022)",
+      "Built foundation for club's competitive success",
+      "Developed player pathways and club structure"
+    ],
+    certifications: [
+      "USA Rugby Certified Coach"
     ]
   }
 ]
@@ -142,16 +184,32 @@ export default function CoachesPage() {
               key={index}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
             >
-              {/* Coach Image Placeholder */}
-              <div className="h-64 bg-gradient-to-br from-blue-600 to-blue-800 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white">
-                      {coach.name.split(' ').map(n => n[0]).join('')}
-                    </span>
+              {coach.image ? (
+                <div className="h-64 relative overflow-hidden">
+                  <Image 
+                    src={coach.image} 
+                    alt={`${coach.name} - ${coach.role} at Washington Rugby Football Club`}
+                    width={400}
+                    height={256}
+                    className={`w-full h-full object-cover ${
+                      coach.name === "Eric Keys" || coach.name === "Doug Muilken" 
+                        ? "object-[center_20%]" 
+                        : ""
+                    }`}
+                    priority={index < 2}
+                  />
+                </div>
+              ) : (
+                <div className="h-64 bg-gradient-to-br from-blue-600 to-blue-800 relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center">
+                      <span className="text-4xl font-bold text-white">
+                        {coach.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Coach Info */}
               <div className="p-6">
@@ -212,6 +270,67 @@ export default function CoachesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Previous Coaches */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+            Previous Coaches
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {previousCoaches.map((coach, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+              >
+                {coach.image ? (
+                  <div className="h-48 relative">
+                    <Image 
+                      src={coach.image} 
+                      alt={`${coach.name} - Former ${coach.role} at Washington Rugby Football Club`}
+                      width={400}
+                      height={192}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gradient-to-br from-gray-600 to-gray-800 relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+                        <span className="text-3xl font-bold text-white">
+                          {coach.name.split(' ').map(n => n[0]).join('')}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                    {coach.name}
+                  </h3>
+                  <p className="text-md text-gray-600 dark:text-gray-400 font-semibold mb-3">
+                    {coach.role}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                    {coach.bio}
+                  </p>
+
+                  <div className="mb-3">
+                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Experience</h4>
+                    <ul className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
+                      {coach.experience.map((exp, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="text-blue-500 mr-2">•</span>
+                          {exp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Call to Action */}
