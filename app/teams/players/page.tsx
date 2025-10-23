@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { generateSEOMetadata } from '../../utils/seo'
-import { getAllPlayerProfiles } from '@/lib/contentful'
 import PlayerRosterClient from '@/components/PlayerRosterClient'
 import { players } from '@/data/players'
 
@@ -12,15 +11,7 @@ export const metadata: Metadata = generateSEOMetadata({
 })
 
 export default async function PlayersPage() {
-  // Try to fetch from Contentful, fallback to hardcoded data
-  let contentfulPlayers: Awaited<ReturnType<typeof getAllPlayerProfiles>>;
-  try {
-    contentfulPlayers = await getAllPlayerProfiles();
-  } catch (error) {
-    console.warn('Failed to fetch players from Contentful:', error);
-    contentfulPlayers = [];
-  }
-  const hasContentfulData = contentfulPlayers.length > 0
+  const hasContentfulData = false
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
@@ -40,7 +31,7 @@ export default async function PlayersPage() {
         <PlayerRosterClient 
           players={players}
           hasContentfulData={hasContentfulData}
-          contentfulPlayers={contentfulPlayers}
+          contentfulPlayers={[]}
         />
 
         {/* Stats Summary */}
