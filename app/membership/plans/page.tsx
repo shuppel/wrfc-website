@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
-import { getAllMembershipPlans } from '@/lib/contentful';
+import { getAllMembershipPlans } from '@/data/membership';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
@@ -9,26 +9,16 @@ export const metadata: Metadata = {
   description: 'Explore Washington Rugby Football Club membership options and join our team. Player, social, and supporter memberships available.',
 };
 
-export default async function MembershipPlansPage() {
-  // Fetch membership plans from Contentful with error handling
-  let plans: Awaited<ReturnType<typeof getAllMembershipPlans>>;
-  try {
-    plans = await getAllMembershipPlans();
-  } catch (error) {
-    console.warn('Failed to fetch membership plans from Contentful:', error);
-    plans = [];
-  }
+export default function MembershipPlansPage() {
+  const plans = getAllMembershipPlans();
   
-  // Separate featured and regular plans
-  const featuredPlans = plans.filter(plan => plan.fields.featured);
-  const regularPlans = plans.filter(plan => !plan.fields.featured);
+  const featuredPlans = plans.filter(plan => plan.featured);
+  const regularPlans = plans.filter(plan => !plan.featured);
   
-  // Sort plans by price
   const sortedPlans = [...featuredPlans, ...regularPlans];
 
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Structured Data */}
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: '/' },
@@ -47,13 +37,13 @@ export default async function MembershipPlansPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedPlans.map((plan) => (
               <MembershipCard
-                key={plan.sys.id}
-                title={plan.fields.title}
-                description={plan.fields.description}
-                price={plan.fields.price}
-                benefits={plan.fields.benefits}
-                paymentLink={plan.fields.paymentLink}
-                featured={plan.fields.featured}
+                key={plan.id}
+                title={plan.title}
+                description={plan.description}
+                price={plan.price}
+                benefits={plan.benefits}
+                paymentLink={plan.paymentLink}
+                featured={plan.featured}
               />
             ))}
           </div>
@@ -63,7 +53,6 @@ export default async function MembershipPlansPage() {
           </div>
         )}
         
-        {/* Additional Information */}
         <div className="mt-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
           <h2 className="text-2xl font-bold mb-4">Membership FAQ</h2>
           
@@ -113,7 +102,7 @@ interface MembershipCardProps {
   description: string;
   price: number;
   benefits: string[];
-  paymentLink: string;
+  paymentLink?: string;
   featured?: boolean;
 }
 
@@ -123,7 +112,6 @@ function MembershipCard({ title, description, price, benefits, paymentLink, feat
       ? 'border-wrfc-red shadow-lg transform-gpu scale-105' 
       : 'border-gray-200 dark:border-gray-700'}`}
     >
-      {/* Featured Banner */}
       {featured && (
         <div className="bg-wrfc-red text-white text-center py-2 font-semibold">
           Recommended
@@ -139,7 +127,6 @@ function MembershipCard({ title, description, price, benefits, paymentLink, feat
           <span className="text-gray-500 dark:text-gray-400">/year</span>
         </div>
         
-        {/* Benefits List */}
         <ul className="space-y-3 mb-8">
           {benefits.map((benefit, index) => (
             <li key={index} className="flex items-start">
@@ -149,7 +136,6 @@ function MembershipCard({ title, description, price, benefits, paymentLink, feat
           ))}
         </ul>
         
-        {/* CTA Button */}
         <Link 
           href={paymentLink || '/contact'} 
           className={`block w-full py-3 px-4 rounded-lg text-center font-semibold transition-colors ${

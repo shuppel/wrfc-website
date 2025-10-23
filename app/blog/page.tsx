@@ -1,22 +1,13 @@
 import { Metadata } from 'next';
-import { getAllBlogPosts } from '@/lib/contentful';
+import { getAllBlogPosts } from '@/data/blog';
 import { generateMetadata, getStructuredData } from '@/app/utils/seo';
 import BlogContent from './BlogContent';
 
-// Generate metadata for the blog page
 export const metadata: Metadata = generateMetadata('blog');
 
-export default async function BlogPage() {
-  // Fetch blog posts from Contentful with error handling
-  let posts: Awaited<ReturnType<typeof getAllBlogPosts>>;
-  try {
-    posts = await getAllBlogPosts();
-  } catch (error) {
-    console.warn('Failed to fetch blog posts:', error);
-    posts = [];
-  }
+export default function BlogPage() {
+  const posts = getAllBlogPosts();
 
-  // Structured data for blog listing page
   const structuredData = getStructuredData('blog', {
     '@type': 'Blog',
     name: 'WRFC Blog',
@@ -32,13 +23,13 @@ export default async function BlogPage() {
     },
     blogPost: posts.map(post => ({
       '@type': 'BlogPosting',
-      headline: post.fields.title,
-      datePublished: post.fields.publishDate,
+      headline: post.title,
+      datePublished: post.publishDate,
       author: {
         '@type': 'Person',
-        name: post.fields.author?.fields?.name || 'WRFC Staff'
+        name: post.author.name
       },
-      url: `https://washingtonrugby.org/blog/${post.fields.slug}`
+      url: `https://washingtonrugby.org/blog/${post.slug}`
     }))
   });
 

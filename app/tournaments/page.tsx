@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import { Button } from '@/components/ui/button';
 import RegisterButton from '@/components/RegisterButton';
-import { getAllTournaments } from '@/lib/contentful';
+import { getAllTournaments } from '@/data/tournaments';
 import { formatDate } from '@/lib/utils';
 
 interface Tournament {
@@ -196,20 +196,17 @@ export default async function TournamentsPage() {
     }
   });
 
-  // Use Contentful tournaments if available, otherwise fall back to hardcoded data
   const displayTournaments = contentfulTournaments.length > 0 
     ? contentfulTournaments.map(t => ({
-        id: t.fields.slug,
-        name: t.fields.name,
-        date: `${formatDate(t.fields.startDate)} - ${formatDate(t.fields.endDate)}`,
-        location: 'Washington DC Area', // You might want to add this to Contentful
-        coverImage: t.fields.heroImage?.fields.file.url 
-          ? `https:${t.fields.heroImage.fields.file.url}`
-          : '/assets/pictures/2025_irish_ruck.jpg',
-        description: 'Premier rugby tournament in Washington DC', // Default description
-        divisions: [], // You might want to add divisions to Contentful
-        status: t.fields.active && new Date(t.fields.startDate) > new Date() ? 'upcoming' : 'past',
-        year: t.fields.year
+        id: t.slug,
+        name: t.name,
+        date: `${formatDate(t.startDate)} - ${formatDate(t.endDate)}`,
+        location: t.venue?.name || 'Washington DC Area',
+        coverImage: t.logo || '/assets/pictures/2025_irish_ruck.jpg',
+        description: t.description,
+        divisions: t.divisions || [],
+        status: (new Date(t.startDate) > new Date() ? 'upcoming' : 'past') as 'upcoming' | 'past',
+        year: t.year
       }))
     : tournaments;
 
