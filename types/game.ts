@@ -34,7 +34,7 @@ export interface Game {
   time: string
   venue: Venue
   season: string
-  competition: 'LEAGUE' | 'FRIENDLY' | 'PLAYOFF' | 'TOURNAMENT' | 'SOCIAL'
+  competition: 'D1' | 'D3' | 'SOCIAL'
   isHome: boolean
   ticketsUrl?: string
   broadcastUrl?: string
@@ -254,7 +254,7 @@ export const SAMPLE_DATA = {
         }
       },
       season: '2025',
-      competition: 'D1/D3',
+      competition: 'SOCIAL',
       isHome: false
     },
     {
@@ -284,7 +284,7 @@ export const SAMPLE_DATA = {
         }
       },
       season: '2025',
-      competition: 'D1/D3',
+      competition: 'SOCIAL',
       isHome: false
     },
     {
@@ -372,7 +372,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: false,
       result: {
         homeScore: 50,
@@ -405,7 +405,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'Capital Men D3 Challenger',
+      competition: 'D3',
       isHome: false,
       result: {
         homeScore: 101,
@@ -438,7 +438,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 27,
@@ -471,7 +471,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 17,
@@ -504,7 +504,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'Capital Men D3 Challenger',
+      competition: 'D3',
       isHome: true,
       result: {
         homeScore: 13,
@@ -537,7 +537,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 31,
@@ -570,7 +570,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'Capital Men D3 Challenger',
+      competition: 'D3',
       isHome: true,
       result: {
         homeScore: 42,
@@ -603,7 +603,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: false,
       result: {
         homeScore: 46,
@@ -636,7 +636,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'Capital Men D3 Challenger',
+      competition: 'D3',
       isHome: false,
       result: {
         homeScore: 38,
@@ -669,7 +669,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 84,
@@ -702,7 +702,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'MAC Men D1',
+      competition: 'D1',
       isHome: false,
       result: {
         homeScore: 39,
@@ -735,7 +735,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2024',
-      competition: 'Capital Men D3 Challenger',
+      competition: 'D3',
       isHome: false,
       result: {
         homeScore: 53,
@@ -911,7 +911,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 0,
@@ -944,7 +944,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: true,
       result: {
         homeScore: 10,
@@ -977,7 +977,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: false,
       result: {
         homeScore: 45,
@@ -1010,7 +1010,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: false,
       result: {
         homeScore: 87,
@@ -1043,7 +1043,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: false,
       result: {
         homeScore: 17,
@@ -1076,7 +1076,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: false,
       result: {
         homeScore: 45,
@@ -1109,7 +1109,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 18,
@@ -1142,7 +1142,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: true,
       result: {
         homeScore: 10,
@@ -1175,7 +1175,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: true,
       result: {
         homeScore: 28,
@@ -1208,7 +1208,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: true,
       result: {
         homeScore: 17,
@@ -1241,7 +1241,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC 1',
+      competition: 'D1',
       isHome: false
     },
     {
@@ -1269,7 +1269,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Challenger D3',
+      competition: 'D3',
       isHome: false
     }
   ] as Game[]

@@ -348,7 +348,13 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
 
                               {/* Competition */}
                               <td className="px-6 py-4 text-center">
-                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                  game.competition === 'D1' 
+                                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                    : game.competition === 'D3'
+                                    ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                    : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
+                                }`}>
                                   {game.competition}
                                 </span>
                               </td>
@@ -394,7 +400,13 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                             <div className="text-sm font-semibold text-gray-900 dark:text-white">
                               {format(gameDate, 'MMM d, yyyy')} • {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
                             </div>
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                              game.competition === 'D1' 
+                                ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                : game.competition === 'D3'
+                                ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
+                            }`}>
                               {game.competition}
                             </span>
                           </div>
