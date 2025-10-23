@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { generateSEOMetadata } from '@/app/utils/seo'
-import { Mail, ChevronLeft, Award, Users, Target } from 'lucide-react'
+import { ChevronLeft, Award, Users, Target } from 'lucide-react'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Coaching Staff',
-  description: 'Meet the experienced coaching staff at Washington Rugby Football Club. Our dedicated coaches bring years of expertise in player development and rugby excellence.',
+  title: 'Coaching Staff - Expert Rugby Coaches',
+  description: 'Meet the experienced coaching staff at Washington Rugby Football Club, including former USA Eagles captain Jamason Fa\'anana-Schultz and professional rugby player Thretton Palamo. Our dedicated coaches bring elite-level expertise in player development and rugby excellence.',
   path: '/teams/coaches'
 })
 
@@ -19,6 +19,7 @@ interface Coach {
   bio: string
   specialties?: string[]
   email?: string
+  wikiUrl?: string
 }
 
 const coaches: Coach[] = [
@@ -28,9 +29,9 @@ const coaches: Coach[] = [
     title: 'Head Coach',
     tier: 'head',
     photo: '/assets/pictures/thretton-coach-headshot.jpg',
-    bio: 'Thretton brings extensive international rugby experience to WRFC, having represented the United States Eagles and played professionally. His leadership and tactical expertise drive our competitive excellence.',
+    bio: 'Thretton brings exceptional international rugby experience to WRFC as a former USA Eagles player and professional rugby athlete. Having competed at the highest levels of the sport, his leadership and tactical expertise drive our competitive excellence and player development.',
     specialties: ['Backs Development', 'Game Strategy', 'High Performance'],
-    email: 'coach@washingtonrugby.org'
+    wikiUrl: 'https://en.wikipedia.org/wiki/Thretton_Palamo'
   },
   {
     name: 'Jamason Fa\'anana-Schultz',
@@ -38,9 +39,9 @@ const coaches: Coach[] = [
     title: 'Lead Assistant Coach',
     tier: 'head',
     photo: '/assets/pictures/jama-coach-headshot.jpg',
-    bio: 'Jama serves as our Lead Assistant Coach, bringing deep rugby knowledge and a passion for player development. His expertise in forward play and set pieces is instrumental to our success.',
-    specialties: ['Forward Play', 'Set Pieces', 'Team Culture'],
-    email: 'assistant@washingtonrugby.org'
+    bio: 'Jama serves as our Lead Assistant Coach, bringing elite-level rugby experience as a former USA Eagles captain and Old Glory DC captain. His deep rugby knowledge, leadership experience, and passion for player development make him instrumental to our success. His expertise in forward play and set pieces is unmatched.',
+    specialties: ['Forward Play', 'Set Pieces', 'Team Culture', 'Leadership'],
+    wikiUrl: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz'
   },
   {
     name: 'Roger Evans',
@@ -151,9 +152,13 @@ export default function CoachesPage() {
                     <div className="relative h-80 overflow-hidden">
                       <Image
                         src={coach.photo}
-                        alt={coach.name}
+                        alt={`${coach.name} - ${coach.title} at Washington Rugby Football Club`}
+                        title={`${coach.name}, ${coach.role}`}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        priority={coach.tier === 'head'}
+                        quality={90}
                       />
                       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${config.color}`} />
                     </div>
@@ -190,14 +195,18 @@ export default function CoachesPage() {
                         </div>
                       )}
 
-                      {coach.email && (
+                      {coach.wikiUrl && (
                         <div className="text-center pt-4 border-t border-gray-200 dark:border-gray-700">
                           <a 
-                            href={`mailto:${coach.email}`}
+                            href={coach.wikiUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
                           >
-                            <Mail className="w-4 h-4" />
-                            <span className="text-sm">Contact</span>
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm.1 19.5h-.2c-3.3 0-6-2.7-6-6V12c0-.6.4-1 1-1s1 .4 1 1v1.5c0 2.2 1.8 4 4 4h.1v-3.2l4.4 3.7-4.4 3.7v-2.2z"/>
+                            </svg>
+                            <span className="text-sm">View Wikipedia</span>
                           </a>
                         </div>
                       )}
