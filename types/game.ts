@@ -889,16 +889,16 @@ export const SAMPLE_DATA = {
     {
       id: '2025-09-13-d1',
       homeTeam: {
-        id: 'rocky-gorge',
-        name: 'Rocky Gorge',
-        shortName: 'Rocky Gorge',
-
-      },
-      awayTeam: {
         id: 'wrfc',
         name: 'Washington Rugby Football Club',
         shortName: 'Washington MD1',
         logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
+        id: 'rocky-gorge',
+        name: 'Rocky Gorge',
+        shortName: 'Rocky Gorge',
+
       },
       date: '2025-09-13',
       time: '13:00',
@@ -911,27 +911,27 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
-      isHome: false,
+      competition: 'MAC 1',
+      isHome: true,
       result: {
-        homeScore: 61,
-        awayScore: 0,
+        homeScore: 0,
+        awayScore: 61,
         status: 'FINAL'
       }
     },
     {
       id: '2025-09-13-d3',
       homeTeam: {
-        id: 'rocky-gorge',
-        name: 'Rocky Gorge',
-        shortName: 'Rocky Gorge',
-
-      },
-      awayTeam: {
         id: 'wrfc',
         name: 'Washington Rugby Football Club',
         shortName: 'Washington MD3',
         logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
+        id: 'rocky-gorge',
+        name: 'Rocky Gorge',
+        shortName: 'Rocky Gorge',
+
       },
       date: '2025-09-13',
       time: '13:00',
@@ -944,11 +944,11 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
-      isHome: false,
+      competition: 'Challenger D3',
+      isHome: true,
       result: {
-        homeScore: 55,
-        awayScore: 10,
+        homeScore: 10,
+        awayScore: 82,
         status: 'FINAL'
       }
     },
@@ -977,7 +977,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
+      competition: 'MAC 1',
       isHome: false,
       result: {
         homeScore: 45,
@@ -1010,11 +1010,11 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
+      competition: 'Challenger D3',
       isHome: false,
       result: {
         homeScore: 87,
-        awayScore: 22,
+        awayScore: 0,
         status: 'FINAL'
       }
     },
@@ -1043,8 +1043,13 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
-      isHome: false
+      competition: 'MAC 1',
+      isHome: false,
+      result: {
+        homeScore: 17,
+        awayScore: 12,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-09-27-d3',
@@ -1071,23 +1076,28 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
-      isHome: false
+      competition: 'Challenger D3',
+      isHome: false,
+      result: {
+        homeScore: 45,
+        awayScore: 10,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-10-11-d1',
       homeTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'Washington MD1',
+        logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
         id: 'perc',
         name: 'Potomac Exiles',
         shortName: 'Potomac MD1',
 
       },
-      awayTeam: {
-        id: 'wrfc',
-        name: 'Washington Rugby Football Club',
-        shortName: 'Washington MD1',
-        logo: '/logos/wrfc_logo.png'
-      },
       date: '2025-10-11',
       time: '13:00',
       venue: {
@@ -1099,23 +1109,28 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
-      isHome: false
+      competition: 'MAC 1',
+      isHome: true,
+      result: {
+        homeScore: 18,
+        awayScore: 29,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-10-11-d3',
       homeTeam: {
+        id: 'wrfc',
+        name: 'Washington Rugby Football Club',
+        shortName: 'Washington MD3',
+        logo: '/logos/wrfc_logo.png'
+      },
+      awayTeam: {
         id: 'perc',
         name: 'Potomac Exiles',
         shortName: 'Potomac MD3',
 
       },
-      awayTeam: {
-        id: 'wrfc',
-        name: 'Washington Rugby Football Club',
-        shortName: 'Washington MD3',
-        logo: '/logos/wrfc_logo.png'
-      },
       date: '2025-10-11',
       time: '13:00',
       venue: {
@@ -1127,23 +1142,28 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
-      isHome: false
+      competition: 'Challenger D3',
+      isHome: true,
+      result: {
+        homeScore: 10,
+        awayScore: 39,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-10-18-d1',
       homeTeam: {
-        id: 'nova',
-        name: 'NOVA Rugby',
-        shortName: 'NOVA MD1',
-
-      },
-      awayTeam: {
         id: 'wrfc',
         name: 'Washington Rugby Football Club',
         shortName: 'Washington MD1',
         logo: '/logos/wrfc_logo.png'
       },
+      awayTeam: {
+        id: 'nova',
+        name: 'NOVA Rugby',
+        shortName: 'NOVA MD1',
+
+      },
       date: '2025-10-18',
       time: '13:00',
       venue: {
@@ -1155,23 +1175,28 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
-      isHome: false
+      competition: 'MAC 1',
+      isHome: true,
+      result: {
+        homeScore: 28,
+        awayScore: 40,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-10-18-d3',
       homeTeam: {
-        id: 'nova',
-        name: 'NOVA Rugby',
-        shortName: 'NOVA MD3',
-
-      },
-      awayTeam: {
         id: 'wrfc',
         name: 'Washington Rugby Football Club',
         shortName: 'Washington MD3',
         logo: '/logos/wrfc_logo.png'
       },
+      awayTeam: {
+        id: 'nova',
+        name: 'NOVA Rugby',
+        shortName: 'NOVA MD3',
+
+      },
       date: '2025-10-18',
       time: '13:00',
       venue: {
@@ -1183,8 +1208,13 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
-      isHome: false
+      competition: 'Challenger D3',
+      isHome: true,
+      result: {
+        homeScore: 17,
+        awayScore: 49,
+        status: 'FINAL'
+      }
     },
     {
       id: '2025-10-25-d1',
@@ -1211,7 +1241,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'MAC Men D1',
+      competition: 'MAC 1',
       isHome: false
     },
     {
@@ -1229,7 +1259,7 @@ export const SAMPLE_DATA = {
         logo: '/logos/wrfc_logo.png'
       },
       date: '2025-10-25',
-      time: '13:00',
+      time: '15:00',
       venue: {
         id: 'tba',
         name: 'TBD',
@@ -1239,7 +1269,7 @@ export const SAMPLE_DATA = {
         coordinates: { lat: 0, lng: 0 }
       },
       season: '2025',
-      competition: 'Capital Men D3',
+      competition: 'Challenger D3',
       isHome: false
     }
   ] as Game[]
