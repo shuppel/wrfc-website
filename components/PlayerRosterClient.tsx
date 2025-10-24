@@ -225,12 +225,10 @@ export default function PlayerRosterClient({
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {filteredAndSortedPlayers.map((player, index) => (
+                {filteredAndSortedPlayers.map((player) => (
                   <tr 
                     key={player.id}
-                    className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                      index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50/50 dark:bg-gray-750'
-                    }`}
+                    className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link 
