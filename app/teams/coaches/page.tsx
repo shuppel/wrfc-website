@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { generateSEOMetadata } from '@/app/utils/seo'
-import { ChevronLeft, Award, Users, Target } from 'lucide-react'
+import { CaretLeft, Medal, Users, Target } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Coaching Staff - Expert Rugby Coaches',
@@ -86,7 +86,7 @@ const tierConfig = {
     label: 'Head Coaching Staff',
     description: 'Leading our rugby program with vision and expertise',
     color: 'from-blue-600 to-blue-800',
-    icon: Award
+    icon: Medal
   },
   assistant: {
     label: 'Assistant Coaches',
@@ -110,7 +110,7 @@ export default function CoachesPage() {
           href="/teams" 
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
         >
-          <ChevronLeft className="w-5 h-5 mr-1" />
+          <CaretLeft className="w-5 h-5 mr-1" weight="bold" />
           Back to Teams
         </Link>
 
@@ -118,7 +118,7 @@ export default function CoachesPage() {
           <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Coaching Staff
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             Meet the dedicated coaches who guide Washington Rugby Football Club to excellence. 
             Our coaching staff combines professional experience, tactical expertise, and a passion for player development.
           </p>
@@ -138,7 +138,7 @@ export default function CoachesPage() {
                     {config.label}
                   </h2>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-100">
                   {config.description}
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function CoachesPage() {
                 {tierCoaches.map((coach) => (
                   <div 
                     key={coach.name}
-                    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                    className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                   >
                     <div className="relative h-80 overflow-hidden">
                       <Image
@@ -173,7 +173,7 @@ export default function CoachesPage() {
                         </p>
                       </div>
 
-                      <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+                      <p className="text-gray-600 dark:text-gray-100 mb-6 text-center">
                         {coach.bio}
                       </p>
 
@@ -218,11 +218,11 @@ export default function CoachesPage() {
           )
         })}
 
-        <div className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+        <div className="mt-16 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
           <h2 className="section-title mb-4 text-center">
             Coaching Philosophy
           </h2>
-          <div className="space-y-4 text-gray-600 dark:text-gray-300">
+          <div className="space-y-4 text-gray-600 dark:text-gray-100">
             <p>
               Our coaching staff is committed to developing well-rounded players who excel both on and off the field. 
               We emphasize:

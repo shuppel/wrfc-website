@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, ChevronRight, Newspaper } from 'lucide-react';
+import { X, CaretRight, Newspaper } from '@phosphor-icons/react';
 import Image from 'next/image';
 
 interface ArticleDrawerProps {
@@ -36,7 +36,7 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
           <Newspaper className="w-5 h-5" />
 
           {/* Arrow */}
-          <ChevronRight 
+          <CaretRight 
             className="w-5 h-5 text-white 
               animate-pulse group-hover:animate-bounce"
           />
@@ -53,7 +53,7 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
 
       {/* Drawer */}
       <div
-        className={`fixed right-0 top-0 h-full w-full md:w-[600px] bg-white dark:bg-gray-800 shadow-xl z-50 transform transition-transform duration-300 ${
+        className={`fixed right-0 top-0 h-full w-full md:w-[600px] bg-white dark:bg-gray-900 shadow-xl z-50 transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -89,12 +89,12 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
                 <h1 className="text-3xl font-bold mb-2 font-nasalization text-wrfc-red">
                   Washington Rugby FC: The Most Famous American Club in the UK!
                 </h1>
-                <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                <p className="text-lg font-semibold text-gray-700 dark:text-white">
                   Featured in The Telegraph&apos;s special report on American rugby
                 </p>
               </div>
 
-              <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
+              <div className="text-sm text-gray-600 dark:text-gray-100 flex items-center gap-2">
                 <Newspaper className="w-4 h-4" />
                 <span>The Telegraph | December 18, 2024</span>
               </div>
@@ -111,7 +111,7 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
                   Americans understand the ethos of rugby that many in England have forgotten.&quot;
                 </blockquote>
 
-                <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg">
+                <div className="bg-gray-100 dark:bg-gray-900 p-6 rounded-lg">
                   <h3 className="font-bold text-lg mb-3">Article Highlights:</h3>
                   <ul className="list-disc list-inside space-y-2">
                     <li>WRFC&apos;s strong community and social culture</li>

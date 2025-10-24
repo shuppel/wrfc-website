@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, MapPin, Clock, Star } from 'lucide-react'
+import { Calendar, Trophy, Users, ArrowRight, MapPin, Clock, Star } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../utils/seo'
 import JsonLd from '../../components/JsonLd'
 
@@ -100,7 +100,7 @@ export default function DCRugbyPage() {
       </section>
 
       {/* Why Choose DC Rugby with WRFC */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Why Choose WRFC for DC Rugby?
@@ -141,7 +141,7 @@ export default function DCRugbyPage() {
                   <MapPin className="w-6 h-6 text-wrfc-red mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold mb-2">Prime DC Rugby Location</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       Train at premier DC rugby facilities with easy access from all parts of Washington DC and surrounding areas.
                     </p>
                   </div>
@@ -150,7 +150,7 @@ export default function DCRugbyPage() {
                   <Clock className="w-6 h-6 text-wrfc-navy mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold mb-2">Flexible DC Rugby Schedule</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       Multiple training sessions per week to accommodate busy DC lifestyles while maintaining competitive edge.
                     </p>
                   </div>
@@ -159,7 +159,7 @@ export default function DCRugbyPage() {
                   <Star className="w-6 h-6 text-wrfc-teal mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold mb-2">Expert DC Rugby Coaching</h3>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       Learn from experienced coaches who understand DC rugby and have developed players at all levels.
                     </p>
                   </div>
@@ -189,7 +189,7 @@ export default function DCRugbyPage() {
       </section>
 
       {/* DC Rugby FAQ */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             DC Rugby Frequently Asked Questions
@@ -264,12 +264,12 @@ function DCRugbyFeature({ icon, title, description, stats }: {
   return (
     <div className="text-center">
       <div className="flex justify-center mb-6">
-        <div className="bg-gray-100 dark:bg-gray-700 rounded-full p-6">
+        <div className="bg-gray-100 dark:bg-gray-900 rounded-full p-6">
           {icon}
         </div>
       </div>
       <h3 className="text-2xl font-bold mb-4 ">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+      <p className="text-gray-600 dark:text-gray-100 mb-4">{description}</p>
       <div className="text-wrfc-red font-bold text-lg">{stats}</div>
     </div>
   )
@@ -279,7 +279,7 @@ function DCRugbyFAQ({ question, answer }: { question: string; answer: string }) 
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 pb-8">
       <h3 className="text-xl font-bold mb-4 text-wrfc-navy dark:text-wrfc-red">{question}</h3>
-      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{answer}</p>
+      <p className="text-gray-600 dark:text-gray-100 leading-relaxed">{answer}</p>
     </div>
   )
 }

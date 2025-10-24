@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, User, Clock, ChevronRight } from 'lucide-react';
+import { Calendar, User, Clock, CaretRight } from '@phosphor-icons/react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent } from '@/components/ui/card';
@@ -149,7 +149,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">WRFC Blog</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             Stay updated with the latest news, match reports, and insights from Washington Rugby Football Club
           </p>
         </div>
@@ -204,7 +204,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
                     <h2 className="text-3xl font-bold mb-4 hover:text-wrfc-red transition-colors">
                       {featuredPost.title}
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-3">
+                    <p className="text-gray-600 dark:text-gray-100 mb-6 line-clamp-3">
                       {featuredPost.excerpt}
                     </p>
                     <div className="flex items-center justify-between">
@@ -215,7 +215,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
                       </div>
                       <span className="text-wrfc-red font-semibold flex items-center gap-2 group">
                         Read More
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <CaretRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" weight="bold" />
                       </span>
                     </div>
                   </CardContent>
@@ -304,7 +304,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
           <h3 className="text-xl font-bold mb-2 group-hover:text-wrfc-red transition-colors line-clamp-2">
             {post.title}
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+          <p className="text-gray-600 dark:text-gray-100 line-clamp-3 mb-4">
             {post.excerpt}
           </p>
           <div className="flex items-center justify-between">
@@ -318,11 +318,11 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
                   className="rounded-full"
                 />
               )}
-              <span className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-sm text-gray-600 dark:text-gray-100">
                 {post.author?.name || 'WRFC Staff'}
               </span>
             </div>
-            <ChevronRight className="w-4 h-4 text-wrfc-red group-hover:translate-x-1 transition-transform" />
+            <CaretRight className="w-4 h-4 text-wrfc-red group-hover:translate-x-1 transition-transform" weight="bold" />
           </div>
         </CardContent>
       </Card>

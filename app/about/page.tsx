@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Shield, Users, History, Star, Trophy, Beer } from 'lucide-react'
+import { Shield, Users, ClockCounterClockwise, Star, Trophy, BeerStein } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import { generateMetadata, getStructuredData } from '../utils/seo'
 import JsonLd from '../../components/JsonLd'
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 Our Mission
               </h2>
             </div>
-            <p className="text-xl leading-relaxed  text-gray-700 dark:text-gray-300">
+            <p className="text-xl leading-relaxed  text-gray-700 dark:text-white">
               To foster and promote the growth of rugby in the Washington area while maintaining 
               the highest standards of sportsmanship and athletic excellence.
             </p>
@@ -89,18 +89,18 @@ export default function AboutPage() {
       </section>
 
       {/* History Section with Image Gallery */}
-      <section className="w-full py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="w-full py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <History className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
+              <ClockCounterClockwise className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
               <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Our History
               </h2>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="space-y-6  text-gray-700 dark:text-gray-300">
+              <div className="space-y-6  text-gray-700 dark:text-white">
                 <p className="text-lg leading-relaxed">
                   Founded in 1963, Washington Rugby Football Club is the oldest rugby club in the DC metro area 
                   and has been a cornerstone of rugby in the nation&apos;s capital for over half a century. 
@@ -184,11 +184,11 @@ export default function AboutPage() {
       </section>
 
       {/* Club Life Section */}
-      <section className="w-full py-24 bg-gray-50 dark:bg-gray-800">
+      <section className="w-full py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <Beer className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
+              <BeerStein className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
               <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Club Life
               </h2>
@@ -228,7 +228,7 @@ function ValueCard({ title, description, icon, image }: {
   image: string 
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 transition-all hover:shadow-xl">
+    <div className="group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-900 transition-all hover:shadow-xl">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={image}
@@ -239,13 +239,13 @@ function ValueCard({ title, description, icon, image }: {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
       </div>
       <div className="p-8 text-center relative">
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-700 rounded-full p-4 shadow-lg">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full p-4 shadow-lg">
           {icon}
         </div>
         <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400 pt-8">
           {title}
         </h3>
-        <p className=" text-gray-700 dark:text-gray-300">
+        <p className=" text-gray-700 dark:text-white">
           {description}
         </p>
       </div>

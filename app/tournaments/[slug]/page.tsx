@@ -8,7 +8,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, ArrowSquareOut } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/button';
 
 interface TournamentPageProps {
@@ -139,7 +139,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
                 <Calendar className="w-5 h-5 text-gray-500 mt-0.5" />
                 <div>
                   <p className="font-semibold">Dates</p>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-600 dark:text-gray-100">
                     {formatDate(startDate)} - {formatDate(endDate)}
                   </p>
                 </div>
@@ -155,7 +155,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
                   className="inline-block"
                 >
                   <Button size="lg" className="bg-wrfc-red hover:bg-red-700">
-                    <ExternalLink className="w-4 h-4 mr-2" />
+                    <ArrowSquareOut className="w-4 h-4 mr-2" />
                     Register Now
                   </Button>
                 </a>
@@ -184,7 +184,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
             <CardContent>
               <div className="space-y-4">
                 {divisions.map((division, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
                     <div>
                       <h4 className="font-semibold">{division.name}</h4>
                     </div>

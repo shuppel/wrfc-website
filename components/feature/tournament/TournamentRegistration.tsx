@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from '@phosphor-icons/react';
 import { ZEFFY_LINKS } from '@/data/zeffy-links';
 
 interface Division {

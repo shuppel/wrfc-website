@@ -70,50 +70,50 @@ export default function ContactPage() {
                 className="space-y-6"
               >
                 <div>
-                  <label htmlFor="name" className="block mb-2  text-gray-700 dark:text-gray-300">
+                  <label htmlFor="name" className="block mb-2  text-gray-700 dark:text-white">
                     Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2  text-gray-700 dark:text-gray-300">
+                  <label htmlFor="email" className="block mb-2  text-gray-700 dark:text-white">
                     Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block mb-2  text-gray-700 dark:text-gray-300">
+                  <label htmlFor="subject" className="block mb-2  text-gray-700 dark:text-white">
                     Subject
                   </label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2  text-gray-700 dark:text-gray-300">
+                  <label htmlFor="message" className="block mb-2  text-gray-700 dark:text-white">
                     Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={6}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   ></textarea>
                 </div>
@@ -158,11 +158,11 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
+              <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl">
                 <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400">
                   Training Hours
                 </h3>
-                <ul className="space-y-2  text-gray-700 dark:text-gray-300">
+                <ul className="space-y-2  text-gray-700 dark:text-white">
                   <li><strong>Regular Season:</strong> 8:00 PM - 10:00 PM</li>
                   <li><strong>Summer 7s Training:</strong> 7:00 PM - 9:00 PM</li>
                   <li className="text-sm mt-3">
@@ -194,9 +194,9 @@ function ContactInfo({ title, content, address, mapLink, icon }: { title: string
       </div>
       <div>
         <h3 className="font-bold mb-1  text-gray-900 dark:text-gray-100">{title}</h3>
-        <p className=" text-gray-700 dark:text-gray-300">{content}</p>
+        <p className=" text-gray-700 dark:text-white">{content}</p>
         {address && (
-          <p className=" text-sm text-gray-600 dark:text-gray-400 mt-1">
+          <p className=" text-sm text-gray-600 dark:text-gray-100 mt-1">
             {mapLink ? (
               <a href={mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 underline">
                 {address}

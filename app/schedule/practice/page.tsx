@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
-import { Dumbbell, Circle, User, FileText, Users, Building } from "lucide-react"
+import { Barbell, Circle, User, FileText, Users, Buildings } from "@phosphor-icons/react/dist/ssr"
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Practice Schedule',
@@ -52,7 +52,7 @@ export default function PracticeSchedulePage() {
               <h3 className="text-xl font-bold mb-4 section-title text-blue-900 dark:text-blue-400">
                 Excellence Through Technical Mastery
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-4 ">
+              <p className="text-gray-700 dark:text-white mb-4 ">
                 Our coaching methodology centers on the meticulous development of fundamental rugby skills and tactical nuance. 
                 We believe that true rugby excellence emerges from precision in the basics—every pass, every tackle, every decision 
                 executed with technical proficiency and situational awareness.
@@ -63,7 +63,7 @@ export default function PracticeSchedulePage() {
               <h3 className="text-xl font-bold mb-4 section-title text-green-800 dark:text-green-400">
                 Collective Purpose & Unity
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-4 ">
+              <p className="text-gray-700 dark:text-white mb-4 ">
                 Rugby is the ultimate team sport, demanding unwavering commitment to collective success over individual achievement. 
                 Our training philosophy emphasizes playing for one another—each player understanding their role within the greater 
                 tactical framework while maintaining accountability to their teammates both on and off the field.
@@ -74,7 +74,7 @@ export default function PracticeSchedulePage() {
               <h3 className="text-xl font-bold mb-4 section-title text-purple-800 dark:text-purple-400">
                 Competitive Integrity & Sportsmanship
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 ">
+              <p className="text-gray-700 dark:text-white ">
                 Victory and defeat are both temporary states that test character. We compete with intensity and purpose, 
                 but conduct ourselves with dignity and respect regardless of outcome. True champions demonstrate grace 
                 in victory and resilience in defeat, embodying the values that make rugby the gentleman&apos;s game.
@@ -82,7 +82,7 @@ export default function PracticeSchedulePage() {
             </div>
 
             <div className="mt-8 text-center">
-              <p className="text-gray-600 dark:text-gray-400  italic">
+              <p className="text-gray-600 dark:text-gray-100  italic">
                 &ldquo;Excellence is not a skill, it&apos;s an attitude cultivated through disciplined practice and collective commitment.&rdquo;
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function PracticeSchedulePage() {
       </section>
 
       {/* Schedule Times */}
-      <section className="w-full py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="w-full py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl font-bold mb-12 section-title text-blue-900 dark:text-blue-400 text-center">
             Training Times
@@ -105,11 +105,11 @@ export default function PracticeSchedulePage() {
               </h3>
               <div className="space-y-4 ">
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                  <span className="text-gray-700 dark:text-gray-300">D1 & D3 Practice</span>
+                  <span className="text-gray-700 dark:text-white">D1 & D3 Practice</span>
                   <span className="font-semibold text-blue-600 dark:text-blue-400">8:00 PM - 10:00 PM</span>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                  <span className="text-gray-700 dark:text-gray-300">Days</span>
+                  <span className="text-gray-700 dark:text-white">Days</span>
                   <span className="font-semibold text-blue-600 dark:text-blue-400">Tuesday & Thursday</span>
                 </div>
               </div>
@@ -122,11 +122,11 @@ export default function PracticeSchedulePage() {
               </h3>
               <div className="space-y-4 ">
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                  <span className="text-gray-700 dark:text-gray-300">7s Practice</span>
+                  <span className="text-gray-700 dark:text-white">7s Practice</span>
                   <span className="font-semibold text-blue-600 dark:text-blue-400">7:00 PM - 9:00 PM</span>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
-                  <span className="text-gray-700 dark:text-gray-300">Days</span>
+                  <span className="text-gray-700 dark:text-white">Days</span>
                   <span className="font-semibold text-blue-600 dark:text-blue-400">Tuesday & Thursday</span>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function PracticeSchedulePage() {
             <div className="grid md:grid-cols-2 gap-6 ">
               <div>
                 <h4 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Primary Field</h4>
-                <p className="text-gray-700 dark:text-gray-300">Rosedale Recreation Center</p>
+                <p className="text-gray-700 dark:text-white">Rosedale Recreation Center</p>
                 <a 
                   href="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002" 
                   target="_blank" 
@@ -153,7 +153,7 @@ export default function PracticeSchedulePage() {
               </div>
               <div>
                 <h4 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Backup Field</h4>
-                <p className="text-gray-700 dark:text-gray-300">Trinidad Community Center</p>
+                <p className="text-gray-700 dark:text-white">Trinidad Community Center</p>
                 <a 
                   href="https://maps.google.com/maps?q=Trinidad+Community+Center+1310+Childress+St+NE+Washington+DC+20002" 
                   target="_blank" 
@@ -165,7 +165,7 @@ export default function PracticeSchedulePage() {
               </div>
               <div className="md:col-span-2 mt-4">
                 <h4 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Summer 7s Fields</h4>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700 dark:text-white">
                   <a 
                     href="https://maps.app.goo.gl/YgkGvG25ZMvrzYWk9" 
                     target="_blank" 
@@ -194,51 +194,51 @@ export default function PracticeSchedulePage() {
                 phase: "Arrival & Warm-up",
                 duration: "15 minutes",
                 description: "Dynamic stretching, light jogging, and mobility exercises to prepare the body for training.",
-                icon: <User size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <User size={48} weight="bold" className="text-wrfc-red" />
               },
               {
                 phase: "Conditioning",
                 duration: "20 minutes",
                 description: "Sport-specific fitness work including sprints, agility drills, and rugby-focused cardio.",
-                icon: <Dumbbell size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <Barbell size={48} weight="bold" className="text-wrfc-red" />
               },
               {
                 phase: "Skill Drills",
                 duration: "25 minutes",
                 description: "Technical work on passing, catching, kicking, and individual position-specific skills.",
-                icon: <Circle size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <Circle size={48} weight="bold" className="text-wrfc-red" />
               },
               {
                 phase: "Phase Drills",
                 duration: "20 minutes",
                 description: "Set piece work including scrums, lineouts, and structured play patterns.",
-                icon: <FileText size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <FileText size={48} weight="bold" className="text-wrfc-red" />
               },
               {
                 phase: "Unit Work",
                 duration: "20 minutes",
                 description: "Forwards and backs split for specialized training. New players work on fundamentals with veteran mentors.",
-                icon: <Users size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <Users size={48} weight="bold" className="text-wrfc-red" />
               },
               {
                 phase: "Full Field Scrimmage",
                 duration: "20 minutes",
                 description: "Game simulation to practice tactics and teamwork in match-like conditions.",
-                icon: <Building size={48} strokeWidth={3} className="text-wrfc-red" />
+                icon: <Buildings size={48} weight="bold" className="text-wrfc-red" />
               }
             ].map((item, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 flex items-start space-x-4">
+              <div key={index} className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 flex items-start space-x-4">
                 <div className="flex-shrink-0">{item.icon}</div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="text-xl font-bold section-title text-blue-900 dark:text-blue-400">
                       {item.phase}
                     </h3>
-                    <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 ">
+                    <span className="text-sm font-semibold text-gray-600 dark:text-gray-100 ">
                       {item.duration}
                     </span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 ">
+                  <p className="text-gray-700 dark:text-white ">
                     {item.description}
                   </p>
                 </div>
@@ -247,7 +247,7 @@ export default function PracticeSchedulePage() {
           </div>
 
           <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-            <p className="text-center text-gray-700 dark:text-gray-300 ">
+            <p className="text-center text-gray-700 dark:text-white ">
               <strong>Note:</strong> Practice structure may vary based on upcoming matches, weather conditions, 
               and specific team needs. All players are expected to arrive on time and ready to train.
             </p>

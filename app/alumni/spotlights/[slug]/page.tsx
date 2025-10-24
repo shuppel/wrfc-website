@@ -9,7 +9,7 @@ import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Calendar, Quote } from 'lucide-react';
+import { MapPin, Calendar, Quotes } from '@phosphor-icons/react/dist/ssr';
 
 interface AlumniSpotlightPageProps {
   params: {
@@ -116,7 +116,7 @@ export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps
             <Badge text="Featured Alumni" variant="default" className="mb-4" />
           )}
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{name}</h1>
-          <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-100">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <span>Years Played: {yearsPlayed}</span>
@@ -141,13 +141,13 @@ export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps
         )}
 
         {quote && (
-          <Card className="mb-8 bg-gray-50 dark:bg-gray-800">
+          <Card className="mb-8 bg-gray-50 dark:bg-gray-900">
             <CardContent className="pt-6">
-              <Quote className="w-8 h-8 text-wrfc-red mb-4" />
-              <blockquote className="text-xl md:text-2xl italic text-gray-700 dark:text-gray-300">
+              <Quotes className="w-8 h-8 text-wrfc-red mb-4" />
+              <blockquote className="text-xl md:text-2xl italic text-gray-700 dark:text-white">
                 &ldquo;{quote}&rdquo;
               </blockquote>
-              <p className="mt-4 text-right text-gray-600 dark:text-gray-400">— {name}</p>
+              <p className="mt-4 text-right text-gray-600 dark:text-gray-100">— {name}</p>
             </CardContent>
           </Card>
         )}
@@ -164,9 +164,9 @@ export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps
           </CardContent>
         </Card>
 
-        <div className="mt-12 text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+        <div className="mt-12 text-center bg-gray-100 dark:bg-gray-900 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4">Share Your Story</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-100 mb-6 max-w-2xl mx-auto">
             Are you a WRFC alumni? We&apos;d love to feature your rugby journey and hear about your experiences with the club.
           </p>
           <Link href="/contact">

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getAllMembershipPlans } from '@/data/membership';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
@@ -29,7 +29,7 @@ export default function MembershipPlansPage() {
 
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Membership Plans</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-12">
+        <p className="text-xl text-gray-600 dark:text-gray-100 mb-12">
           Join Washington Rugby Football Club and be part of a legacy that dates back to 1963.
         </p>
         
@@ -53,13 +53,13 @@ export default function MembershipPlansPage() {
           </div>
         )}
         
-        <div className="mt-16 bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
+        <div className="mt-16 bg-gray-50 dark:bg-gray-900 rounded-xl p-8">
           <h2 className="text-2xl font-bold mb-4">Membership FAQ</h2>
           
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold mb-2">What&apos;s included in membership?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Membership includes access to training sessions, eligibility for matches, club gear discounts, 
                 and social events. Specific benefits vary by membership type.
               </p>
@@ -67,7 +67,7 @@ export default function MembershipPlansPage() {
             
             <div>
               <h3 className="text-lg font-semibold mb-2">How long does membership last?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Most memberships are valid for one rugby season (typically one year). 
                 Renewal reminders will be sent before your membership expires.
               </p>
@@ -75,7 +75,7 @@ export default function MembershipPlansPage() {
             
             <div>
               <h3 className="text-lg font-semibold mb-2">Can I upgrade my membership?</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Yes, you can upgrade your membership at any time. 
                 Contact our membership coordinator for assistance.
               </p>
@@ -120,18 +120,18 @@ function MembershipCard({ title, description, price, benefits, paymentLink, feat
       
       <div className="p-6">
         <h3 className="text-2xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+        <p className="text-gray-600 dark:text-gray-100 mb-4">{description}</p>
         
         <div className="mb-6">
           <span className="text-3xl font-bold">${price}</span>
-          <span className="text-gray-500 dark:text-gray-400">/year</span>
+          <span className="text-gray-500 dark:text-gray-100">/year</span>
         </div>
         
         <ul className="space-y-3 mb-8">
           {benefits.map((benefit, index) => (
             <li key={index} className="flex items-start">
               <Check className="w-5 h-5 text-wrfc-red mr-2 mt-1 flex-shrink-0" />
-              <span className="text-gray-600 dark:text-gray-300">{benefit}</span>
+              <span className="text-gray-600 dark:text-gray-100">{benefit}</span>
             </li>
           ))}
         </ul>
@@ -141,7 +141,7 @@ function MembershipCard({ title, description, price, benefits, paymentLink, feat
           className={`block w-full py-3 px-4 rounded-lg text-center font-semibold transition-colors ${
             featured 
               ? 'bg-wrfc-red text-white hover:bg-wrfc-red/90' 
-              : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600'
+              : 'bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-600'
           }`}
         >
           {paymentLink ? 'Join Now' : 'Contact for Details'}

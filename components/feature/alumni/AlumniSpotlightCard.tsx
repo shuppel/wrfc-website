@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@phosphor-icons/react'
 
 interface AlumniSpotlightCardProps {
   id?: string
@@ -59,12 +59,12 @@ export default function AlumniSpotlightCard({
           )}
         </div>
         {currentRole && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{currentRole}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-100 mb-1">{currentRole}</p>
         )}
         {location && (
           <p className="text-sm text-gray-500 dark:text-gray-500 mb-3">{location}</p>
         )}
-        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">{shortBio}</p>
+        <p className="text-gray-600 dark:text-gray-100 line-clamp-3">{shortBio}</p>
         {id && (
           <div className="mt-4 flex items-center text-wrfc-red font-semibold group-hover:text-wrfc-red/80">
             Read Full Story
@@ -78,7 +78,7 @@ export default function AlumniSpotlightCard({
   if (id) {
     return (
       <Link href={`/alumni/spotlights/${id}`}>
-        <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 hover:shadow-xl transition-all cursor-pointer">
+        <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 hover:shadow-xl transition-all cursor-pointer">
           {cardContent}
         </div>
       </Link>
@@ -86,7 +86,7 @@ export default function AlumniSpotlightCard({
   }
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 hover:shadow-xl transition-all">
+    <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 hover:shadow-xl transition-all">
       {cardContent}
     </div>
   )

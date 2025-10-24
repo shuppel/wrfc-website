@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Calendar, Users, ArrowRight } from 'lucide-react'
+import { MapPin, Calendar, Users, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { generateSEOMetadata } from '../../utils/seo'
@@ -94,7 +94,7 @@ export default function CapitolHillPage() {
       </section>
 
       {/* Location Info */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Convenient Training Locations for Capitol Hill Residents
@@ -107,10 +107,10 @@ export default function CapitolHillPage() {
                 <h3 className="text-2xl font-bold">Primary Training Ground</h3>
               </div>
               <h4 className="text-xl font-semibold mb-2">Rosedale Recreation Center</h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 1701 Gales St NE, Washington, DC 20002
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 Just 10 minutes from Capitol Hill via H Street corridor. 
                 Easy access from Union Station and Eastern Market Metro.
               </p>
@@ -130,10 +130,10 @@ export default function CapitolHillPage() {
                 <h3 className="text-2xl font-bold">Summer 7s Location</h3>
               </div>
               <h4 className="text-xl font-semibold mb-2">Wallenberg Field</h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 Raoul Wallenberg Pl SW (behind Holocaust Museum)
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 Downtown location perfect for after-work training. 
                 Walking distance from Smithsonian Metro.
               </p>
@@ -161,7 +161,7 @@ export default function CapitolHillPage() {
             <div className="text-center">
               <Users className="w-16 h-16 text-wrfc-red mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Diverse Community</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Players from Capitol Hill, Navy Yard, Eastern Market, and H Street. 
                 Government workers, consultants, and young professionals.
               </p>
@@ -170,7 +170,7 @@ export default function CapitolHillPage() {
             <div className="text-center">
               <Calendar className="w-16 h-16 text-wrfc-navy mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Flexible Schedule</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Evening practices perfect for DC professionals. 
                 Social events and post-practice gatherings at local Capitol Hill spots.
               </p>
@@ -179,7 +179,7 @@ export default function CapitolHillPage() {
             <div className="text-center">
               <MapPin className="w-16 h-16 text-wrfc-teal mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Metro Accessible</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Training locations accessible via Union Station, Eastern Market, 
                 and Smithsonian Metro stations.
               </p>

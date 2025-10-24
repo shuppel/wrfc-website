@@ -21,7 +21,7 @@ export default async function PlayersPage() {
           <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Player Roster
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             Meet the talented athletes who make up Washington Rugby Football Club. 
             Our players come from diverse backgrounds but share a common passion for rugby excellence.
           </p>
@@ -36,29 +36,29 @@ export default async function PlayersPage() {
 
         {/* Stats Summary */}
         <div className="mt-12 grid md:grid-cols-4 gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 text-center">
             <div className="stat-number text-blue-600 dark:text-blue-400 mb-2">
               50+
             </div>
-            <p className="text-gray-600 dark:text-gray-300">Active Players</p>
+            <p className="text-gray-600 dark:text-gray-100">Active Players</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 text-center">
             <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
               3
             </div>
-            <p className="text-gray-600 dark:text-gray-300">Divisions</p>
+            <p className="text-gray-600 dark:text-gray-100">Divisions</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 text-center">
             <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
               15+
             </div>
-            <p className="text-gray-600 dark:text-gray-300">Nationalities</p>
+            <p className="text-gray-600 dark:text-gray-100">Nationalities</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 text-center">
             <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
               60+
             </div>
-            <p className="text-gray-600 dark:text-gray-300">Years of Rugby</p>
+            <p className="text-gray-600 dark:text-gray-100">Years of Rugby</p>
           </div>
         </div>
 

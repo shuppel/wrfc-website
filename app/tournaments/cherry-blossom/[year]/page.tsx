@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from 'lucide-react';
+import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from '@phosphor-icons/react';
 import TournamentRegistration from '@/components/feature/tournament/TournamentRegistration';
 import TournamentRegisterButton from '@/components/feature/tournament/TournamentRegisterButton';
 
@@ -117,26 +117,26 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
       <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link href="/tournaments" className="flex items-center text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400">
+            <Link href="/tournaments" className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400">
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Tournaments
             </Link>
             <div className="flex items-center space-x-6">
               <Link 
                 href={`/tournaments/cherry-blossom/${params.year}`}
-                className="text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
               >
                 Overview
               </Link>
               <Link 
                 href={`/tournaments/cherry-blossom/${params.year}/photos`}
-                className="text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
               >
                 Photos
               </Link>
               <Link 
                 href="#past-results"
-                className="text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
               >
                 Last CBT Results
               </Link>
@@ -159,7 +159,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                 <div>
                   <h3 className="font-bold mb-1">Location</h3>
                   <p>{tournamentDetails.location.name}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-sm text-gray-600 dark:text-gray-100">
                     {tournamentDetails.location.address}
                   </p>
                 </div>
@@ -217,14 +217,14 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                     {tournamentDetails.previousYear?.featuredTeams.map((team) => (
                       <span 
                         key={team} 
-                        className="inline-flex items-center bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1 text-sm"
+                        className="inline-flex items-center bg-gray-100 dark:bg-gray-900 rounded-full px-3 py-1 text-sm"
                       >
                         {team}
                       </span>
                     ))}
                   </div>
                   {tournamentDetails.previousYear && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
                       + {tournamentDetails.previousYear.totalTeams - tournamentDetails.previousYear.featuredTeams.length} other teams
                     </p>
                   )}

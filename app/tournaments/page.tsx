@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, MapPin, Trophy, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Trophy, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
@@ -248,7 +248,7 @@ export default async function TournamentsPage() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <Tabs defaultValue="upcoming" className="space-y-12">
-          <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto bg-white dark:bg-gray-800 shadow-md">
+          <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto bg-white dark:bg-gray-900 shadow-md">
             <TabsTrigger value="upcoming" className="data-[state=active]:bg-wrfc-red data-[state=active]:text-white">Upcoming</TabsTrigger>
             <TabsTrigger value="archive" className="data-[state=active]:bg-wrfc-red data-[state=active]:text-white">Tournament Archive</TabsTrigger>
           </TabsList>
@@ -259,7 +259,7 @@ export default async function TournamentsPage() {
                 {/* Featured Tournament */}
                 <div className="relative group cursor-pointer">
                   <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                  <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                  <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                     <div className="grid md:grid-cols-2 gap-8">
                       <Link href={`/tournaments/${upcomingTournament.id}`} className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
                         <Image
@@ -325,7 +325,7 @@ export default async function TournamentsPage() {
                           href={`/tournaments/${tournament.id}`}
                           className="group"
                         >
-                          <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                          <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                             <div className="relative h-48">
                               <Image
                                 src={tournament.coverImage}
@@ -366,7 +366,7 @@ export default async function TournamentsPage() {
                             href={`/tournaments/${tournament.id}`}
                             className="group"
                           >
-                            <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                            <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                               <div className="relative h-48">
                                 <Image
                                   src={tournament.coverImage}

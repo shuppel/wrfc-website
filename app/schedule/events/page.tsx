@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
-import { Circle, Trophy, Flower, Plane, Calendar, Medal } from "lucide-react"
+import { Circle, Trophy, Flower, Airplane, Calendar, Medal } from "@phosphor-icons/react/dist/ssr"
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Events & Tournaments',
@@ -23,42 +23,42 @@ export default function EventsPage() {
       type: "Match",
       description: "Annual showcase match featuring players under 30 years old",
       timing: "Annual",
-      icon: <Circle size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Circle size={48} weight="bold" className="text-wrfc-red" />
     },
     {
       name: "End of Season Banquet",
       type: "Social",
       description: "Annual awards ceremony and celebration dinner",
       timing: "Late May / June",
-      icon: <Trophy size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Trophy size={48} weight="bold" className="text-wrfc-red" />
     },
     {
       name: "Cherry Blossom Tournament",
       type: "Tournament",
       description: "Participation in the prestigious Cherry Blossom Rugby Tournament",
       timing: "Spring",
-      icon: <Flower size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Flower size={48} weight="bold" className="text-wrfc-red" />
     },
     {
       name: "Turks and Caicos Tour",
       type: "Tour",
       description: "International rugby tour and team bonding experience",
       timing: "Annual Tour",
-      icon: <Plane size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Airplane size={48} weight="bold" className="text-wrfc-red" />
     },
     {
       name: "Regular Season",
       type: "Competition",
       description: "EPRU Division matches and league play",
       timing: "Late August - November",
-      icon: <Calendar size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Calendar size={48} weight="bold" className="text-wrfc-red" />
     },
     {
       name: "Playoff Season",
       type: "Competition",
       description: "Championship playoffs and knockout rounds",
       timing: "February - Early May",
-      icon: <Medal size={48} strokeWidth={3} className="text-wrfc-red" />
+      icon: <Medal size={48} weight="bold" className="text-wrfc-red" />
     }
   ];
 
@@ -91,7 +91,7 @@ export default function EventsPage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">{event.icon}</div>
                   <div className="flex-1">
@@ -103,12 +103,12 @@ export default function EventsPage() {
                         {event.type}
                       </span>
                     </div>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3  text-sm">
+                    <p className="text-gray-700 dark:text-white mb-3  text-sm">
                       {event.description}
                     </p>
                     <div className="text-sm ">
                       <span className="font-semibold text-gray-900 dark:text-gray-100">When: </span>
-                      <span className="text-gray-600 dark:text-gray-400">{event.timing}</span>
+                      <span className="text-gray-600 dark:text-gray-100">{event.timing}</span>
                     </div>
                   </div>
                 </div>
@@ -124,23 +124,23 @@ export default function EventsPage() {
             <div className="space-y-4 max-w-3xl mx-auto">
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
                 <span className="font-semibold  text-gray-900 dark:text-gray-100">Pre-Season Training</span>
-                <span className="text-gray-600 dark:text-gray-400 ">July - August</span>
+                <span className="text-gray-600 dark:text-gray-100 ">July - August</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
                 <span className="font-semibold  text-gray-900 dark:text-gray-100">Fall Regular Season</span>
-                <span className="text-gray-600 dark:text-gray-400 ">Late August - November</span>
+                <span className="text-gray-600 dark:text-gray-100 ">Late August - November</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
                 <span className="font-semibold  text-gray-900 dark:text-gray-100">Winter Training</span>
-                <span className="text-gray-600 dark:text-gray-400 ">December - January</span>
+                <span className="text-gray-600 dark:text-gray-100 ">December - January</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
                 <span className="font-semibold  text-gray-900 dark:text-gray-100">Spring Playoffs</span>
-                <span className="text-gray-600 dark:text-gray-400 ">February - Early May</span>
+                <span className="text-gray-600 dark:text-gray-100 ">February - Early May</span>
               </div>
               <div className="flex items-center justify-between py-3">
                 <span className="font-semibold  text-gray-900 dark:text-gray-100">Summer 7s & Tours</span>
-                <span className="text-gray-600 dark:text-gray-400 ">May - July</span>
+                <span className="text-gray-600 dark:text-gray-100 ">May - July</span>
               </div>
             </div>
           </div>

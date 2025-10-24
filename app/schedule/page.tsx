@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../utils/seo'
-import { User, Circle, Calendar } from "lucide-react"
+import { User, Circle, Calendar } from "@phosphor-icons/react/dist/ssr"
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Schedule',
@@ -23,19 +23,19 @@ export default function SchedulePage() {
       href: '/schedule/practice',
       title: 'Practice Schedule',
       description: 'Training times, locations, and session breakdown',
-      icon: <User size={64} strokeWidth={3} className="text-wrfc-navy dark:text-white" />
+      icon: <User size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     },
     {
       href: '/schedule/game',
       title: 'Game Schedule',
       description: 'Match fixtures, results, and upcoming games',
-      icon: <Circle size={64} strokeWidth={3} className="text-wrfc-navy dark:text-white" />
+      icon: <Circle size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     },
     {
       href: '/schedule/events',
       title: 'Events & Tournaments',
       description: 'Annual events, tours, and special occasions',
-      icon: <Calendar size={64} strokeWidth={3} className="text-wrfc-navy dark:text-white" />
+      icon: <Calendar size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     }
   ];
 
@@ -70,13 +70,13 @@ export default function SchedulePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
+                className="group bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
               >
                 <div className="flex justify-center mb-4">{item.icon}</div>
                 <h2 className="text-2xl font-bold mb-3 section-title text-blue-900 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center">
                   {item.title}
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300  text-center">
+                <p className="text-gray-700 dark:text-white  text-center">
                   {item.description}
                 </p>
               </Link>

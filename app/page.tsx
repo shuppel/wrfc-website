@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, ChevronRight } from 'lucide-react'
+import { Calendar, Trophy, Users, ArrowRight, CaretDown } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
@@ -103,7 +103,7 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronRight className="w-8 h-8 text-white rotate-90" />
+          <CaretDown className="w-8 h-8 text-white" weight="bold" />
         </div>
       </section>
 
@@ -111,7 +111,7 @@ export default function Home() {
       <HomePromotions />
 
       {/* Features Section */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <FeatureCard 
@@ -228,7 +228,7 @@ function FeatureCard({ icon, title, description, image }: {
   image: string
 }) {
   return (
-    <div className="relative group overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-xl transition-all">
+    <div className="relative group overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-900 hover:shadow-xl transition-all">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={image}
@@ -239,11 +239,11 @@ function FeatureCard({ icon, title, description, image }: {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
       </div>
       <div className="p-8 relative">
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-700 rounded-full p-4 shadow-lg">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full p-4 shadow-lg">
           {icon}
         </div>
         <h3 className="text-2xl font-bold mb-4  text-center pt-8">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 text-center">{description}</p>
+        <p className="text-gray-600 dark:text-gray-100 text-center">{description}</p>
       </div>
     </div>
   )
@@ -257,7 +257,7 @@ function QuickLinkCard({ title, description, href, image }: {
 }) {
   return (
     <Link href={href}>
-      <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 hover:shadow-xl transition-all h-full">
+      <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 hover:shadow-xl transition-all h-full">
         {/* Image */}
         <div className="relative h-48 overflow-hidden">
           <Image
@@ -274,7 +274,7 @@ function QuickLinkCard({ title, description, href, image }: {
           <h3 className="text-2xl font-bold mb-2 group-hover:text-wrfc-red transition-colors ">
             {title}
           </h3>
-          <p className="text-gray-600 dark:text-gray-300">{description}</p>
+          <p className="text-gray-600 dark:text-gray-100">{description}</p>
           
           {/* Arrow indicator */}
           <div className="mt-4 flex items-center text-wrfc-red font-semibold">

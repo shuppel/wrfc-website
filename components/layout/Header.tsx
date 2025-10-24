@@ -165,7 +165,7 @@ export default function Header() {
                     <>
                       <Link 
                         href={link.href}
-                        className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
+                        className="px-3 py-2 text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
                       >
                         {link.label}
                         <CaretDown className={`w-4 h-4 transition-transform duration-200 ${
@@ -175,7 +175,7 @@ export default function Header() {
                       </Link>
                       
                       {/* Dropdown Menu */}
-                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
+                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
                         hoveredDropdown === link.href 
                           ? 'opacity-100 translate-y-0 visible' 
                           : 'opacity-0 -translate-y-2 invisible'
@@ -187,7 +187,7 @@ export default function Header() {
                               <Link
                                 key={dropdownItem.href}
                                 href={dropdownItem.href}
-                                className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
+                                className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
                                 onClick={() => setHoveredDropdown(null)}
                               >
                                 <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" weight="duotone" />
@@ -237,7 +237,7 @@ export default function Header() {
                   setMobileOpenDropdown(null)
                 }
               }}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg text-gray-600 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
@@ -257,7 +257,7 @@ export default function Header() {
               : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
         >
-          <div className="mx-4 rounded-lg bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="mx-4 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
             {/* Navigation Links */}
             <div className="p-4 space-y-2">
               {NAV_LINKS.map((link) => (
@@ -266,7 +266,7 @@ export default function Header() {
                     <>
                       <button
                         onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.href ? null : link.href)}
-                        className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-300 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
+                        className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-100 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
                       >
                         <span>{link.label}</span>
                         <CaretDown 
@@ -306,7 +306,7 @@ export default function Header() {
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
                             ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                            : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         style={{ cursor: 'pointer' }}
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -321,7 +321,7 @@ export default function Header() {
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
                             ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                            : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -334,7 +334,7 @@ export default function Header() {
                       className={`block py-3 rounded-md transition-colors ${
                         link.highlight 
                           ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                          : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -386,7 +386,7 @@ function NavLink({ href, children, external, highlight, isZeffy }: { href: strin
   const baseClass = "px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
   const linkClass = highlight 
     ? `${baseClass} text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300`
-    : `${baseClass} text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white`
+    : `${baseClass} text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white`
   
   if (external) {
     if (isZeffy) {

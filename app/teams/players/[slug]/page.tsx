@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { getPlayerBySlug, getAllPlayerSlugs } from '@/data/players';
 import { Badge } from '@/components/ui/badge';
@@ -86,7 +86,7 @@ export default async function PlayerProfilePage({ params }: PlayerProfilePagePro
             Back to All Players
           </Link>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
             <div className="md:flex">
               <div className="md:w-1/3 relative">
                 <div className="relative aspect-[3/4] w-full">
@@ -108,24 +108,24 @@ export default async function PlayerProfilePage({ params }: PlayerProfilePagePro
               
               <div className="md:w-2/3 p-6 md:p-8">
                 <h1 className="text-3xl md:text-4xl font-bold mb-2">{name}</h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">{position}</p>
+                <p className="text-xl text-gray-600 dark:text-gray-100 mb-6">{position}</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400">Division</h3>
+                    <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-100">Division</h3>
                     <p>{division === 'Both' ? 'D1 & D3 Teams' : `Men's ${division} Team`}</p>
                   </div>
                   
                   {height && (
                     <div>
-                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400">Height</h3>
+                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-100">Height</h3>
                       <p>{height}</p>
                     </div>
                   )}
                   
                   {weight && (
                     <div>
-                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400">Weight</h3>
+                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-100">Weight</h3>
                       <p>{weight}kg</p>
                     </div>
                   )}

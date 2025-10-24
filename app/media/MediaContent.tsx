@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Youtube, Instagram, FileText, ArrowRight, Calendar, Clock } from 'lucide-react';
+import { YoutubeLogo, InstagramLogo, FileText, ArrowRight, Calendar, Clock } from '@phosphor-icons/react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -75,7 +75,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Stay Connected with WRFC</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             Get the latest news, match highlights, and behind-the-scenes content from Washington Rugby Football Club
           </p>
         </div>
@@ -110,7 +110,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
               <Link href="/blog" className="mt-4 block">
                 <Button className="w-full group">
                   View All Posts
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" weight="bold" />
                 </Button>
               </Link>
             </CardContent>
@@ -120,14 +120,14 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <Youtube className="w-8 h-8 text-red-600" />
+                <YoutubeLogo className="w-8 h-8 text-red-600" weight="fill" />
                 <span className="text-sm text-gray-500">Video Content</span>
               </div>
               <CardTitle className="text-2xl">Film Room</CardTitle>
               <CardDescription>Match highlights and player interviews</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden mb-4">
+              <div className="aspect-video bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden mb-4">
                 <iframe
                   src={`https://www.youtube.com/embed/${latestVideo}`}
                   title="Latest WRFC Video"
@@ -139,7 +139,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
               <Link href="/media/film">
                 <Button className="w-full group">
                   Watch More Videos
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" weight="bold" />
                 </Button>
               </Link>
             </CardContent>
@@ -149,7 +149,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <Instagram className="w-8 h-8 text-pink-600" />
+                <InstagramLogo className="w-8 h-8 text-pink-600" weight="fill" />
                 <span className="text-sm text-gray-500">Live Updates</span>
               </div>
               <CardTitle className="text-2xl">Social Media</CardTitle>
@@ -159,13 +159,13 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
               <div className="grid grid-cols-3 gap-2 mb-4">
                 {/* Instagram preview grid - placeholder for now */}
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="aspect-square bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div key={i} className="aspect-square bg-gray-200 dark:bg-gray-900 rounded"></div>
                 ))}
               </div>
               <Link href="/media/social">
                 <Button className="w-full group">
                   Connect With Us
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" weight="bold" />
                 </Button>
               </Link>
             </CardContent>
@@ -173,9 +173,9 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
         </div>
 
         {/* Newsletter Signup Section */}
-        <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 text-center">
+        <div className="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Never Miss an Update</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-100 mb-6 max-w-2xl mx-auto">
             Subscribe to our newsletter for exclusive content, match previews, and club announcements delivered straight to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
