@@ -247,7 +247,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {gamesByYear[year].map((game, index) => {
+                        {gamesByYear[year].map((game) => {
                           const gameDate = parseISO(game.date);
                           const wrfcTeam = game.isHome ? game.homeTeam : game.awayTeam;
                           const opponentTeam = game.isHome ? game.awayTeam : game.homeTeam;
