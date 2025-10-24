@@ -152,7 +152,7 @@ export default function Home() {
             <QuickLinkCard 
               title="Team Roster"
               description="Meet our current squad and coaching staff"
-              href="/roster"
+              href="/teams/players"
               image="/assets/pictures/2025_irish_zach.jpg"
             />
             <QuickLinkCard 
