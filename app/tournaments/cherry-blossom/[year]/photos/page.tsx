@@ -52,7 +52,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-blue-400">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
             Photo Gallery
           </h1>
           <p className="text-xl mb-12 text-gray-600 dark:text-gray-400">
@@ -85,7 +85,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
 
         {/* Download Section */}
         <div className="mt-16 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-blue-400">
+          <h2 className="text-2xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
             Download Photos
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8">

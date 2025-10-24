@@ -104,7 +104,7 @@ export default function HistoryPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/85" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-nasalization">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 ">
               The History of WRFC
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
@@ -132,7 +132,7 @@ export default function HistoryPage() {
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8 text-center  text-gray-900 dark:text-white">
               The Enduring Tradition Since 1963
             </h2>
             <div className="prose prose-lg max-w-none dark:prose-invert">
@@ -152,7 +152,7 @@ export default function HistoryPage() {
       {/* Timeline Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
             Timeline of Excellence
           </h2>
           
@@ -237,7 +237,7 @@ export default function HistoryPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               A Living Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">

@@ -74,7 +74,7 @@ export default function AlumniSpotlightsPage() {
             Back to Alumni
           </Link>
           
-          <h1 className="text-4xl md:text-6xl font-bold font-nasalization mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold  mb-6">
             Alumni Spotlights
           </h1>
           <p className="text-xl max-w-3xl text-gray-200">
@@ -94,7 +94,7 @@ export default function AlumniSpotlightsPage() {
             <div className="max-w-3xl mx-auto">
               <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-16 text-center border-2 border-dashed border-gray-300 dark:border-gray-600">
                 <Users className="w-20 h-20 text-gray-400 mx-auto mb-6" />
-                <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300 font-nasalization">
+                <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300 ">
                   Alumni Spotlights Coming Soon
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -132,7 +132,7 @@ export default function AlumniSpotlightsPage() {
       {/* Call to Action */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-nasalization">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 ">
             Know an Alumni Making a Difference?
           </h2>
           <p className="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">

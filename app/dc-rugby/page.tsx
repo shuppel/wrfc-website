@@ -72,7 +72,7 @@ export default function DCRugbyPage() {
                 />
               </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
               DC Rugby
               <span className="block text-wrfc-red">Starts Here</span>
             </h1>
@@ -102,7 +102,7 @@ export default function DCRugbyPage() {
       {/* Why Choose DC Rugby with WRFC */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Why Choose WRFC for DC Rugby?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -133,7 +133,7 @@ export default function DCRugbyPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
                 DC Rugby Training & Practice
               </h2>
               <div className="space-y-6">
@@ -191,7 +191,7 @@ export default function DCRugbyPage() {
       {/* DC Rugby FAQ */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             DC Rugby Frequently Asked Questions
           </h2>
           <div className="max-w-4xl mx-auto space-y-8">
@@ -227,7 +227,7 @@ export default function DCRugbyPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/90" />
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-nasalization text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6  text-white">
             Ready to Start Your DC Rugby Journey?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
@@ -268,7 +268,7 @@ function DCRugbyFeature({ icon, title, description, stats }: {
           {icon}
         </div>
       </div>
-      <h3 className="text-2xl font-bold mb-4 font-nasalization">{title}</h3>
+      <h3 className="text-2xl font-bold mb-4 ">{title}</h3>
       <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
       <div className="text-wrfc-red font-bold text-lg">{stats}</div>
     </div>

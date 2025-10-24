@@ -114,7 +114,7 @@ export default function ExecutiveCommitteePage() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Executive Committee
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -125,7 +125,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* Current Year EC */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-8">
             2025-2026 Executive Committee
           </h2>
           
@@ -200,7 +200,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* EC Responsibilities */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12 max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-6">
             Committee Responsibilities
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -243,7 +243,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* Previous Years Accordion */}
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-6">
             Previous Executive Committees
           </h2>
           <ECAccordion previousYears={previousYears} />

@@ -125,7 +125,7 @@ export default function ChampionshipsPage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Trophy className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="text-5xl md:text-6xl font-bold ">
                 Championships
               </h1>
               <Trophy className="w-12 h-12 text-yellow-400" />
@@ -168,7 +168,7 @@ export default function ChampionshipsPage() {
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
               Eras of Excellence
             </h2>
             
@@ -202,7 +202,7 @@ export default function ChampionshipsPage() {
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
               Championship Record
             </h2>
             
@@ -217,7 +217,7 @@ export default function ChampionshipsPage() {
                           {championship.icon}
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white font-nasalization">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white ">
                             {championship.title}
                           </h3>
                           <span className={`inline-block px-3 py-1 text-sm font-semibold rounded mt-2 ${getCategoryBadge(championship.category)}`}>
@@ -271,7 +271,7 @@ export default function ChampionshipsPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Championship Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">

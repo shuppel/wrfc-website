@@ -115,7 +115,7 @@ export default function CoachesPage() {
         </Link>
 
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Coaching Staff
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -134,7 +134,7 @@ export default function CoachesPage() {
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 mb-3">
                   <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="section-title">
                     {config.label}
                   </h2>
                 </div>
@@ -219,7 +219,7 @@ export default function CoachesPage() {
         })}
 
         <div className="mt-16 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+          <h2 className="section-title mb-4 text-center">
             Coaching Philosophy
           </h2>
           <div className="space-y-4 text-gray-600 dark:text-gray-300">

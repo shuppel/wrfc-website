@@ -63,7 +63,7 @@ export default function CapitolHillPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold  mb-6">
               Rugby in Capitol Hill
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
@@ -96,7 +96,7 @@ export default function CapitolHillPage() {
       {/* Location Info */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Convenient Training Locations for Capitol Hill Residents
           </h2>
           
@@ -153,7 +153,7 @@ export default function CapitolHillPage() {
       {/* Why Join */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Why Capitol Hill Residents Choose WRFC
           </h2>
           
@@ -191,7 +191,7 @@ export default function CapitolHillPage() {
       {/* CTA Section */}
       <section className="py-24 bg-wrfc-navy text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
             Start Your Rugby Journey in Capitol Hill
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">

@@ -93,7 +93,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 font-nasalization">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 ">
             Cherry Blossom Tournament
           </h1>
           <p className="text-xl md:text-3xl mb-6 font-quantico">
@@ -150,7 +150,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
         <div className="grid md:grid-cols-2 gap-8">
           {/* Tournament Details Card */}
           <Card className="p-8">
-            <h2 className="text-3xl font-bold mb-6 font-nasalization text-wrfc-navy dark:text-blue-400">
+            <h2 className="text-3xl font-bold mb-6  text-wrfc-navy dark:text-blue-400">
               Tournament Details
             </h2>
             <div className="space-y-6">
@@ -189,7 +189,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
 
           {/* Past Results Card */}
           <Card className="p-8">
-            <h2 className="text-3xl font-bold mb-6 font-nasalization text-wrfc-navy dark:text-blue-400">
+            <h2 className="text-3xl font-bold mb-6  text-wrfc-navy dark:text-blue-400">
               Last CBT Results
             </h2>
             <div className="space-y-6">
@@ -237,7 +237,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
         {/* Photo Highlights */}
         <div className="mt-16">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold font-nasalization text-wrfc-navy dark:text-blue-400">
+            <h2 className="text-3xl font-bold  text-wrfc-navy dark:text-blue-400">
               Photo Highlights
             </h2>
             <Link href={`/tournaments/cherry-blossom/${params.year}/photos`}>

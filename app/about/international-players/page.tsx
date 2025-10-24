@@ -95,7 +95,7 @@ export default function InternationalPlayersPage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Star className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="text-5xl md:text-6xl font-bold ">
                 Players with Commendations
               </h1>
               <Star className="w-12 h-12 text-yellow-400" />
@@ -138,7 +138,7 @@ export default function InternationalPlayersPage() {
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8  text-gray-900 dark:text-white">
               Excellence Across All Levels
             </h2>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
@@ -159,7 +159,7 @@ export default function InternationalPlayersPage() {
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
                 <Globe className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 USA Eagles & International Players
               </h2>
             </div>
@@ -236,7 +236,7 @@ export default function InternationalPlayersPage() {
               <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
                 <Trophy className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 Major League Rugby & Other International
               </h2>
             </div>
@@ -290,7 +290,7 @@ export default function InternationalPlayersPage() {
               <div className="w-16 h-16 bg-wrfc-navy rounded-full flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 Capital Selects High Performance
               </h2>
             </div>
@@ -351,7 +351,7 @@ export default function InternationalPlayersPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Continuing the Legacy of Excellence
             </h2>
             <p className="text-lg leading-relaxed mb-8">

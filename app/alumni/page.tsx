@@ -54,7 +54,7 @@ export default function AlumniPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
               Welcome Back, Old Boys!
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">
@@ -92,7 +92,7 @@ export default function AlumniPage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
               Alumni Membership
             </h2>
             <p className="text-lg mb-8 text-gray-600 dark:text-gray-300">
@@ -141,7 +141,7 @@ export default function AlumniPage() {
       {/* Featured Alumni Spotlights */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Alumni Making a Difference
           </h2>
           
@@ -167,7 +167,7 @@ export default function AlumniPage() {
       {/* Ways to Support */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Ways to Give Back
           </h2>
           
@@ -204,7 +204,7 @@ export default function AlumniPage() {
       {/* Alumni Events */}
       <section className="py-24 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 ">
             Alumni Event Ideas
           </h2>
           <p className="text-center text-gray-600 dark:text-gray-400 mb-12 text-lg">
@@ -251,7 +251,7 @@ export default function AlumniPage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
               Stay Connected
             </h2>
             <p className="text-lg mb-12 text-gray-600 dark:text-gray-300">
@@ -289,7 +289,7 @@ function SupportCard({ title, description, icon, href, external = false }: {
   const cardContent = (
     <>
       <div className="text-wrfc-red mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-2 font-nasalization">{title}</h3>
+      <h3 className="text-xl font-bold mb-2 ">{title}</h3>
       <p className="text-gray-600 dark:text-gray-300">{description}</p>
     </>
   )
@@ -329,7 +329,7 @@ function EventCard({ title, date, description, icon }: {
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">{icon}</div>
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-1 font-nasalization">{title}</h3>
+          <h3 className="text-xl font-bold mb-1 ">{title}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{date}</p>
           <p className="text-gray-600 dark:text-gray-300">{description}</p>
         </div>

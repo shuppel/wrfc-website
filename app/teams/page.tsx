@@ -15,7 +15,7 @@ export default function TeamsPage() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             WRFC Teams
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -34,7 +34,7 @@ export default function TeamsPage() {
                   <UserCheck className="w-24 h-24 text-white/30" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h2 className="text-3xl font-bold text-white mb-2">Coaching Staff</h2>
+                  <h2 className="team-name text-white mb-2">Coaching Staff</h2>
                   <p className="text-blue-100">
                     Meet our experienced coaches dedicated to player development
                   </p>
@@ -61,7 +61,7 @@ export default function TeamsPage() {
                   <Users className="w-24 h-24 text-white/30" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h2 className="text-3xl font-bold text-white mb-2">Player Roster</h2>
+                  <h2 className="team-name text-white mb-2">Player Roster</h2>
                   <p className="text-red-100">
                     Explore our talented roster of players across all divisions
                   </p>
@@ -83,7 +83,7 @@ export default function TeamsPage() {
 
         {/* Core Values Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-12">
             Our Core Values
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -92,7 +92,7 @@ export default function TeamsPage() {
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
                 <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-bold mb-2">
                 Excellence
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
@@ -105,7 +105,7 @@ export default function TeamsPage() {
               <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
                 <Heart className="w-8 h-8 text-green-600 dark:text-green-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-bold mb-2">
                 Teamwork
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
@@ -118,7 +118,7 @@ export default function TeamsPage() {
               <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mb-4">
                 <GraduationCap className="w-8 h-8 text-purple-600 dark:text-purple-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-bold mb-2">
                 Development
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
@@ -131,7 +131,7 @@ export default function TeamsPage() {
               <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
                 <Award className="w-8 h-8 text-red-600 dark:text-red-300" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-bold mb-2">
                 Commitment
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
@@ -150,7 +150,7 @@ export default function TeamsPage() {
             {/* D1 Division */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h3 className="text-2xl font-bold">
                   Division 1
                 </h3>
                 <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
@@ -179,7 +179,7 @@ export default function TeamsPage() {
             {/* D3 Division */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h3 className="text-2xl font-bold">
                   Division 3
                 </h3>
                 <Users className="w-8 h-8 text-green-600 dark:text-green-300" />
@@ -208,7 +208,7 @@ export default function TeamsPage() {
             {/* Social Division */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h3 className="text-2xl font-bold">
                   Social Rugby
                 </h3>
                 <Heart className="w-8 h-8 text-purple-600 dark:text-purple-300" />

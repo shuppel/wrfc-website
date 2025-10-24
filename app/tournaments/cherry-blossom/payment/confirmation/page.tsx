@@ -30,7 +30,7 @@ function ConfirmationContent() {
         <div className="flex justify-center mb-6">
           <CheckCircle className="h-20 w-20 text-green-500" />
         </div>
-        <h1 className="text-4xl font-bold font-nasalization text-wrfc-navy mb-4">
+        <h1 className="text-4xl font-bold  text-wrfc-navy mb-4">
           Registration Complete!
         </h1>
         <p className="text-xl text-gray-600">

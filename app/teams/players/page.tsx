@@ -18,7 +18,7 @@ export default async function PlayersPage() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Player Roster
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -37,7 +37,7 @@ export default async function PlayersPage() {
         {/* Stats Summary */}
         <div className="mt-12 grid md:grid-cols-4 gap-6">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
-            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+            <div className="stat-number text-blue-600 dark:text-blue-400 mb-2">
               50+
             </div>
             <p className="text-gray-600 dark:text-gray-300">Active Players</p>

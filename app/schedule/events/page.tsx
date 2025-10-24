@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../../utils/seo'
+import { Circle, Trophy, Flower, Plane, Calendar, Medal } from "lucide-react"
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Events & Tournaments',
@@ -22,42 +23,42 @@ export default function EventsPage() {
       type: "Match",
       description: "Annual showcase match featuring players under 30 years old",
       timing: "Annual",
-      icon: "🏉"
+      icon: <Circle size={48} strokeWidth={3} className="text-wrfc-red" />
     },
     {
       name: "End of Season Banquet",
       type: "Social",
       description: "Annual awards ceremony and celebration dinner",
       timing: "Late May / June",
-      icon: "🏆"
+      icon: <Trophy size={48} strokeWidth={3} className="text-wrfc-red" />
     },
     {
       name: "Cherry Blossom Tournament",
       type: "Tournament",
       description: "Participation in the prestigious Cherry Blossom Rugby Tournament",
       timing: "Spring",
-      icon: "🌸"
+      icon: <Flower size={48} strokeWidth={3} className="text-wrfc-red" />
     },
     {
       name: "Turks and Caicos Tour",
       type: "Tour",
       description: "International rugby tour and team bonding experience",
       timing: "Annual Tour",
-      icon: "✈️"
+      icon: <Plane size={48} strokeWidth={3} className="text-wrfc-red" />
     },
     {
       name: "Regular Season",
       type: "Competition",
       description: "EPRU Division matches and league play",
       timing: "Late August - November",
-      icon: "📅"
+      icon: <Calendar size={48} strokeWidth={3} className="text-wrfc-red" />
     },
     {
       name: "Playoff Season",
       type: "Competition",
       description: "Championship playoffs and knockout rounds",
       timing: "February - Early May",
-      icon: "🥇"
+      icon: <Medal size={48} strokeWidth={3} className="text-wrfc-red" />
     }
   ];
 
@@ -76,10 +77,10 @@ export default function EventsPage() {
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+          <h1 className="display-large mb-6 text-center">
             Events & Tournaments
           </h1>
-          <p className="text-xl text-center max-w-3xl mx-auto font-jetbrains">
+          <p className="text-xl text-center max-w-3xl mx-auto ">
             Annual Events, Tours, and Special Occasions
           </p>
         </div>
@@ -92,9 +93,9 @@ export default function EventsPage() {
             {events.map((event, index) => (
               <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-start space-x-4">
-                  <div className="text-4xl">{event.icon}</div>
+                  <div className="flex-shrink-0">{event.icon}</div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2 font-nasalization text-blue-900 dark:text-blue-400">
+                    <h3 className="text-xl font-bold mb-2 section-title text-blue-900 dark:text-blue-400">
                       {event.name}
                     </h3>
                     <div className="mb-3">
@@ -102,10 +103,10 @@ export default function EventsPage() {
                         {event.type}
                       </span>
                     </div>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3 font-jetbrains text-sm">
+                    <p className="text-gray-700 dark:text-gray-300 mb-3  text-sm">
                       {event.description}
                     </p>
-                    <div className="text-sm font-jetbrains">
+                    <div className="text-sm ">
                       <span className="font-semibold text-gray-900 dark:text-gray-100">When: </span>
                       <span className="text-gray-600 dark:text-gray-400">{event.timing}</span>
                     </div>
@@ -117,29 +118,29 @@ export default function EventsPage() {
 
           {/* Season Calendar Overview */}
           <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8">
-            <h2 className="text-2xl font-bold mb-6 font-nasalization text-blue-900 dark:text-blue-400 text-center">
+            <h2 className="text-2xl font-bold mb-6 section-title text-blue-900 dark:text-blue-400 text-center">
               Season Overview
             </h2>
             <div className="space-y-4 max-w-3xl mx-auto">
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="font-semibold font-jetbrains text-gray-900 dark:text-gray-100">Pre-Season Training</span>
-                <span className="text-gray-600 dark:text-gray-400 font-jetbrains">July - August</span>
+                <span className="font-semibold  text-gray-900 dark:text-gray-100">Pre-Season Training</span>
+                <span className="text-gray-600 dark:text-gray-400 ">July - August</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="font-semibold font-jetbrains text-gray-900 dark:text-gray-100">Fall Regular Season</span>
-                <span className="text-gray-600 dark:text-gray-400 font-jetbrains">Late August - November</span>
+                <span className="font-semibold  text-gray-900 dark:text-gray-100">Fall Regular Season</span>
+                <span className="text-gray-600 dark:text-gray-400 ">Late August - November</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="font-semibold font-jetbrains text-gray-900 dark:text-gray-100">Winter Training</span>
-                <span className="text-gray-600 dark:text-gray-400 font-jetbrains">December - January</span>
+                <span className="font-semibold  text-gray-900 dark:text-gray-100">Winter Training</span>
+                <span className="text-gray-600 dark:text-gray-400 ">December - January</span>
               </div>
               <div className="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-700">
-                <span className="font-semibold font-jetbrains text-gray-900 dark:text-gray-100">Spring Playoffs</span>
-                <span className="text-gray-600 dark:text-gray-400 font-jetbrains">February - Early May</span>
+                <span className="font-semibold  text-gray-900 dark:text-gray-100">Spring Playoffs</span>
+                <span className="text-gray-600 dark:text-gray-400 ">February - Early May</span>
               </div>
               <div className="flex items-center justify-between py-3">
-                <span className="font-semibold font-jetbrains text-gray-900 dark:text-gray-100">Summer 7s & Tours</span>
-                <span className="text-gray-600 dark:text-gray-400 font-jetbrains">May - July</span>
+                <span className="font-semibold  text-gray-900 dark:text-gray-100">Summer 7s & Tours</span>
+                <span className="text-gray-600 dark:text-gray-400 ">May - July</span>
               </div>
             </div>
           </div>

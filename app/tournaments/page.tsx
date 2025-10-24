@@ -236,10 +236,10 @@ export default async function TournamentsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 font-nasalization drop-shadow-lg">
+          <h1 className="display-large mb-4 drop-shadow-lg">
             WRFC Tournaments
           </h1>
-          <p className="text-xl md:text-2xl font-quantico opacity-100 drop-shadow-lg">
+          <p className="text-xl md:text-2xl accent-text opacity-100 drop-shadow-lg">
             Celebrating rugby excellence in the nation&apos;s capital
           </p>
         </div>
@@ -279,7 +279,7 @@ export default async function TournamentsPage() {
                           <span>57th Annual Tournament</span>
                         </div>
                         <Link href={`/tournaments/${upcomingTournament.id}`}>
-                          <h2 className="text-4xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
+                          <h2 className="text-4xl font-bold mb-4 display-large text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
                             {upcomingTournament.name}
                           </h2>
                         </Link>
@@ -312,7 +312,7 @@ export default async function TournamentsPage() {
 
                 {/* Past Tournaments Preview */}
                 <div className="mt-16">
-                  <h2 className="text-2xl font-bold mb-8 font-nasalization text-wrfc-navy dark:text-white">
+                  <h2 className="section-title mb-8">
                     Past Tournaments
                   </h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -354,7 +354,7 @@ export default async function TournamentsPage() {
                 .sort((a, b) => b - a)
                 .map(year => (
                   <div key={year} className="space-y-6">
-                    <h2 className="text-2xl font-bold font-nasalization text-wrfc-navy dark:text-white">
+                    <h2 className="text-2xl font-bold display-large text-wrfc-navy dark:text-white">
                       {year} Tournaments
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

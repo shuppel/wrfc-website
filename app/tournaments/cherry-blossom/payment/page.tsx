@@ -63,12 +63,12 @@ function PaymentContent() {
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold font-nasalization text-wrfc-navy mb-8">Tournament Payment</h1>
+      <h1 className="text-4xl font-bold  text-wrfc-navy mb-8">Tournament Payment</h1>
       
       <div className="grid gap-8 md:grid-cols-2">
         <Card className="bg-white shadow-lg border-2">
           <CardHeader className="bg-gray-50">
-            <CardTitle className="text-2xl font-nasalization text-wrfc-navy">Payment Methods</CardTitle>
+            <CardTitle className="text-2xl  text-wrfc-navy">Payment Methods</CardTitle>
             <CardDescription>Choose your preferred payment method for {selectedDivision}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 bg-white">
@@ -133,7 +133,7 @@ function PaymentContent() {
 
         <Card className="bg-white shadow-lg border-2">
           <CardHeader className="bg-gray-50">
-            <CardTitle className="text-2xl font-nasalization text-wrfc-navy">Payment Details</CardTitle>
+            <CardTitle className="text-2xl  text-wrfc-navy">Payment Details</CardTitle>
             <CardDescription>Tournament fee breakdown and payment status</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 bg-white">
@@ -163,7 +163,7 @@ function PaymentContent() {
 
       <div className="mt-16 max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold font-nasalization text-wrfc-navy mb-4">
+          <h2 className="text-3xl font-bold  text-wrfc-navy mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600">

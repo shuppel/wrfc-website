@@ -57,7 +57,7 @@ export default function AboutPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 ">
               About WRFC
             </h1>
             <p className="text-xl md:text-2xl font-quantico opacity-90">
@@ -76,11 +76,11 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
               <Shield className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Our Mission
               </h2>
             </div>
-            <p className="text-xl leading-relaxed font-jetbrains text-gray-700 dark:text-gray-300">
+            <p className="text-xl leading-relaxed  text-gray-700 dark:text-gray-300">
               To foster and promote the growth of rugby in the Washington area while maintaining 
               the highest standards of sportsmanship and athletic excellence.
             </p>
@@ -94,13 +94,13 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
               <History className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Our History
               </h2>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="space-y-6 font-jetbrains text-gray-700 dark:text-gray-300">
+              <div className="space-y-6  text-gray-700 dark:text-gray-300">
                 <p className="text-lg leading-relaxed">
                   Founded in 1963, Washington Rugby Football Club is the oldest rugby club in the DC metro area 
                   and has been a cornerstone of rugby in the nation&apos;s capital for over half a century. 
@@ -156,7 +156,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-4 mb-12 justify-center">
             <Star className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-            <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400 text-center">
+            <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400 text-center">
               Our Core Values
             </h2>
           </div>
@@ -189,7 +189,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
               <Beer className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Club Life
               </h2>
             </div>
@@ -202,7 +202,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-8 left-8 text-white max-w-xl">
-                <h3 className="text-2xl font-bold mb-4 font-nasalization">Community & Competition</h3>
+                <h3 className="text-2xl font-bold mb-4 ">Community & Competition</h3>
                 <p className="text-lg opacity-90 mb-4">
                   At WRFC, we believe that &quot;compete&quot; means to strive together. We are a club built on both 
                   community and competition, where bonds are forged through shared effort and celebration.
@@ -242,10 +242,10 @@ function ValueCard({ title, description, icon, image }: {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-700 rounded-full p-4 shadow-lg">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-4 font-nasalization text-blue-900 dark:text-blue-400 pt-8">
+        <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400 pt-8">
           {title}
         </h3>
-        <p className="font-jetbrains text-gray-700 dark:text-gray-300">
+        <p className=" text-gray-700 dark:text-gray-300">
           {description}
         </p>
       </div>

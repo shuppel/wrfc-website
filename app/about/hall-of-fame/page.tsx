@@ -114,7 +114,7 @@ export default function HallOfFamePage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Award className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="text-5xl md:text-6xl font-bold ">
                 Hall of Fame
               </h1>
               <Award className="w-12 h-12 text-yellow-400" />
@@ -157,7 +157,7 @@ export default function HallOfFamePage() {
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8  text-gray-900 dark:text-white">
               Legends of American Rugby
             </h2>
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
@@ -182,7 +182,7 @@ export default function HallOfFamePage() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white font-nasalization">
+                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white ">
                           {member.name}
                         </h3>
                         {member.wikiLink && (
@@ -262,7 +262,7 @@ export default function HallOfFamePage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Join the Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
