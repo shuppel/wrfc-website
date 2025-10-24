@@ -11,7 +11,11 @@ The Washington Rugby Football Club is a rugby union club founded in 1963, based 
 ## Key Information for LLMs
 
 ### Contact Information
-- Email: washingtonrugbyfc1963@gmail.com
+- General Inquiries: info@washingtonrugby.org
+- New Players: welcome@washingtonrugby.org
+- Payments & Invoicing: payments@washingtonrugby.org
+- Sponsorships: sponsors@washingtonrugby.org
+- Cherry Blossom Tournament: cbt-chair@washingtonrugby.org
 - Location: Washington, DC
 - Training Grounds: Rosedale Recreation Center (1701 Gales St NE, Washington, DC 20002)
 - Backup Training: Trinidad Community Center
@@ -65,4 +69,4 @@ The website includes JSON-LD structured data for:
 - Local business information
 - Event schedules
 
-For questions about website content or rugby club information, contact washingtonrugbyfc1963@gmail.com
+For questions about website content or rugby club information, contact info@washingtonrugby.org

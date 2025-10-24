@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Heart, Calendar, Users, Trophy, CreditCard, Mail } from 'lucide-react'
+import { ArrowRight, Heart, Calendar, Users, Trophy, CreditCard, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
@@ -54,7 +54,7 @@ export default function AlumniPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6 animate-fade-in">
+            <h1 className="display-large mb-6 animate-fade-in">
               Welcome Back, Old Boys!
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">
@@ -92,33 +92,33 @@ export default function AlumniPage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
               Alumni Membership
             </h2>
-            <p className="text-lg mb-8 text-gray-600 dark:text-gray-300">
+            <p className="text-lg mb-8 text-gray-600 dark:text-gray-100">
               Your continued support helps maintain our club&apos;s excellence and provides opportunities 
               for the next generation of rugby players. Annual alumni dues support:
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <Trophy className="w-12 h-12 text-wrfc-red mx-auto mb-4" />
                 <h3 className="font-bold text-xl mb-2">Player Development</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-100">
                   Equipment, coaching resources, and training facilities for current players
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <Users className="w-12 h-12 text-wrfc-navy mx-auto mb-4" />
                 <h3 className="font-bold text-xl mb-2">Alumni Events</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-100">
                   Under 30 Over 30 match, reunions, and exclusive alumni gatherings
                 </p>
               </div>
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+              <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
                 <Heart className="w-12 h-12 text-wrfc-teal mx-auto mb-4" />
                 <h3 className="font-bold text-xl mb-2">Community Impact</h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-100">
                   Youth rugby programs and community outreach initiatives
                 </p>
               </div>
@@ -139,9 +139,9 @@ export default function AlumniPage() {
       </section>
 
       {/* Featured Alumni Spotlights */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Alumni Making a Difference
           </h2>
           
@@ -149,10 +149,10 @@ export default function AlumniPage() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-12 border-2 border-dashed border-gray-300 dark:border-gray-600">
               <Trophy className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2 text-gray-700 dark:text-gray-300">
+              <h3 className="text-xl font-bold mb-2 text-gray-700 dark:text-white">
                 Alumni Spotlights Coming Soon
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-gray-600 dark:text-gray-100 mb-6">
                 We&apos;re currently gathering stories from our distinguished alumni. 
                 Check back soon to read about WRFC Old Boys making an impact in their communities.
               </p>
@@ -167,7 +167,7 @@ export default function AlumniPage() {
       {/* Ways to Support */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Ways to Give Back
           </h2>
           
@@ -202,12 +202,12 @@ export default function AlumniPage() {
       </section>
 
       {/* Alumni Events */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 ">
             Alumni Event Ideas
           </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-12 text-lg">
+          <p className="text-center text-gray-600 dark:text-gray-100 mb-12 text-lg">
             Events we&apos;d love to organize for our Old Boys community
           </p>
           
@@ -251,10 +251,10 @@ export default function AlumniPage() {
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
               Stay Connected
             </h2>
-            <p className="text-lg mb-12 text-gray-600 dark:text-gray-300">
+            <p className="text-lg mb-12 text-gray-600 dark:text-gray-100">
               Keep up with WRFC news, alumni updates, and exclusive events
             </p>
             
@@ -263,12 +263,12 @@ export default function AlumniPage() {
                 href="/contact"
                 className="inline-flex items-center bg-wrfc-navy hover:bg-wrfc-navy/90 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg group"
               >
-                <Mail className="mr-2 w-5 h-5" />
+                <EnvelopeSimple className="mr-2 w-5 h-5" />
                 Join Alumni Newsletter
               </Link>
             </div>
             
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600 dark:text-gray-100">
               Follow us on social media for the latest updates and throwback photos
             </p>
           </div>
@@ -289,8 +289,8 @@ function SupportCard({ title, description, icon, href, external = false }: {
   const cardContent = (
     <>
       <div className="text-wrfc-red mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-2 font-nasalization">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-300">{description}</p>
+      <h3 className="text-xl font-bold mb-2 ">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-100">{description}</p>
     </>
   )
 
@@ -300,7 +300,7 @@ function SupportCard({ title, description, icon, href, external = false }: {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group"
+        className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group"
       >
         {cardContent}
       </a>
@@ -310,7 +310,7 @@ function SupportCard({ title, description, icon, href, external = false }: {
   return (
     <Link 
       href={href}
-      className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group"
+      className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center group"
     >
       {cardContent}
     </Link>
@@ -325,13 +325,13 @@ function EventCard({ title, date, description, icon }: {
   icon: React.ReactNode
 }) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
       <div className="flex items-start gap-4">
         <div className="flex-shrink-0">{icon}</div>
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-1 font-nasalization">{title}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{date}</p>
-          <p className="text-gray-600 dark:text-gray-300">{description}</p>
+          <h3 className="text-xl font-bold mb-1 ">{title}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-100 mb-2">{date}</p>
+          <p className="text-gray-600 dark:text-gray-100">{description}</p>
         </div>
       </div>
     </div>

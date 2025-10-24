@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { MapPin, ArrowRight } from 'lucide-react'
+import { MapPin, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import { generateSEOMetadata } from '../utils/seo'
 
@@ -38,7 +38,7 @@ export default function LocalPage() {
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-wrfc-navy to-black text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6  text-center">
             Rugby in Your DC Neighborhood
           </h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
@@ -56,14 +56,14 @@ export default function LocalPage() {
               <Link
                 key={neighborhood.slug}
                 href={`/local/${neighborhood.slug}`}
-                className="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 hover:shadow-xl transition-all hover:scale-105"
+                className="group bg-gray-50 dark:bg-gray-900 rounded-xl p-8 hover:shadow-xl transition-all hover:scale-105"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <h2 className="text-2xl font-bold mb-2 group-hover:text-wrfc-red transition-colors">
                       {neighborhood.name}
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       {neighborhood.description}
                     </p>
                   </div>
@@ -72,7 +72,7 @@ export default function LocalPage() {
                 
                 <ul className="space-y-2 mb-6">
                   {neighborhood.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                    <li key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-100">
                       <span className="w-1.5 h-1.5 bg-wrfc-red rounded-full" />
                       {feature}
                     </li>
@@ -89,7 +89,7 @@ export default function LocalPage() {
           
           <div className="mt-16 text-center">
             <h3 className="text-2xl font-bold mb-4">Don&apos;t See Your Neighborhood?</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
+            <p className="text-gray-600 dark:text-gray-100 mb-8">
               WRFC welcomes players from all DC neighborhoods including Dupont Circle, 
               Adams Morgan, Columbia Heights, Shaw, and beyond.
             </p>

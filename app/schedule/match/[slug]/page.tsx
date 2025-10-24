@@ -6,7 +6,7 @@ import { formatDate } from '@/lib/utils';
 import { BreadcrumbJsonLd, SportEventJsonLd } from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Calendar, Clock } from 'lucide-react';
+import { MapPin, Calendar, Clock } from '@phosphor-icons/react/dist/ssr';
 
 interface MatchPageProps {
   params: {
@@ -134,7 +134,7 @@ export default function MatchPage({ params }: MatchPageProps) {
                 <Calendar className="w-5 h-5 text-gray-500 mt-0.5" />
                 <div>
                   <p className="font-semibold">Date</p>
-                  <p className="text-gray-600 dark:text-gray-400">{formatDate(date)}</p>
+                  <p className="text-gray-600 dark:text-gray-100">{formatDate(date)}</p>
                 </div>
               </div>
               
@@ -142,7 +142,7 @@ export default function MatchPage({ params }: MatchPageProps) {
                 <Clock className="w-5 h-5 text-gray-500 mt-0.5" />
                 <div>
                   <p className="font-semibold">Kickoff Time</p>
-                  <p className="text-gray-600 dark:text-gray-400">{kickoffTime}</p>
+                  <p className="text-gray-600 dark:text-gray-100">{kickoffTime}</p>
                 </div>
               </div>
 
@@ -150,7 +150,7 @@ export default function MatchPage({ params }: MatchPageProps) {
                 <MapPin className="w-5 h-5 text-gray-500 mt-0.5" />
                 <div>
                   <p className="font-semibold">Location</p>
-                  <p className="text-gray-600 dark:text-gray-400">{venue.name}</p>
+                  <p className="text-gray-600 dark:text-gray-100">{venue.name}</p>
                   <p className="text-sm text-gray-500">{venue.address}</p>
                 </div>
               </div>

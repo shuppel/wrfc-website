@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { Trophy, Heart, Building, Info, MapPin, Tag, Shield } from 'lucide-react';
+import { Trophy, Heart, Buildings, Info, MapPin, Tag, Shield } from '@phosphor-icons/react';
 import { Sponsor } from '../app/sponsors/page';
 
 const BADGE_COLORS = {
@@ -25,7 +25,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
   };
 
   const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
-    <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
       {/* Badge */}
       {sponsor.badge && (
         <div className={`absolute -top-3 -right-3 ${BADGE_COLORS[sponsor.badge]} text-white rounded-full p-2 shadow-lg`}>
@@ -64,7 +64,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
 
       {/* Info Tooltip */}
       {activeTooltip === sponsor.name && (
-        <div className="absolute left-0 right-0 top-full mt-2 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-10">
+        <div className="absolute left-0 right-0 top-full mt-2 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-10">
           <p className="text-sm mb-3">{sponsor.description}</p>
           
           {sponsor.contribution && (
@@ -121,7 +121,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
       {/* Club Sponsors */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-8">
-          <Building className="w-8 h-8 text-wrfc-navy" />
+          <Buildings className="w-8 h-8 text-wrfc-navy" />
           <h2 className="text-3xl font-bold">Club Sponsors</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

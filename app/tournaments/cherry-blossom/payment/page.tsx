@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useState, Suspense } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
+import { DeviceMobile, Money, ArrowRight, Copy, Check } from '@phosphor-icons/react';
 import ZeffyPaymentButton from '@/components/ZeffyPaymentButton';
 import { ZEFFY_LINKS } from '@/data/zeffy-links';
 import { useToast } from '@/components/ui/use-toast';
@@ -63,12 +63,12 @@ function PaymentContent() {
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold font-nasalization text-wrfc-navy mb-8">Tournament Payment</h1>
+      <h1 className="text-4xl font-bold  text-wrfc-navy mb-8">Tournament Payment</h1>
       
       <div className="grid gap-8 md:grid-cols-2">
         <Card className="bg-white shadow-lg border-2">
           <CardHeader className="bg-gray-50">
-            <CardTitle className="text-2xl font-nasalization text-wrfc-navy">Payment Methods</CardTitle>
+            <CardTitle className="text-2xl  text-wrfc-navy">Payment Methods</CardTitle>
             <CardDescription>Choose your preferred payment method for {selectedDivision}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 bg-white">
@@ -85,7 +85,7 @@ function PaymentContent() {
                 onClick={() => setIsZelleDialogOpen(true)}
               >
                 <div className="flex items-center gap-3">
-                  <Smartphone className="h-5 w-5 text-wrfc-navy" />
+                  <DeviceMobile className="h-5 w-5 text-wrfc-navy" />
                   <div className="text-left">
                     <div className="font-semibold text-wrfc-navy">Pay with Zelle</div>
                     <div className="text-sm text-gray-600">Send to: 440-391-4344</div>
@@ -100,7 +100,7 @@ function PaymentContent() {
                 onClick={() => setIsCheckDialogOpen(true)}
               >
                 <div className="flex items-center gap-3">
-                  <Banknote className="h-5 w-5 text-wrfc-navy" />
+                  <Money className="h-5 w-5 text-wrfc-navy" />
                   <div className="text-left">
                     <div className="font-semibold text-wrfc-navy">Pay with Check</div>
                     <div className="text-sm text-gray-600">Mail to WRFC address below</div>
@@ -133,7 +133,7 @@ function PaymentContent() {
 
         <Card className="bg-white shadow-lg border-2">
           <CardHeader className="bg-gray-50">
-            <CardTitle className="text-2xl font-nasalization text-wrfc-navy">Payment Details</CardTitle>
+            <CardTitle className="text-2xl  text-wrfc-navy">Payment Details</CardTitle>
             <CardDescription>Tournament fee breakdown and payment status</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 bg-white">
@@ -163,7 +163,7 @@ function PaymentContent() {
 
       <div className="mt-16 max-w-3xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold font-nasalization text-wrfc-navy mb-4">
+          <h2 className="text-3xl font-bold  text-wrfc-navy mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600">

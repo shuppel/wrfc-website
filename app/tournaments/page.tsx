@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, MapPin, Trophy, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Trophy, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
@@ -236,11 +236,14 @@ export default async function TournamentsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 font-nasalization drop-shadow-lg">
+          <h1 className="display-large mb-4 drop-shadow-lg">
             WRFC Tournaments
           </h1>
-          <p className="text-xl md:text-2xl font-quantico opacity-100 drop-shadow-lg">
+          <p className="text-xl md:text-2xl accent-text opacity-100 drop-shadow-lg">
             Celebrating rugby excellence in the nation&apos;s capital
+          </p>
+          <p className="text-lg mt-4 drop-shadow-lg">
+            For Cherry Blossom Tournament inquiries: <a href="mailto:cbt-chair@washingtonrugby.org" className="underline hover:text-wrfc-red transition-colors">cbt-chair@washingtonrugby.org</a>
           </p>
         </div>
       </section>
@@ -248,7 +251,7 @@ export default async function TournamentsPage() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <Tabs defaultValue="upcoming" className="space-y-12">
-          <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto bg-white dark:bg-gray-800 shadow-md">
+          <TabsList className="grid w-full grid-cols-2 max-w-[400px] mx-auto bg-white dark:bg-gray-900 shadow-md">
             <TabsTrigger value="upcoming" className="data-[state=active]:bg-wrfc-red data-[state=active]:text-white">Upcoming</TabsTrigger>
             <TabsTrigger value="archive" className="data-[state=active]:bg-wrfc-red data-[state=active]:text-white">Tournament Archive</TabsTrigger>
           </TabsList>
@@ -259,7 +262,7 @@ export default async function TournamentsPage() {
                 {/* Featured Tournament */}
                 <div className="relative group cursor-pointer">
                   <div className="absolute -inset-1 bg-gradient-to-r from-wrfc-red via-wrfc-navy to-wrfc-red rounded-[2rem] blur opacity-75 group-hover:opacity-100 transition-opacity" />
-                  <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                  <Card className="relative p-8 group-hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                     <div className="grid md:grid-cols-2 gap-8">
                       <Link href={`/tournaments/${upcomingTournament.id}`} className="relative h-[400px] md:h-full overflow-hidden rounded-xl">
                         <Image
@@ -279,7 +282,7 @@ export default async function TournamentsPage() {
                           <span>57th Annual Tournament</span>
                         </div>
                         <Link href={`/tournaments/${upcomingTournament.id}`}>
-                          <h2 className="text-4xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
+                          <h2 className="text-4xl font-bold mb-4 display-large text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
                             {upcomingTournament.name}
                           </h2>
                         </Link>
@@ -312,7 +315,7 @@ export default async function TournamentsPage() {
 
                 {/* Past Tournaments Preview */}
                 <div className="mt-16">
-                  <h2 className="text-2xl font-bold mb-8 font-nasalization text-wrfc-navy dark:text-white">
+                  <h2 className="section-title mb-8">
                     Past Tournaments
                   </h2>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -325,7 +328,7 @@ export default async function TournamentsPage() {
                           href={`/tournaments/${tournament.id}`}
                           className="group"
                         >
-                          <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                          <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                             <div className="relative h-48">
                               <Image
                                 src={tournament.coverImage}
@@ -354,7 +357,7 @@ export default async function TournamentsPage() {
                 .sort((a, b) => b - a)
                 .map(year => (
                   <div key={year} className="space-y-6">
-                    <h2 className="text-2xl font-bold font-nasalization text-wrfc-navy dark:text-white">
+                    <h2 className="text-2xl font-bold display-large text-wrfc-navy dark:text-white">
                       {year} Tournaments
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -366,7 +369,7 @@ export default async function TournamentsPage() {
                             href={`/tournaments/${tournament.id}`}
                             className="group"
                           >
-                            <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-800">
+                            <Card className="overflow-hidden hover:shadow-xl transition-shadow bg-white dark:bg-gray-900">
                               <div className="relative h-48">
                                 <Image
                                   src={tournament.coverImage}

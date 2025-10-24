@@ -12,7 +12,7 @@ export default function Hero() {
         <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
-              <div className="animate-fade-up bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+              <div className="animate-fade-up bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg p-8 shadow-lg">
                 <h1 className="text-6xl tracking-tight font-nasalization mb-4">
                   <span className="block text-[#FF8C00] dark:text-[#FF8C00] xl:inline">No-De-Tus</span>{' '}
                   <span className="block text-4xl text-slate-800 dark:text-slate-200 xl:inline">(latin)</span>

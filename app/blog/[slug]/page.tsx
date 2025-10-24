@@ -99,7 +99,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         <header className="mb-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{title}</h1>
           
-          <div className="flex items-center text-gray-500 dark:text-gray-400 mb-6">
+          <div className="flex items-center text-gray-500 dark:text-gray-100 mb-6">
             <div className="flex items-center">
               {author.picture ? (
                 <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
@@ -162,7 +162,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               {tags.map((tag, index) => (
                 <span 
                   key={index}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm"
+                  className="px-3 py-1 bg-gray-100 dark:bg-gray-900 rounded-full text-sm"
                 >
                   {tag}
                 </span>

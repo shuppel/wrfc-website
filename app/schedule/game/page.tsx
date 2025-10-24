@@ -68,10 +68,10 @@ export default async function GameSchedulePage() {
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+          <h1 className="display-large mb-6 text-center">
             Game Schedule
           </h1>
-          <p className="text-xl text-center max-w-3xl mx-auto font-jetbrains">
+          <p className="text-xl text-center max-w-3xl mx-auto ">
             View upcoming fixtures, past results, and season standings
           </p>
         </div>

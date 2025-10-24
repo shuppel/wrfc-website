@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Calendar, Trophy, Users, Globe, Award, School, Building, ExternalLink } from 'lucide-react'
+import { Calendar, Trophy, Users, Globe, Medal, GraduationCap, Buildings, ArrowSquareOut } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -24,7 +24,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '1963',
     title: 'Foundation of WRFC',
     description: 'Washington RFC established in February as the second rugby club in the Mid-Atlantic region. Founded by diplomatic expatriates from various foreign embassies, becoming a cornerstone of American rugby\'s modern revival.',
-    icon: <Building className="w-6 h-6" />,
+    icon: <Buildings className="w-6 h-6" />,
     category: 'founding',
     imagePlaceholder: 'Early WRFC founding members at practice'
   },
@@ -40,7 +40,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '1971 & 1974',
     title: 'Early Championship Success',
     description: 'WRFC captures the Blume Trophy twice, demonstrating competitive excellence within the first decade. Club begins producing international-caliber players.',
-    icon: <Award className="w-6 h-6" />,
+    icon: <Medal className="w-6 h-6" />,
     category: 'championship',
     imagePlaceholder: 'Blume Trophy celebration'
   },
@@ -64,7 +64,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '2004',
     title: 'Washington DC Youth Rugby Founded',
     description: 'WRFC pioneers youth rugby development for underserved communities. Starting with 7 participants, the program now reaches over 100 children across all DC quadrants.',
-    icon: <School className="w-6 h-6" />,
+    icon: <GraduationCap className="w-6 h-6" />,
     category: 'community',
     imagePlaceholder: 'Youth rugby program in action',
     link: 'https://www.washingtondcyouthrugby.org/'
@@ -104,7 +104,7 @@ export default function HistoryPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/85" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-nasalization">
+            <h1 className="display-large mb-6">
               The History of WRFC
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
@@ -120,7 +120,7 @@ export default function HistoryPage() {
                 <span>62+ Years</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-6 h-6 text-wrfc-red" />
+                <Medal className="w-6 h-6 text-wrfc-red" />
                 <span>4 Hall of Famers</span>
               </div>
             </div>
@@ -129,14 +129,14 @@ export default function HistoryPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8 text-center  text-gray-900 dark:text-white">
               The Enduring Tradition Since 1963
             </h2>
             <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              <p className="text-lg leading-relaxed text-gray-700 dark:text-white">
                 The Washington Rugby Football Club stands as the oldest rugby institution in the nation&apos;s capital, 
                 having shaped American rugby for over six decades. Founded in February 1963, WRFC emerged during 
                 the crucial revival period of American rugby, becoming a cornerstone of the sport&apos;s modern development. 
@@ -152,7 +152,7 @@ export default function HistoryPage() {
       {/* Timeline Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
             Timeline of Excellence
           </h2>
           
@@ -172,7 +172,7 @@ export default function HistoryPage() {
                   <div className={`flex-1 ml-16 md:ml-0 ${
                     index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                   }`}>
-                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                       <div className="flex items-start gap-4">
                         <div className={`p-3 rounded-lg ${getCategoryColor(event.category)}`}>
                           {event.icon}
@@ -189,7 +189,7 @@ export default function HistoryPage() {
                           <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
                             {event.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-4">
+                          <p className="text-gray-600 dark:text-gray-100 mb-4">
                             {event.description}
                           </p>
                           
@@ -203,7 +203,7 @@ export default function HistoryPage() {
                                 className="inline-flex items-center gap-2 text-wrfc-red hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-semibold text-sm transition-colors"
                               >
                                 Visit Washington DC Youth Rugby
-                                <ExternalLink className="w-4 h-4" />
+                                <ArrowSquareOut className="w-4 h-4" />
                               </a>
                             </div>
                           )}
@@ -237,7 +237,7 @@ export default function HistoryPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               A Living Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
@@ -266,7 +266,7 @@ export default function HistoryPage() {
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-wrfc-red" />
+                  <Medal className="w-8 h-8 text-wrfc-red" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">International Recognition</h3>
                 <p className="text-white/80">4 Hall of Fame inductees and 20+ USA Eagles produced</p>
@@ -292,7 +292,7 @@ function getCategoryColor(category: string): string {
     case 'tournament':
       return 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300'
     default:
-      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300'
+      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-100'
   }
 }
 

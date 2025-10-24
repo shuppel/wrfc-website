@@ -47,10 +47,10 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6  text-center">
             Contact Us
           </h1>
-          <p className="text-xl text-center max-w-3xl mx-auto font-jetbrains">
+          <p className="text-xl text-center max-w-3xl mx-auto ">
             Get in touch with WRFC
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Send Us a Message
               </h2>
               <form 
@@ -70,56 +70,56 @@ export default function ContactPage() {
                 className="space-y-6"
               >
                 <div>
-                  <label htmlFor="name" className="block mb-2 font-jetbrains text-gray-700 dark:text-gray-300">
+                  <label htmlFor="name" className="block mb-2  text-gray-700 dark:text-white">
                     Name
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors font-jetbrains"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block mb-2 font-jetbrains text-gray-700 dark:text-gray-300">
+                  <label htmlFor="email" className="block mb-2  text-gray-700 dark:text-white">
                     Email
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors font-jetbrains"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block mb-2 font-jetbrains text-gray-700 dark:text-gray-300">
+                  <label htmlFor="subject" className="block mb-2  text-gray-700 dark:text-white">
                     Subject
                   </label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors font-jetbrains"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2 font-jetbrains text-gray-700 dark:text-gray-300">
+                  <label htmlFor="message" className="block mb-2  text-gray-700 dark:text-white">
                     Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={6}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors font-jetbrains"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
                     required
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors font-jetbrains"
+                  className="w-full md:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors "
                 >
                   Send Message
                 </button>
@@ -128,7 +128,7 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
                 Contact Information
               </h2>
               <div className="space-y-6">
@@ -139,7 +139,7 @@ export default function ContactPage() {
                 />
                 <ContactInfo
                   title="Marketing & General Inquiries"
-                  content="washingtonrugbyfc1963@gmail.com"
+                  content="info@washingtonrugby.org"
                   icon={<EmailIcon />}
                 />
                 <ContactInfo
@@ -158,11 +158,11 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                <h3 className="text-xl font-bold mb-4 font-nasalization text-blue-900 dark:text-blue-400">
+              <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl">
+                <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400">
                   Training Hours
                 </h3>
-                <ul className="space-y-2 font-jetbrains text-gray-700 dark:text-gray-300">
+                <ul className="space-y-2  text-gray-700 dark:text-white">
                   <li><strong>Regular Season:</strong> 8:00 PM - 10:00 PM</li>
                   <li><strong>Summer 7s Training:</strong> 7:00 PM - 9:00 PM</li>
                   <li className="text-sm mt-3">
@@ -193,10 +193,10 @@ function ContactInfo({ title, content, address, mapLink, icon }: { title: string
         {icon}
       </div>
       <div>
-        <h3 className="font-bold mb-1 font-nasalization text-gray-900 dark:text-gray-100">{title}</h3>
-        <p className="font-jetbrains text-gray-700 dark:text-gray-300">{content}</p>
+        <h3 className="font-bold mb-1  text-gray-900 dark:text-gray-100">{title}</h3>
+        <p className=" text-gray-700 dark:text-white">{content}</p>
         {address && (
-          <p className="font-jetbrains text-sm text-gray-600 dark:text-gray-400 mt-1">
+          <p className=" text-sm text-gray-600 dark:text-gray-100 mt-1">
             {mapLink ? (
               <a href={mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 underline">
                 {address}

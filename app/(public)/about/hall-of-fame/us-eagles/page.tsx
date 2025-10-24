@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { generateSEOMetadata } from '@/app/utils/seo'
-import { Flag, Calendar, Trophy, Users, ChevronLeft } from 'lucide-react'
+import { Flag, Calendar, Trophy, Users, CaretLeft } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'USA Eagles Players - Hall of Fame',
@@ -178,7 +178,7 @@ export default function USEaglesPage() {
           href="/about/hall-of-fame" 
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
         >
-          <ChevronLeft className="w-5 h-5 mr-1" />
+          <CaretLeft className="w-5 h-5 mr-1" />
           Back to Hall of Fame
         </Link>
 
@@ -195,7 +195,7 @@ export default function USEaglesPage() {
           <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
             USA Eagles Players
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             Washington Rugby Football Club has proudly contributed over 25 players to the 
             USA Eagles national team, including World Cup participants, national team captains, 
             and international sevens representatives.
@@ -204,7 +204,7 @@ export default function USEaglesPage() {
 
         {/* Note about accuracy */}
         <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 mb-8 max-w-4xl mx-auto">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-700 dark:text-white">
             <strong>Note:</strong> Caps and participation are accurate as of August 3, 2006. 
             This list represents the historical contribution of WRFC to USA Rugby.
           </p>
@@ -212,28 +212,28 @@ export default function USEaglesPage() {
 
         {/* Special Achievements */}
         <div className="grid md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 text-center">
             <Trophy className="w-12 h-12 text-yellow-600 dark:text-yellow-400 mx-auto mb-3" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">World Cup Players</h3>
-            <p className="text-gray-600 dark:text-gray-300">Paul Sheehy (1991)</p>
-            <p className="text-gray-600 dark:text-gray-300">George Sucher (1999)</p>
+            <p className="text-gray-600 dark:text-gray-100">Paul Sheehy (1991)</p>
+            <p className="text-gray-600 dark:text-gray-100">George Sucher (1999)</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 text-center">
             <Users className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">National Captain</h3>
-            <p className="text-gray-600 dark:text-gray-300">Dan Lyle</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">15s Captain</p>
+            <p className="text-gray-600 dark:text-gray-100">Dan Lyle</p>
+            <p className="text-sm text-gray-500 dark:text-gray-100">15s Captain</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 text-center">
             <Calendar className="w-12 h-12 text-green-600 dark:text-green-400 mx-auto mb-3" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Era Span</h3>
-            <p className="text-gray-600 dark:text-gray-300">1975 - 2006+</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">30+ Years</p>
+            <p className="text-gray-600 dark:text-gray-100">1975 - 2006+</p>
+            <p className="text-sm text-gray-500 dark:text-gray-100">30+ Years</p>
           </div>
         </div>
 
         {/* Players List */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             Complete Roster of USA Eagles Players
           </h2>
@@ -250,10 +250,10 @@ export default function USEaglesPage() {
                       {player.name}
                     </h3>
                     <div className="flex flex-wrap gap-4 mt-1 text-sm">
-                      <span className="text-gray-600 dark:text-gray-400">
+                      <span className="text-gray-600 dark:text-gray-100">
                         <strong>Years:</strong> {player.years}
                       </span>
-                      <span className="text-gray-600 dark:text-gray-400">
+                      <span className="text-gray-600 dark:text-gray-100">
                         <strong>Position:</strong> {player.position}
                       </span>
                     </div>

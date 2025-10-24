@@ -112,7 +112,7 @@ export default function TabInterface() {
                 {tab.content.paragraphs.map((paragraph, index) => (
                   <p
                     key={index}
-                    className="text-lg mb-4 text-gray-600 dark:text-gray-300"
+                    className="text-lg mb-4 text-gray-600 dark:text-gray-100"
                   >
                     {paragraph}
                   </p>

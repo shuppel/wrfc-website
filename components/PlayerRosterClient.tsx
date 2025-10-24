@@ -118,7 +118,7 @@ export default function PlayerRosterClient({
           className={`px-6 py-2 rounded-lg transition-colors ${
             activeFilter === 'All'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
           }`}
         >
           All Players
@@ -128,7 +128,7 @@ export default function PlayerRosterClient({
           className={`px-6 py-2 rounded-lg transition-colors ${
             activeFilter === 'D1'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
           }`}
         >
           D1 Division
@@ -138,7 +138,7 @@ export default function PlayerRosterClient({
           className={`px-6 py-2 rounded-lg transition-colors ${
             activeFilter === 'D3'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              : 'bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
           }`}
         >
           D3 Division
@@ -154,7 +154,7 @@ export default function PlayerRosterClient({
               href={`/teams/players/${player.fields.slug}`}
               className="group"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+              <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
                 <div className="aspect-w-3 aspect-h-4 bg-gradient-to-br from-blue-600 to-blue-800 relative h-64">
                   {player.fields.picture ? (
                     <Image
@@ -180,7 +180,7 @@ export default function PlayerRosterClient({
                   <p className="text-blue-600 dark:text-blue-400 font-semibold">
                     {player.fields.position}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-sm text-gray-600 dark:text-gray-100">
                     {player.fields.hometown}
                   </p>
                 </div>
@@ -190,12 +190,12 @@ export default function PlayerRosterClient({
         </div>
       ) : (
         // Real Players Table View
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                     <button 
                       onClick={() => handleSort('name')}
                       className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -203,7 +203,7 @@ export default function PlayerRosterClient({
                       Name <SortIcon field="name" />
                     </button>
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                     <button 
                       onClick={() => handleSort('position')}
                       className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -211,7 +211,7 @@ export default function PlayerRosterClient({
                       Position <SortIcon field="position" />
                     </button>
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                     <button 
                       onClick={() => handleSort('division')}
                       className="flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -219,18 +219,16 @@ export default function PlayerRosterClient({
                       Division <SortIcon field="division" />
                     </button>
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                     Height/Weight
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                {filteredAndSortedPlayers.map((player, index) => (
+                {filteredAndSortedPlayers.map((player) => (
                   <tr 
                     key={player.id}
-                    className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                      index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50/50 dark:bg-gray-750'
-                    }`}
+                    className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link 
@@ -256,7 +254,7 @@ export default function PlayerRosterClient({
                         {player.division}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-300">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-100">
                       {player.height && player.weight ? `${player.height} / ${player.weight}kg` : player.height || '-'}
                     </td>
                   </tr>
@@ -268,7 +266,7 @@ export default function PlayerRosterClient({
       )}
 
       {/* Player Count */}
-      <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+      <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-100">
         Showing {filteredAndSortedPlayers.length} of {players.length} players
         {activeFilter !== 'All' && ` in ${activeFilter} division`}
         {sortField && ` (sorted by ${sortField} ${sortDirection === 'asc' ? '↑' : '↓'})`}

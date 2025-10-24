@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from 'components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from '@phosphor-icons/react';
 
 interface GalleryImage {
   src: string;
@@ -40,7 +40,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
           <div className="flex items-center h-16">
             <Link 
               href={`/tournaments/cherry-blossom/${params.year}`}
-              className="flex items-center text-gray-600 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-blue-400"
+              className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Tournament
@@ -52,10 +52,10 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-blue-400">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
             Photo Gallery
           </h1>
-          <p className="text-xl mb-12 text-gray-600 dark:text-gray-400">
+          <p className="text-xl mb-12 text-gray-600 dark:text-gray-100">
             Cherry Blossom Tournament {params.year}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className="group relative aspect-video rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800"
+              className="group relative aspect-video rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-900"
             >
               <Image
                 src={image.src}
@@ -85,10 +85,10 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
 
         {/* Download Section */}
         <div className="mt-16 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4 font-nasalization text-wrfc-navy dark:text-blue-400">
+          <h2 className="text-2xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
             Download Photos
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8">
+          <p className="text-gray-600 dark:text-gray-100 mb-8">
             High-resolution photos are available for download. Please credit WRFC when using these images.
           </p>
           <Button className="bg-wrfc-red hover:bg-wrfc-red/90">

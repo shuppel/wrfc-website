@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Users } from 'lucide-react'
+import { ArrowLeft, Users } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
@@ -74,7 +74,7 @@ export default function AlumniSpotlightsPage() {
             Back to Alumni
           </Link>
           
-          <h1 className="text-4xl md:text-6xl font-bold font-nasalization mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold  mb-6">
             Alumni Spotlights
           </h1>
           <p className="text-xl max-w-3xl text-gray-200">
@@ -85,7 +85,7 @@ export default function AlumniSpotlightsPage() {
       </section>
 
       {/* Spotlights Grid */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           {spotlights.length > 0 ? (
             <AlumniSpotlightGrid spotlights={spotlights} showFilters={true} />
@@ -94,17 +94,17 @@ export default function AlumniSpotlightsPage() {
             <div className="max-w-3xl mx-auto">
               <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-16 text-center border-2 border-dashed border-gray-300 dark:border-gray-600">
                 <Users className="w-20 h-20 text-gray-400 mx-auto mb-6" />
-                <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300 font-nasalization">
+                <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-white ">
                   Alumni Spotlights Coming Soon
                 </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-600 dark:text-gray-100 mb-8 max-w-2xl mx-auto">
                   We&apos;re currently collecting and curating stories from our distinguished alumni. 
                   This section will showcase WRFC Old Boys who are making a significant impact in their 
                   communities through leadership, service, and the values they learned on the rugby pitch.
                 </p>
                 <div className="space-y-4 text-left max-w-md mx-auto">
-                  <h3 className="font-bold text-gray-700 dark:text-gray-300">What to expect:</h3>
-                  <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                  <h3 className="font-bold text-gray-700 dark:text-white">What to expect:</h3>
+                  <ul className="space-y-2 text-gray-600 dark:text-gray-100">
                     <li className="flex items-start">
                       <span className="text-wrfc-red mr-2">•</span>
                       Stories of community service and social impact
@@ -132,10 +132,10 @@ export default function AlumniSpotlightsPage() {
       {/* Call to Action */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 font-nasalization">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 ">
             Know an Alumni Making a Difference?
           </h2>
-          <p className="text-lg mb-8 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg mb-8 text-gray-600 dark:text-gray-100 max-w-2xl mx-auto">
             We&apos;re always looking to celebrate our alumni&apos;s achievements. If you know a WRFC Old Boy 
             who should be featured, please get in touch.
           </p>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Play, ChevronDown, Calendar, Eye } from 'lucide-react';
+import { Play, CaretDown, Calendar, Eye } from '@phosphor-icons/react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import Image from 'next/image';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
@@ -124,14 +124,19 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
       />
       <JsonLd type="WebPage" data={structuredData} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">WRFC Film Room</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+      {/* Hero Section */}
+      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="display-large mb-6 text-center">
+            WRFC Film Room
+          </h1>
+          <p className="text-xl text-center max-w-3xl mx-auto">
             Watch match highlights, training sessions, and exclusive interviews from Washington Rugby Football Club
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
         {/* Featured Video Player */}
         <div className="max-w-5xl mx-auto mb-12">
@@ -189,7 +194,7 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
               className="cursor-pointer hover:shadow-lg transition-shadow duration-300"
               onClick={() => setSelectedVideo(video)}
             >
-              <div className="relative aspect-video bg-gray-200 dark:bg-gray-800 group">
+              <div className="relative aspect-video bg-gray-200 dark:bg-gray-900 group">
                 <Image
                   src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                   alt={video.title}
@@ -197,7 +202,7 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Play className="w-16 h-16 text-white" />
+                  <Play className="w-16 h-16 text-white" weight="fill" />
                 </div>
                 <div className="absolute top-2 left-2">
                   <Badge text={video.category} variant="glow" className="text-xs" />
@@ -223,16 +228,16 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
               size="lg"
               className="group"
             >
-              <ChevronDown className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
+              <CaretDown className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" weight="bold" />
               Load More Videos
             </Button>
           </div>
         )}
 
         {/* YouTube Channel CTA */}
-        <div className="text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+        <div className="text-center bg-gray-100 dark:bg-gray-900 rounded-2xl p-8">
           <h3 className="text-2xl font-bold mb-4">Subscribe for More Content</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-lg text-gray-600 dark:text-gray-100 mb-6">
             Don&apos;t miss any of our latest match highlights and exclusive content
           </p>
           <a 

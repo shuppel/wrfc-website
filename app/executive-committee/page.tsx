@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, Mail, Phone, Crown, Star, DollarSign, FileText, Shield, Heart, Hash, Target, HandshakeIcon, PartyPopper, Camera } from 'lucide-react'
+import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera } from '@phosphor-icons/react/dist/ssr'
 import ECAccordion from '@/components/ECAccordion'
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -32,7 +32,7 @@ const currentEC: ECMember[] = [
   {
     position: "Treasurer",
     name: "Erikk Shupp",
-    icon: DollarSign
+    icon: CurrencyDollar
   },
   {
     position: "Secretary",
@@ -70,13 +70,13 @@ const currentEC: ECMember[] = [
     position: "Fundraising Chair",
     name: "Nick Cippolone",
     panel: ["Chris DeVore", "Masen"],
-    icon: HandshakeIcon
+    icon: Handshake
   },
   {
     position: "Social Chair",
     name: "Austin 'Ox' Longo",
     panel: ["Daniel Perez", "Joshua Quick"],
-    icon: PartyPopper
+    icon: Confetti
   },
   {
     position: "Social Media Chair",
@@ -114,10 +114,10 @@ export default function ExecutiveCommitteePage() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="display-medium text-gray-900 dark:text-white mb-4">
             Executive Committee
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             The WRFC Executive Committee provides leadership and governance for our club, 
             ensuring we maintain our proud traditions while building for the future.
           </p>
@@ -125,7 +125,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* Current Year EC */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-8">
             2025-2026 Executive Committee
           </h2>
           
@@ -133,7 +133,7 @@ export default function ExecutiveCommitteePage() {
             {currentEC.map((member, index) => (
               <div 
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+                className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
@@ -156,10 +156,10 @@ export default function ExecutiveCommitteePage() {
                 {/* Panel Members */}
                 {member.panel && member.panel.length > 0 && (
                   <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <p className="text-sm font-semibold text-gray-700 dark:text-white mb-2">
                       Panel Members:
                     </p>
-                    <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                    <ul className="text-sm text-gray-600 dark:text-gray-100 space-y-1">
                       {member.panel.map((panelMember, idx) => (
                         <li key={idx} className="flex items-start">
                           <span className="text-blue-500 mr-2">•</span>
@@ -176,16 +176,16 @@ export default function ExecutiveCommitteePage() {
                     {member.email && (
                       <a 
                         href={`mailto:${member.email}`}
-                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
                       >
-                        <Mail className="w-4 h-4" />
+                        <EnvelopeSimple className="w-4 h-4" />
                         {member.email}
                       </a>
                     )}
                     {member.phone && (
                       <a 
                         href={`tel:${member.phone}`}
-                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
                       >
                         <Phone className="w-4 h-4" />
                         {member.phone}
@@ -199,14 +199,14 @@ export default function ExecutiveCommitteePage() {
         </div>
 
         {/* EC Responsibilities */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12 max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 mb-12 max-w-4xl mx-auto">
+          <h2 className="section-title text-center mb-6">
             Committee Responsibilities
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Governance</h3>
-              <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+              <ul className="text-gray-600 dark:text-gray-100 space-y-2">
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">•</span>
                   Setting club policies and strategic direction
@@ -223,7 +223,7 @@ export default function ExecutiveCommitteePage() {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Operations</h3>
-              <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+              <ul className="text-gray-600 dark:text-gray-100 space-y-2">
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">•</span>
                   Coordinating matches and tournaments
@@ -243,7 +243,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* Previous Years Accordion */}
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+          <h2 className="section-title text-center mb-6">
             Previous Executive Committees
           </h2>
           <ECAccordion previousYears={previousYears} />

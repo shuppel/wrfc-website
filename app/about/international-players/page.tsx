@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Globe, Trophy, Star, ArrowLeft } from 'lucide-react'
+import { Globe, Trophy, Star, ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -95,7 +95,7 @@ export default function InternationalPlayersPage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Star className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="display-large">
                 Players with Commendations
               </h1>
               <Star className="w-12 h-12 text-yellow-400" />
@@ -122,7 +122,7 @@ export default function InternationalPlayersPage() {
       </section>
 
       {/* Back Navigation */}
-      <section className="py-8 bg-white dark:bg-gray-800">
+      <section className="py-8 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <Link 
             href="/about/hall-of-fame"
@@ -135,13 +135,13 @@ export default function InternationalPlayersPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8  text-gray-900 dark:text-white">
               Excellence Across All Levels
             </h2>
-            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="text-lg leading-relaxed text-gray-700 dark:text-white">
               Beyond our Hall of Fame inductees, WRFC has consistently produced players who have earned recognition 
               at the highest levels of rugby. From USA Eagles representing America internationally, to Capital Selects 
               players competing in elite regional rugby, to professionals in Major League Rugby, WRFC players have 
@@ -159,14 +159,14 @@ export default function InternationalPlayersPage() {
               <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
                 <Globe className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 USA Eagles & International Players
               </h2>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {usaEagles.map((player, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">
@@ -192,15 +192,15 @@ export default function InternationalPlayersPage() {
                   </div>
                   
                   <div className="space-y-2 text-sm">
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       <span className="font-semibold">Position:</span> {player.position}
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-100">
                       <span className="font-semibold">Years:</span> {player.years}
                     </p>
                     
                     {player.caps && (
-                      <p className="text-gray-600 dark:text-gray-300">
+                      <p className="text-gray-600 dark:text-gray-100">
                         <span className="font-semibold">Caps:</span> {player.caps}
                       </p>
                     )}
@@ -216,7 +216,7 @@ export default function InternationalPlayersPage() {
                     )}
                     
                     {player.notes && (
-                      <p className="text-gray-500 dark:text-gray-400 text-xs italic mt-2">
+                      <p className="text-gray-500 dark:text-gray-100 text-xs italic mt-2">
                         {player.notes}
                       </p>
                     )}
@@ -229,14 +229,14 @@ export default function InternationalPlayersPage() {
       </section>
 
       {/* Major League Rugby & Other International */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-12">
               <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
                 <Trophy className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 Major League Rugby & Other International
               </h2>
             </div>
@@ -254,8 +254,8 @@ export default function InternationalPlayersPage() {
                 {otherInternationalPlayers.map((player, index) => (
                   <div key={index} className="border-l-4 border-yellow-400 pl-4">
                     <h4 className="font-bold text-gray-900 dark:text-white">{player.name}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{player.position}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{player.caps} international caps</p>
+                    <p className="text-gray-600 dark:text-gray-100">{player.position}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-100">{player.caps} international caps</p>
                   </div>
                 ))}
               </div>
@@ -272,8 +272,8 @@ export default function InternationalPlayersPage() {
                 {modernPlayers.map((player, index) => (
                   <div key={index} className="border-l-4 border-green-600 pl-4">
                     <h4 className="font-bold text-gray-900 dark:text-white">{player.name}</h4>
-                    <p className="text-gray-600 dark:text-gray-300">{player.team} ({player.year})</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">{player.description}</p>
+                    <p className="text-gray-600 dark:text-gray-100">{player.team} ({player.year})</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-100">{player.description}</p>
                   </div>
                 ))}
               </div>
@@ -290,15 +290,15 @@ export default function InternationalPlayersPage() {
               <div className="w-16 h-16 bg-wrfc-navy rounded-full flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold font-nasalization text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
                 Capital Selects High Performance
               </h2>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-12">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 mb-12">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">High Performance Program</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">Since 2018</p>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-gray-500 dark:text-gray-100 text-sm mb-4">Since 2018</p>
+              <p className="text-gray-700 dark:text-white mb-6">
                 Capital Selects is part of the High Performance Program at Capital Rugby Union. The program helps 
                 develop players at all levels in preparation for higher level competition around the world. 
                 This semi-professional men&apos;s club select side represents the pinnacle of regional rugby excellence.
@@ -311,7 +311,7 @@ export default function InternationalPlayersPage() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
               {capitalSelectsPlayers.map((player, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
+                <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
                   <div className="w-12 h-12 bg-wrfc-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Star className="w-6 h-6 text-wrfc-navy dark:text-blue-400" />
                   </div>
@@ -327,14 +327,14 @@ export default function InternationalPlayersPage() {
                   )}
                   <div className="space-y-2">
                     <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Position</p>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
+                      <p className="text-xs text-gray-500 dark:text-gray-100 uppercase tracking-wide">Position</p>
+                      <p className="text-gray-600 dark:text-gray-100 text-sm font-medium">
                         {player.position}
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Caps</p>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
+                      <p className="text-xs text-gray-500 dark:text-gray-100 uppercase tracking-wide">Caps</p>
+                      <p className="text-gray-600 dark:text-gray-100 text-sm font-medium">
                         {player.caps}
                       </p>
                     </div>
@@ -351,7 +351,7 @@ export default function InternationalPlayersPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Continuing the Legacy of Excellence
             </h2>
             <p className="text-lg leading-relaxed mb-8">
