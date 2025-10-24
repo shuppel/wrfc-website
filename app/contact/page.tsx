@@ -139,7 +139,7 @@ export default function ContactPage() {
                 />
                 <ContactInfo
                   title="Marketing & General Inquiries"
-                  content="washingtonrugbyfc1963@gmail.com"
+                  content="info@washingtonrugby.org"
                   icon={<EmailIcon />}
                 />
                 <ContactInfo

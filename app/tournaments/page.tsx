@@ -242,6 +242,9 @@ export default async function TournamentsPage() {
           <p className="text-xl md:text-2xl accent-text opacity-100 drop-shadow-lg">
             Celebrating rugby excellence in the nation&apos;s capital
           </p>
+          <p className="text-lg mt-4 drop-shadow-lg">
+            For Cherry Blossom Tournament inquiries: <a href="mailto:cbt-chair@washingtonrugby.org" className="underline hover:text-wrfc-red transition-colors">cbt-chair@washingtonrugby.org</a>
+          </p>
         </div>
       </section>
 

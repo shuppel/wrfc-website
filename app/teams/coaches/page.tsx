@@ -220,6 +220,20 @@ export default function CoachesPage() {
 
         <div className="mt-16 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
           <h2 className="section-title mb-4 text-center">
+            Previous Coaches
+          </h2>
+          <div className="text-center text-gray-600 dark:text-gray-100 space-y-2">
+            <p>
+              <span className="font-semibold text-gray-900 dark:text-white">Anou Phaipanya</span> — Head Coach, 2021-2024
+            </p>
+            <p>
+              <span className="font-semibold text-gray-900 dark:text-white">Jovolisi Fotofili</span> — Head Coach, 2016-2022
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
+          <h2 className="section-title mb-4 text-center">
             Coaching Philosophy
           </h2>
           <div className="space-y-4 text-gray-600 dark:text-gray-100">

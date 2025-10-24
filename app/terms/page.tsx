@@ -160,7 +160,7 @@ export default function TermsPage() {
               <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg mt-4">
                 <p className="text-gray-700 dark:text-white">
                   <strong>Washington Rugby Football Club</strong><br />
-                  Email: washingtonrugbyfc1963@gmail.com<br />
+                  Email: info@washingtonrugby.org<br />
                   Location: Washington, DC
                 </p>
               </div>
