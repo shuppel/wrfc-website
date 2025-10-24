@@ -54,7 +54,7 @@ export default function AlumniPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
+            <h1 className="display-large mb-6 animate-fade-in">
               Welcome Back, Old Boys!
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">

@@ -145,14 +145,19 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
       />
       <JsonLd type="WebPage" data={structuredData} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">WRFC Blog</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
+      {/* Hero Section */}
+      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="display-large mb-6 text-center">
+            WRFC Blog
+          </h1>
+          <p className="text-xl text-center max-w-3xl mx-auto">
             Stay updated with the latest news, match reports, and insights from Washington Rugby Football Club
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">

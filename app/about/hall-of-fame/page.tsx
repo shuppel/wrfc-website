@@ -114,7 +114,7 @@ export default function HallOfFamePage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Medal className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold ">
+              <h1 className="display-large">
                 Hall of Fame
               </h1>
               <Medal className="w-12 h-12 text-yellow-400" />

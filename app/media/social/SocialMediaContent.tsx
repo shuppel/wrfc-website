@@ -45,14 +45,19 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
       />
       <JsonLd type="WebPage" data={structuredData} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Connect With WRFC</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
+      {/* Hero Section */}
+      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="display-large mb-6 text-center">
+            Connect With WRFC
+          </h1>
+          <p className="text-xl text-center max-w-3xl mx-auto">
             Follow Washington Rugby Football Club on social media for real-time updates, behind-the-scenes content, and community engagement
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
         {/* Social Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
