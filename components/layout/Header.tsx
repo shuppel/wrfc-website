@@ -4,12 +4,32 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '../ThemeToggle'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
+import { 
+  Scroll, 
+  Medal, 
+  Crown, 
+  Star, 
+  UserCircle, 
+  Chalkboard, 
+  Briefcase,
+  PersonSimpleRun,
+  Calendar,
+  Article,
+  FilmStrip,
+  ShareNetwork,
+  List,
+  X as XIcon,
+  CaretDown,
+  Trophy,
+  ShieldCheckered,
+  FlagBanner,
+  type Icon
+} from '@phosphor-icons/react'
 
 interface NavDropdownItem {
   href: string;
   label: string;
-  icon: string;
+  icon: Icon;
 }
 
 interface NavLink {
@@ -26,38 +46,38 @@ const NAV_LINKS: NavLink[] = [
     href: '/about', 
     label: 'About',
     dropdown: [
-      { href: '/about', label: 'About WRFC', icon: '🏉' },
-      { href: '/about/history', label: 'Our History', icon: '📜' },
-      { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: '🏆' },
-      { href: '/about/championships', label: 'Championships', icon: '👑' },
-      { href: '/about/international-players', label: 'Player Commendations', icon: '⭐' },
+      { href: '/about', label: 'About WRFC', icon: ShieldCheckered },
+      { href: '/about/history', label: 'Our History', icon: Scroll },
+      { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: Medal },
+      { href: '/about/championships', label: 'Championships', icon: Crown },
+      { href: '/about/international-players', label: 'Player Commendations', icon: Star },
     ]
   },
   { 
     href: '/teams', 
     label: 'Teams',
     dropdown: [
-      { href: '/teams/players', label: 'Player Roster', icon: '🏃‍♂️' },
-      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
-      { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
+      { href: '/teams/players', label: 'Player Roster', icon: UserCircle },
+      { href: '/teams/coaches', label: 'Coaching Staff', icon: Chalkboard },
+      { href: '/executive-committee', label: 'Executive Committee', icon: Briefcase },
     ]
   },
   { 
     href: '/schedule', 
     label: 'Schedule',
     dropdown: [
-      { href: '/schedule/practice', label: 'Practice Schedule', icon: '🏃' },
-      { href: '/schedule/game', label: 'Game Schedule', icon: '🏉' },
-      { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
+      { href: '/schedule/practice', label: 'Practice Schedule', icon: PersonSimpleRun },
+      { href: '/schedule/game', label: 'Game Schedule', icon: FlagBanner },
+      { href: '/schedule/events', label: 'Events & Tournaments', icon: Calendar },
     ]
   },
   { 
     href: '/media', 
     label: 'Media',
     dropdown: [
-      { href: '/blog', label: 'Blog', icon: '📝' },
-      { href: '/media/film', label: 'Film Room', icon: '🎬' },
-      { href: '/media/social', label: 'Social Media', icon: '📱' },
+      { href: '/blog', label: 'Blog', icon: Article },
+      { href: '/media/film', label: 'Film Room', icon: FilmStrip },
+      { href: '/media/social', label: 'Social Media', icon: ShareNetwork },
     ]
   },
   { href: '/tournaments', label: 'Tournaments' },
@@ -148,9 +168,9 @@ export default function Header() {
                         className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
                       >
                         {link.label}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                        <CaretDown className={`w-4 h-4 transition-transform duration-200 ${
                           hoveredDropdown === link.href ? 'rotate-180' : ''
-                        }`} />
+                        }`} weight="bold" />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
                       </Link>
                       
@@ -161,19 +181,20 @@ export default function Header() {
                           : 'opacity-0 -translate-y-2 invisible'
                       }`}>
                         <div className="py-2">
-                          {link.dropdown.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href}
-                              className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
-                              onClick={() => setHoveredDropdown(null)}
-                            >
-                              <span className="text-lg group-hover:scale-110 transition-transform duration-200">
-                                {dropdownItem.icon}
-                              </span>
-                              <span className="font-medium">{dropdownItem.label}</span>
-                            </Link>
-                          ))}
+                          {link.dropdown.map((dropdownItem) => {
+                            const IconComponent = dropdownItem.icon;
+                            return (
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
+                                className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
+                                onClick={() => setHoveredDropdown(null)}
+                              >
+                                <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" weight="duotone" />
+                                <span className="font-medium">{dropdownItem.label}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     </>
@@ -220,9 +241,9 @@ export default function Header() {
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <XIcon className="w-6 h-6" weight="bold" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <List className="w-6 h-6" weight="bold" />
               )}
             </button>
           </div>
@@ -248,30 +269,34 @@ export default function Header() {
                         className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-300 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
                       >
                         <span>{link.label}</span>
-                        <ChevronDown 
+                        <CaretDown 
                           className={`w-4 h-4 transition-transform duration-200 ${
                             mobileOpenDropdown === link.href ? 'rotate-180' : ''
                           }`}
+                          weight="bold"
                         />
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
                         mobileOpenDropdown === link.href ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                       }`}>
                         <div className="pl-4 pb-2 space-y-1">
-                          {link.dropdown.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href}
-                              className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
-                              onClick={() => {
-                                setIsMobileMenuOpen(false)
-                                setMobileOpenDropdown(null)
-                              }}
-                            >
-                              <span>{dropdownItem.icon}</span>
-                              <span>{dropdownItem.label}</span>
-                            </Link>
-                          ))}
+                          {link.dropdown.map((dropdownItem) => {
+                            const IconComponent = dropdownItem.icon;
+                            return (
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
+                                className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors px-3"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false)
+                                  setMobileOpenDropdown(null)
+                                }}
+                              >
+                                <IconComponent className="w-4 h-4" weight="duotone" />
+                                <span>{dropdownItem.label}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     </>
