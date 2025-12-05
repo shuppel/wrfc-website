@@ -125,7 +125,7 @@ export default function ChampionshipsPage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Trophy className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="display-large">
                 Championships
               </h1>
               <Trophy className="w-12 h-12 text-yellow-400" />
@@ -152,7 +152,7 @@ export default function ChampionshipsPage() {
       </section>
 
       {/* Back Navigation */}
-      <section className="py-8 bg-white dark:bg-gray-800">
+      <section className="py-8 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <Link 
             href="/about/history"
@@ -165,10 +165,10 @@ export default function ChampionshipsPage() {
       </section>
 
       {/* Championship Eras */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
               Eras of Excellence
             </h2>
             
@@ -178,15 +178,15 @@ export default function ChampionshipsPage() {
                   <h3 className="text-lg font-bold text-wrfc-navy dark:text-blue-400 mb-2">
                     {era.name}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  <p className="text-sm text-gray-500 dark:text-gray-100 mb-3">
                     {era.period}
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                  <p className="text-gray-700 dark:text-white text-sm mb-4">
                     {era.description}
                   </p>
                   <div className="space-y-1">
                     {era.championships.map((champ, champIndex) => (
-                      <p key={champIndex} className="text-xs text-gray-600 dark:text-gray-400">
+                      <p key={champIndex} className="text-xs text-gray-600 dark:text-gray-100">
                         • {champ}
                       </p>
                     ))}
@@ -202,13 +202,13 @@ export default function ChampionshipsPage() {
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
               Championship Record
             </h2>
             
             <div className="space-y-8">
               {championships.map((championship, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                <div key={index} className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden">
                   <div className="p-8">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-6">
@@ -217,7 +217,7 @@ export default function ChampionshipsPage() {
                           {championship.icon}
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white font-nasalization">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white ">
                             {championship.title}
                           </h3>
                           <span className={`inline-block px-3 py-1 text-sm font-semibold rounded mt-2 ${getCategoryBadge(championship.category)}`}>
@@ -238,7 +238,7 @@ export default function ChampionshipsPage() {
                         ))}
                       </div>
                       {championship.years.length > 1 && (
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                        <p className="text-sm text-gray-500 dark:text-gray-100 mt-2">
                           {championship.years.length} total championships
                         </p>
                       )}
@@ -248,13 +248,13 @@ export default function ChampionshipsPage() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Achievement</h4>
-                        <p className="text-gray-700 dark:text-gray-300">
+                        <p className="text-gray-700 dark:text-white">
                           {championship.description}
                         </p>
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Historical Significance</h4>
-                        <p className="text-gray-700 dark:text-gray-300">
+                        <p className="text-gray-700 dark:text-white">
                           {championship.significance}
                         </p>
                       </div>
@@ -271,7 +271,7 @@ export default function ChampionshipsPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Championship Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
@@ -339,7 +339,7 @@ function getCategoryColor(category: string): string {
     case 'consecutive':
       return 'bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300'
     default:
-      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300'
+      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-100'
   }
 }
 

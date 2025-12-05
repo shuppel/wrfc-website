@@ -25,7 +25,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
   };
 
   const SponsorCard = ({ sponsor }: { sponsor: Sponsor }) => (
-    <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
       {/* Badge */}
       {sponsor.badge && (
         <div className={`absolute -top-3 -right-3 ${BADGE_COLORS[sponsor.badge]} text-white rounded-full p-2 shadow-lg`}>
@@ -64,7 +64,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
 
       {/* Info Tooltip */}
       {activeTooltip === sponsor.name && (
-        <div className="absolute left-0 right-0 top-full mt-2 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-10">
+        <div className="absolute left-0 right-0 top-full mt-2 p-4 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-10">
           <p className="text-sm mb-3">{sponsor.description}</p>
           
           {sponsor.contribution && (

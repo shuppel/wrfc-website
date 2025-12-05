@@ -63,7 +63,7 @@ export default function GeorgetownPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-white text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold  mb-6">
               Rugby in Georgetown
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
@@ -94,9 +94,9 @@ export default function GeorgetownPage() {
       </section>
 
       {/* Location Info */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Easy Access from Georgetown & Foggy Bottom
           </h2>
           
@@ -107,10 +107,10 @@ export default function GeorgetownPage() {
                 <h3 className="text-2xl font-bold">Summer Training</h3>
               </div>
               <h4 className="text-xl font-semibold mb-2">Wallenberg Field</h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 Raoul Wallenberg Pl SW (behind Holocaust Museum)
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 Just 15 minutes from Georgetown via Foggy Bottom Metro. 
                 Perfect for after-work training sessions downtown.
               </p>
@@ -130,10 +130,10 @@ export default function GeorgetownPage() {
                 <h3 className="text-2xl font-bold">Regular Season</h3>
               </div>
               <h4 className="text-xl font-semibold mb-2">Rosedale Recreation Center</h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 1701 Gales St NE, Washington, DC 20002
               </p>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-100 mb-4">
                 20-minute drive from Georgetown. Many players carpool 
                 from Georgetown and Dupont Circle areas.
               </p>
@@ -153,7 +153,7 @@ export default function GeorgetownPage() {
       {/* Georgetown Community */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Join Georgetown&apos;s Rugby Community
           </h2>
           
@@ -161,7 +161,7 @@ export default function GeorgetownPage() {
             <div className="text-center">
               <Users className="w-16 h-16 text-wrfc-red mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Professional Network</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Connect with lawyers, consultants, and business professionals 
                 from Georgetown, K Street, and downtown DC.
               </p>
@@ -170,7 +170,7 @@ export default function GeorgetownPage() {
             <div className="text-center">
               <Calendar className="w-16 h-16 text-wrfc-navy mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Work-Life Balance</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Evening practices designed for busy professionals. 
                 Post-practice socials at Georgetown and Dupont venues.
               </p>
@@ -179,7 +179,7 @@ export default function GeorgetownPage() {
             <div className="text-center">
               <MapPin className="w-16 h-16 text-wrfc-teal mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Georgetown Tradition</h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-100">
                 Many WRFC alumni live in Georgetown and continue supporting 
                 the club at matches and social events.
               </p>
@@ -189,10 +189,10 @@ export default function GeorgetownPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
               Perfect for Georgetown Professionals
             </h2>
             
@@ -203,7 +203,7 @@ export default function GeorgetownPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">Convenient Schedule</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-600 dark:text-gray-100">
                     8pm practices allow time to commute from Georgetown offices. 
                     No need to rush from work - grab dinner in Georgetown first.
                   </p>
@@ -216,7 +216,7 @@ export default function GeorgetownPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">Professional Development</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-600 dark:text-gray-100">
                     Network with professionals from law firms, consulting companies, 
                     and government agencies. Many business connections made on the pitch.
                   </p>
@@ -229,7 +229,7 @@ export default function GeorgetownPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">Social Scene</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className="text-gray-600 dark:text-gray-100">
                     Post-match socials at popular Georgetown and Dupont Circle venues. 
                     Annual events including the Cherry Blossom Tournament.
                   </p>
@@ -243,7 +243,7 @@ export default function GeorgetownPage() {
       {/* CTA Section */}
       <section className="py-24 bg-wrfc-navy text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 ">
             Start Your Rugby Journey from Georgetown
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">

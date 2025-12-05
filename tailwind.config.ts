@@ -9,6 +9,12 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			display: ['var(--font-bebas-neue)', 'sans-serif'],
+  			heading: ['var(--font-titillium-web)', 'sans-serif'],
+  			accent: ['var(--font-quantico)', 'sans-serif'],
+  			sans: ['var(--font-inter)', 'sans-serif'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

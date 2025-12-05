@@ -139,7 +139,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
                 <Calendar className="w-5 h-5 text-gray-500 mt-0.5" />
                 <div>
                   <p className="font-semibold">Dates</p>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-gray-600 dark:text-gray-100">
                     {formatDate(startDate)} - {formatDate(endDate)}
                   </p>
                 </div>
@@ -184,7 +184,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
             <CardContent>
               <div className="space-y-4">
                 {divisions.map((division, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
                     <div>
                       <h4 className="font-semibold">{division.name}</h4>
                     </div>

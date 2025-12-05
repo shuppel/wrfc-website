@@ -104,7 +104,7 @@ export default function WelcomeModal() {
                 {promotion.title}
               </h2>
               
-              <p className="text-gray-700 dark:text-gray-300 mb-6">
+              <p className="text-gray-700 dark:text-white mb-6">
                 {promotion.description}
               </p>
               

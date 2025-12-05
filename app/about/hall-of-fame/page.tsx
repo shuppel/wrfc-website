@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Trophy, Star, Medal, Globe, ArrowLeft } from '@phosphor-icons/react/dist/ssr'
+import { Medal, Star, Trophy, Globe, ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -114,7 +114,7 @@ export default function HallOfFamePage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Medal className="w-12 h-12 text-yellow-400" />
-              <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
+              <h1 className="display-large">
                 Hall of Fame
               </h1>
               <Medal className="w-12 h-12 text-yellow-400" />
@@ -141,7 +141,7 @@ export default function HallOfFamePage() {
       </section>
 
       {/* Back Navigation */}
-      <section className="py-8 bg-white dark:bg-gray-800">
+      <section className="py-8 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <Link 
             href="/about/history"
@@ -154,13 +154,13 @@ export default function HallOfFamePage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8  text-gray-900 dark:text-white">
               Legends of American Rugby
             </h2>
-            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="text-lg leading-relaxed text-gray-700 dark:text-white">
               The Washington Rugby Football Club has produced four USA Rugby Hall of Fame inductees, 
               representing the highest honor in American rugby. These legendary figures exemplify WRFC&apos;s 
               60+ year tradition of developing world-class talent while maintaining the community spirit 
@@ -176,13 +176,13 @@ export default function HallOfFamePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto space-y-16">
             {hallOfFameMembers.map((member, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+              <div key={index} className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden">
                 <div className="p-8 md:p-12">
                   {/* Header */}
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white font-nasalization">
+                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white ">
                           {member.name}
                         </h3>
                         {member.wikiLink && (
@@ -224,7 +224,7 @@ export default function HallOfFamePage() {
                         {member.achievements.map((achievement, achIndex) => (
                           <li key={achIndex} className="flex items-start gap-3">
                             <Trophy className="w-5 h-5 text-wrfc-red flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-700 dark:text-gray-300">{achievement}</span>
+                            <span className="text-gray-700 dark:text-white">{achievement}</span>
                           </li>
                         ))}
                       </ul>
@@ -237,7 +237,7 @@ export default function HallOfFamePage() {
                         {member.honors.map((honor, honorIndex) => (
                           <li key={honorIndex} className="flex items-start gap-3">
                             <Star className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-700 dark:text-gray-300">{honor}</span>
+                            <span className="text-gray-700 dark:text-white">{honor}</span>
                           </li>
                         ))}
                       </ul>
@@ -247,7 +247,7 @@ export default function HallOfFamePage() {
                   {/* Biography */}
                   <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Legacy</h4>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p className="text-gray-700 dark:text-white leading-relaxed">
                       {member.biography}
                     </p>
                   </div>
@@ -262,7 +262,7 @@ export default function HallOfFamePage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               Join the Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">

@@ -45,36 +45,41 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
       />
       <JsonLd type="WebPage" data={structuredData} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Connect With WRFC</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+      {/* Hero Section */}
+      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+        <div className="container mx-auto px-4">
+          <h1 className="display-large mb-6 text-center">
+            Connect With WRFC
+          </h1>
+          <p className="text-xl text-center max-w-3xl mx-auto">
             Follow Washington Rugby Football Club on social media for real-time updates, behind-the-scenes content, and community engagement
           </p>
         </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
 
         {/* Social Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
           <Card>
             <CardContent className="p-6 text-center">
-              <Users className="w-8 h-8 mx-auto mb-2 text-wrfc-red" />
+              <Users className="w-8 h-8 mx-auto mb-2 text-wrfc-red" weight="bold" />
               <h3 className="text-2xl font-bold">2.5K+</h3>
-              <p className="text-gray-600 dark:text-gray-400">Followers</p>
+              <p className="text-gray-600 dark:text-gray-100">Followers</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <Heart className="w-8 h-8 mx-auto mb-2 text-wrfc-red" />
+              <Heart className="w-8 h-8 mx-auto mb-2 text-wrfc-red" weight="bold" />
               <h3 className="text-2xl font-bold">15K+</h3>
-              <p className="text-gray-600 dark:text-gray-400">Likes</p>
+              <p className="text-gray-600 dark:text-gray-100">Likes</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <ChatCircle className="w-8 h-8 mx-auto mb-2 text-wrfc-red" />
+              <ChatCircle className="w-8 h-8 mx-auto mb-2 text-wrfc-red" weight="bold" />
               <h3 className="text-2xl font-bold">500+</h3>
-              <p className="text-gray-600 dark:text-gray-400">Posts</p>
+              <p className="text-gray-600 dark:text-gray-100">Posts</p>
             </CardContent>
           </Card>
         </div>
@@ -90,7 +95,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4">
+              <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 mb-4">
                 <iframe 
                   src="https://www.instagram.com/wrfc1963/embed" 
                   width="100%" 
@@ -125,10 +130,10 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 mb-4 min-h-[600px] flex items-center justify-center">
+              <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 mb-4 min-h-[600px] flex items-center justify-center">
                 <div className="text-center">
                   <Facebook className="w-16 h-16 text-blue-600 mx-auto mb-4" />
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <p className="text-gray-600 dark:text-gray-100 mb-4">
                     Visit our Facebook page for the latest updates, event information, and community discussions
                   </p>
                   <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-6">
@@ -174,23 +179,23 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <ShareNetwork className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
+                <ShareNetwork className="w-12 h-12 mx-auto mb-3 text-wrfc-red" weight="bold" />
                 <h3 className="font-semibold mb-2">Share Your Experience</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-100">
                   Tag us in your rugby photos and stories using #WRFC1963
                 </p>
               </div>
               <div className="text-center">
-                <ChatCircle className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
+                <ChatCircle className="w-12 h-12 mx-auto mb-3 text-wrfc-red" weight="bold" />
                 <h3 className="font-semibold mb-2">Engage With Us</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-100">
                   Comment on our posts and join the WRFC community discussions
                 </p>
               </div>
               <div className="text-center">
-                <Heart className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
+                <Heart className="w-12 h-12 mx-auto mb-3 text-wrfc-red" weight="bold" />
                 <h3 className="font-semibold mb-2">Show Your Support</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-100">
                   Like and share our content to help grow the rugby community
                 </p>
               </div>
@@ -199,9 +204,9 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
         </Card>
 
         {/* Call to Action */}
-        <div className="text-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+        <div className="text-center bg-gray-100 dark:bg-gray-900 rounded-2xl p-8">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-100 mb-6 max-w-2xl mx-auto">
             Don&apos;t miss any updates from WRFC. Follow us on all our social media channels to stay informed about matches, events, and club news.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

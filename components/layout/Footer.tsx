@@ -22,10 +22,10 @@ export default function Footer() {
                 <h3 className="text-2xl font-bold font-nasalization bg-gradient-to-r from-blue-900 to-blue-700 dark:from-blue-500 dark:to-blue-300 bg-clip-text text-transparent">
                   WRFC
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Est. 1963</p>
+                <p className="text-sm text-gray-600 dark:text-gray-100">Est. 1963</p>
               </div>
             </div>
-            <p className="text-gray-700 dark:text-gray-300 font-jetbrains text-sm leading-relaxed">
+            <p className="text-gray-700 dark:text-white font-jetbrains text-sm leading-relaxed">
               Washington Rugby Football Club<br />
               Tradition. Excellence. Community.
             </p>
@@ -71,7 +71,7 @@ export default function Footer() {
               Connect With Us
             </h4>
             <div className="space-y-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-100">
                 Follow us on social media for the latest updates, match highlights, and community events.
               </p>
               <div className="flex space-x-4">
@@ -109,14 +109,14 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-start space-y-4 md:space-y-0">
             <div className="flex flex-col items-start space-y-1">
-              <p className="text-sm text-gray-600 dark:text-gray-400 font-jetbrains">
+              <p className="text-sm text-gray-600 dark:text-gray-100 font-jetbrains">
                 © {new Date().getFullYear()} Washington DC Rugby Foundation. All rights reserved.
               </p>
               <p className="text-xs text-gray-400 dark:text-gray-500 font-jetbrains">
                 This website is powered by <a href="https://nodetus.com" target="_blank" rel="noopener noreferrer" className="text-wrfc-red hover:text-wrfc-red/80">Nodetus</a>, your friendly AI Integrators
               </p>
             </div>
-            <div className="flex space-x-6 text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex space-x-6 text-sm text-gray-600 dark:text-gray-100">
               <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Privacy Policy
               </Link>
@@ -135,7 +135,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link 
       href={href}
-      className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-jetbrains text-sm transition-colors flex items-center group"
+      className="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-jetbrains text-sm transition-colors flex items-center group"
     >
       <span className="transform translate-x-0 group-hover:translate-x-1 transition-transform">
         {children}
@@ -154,7 +154,7 @@ function SocialLink({ href, icon, ...props }: {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110"
+      className="text-gray-600 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors transform hover:scale-110"
       {...props}
     >
       {icon}

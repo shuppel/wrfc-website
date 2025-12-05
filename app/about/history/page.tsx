@@ -104,7 +104,7 @@ export default function HistoryPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/85" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-nasalization">
+            <h1 className="display-large mb-6">
               The History of WRFC
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
@@ -129,14 +129,14 @@ export default function HistoryPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center font-nasalization text-gray-900 dark:text-white">
+            <h2 className="text-3xl font-bold mb-8 text-center  text-gray-900 dark:text-white">
               The Enduring Tradition Since 1963
             </h2>
             <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              <p className="text-lg leading-relaxed text-gray-700 dark:text-white">
                 The Washington Rugby Football Club stands as the oldest rugby institution in the nation&apos;s capital, 
                 having shaped American rugby for over six decades. Founded in February 1963, WRFC emerged during 
                 the crucial revival period of American rugby, becoming a cornerstone of the sport&apos;s modern development. 
@@ -152,7 +152,7 @@ export default function HistoryPage() {
       {/* Timeline Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16 font-nasalization text-gray-900 dark:text-white">
+          <h2 className="text-3xl font-bold text-center mb-16  text-gray-900 dark:text-white">
             Timeline of Excellence
           </h2>
           
@@ -172,7 +172,7 @@ export default function HistoryPage() {
                   <div className={`flex-1 ml-16 md:ml-0 ${
                     index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                   }`}>
-                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                       <div className="flex items-start gap-4">
                         <div className={`p-3 rounded-lg ${getCategoryColor(event.category)}`}>
                           {event.icon}
@@ -189,7 +189,7 @@ export default function HistoryPage() {
                           <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
                             {event.title}
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 mb-4">
+                          <p className="text-gray-600 dark:text-gray-100 mb-4">
                             {event.description}
                           </p>
                           
@@ -237,7 +237,7 @@ export default function HistoryPage() {
       <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-8 font-nasalization">
+            <h2 className="text-3xl font-bold mb-8 ">
               A Living Legacy
             </h2>
             <p className="text-lg leading-relaxed mb-8">
@@ -292,7 +292,7 @@ function getCategoryColor(category: string): string {
     case 'tournament':
       return 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300'
     default:
-      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300'
+      return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-100'
   }
 }
 

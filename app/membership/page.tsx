@@ -47,7 +47,7 @@ export default function MembershipPage() {
           {/* Discord Community Section */}
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-8 text-center mb-12">
             <h2 className="text-2xl font-bold mb-4">Join Our Community</h2>
-            <p className="text-lg mb-6 text-gray-700 dark:text-gray-300">
+            <p className="text-lg mb-6 text-gray-700 dark:text-white">
               New players: Connect with the team, get practice updates, and ask questions in our Discord server!
             </p>
             <a 

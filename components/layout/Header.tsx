@@ -75,15 +75,14 @@ const NAV_LINKS: NavLink[] = [
     href: '/media', 
     label: 'Media',
     dropdown: [
-      { href: '/media/social', label: 'Social Media', icon: ShareNetwork },
-      { href: '/media/film', label: 'Film Room', icon: FilmStrip },
       { href: '/blog', label: 'Blog', icon: Article },
+      { href: '/media/film', label: 'Film Room', icon: FilmStrip },
+      { href: '/media/social', label: 'Social Media', icon: ShareNetwork },
     ]
   },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
-  { href: '/donate', label: 'Donate', highlight: true },
   { href: '/contact', label: 'Contact' },
   { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]
@@ -211,7 +210,7 @@ export default function Header() {
                   <span className="hidden xl:inline">JOIN THE LEGACY</span>
                   <span className="xl:hidden">JOIN</span>
                 </span>
-                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" weight="duotone" />
+                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" />
                 {/* Subtle gleaming border effect */}
                 <span className="absolute inset-0 rounded-lg pointer-events-none">
                   <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
@@ -355,7 +354,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="relative z-10 font-semibold tracking-wide">JOIN</span>
-                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" weight="duotone" />
+                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
                 {/* Subtle gleaming border effect */}
                 <span className="absolute inset-0 rounded-lg pointer-events-none">
                   <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
@@ -430,4 +429,4 @@ function NavLink({ href, children, external, highlight, isZeffy }: { href: strin
       }`} />
     </Link>
   )
-}
+} 

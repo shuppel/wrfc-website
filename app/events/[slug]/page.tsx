@@ -134,7 +134,7 @@ export default function EventPage({ params }: EventPageProps) {
                   <Calendar className="w-5 h-5 text-gray-500 mt-0.5" />
                   <div>
                     <p className="font-semibold">Date</p>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-100">
                       {formatDate(startTime)}
                       {formatDate(startTime) !== formatDate(endTime) && (
                         <> - {formatDate(endTime)}</>
@@ -147,7 +147,7 @@ export default function EventPage({ params }: EventPageProps) {
                   <Clock className="w-5 h-5 text-gray-500 mt-0.5" />
                   <div>
                     <p className="font-semibold">Time</p>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600 dark:text-gray-100">
                       {new Date(startTime).toLocaleTimeString('en-US', { 
                         hour: 'numeric', 
                         minute: '2-digit',
@@ -169,7 +169,7 @@ export default function EventPage({ params }: EventPageProps) {
                   <MapPin className="w-5 h-5 text-gray-500 mt-0.5" />
                   <div>
                     <p className="font-semibold">Location</p>
-                    <p className="text-gray-600 dark:text-gray-400">{venue.name}</p>
+                    <p className="text-gray-600 dark:text-gray-100">{venue.name}</p>
                     <p className="text-sm text-gray-500">{venue.address}</p>
                     {venue.googleMapsUrl && (
                       <a 
@@ -230,7 +230,7 @@ export default function EventPage({ params }: EventPageProps) {
               )}
               <div>
                 <h4 className="font-semibold mb-2">Parking</h4>
-                <p className="text-gray-600 dark:text-gray-300">{venue.parkingInfo}</p>
+                <p className="text-gray-600 dark:text-gray-100">{venue.parkingInfo}</p>
               </div>
             </CardContent>
           </Card>

@@ -111,7 +111,7 @@ export default function Sponsors() {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="hero-title mb-6">Our Sponsors</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
             We&apos;re proud to partner with organizations that share our passion for rugby and community. 
             Our sponsors help make it possible for WRFC to continue its legacy of excellence.
           </p>

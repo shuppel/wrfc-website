@@ -3,10 +3,11 @@ import { Metadata } from 'next'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
 import { getStructuredData, generateSEOMetadata } from '../utils/seo'
+import { User, Circle, Calendar } from "@phosphor-icons/react/dist/ssr"
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Schedule',
-  description: 'Washington Rugby Football Club schedule hub - practice times, game fixtures, events, and tournaments. Find all upcoming activities and training sessions.',
+  description: 'Washington Rugby Circle Club schedule hub - practice times, game fixtures, events, and tournaments. Find all upcoming activities and training sessions.',
   path: '/schedule'
 })
 
@@ -14,7 +15,7 @@ export default function SchedulePage() {
   const structuredData = getStructuredData('schedule', {
     '@type': 'WebPage',
     name: 'Schedule - WRFC',
-    description: 'Washington Rugby Football Club schedule hub - practice times, game fixtures, and events.'
+    description: 'Washington Rugby Circle Club schedule hub - practice times, game fixtures, and events.'
   });
 
   const scheduleLinks = [
@@ -22,19 +23,19 @@ export default function SchedulePage() {
       href: '/schedule/practice',
       title: 'Practice Schedule',
       description: 'Training times, locations, and session breakdown',
-      icon: '🏃'
+      icon: <User size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     },
     {
       href: '/schedule/game',
       title: 'Game Schedule',
       description: 'Match fixtures, results, and upcoming games',
-      icon: '🏉'
+      icon: <Circle size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     },
     {
       href: '/schedule/events',
       title: 'Events & Tournaments',
       description: 'Annual events, tours, and special occasions',
-      icon: '📅'
+      icon: <Calendar size={64} weight="bold" className="text-wrfc-navy dark:text-white" />
     }
   ];
 
@@ -52,10 +53,10 @@ export default function SchedulePage() {
       {/* Hero Section */}
       <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-nasalization text-center">
+          <h1 className="display-large mb-6 text-center">
             Schedule
           </h1>
-          <p className="text-xl text-center max-w-3xl mx-auto font-jetbrains">
+          <p className="text-xl text-center max-w-3xl mx-auto ">
             Everything you need to know about when and where
           </p>
         </div>
@@ -69,13 +70,13 @@ export default function SchedulePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
+                className="group bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
               >
-                <div className="text-5xl mb-4 text-center">{item.icon}</div>
-                <h2 className="text-2xl font-bold mb-3 font-nasalization text-blue-900 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center">
+                <div className="flex justify-center mb-4">{item.icon}</div>
+                <h2 className="text-2xl font-bold mb-3 section-title text-blue-900 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center">
                   {item.title}
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 font-jetbrains text-center">
+                <p className="text-gray-700 dark:text-white  text-center">
                   {item.description}
                 </p>
               </Link>

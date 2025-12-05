@@ -110,7 +110,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
 
         {/* Instagram CTA for Venue Info */}
         <div className="mb-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-3 text-center">
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-gray-700 dark:text-white">
             📍 For venue details and game day updates, follow us on Instagram:
             <a 
               href="https://www.instagram.com/wrfc1963/"
@@ -173,7 +173,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                   className={`px-4 py-2 rounded-md transition-colors ${
                     selectedSeason === year
                       ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                      : 'bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                   onClick={() => setSelectedSeason(year)}
                 >
@@ -190,7 +190,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                   className={`px-4 py-2 rounded-md transition-colors ${
                     activeDivision === division
                       ? 'bg-wrfc-navy text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      : 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                   onClick={() => setActiveDivision(division)}
                 >
@@ -200,14 +200,14 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             </div>
 
             {/* Simple Records Display */}
-            <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+            <div className="max-w-md mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
               <div className="text-center">
                 <h2 className="text-2xl font-bold mb-2">{selectedSeason} {activeDivision} Division</h2>
                 <div className="text-5xl font-bold text-wrfc-navy dark:text-blue-400 mb-4">
                   {records[activeDivision].wins}-{records[activeDivision].losses}
                   {records[activeDivision].draws > 0 ? `-${records[activeDivision].draws}` : ''}
                 </div>
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <p className="text-gray-600 dark:text-gray-100 text-lg">
                   {records[activeDivision].wins} Wins • {records[activeDivision].losses} Losses
                   {records[activeDivision].draws > 0 ? ` • ${records[activeDivision].draws} Draws` : ''}
                 </p>
@@ -219,7 +219,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             {/* Modern Table View - Desktop */}
             <div className="hidden lg:block space-y-8">
               {sortedYears.map((year) => (
-                <div key={year} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div key={year} className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                   {/* Year Header */}
                   <div className="bg-gradient-to-r from-blue-900 to-blue-700 dark:from-blue-800 dark:to-blue-600 px-6 py-4">
                     <h2 className="text-2xl font-bold text-white font-nasalization">
@@ -232,22 +232,22 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                     <table className="w-full">
                       <thead className="bg-gray-50 dark:bg-gray-900">
                         <tr>
-                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                             Date & Time
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                             Matchup
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                             {activeView === 'past' ? 'Score' : 'Time'}
                           </th>
-                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
+                          <th className="px-6 py-4 text-center text-xs font-semibold text-gray-600 dark:text-gray-100 uppercase tracking-wider">
                             Competition
                           </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {gamesByYear[year].map((game, index) => {
+                        {gamesByYear[year].map((game) => {
                           const gameDate = parseISO(game.date);
                           const wrfcTeam = game.isHome ? game.homeTeam : game.awayTeam;
                           const opponentTeam = game.isHome ? game.awayTeam : game.homeTeam;
@@ -257,9 +257,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                           return (
                             <tr 
                               key={game.id} 
-                              className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                                index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50/50 dark:bg-gray-750'
-                              }`}
+                              className="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                             >
                               {/* Date & Time */}
                               <td className="px-6 py-4 whitespace-nowrap">
@@ -293,7 +291,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
 
                                   {/* VS or @ indicator */}
                                   <div className="flex items-center">
-                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
                                       {game.isHome ? 'vs' : '@'}
                                     </span>
                                   </div>
@@ -324,7 +322,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                                         ? 'text-green-600 dark:text-green-400' 
                                         : wrfcScore !== null && opponentScore !== null && wrfcScore < opponentScore
                                         ? 'text-red-600 dark:text-red-400'
-                                        : 'text-gray-600 dark:text-gray-400'
+                                        : 'text-gray-600 dark:text-gray-100'
                                     }`}>
                                       {wrfcScore}
                                     </span>
@@ -334,13 +332,13 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                                         ? 'text-green-600 dark:text-green-400'
                                         : wrfcScore !== null && opponentScore !== null && opponentScore < wrfcScore
                                         ? 'text-red-600 dark:text-red-400'
-                                        : 'text-gray-600 dark:text-gray-400'
+                                        : 'text-gray-600 dark:text-gray-100'
                                     }`}>
                                       {opponentScore}
                                     </span>
                                   </div>
                                 ) : (
-                                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                                  <div className="text-sm text-gray-600 dark:text-gray-100">
                                     {format(parseISO(`2000-01-01T${game.time}`), 'h:mm a')}
                                   </div>
                                 )}
@@ -369,7 +367,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
 
               {/* Empty State */}
               {games.length === 0 && (
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-12 text-center">
+                <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-12 text-center">
                   <div className="text-gray-500 dark:text-gray-400">
                     <Trophy className="w-12 h-12 mx-auto mb-4 opacity-50" />
                     <p className="text-lg font-medium">No games found</p>
@@ -386,7 +384,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                   <h2 className="text-xl font-bold text-blue-900 dark:text-blue-400 font-nasalization mb-4 px-4">
                     {year} Season
                   </h2>
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+                  <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                     {gamesByYear[year].map((game) => {
                       const gameDate = parseISO(game.date);
                       const wrfcTeam = game.isHome ? game.homeTeam : game.awayTeam;

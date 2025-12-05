@@ -73,7 +73,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold font-nasalization mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
               Washington Rugby
               <span className="block text-wrfc-red">Football Club</span>
             </h1>
@@ -117,7 +117,7 @@ export default function Home() {
       <HomePromotions />
 
       {/* Features Section */}
-      <section className="py-24 bg-white dark:bg-gray-800">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <FeatureCard 
@@ -145,7 +145,7 @@ export default function Home() {
       {/* Quick Links Section */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 font-nasalization">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
             Get Involved
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -158,7 +158,7 @@ export default function Home() {
             <QuickLinkCard 
               title="Team Roster"
               description="Meet our current squad and coaching staff"
-              href="/roster"
+              href="/teams/players"
               image="/assets/pictures/2025_irish_zach.jpg"
             />
             <QuickLinkCard 
@@ -183,7 +183,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-wrfc-navy/95 to-wrfc-navy/90" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-nasalization text-white text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6  text-white text-center">
             Ready to Join the Legacy?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200 text-center">
@@ -234,7 +234,7 @@ function FeatureCard({ icon, title, description, image }: {
   image: string
 }) {
   return (
-    <div className="relative group overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 hover:shadow-xl transition-all">
+    <div className="relative group overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-900 hover:shadow-xl transition-all">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={image}
@@ -245,11 +245,11 @@ function FeatureCard({ icon, title, description, image }: {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
       </div>
       <div className="p-8 relative">
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-700 rounded-full p-4 shadow-lg">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full p-4 shadow-lg">
           {icon}
         </div>
-        <h3 className="text-2xl font-bold mb-4 font-nasalization text-center pt-8">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 text-center">{description}</p>
+        <h3 className="text-2xl font-bold mb-4  text-center pt-8">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-100 text-center">{description}</p>
       </div>
     </div>
   )
@@ -263,7 +263,7 @@ function QuickLinkCard({ title, description, href, image }: {
 }) {
   return (
     <Link href={href}>
-      <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 hover:shadow-xl transition-all h-full">
+      <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-900 hover:shadow-xl transition-all h-full">
         {/* Image */}
         <div className="relative h-48 overflow-hidden">
           <Image
@@ -277,10 +277,10 @@ function QuickLinkCard({ title, description, href, image }: {
         
         {/* Content */}
         <div className="p-6">
-          <h3 className="text-2xl font-bold mb-2 group-hover:text-wrfc-red transition-colors font-nasalization">
+          <h3 className="text-2xl font-bold mb-2 group-hover:text-wrfc-red transition-colors ">
             {title}
           </h3>
-          <p className="text-gray-600 dark:text-gray-300">{description}</p>
+          <p className="text-gray-600 dark:text-gray-100">{description}</p>
           
           {/* Arrow indicator */}
           <div className="mt-4 flex items-center text-wrfc-red font-semibold">
