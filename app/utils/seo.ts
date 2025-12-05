@@ -13,7 +13,8 @@ type PageKey =
   | 'sponsors'
   | 'contact'
   | 'media'
-  | 'blog';
+  | 'blog'
+  | 'donate';
 
 interface PageSEOData {
   title: string;
@@ -114,6 +115,13 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
     keywords: ['WRFC blog', 'rugby news', 'Washington rugby updates', 'match reports', 'rugby articles'],
     imagePath: '/assets/pictures/blog_hero.jpg',
     imageAlt: 'WRFC Blog'
+  },
+  donate: {
+    title: 'Donate to WRFC | Support Washington Rugby',
+    description: 'Support Washington Rugby Football Club with a tax-deductible donation. Help us continue our legacy of rugby excellence in DC and grow the sport in our community.',
+    keywords: ['donate rugby', 'support wrfc', 'rugby donation', 'dc rugby support', 'nonprofit rugby', 'rugby fundraising'],
+    imagePath: '/assets/pictures/huddle_2025_irish.jpg',
+    imageAlt: 'Support WRFC'
   }
 };
 

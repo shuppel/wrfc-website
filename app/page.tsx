@@ -89,6 +89,12 @@ export default function Home() {
                 Join WRFC
                 <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
               </Link>
+              <Link 
+                href="/donate" 
+                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg"
+              >
+                Donate
+              </Link>
               <a 
                 href="https://www.zeffy.com/ticketing/wrfc-player-dues" 
                 target="_blank"
@@ -114,20 +120,20 @@ export default function Home() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <FeatureCard 
-              icon={<Trophy className="w-12 h-12 text-wrfc-red" />}
+              <FeatureCard 
+                icon={<Trophy className="w-12 h-12 text-wrfc-red" weight="duotone" />}
               title="Growing Legacy"
               description="Former D II Capitol Region Champions, building towards new heights with a world-class coaching staff and dedicated players."
               image="/assets/pictures/2025_irish_ruck.jpg"
             />
-            <FeatureCard 
-              icon={<Users className="w-12 h-12 text-wrfc-navy" />}
+              <FeatureCard 
+                icon={<Users className="w-12 h-12 text-wrfc-navy" weight="duotone" />}
               title="DC Rugby Community"
               description="Join the strongest DC rugby brotherhood of passionate men's rugby players and supporters in the heart of Washington DC."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
-            <FeatureCard 
-              icon={<Calendar className="w-12 h-12 text-wrfc-teal" />}
+              <FeatureCard 
+                icon={<Calendar className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
               title="Year-Round Action"
               description="Compete in both 15s and 7s seasons with opportunities for players of all levels."
               image="/assets/pictures/2025_irish_lami.jpg"

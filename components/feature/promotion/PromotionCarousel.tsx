@@ -93,7 +93,7 @@ export default function PromotionCarousel({
             >
               <span className="flex items-center">
                 {currentPromotion.buttonText}
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" weight="bold" />
               </span>
             </Button>
           </div>
@@ -110,7 +110,7 @@ export default function PromotionCarousel({
             onClick={handlePrevious}
             aria-label="Previous promotion"
           >
-            <ArrowLeft className="h-6 w-6" />
+            <ArrowLeft className="h-6 w-6" weight="bold" />
           </Button>
           
           <Button
@@ -120,7 +120,7 @@ export default function PromotionCarousel({
             onClick={handleNext}
             aria-label="Next promotion"
           >
-            <ArrowRight className="h-6 w-6" />
+            <ArrowRight className="h-6 w-6" weight="bold" />
           </Button>
         </div>
       )}

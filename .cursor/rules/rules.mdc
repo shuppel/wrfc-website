@@ -33,6 +33,30 @@ Rules:
    - Use Tailwind CSS with a design strategy that includes appropriate color palettes and styling rules for both light and dark modes.
    - Eliminate any placeholders, todos, or missing pieces; every aspect of your deliverable should be complete and production-ready.
 
+6. **Icon Library:**
+   - This project uses **Phosphor Icons** (`@phosphor-icons/react`) exclusively. Do NOT use Lucide React, Heroicons, or other icon libraries.
+   - For client components (`'use client'`), import from `@phosphor-icons/react`
+   - For server components (default in App Router), import from `@phosphor-icons/react/dist/ssr`
+   - Common mappings from other libraries:
+     - `Mail`/`Email` → `Envelope`
+     - `ExternalLink` → `ArrowSquareOut`
+     - `Building` → `Buildings`
+     - `Award` → `Trophy` or `Medal`
+     - `School` → `GraduationCap`
+     - `Youtube` → `YoutubeLogo`
+     - `Instagram` → `InstagramLogo`
+     - `Search` → `MagnifyingGlass`
+     - `Filter` → `Funnel`
+     - `MessageCircle` → `ChatCircle`
+     - `Share2` → `ShareNetwork`
+     - `Quote` → `Quotes`
+     - `ClipboardList` → `ClipboardText`
+     - `Smartphone` → `DeviceMobile`
+     - `Banknote` → `Money`
+     - `History` → `ClockCounterClockwise`
+     - `DollarSign` → `CurrencyDollar`
+   - Browse all icons at: https://phosphoricons.com/
+
 6. **Clarity and Conciseness:**  
    - Provide concise, factual, and well-reasoned answers.
    - If you encounter any ambiguity or if the requirements are unclear, ask for clarification rather than making assumptions.

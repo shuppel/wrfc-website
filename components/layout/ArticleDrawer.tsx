@@ -39,6 +39,7 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
           <CaretRight 
             className="w-5 h-5 text-white 
               animate-pulse group-hover:animate-bounce"
+            weight="bold"
           />
         </button>
       </div>
