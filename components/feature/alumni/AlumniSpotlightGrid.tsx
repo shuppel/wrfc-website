@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import AlumniSpotlightCard from './AlumniSpotlightCard'
-import { Search, Filter } from 'lucide-react'
+import { MagnifyingGlass, Funnel } from '@phosphor-icons/react'
 
 interface AlumniSpotlight {
   id: string
@@ -80,7 +80,7 @@ export default function AlumniSpotlightGrid({ spotlights, showFilters = true }: 
       <div className="mb-8 space-y-4">
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             type="text"
             placeholder="Search alumni by name, role, or story..."
@@ -94,7 +94,7 @@ export default function AlumniSpotlightGrid({ spotlights, showFilters = true }: 
         <div className="flex flex-wrap gap-4">
           {/* Category filter */}
           <div className="flex items-center gap-2">
-            <Filter className="w-5 h-5 text-gray-500" />
+            <Funnel className="w-5 h-5 text-gray-500" />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}

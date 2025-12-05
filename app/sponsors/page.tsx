@@ -29,13 +29,22 @@ const SPONSORS: Sponsor[] = [
     badge: "gold"
   },
   {
-    name: "Matet's Kitchen",
-    logo: "/assets/sponsors/matets-kitchen-logo.jpg",
+    name: "Hammerberg Foundation",
+    logo: "/assets/sponsors/craig-hammerberg-removebg-preview.png",
     type: "premier",
-    description: "A beloved local restaurant bringing delicious cuisine to the DC community while supporting local sports.",
-    website: "https://matetskitchen.com/",
+    description: "In honor of our fellow teammate Craig Hammerberg, this foundation was established in his memory to continue supporting the causes and community he loved.",
     contribution: "Premier Level Support",
-    since: "2024",
+    since: "2025",
+    badge: "gold"
+  },
+  {
+    name: "Magners Cider",
+    logo: "/assets/sponsors/magnerslogo.png",
+    type: "premier",
+    description: "Ireland's original cider, proud supporter of rugby culture and community gatherings.",
+    website: "https://magnersusa.com/",
+    contribution: "Premier Level Support",
+    since: "2025",
     badge: "gold"
   },
   {

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Shield, Users, History, Star, Trophy, Beer } from 'lucide-react'
+import { Shield, Users, ClockCounterClockwise, Star, Trophy, BeerStein } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import { generateMetadata, getStructuredData } from '../utils/seo'
 import JsonLd from '../../components/JsonLd'
@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <History className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
+              <ClockCounterClockwise className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
               <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
                 Our History
               </h2>
@@ -188,7 +188,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <Beer className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
+              <BeerStein className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
               <h2 className="text-3xl font-bold font-nasalization text-blue-900 dark:text-blue-400">
                 Club Life
               </h2>

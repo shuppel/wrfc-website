@@ -4,12 +4,32 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ThemeToggle } from '../ThemeToggle'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, Trophy } from 'lucide-react'
+import { 
+  Scroll, 
+  Medal, 
+  Crown, 
+  Star, 
+  UserCircle, 
+  Chalkboard, 
+  Briefcase,
+  PersonSimpleRun,
+  Calendar,
+  Article,
+  FilmStrip,
+  ShareNetwork,
+  List,
+  X as XIcon,
+  CaretDown,
+  Trophy,
+  ShieldCheckered,
+  FlagBanner,
+  type Icon
+} from '@phosphor-icons/react'
 
 interface NavDropdownItem {
   href: string;
   label: string;
-  icon: string;
+  icon: Icon;
 }
 
 interface NavLink {
@@ -26,43 +46,44 @@ const NAV_LINKS: NavLink[] = [
     href: '/about', 
     label: 'About',
     dropdown: [
-      { href: '/about', label: 'About WRFC', icon: '🏉' },
-      { href: '/about/history', label: 'Our History', icon: '📜' },
-      { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: '🏆' },
-      { href: '/about/championships', label: 'Championships', icon: '👑' },
-      { href: '/about/international-players', label: 'Player Commendations', icon: '⭐' },
+      { href: '/about', label: 'About WRFC', icon: ShieldCheckered },
+      { href: '/about/history', label: 'Our History', icon: Scroll },
+      { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: Medal },
+      { href: '/about/championships', label: 'Championships', icon: Crown },
+      { href: '/about/international-players', label: 'Player Commendations', icon: Star },
     ]
   },
   { 
     href: '/teams', 
     label: 'Teams',
     dropdown: [
-      { href: '/teams/players', label: 'Player Roster', icon: '🏃‍♂️' },
-      { href: '/teams/coaches', label: 'Coaching Staff', icon: '👨‍🏫' },
-      { href: '/executive-committee', label: 'Executive Committee', icon: '👔' },
+      { href: '/teams/players', label: 'Player Roster', icon: UserCircle },
+      { href: '/teams/coaches', label: 'Coaching Staff', icon: Chalkboard },
+      { href: '/executive-committee', label: 'Executive Committee', icon: Briefcase },
     ]
   },
   { 
     href: '/schedule', 
     label: 'Schedule',
     dropdown: [
-      { href: '/schedule/practice', label: 'Practice Schedule', icon: '🏃' },
-      { href: '/schedule/game', label: 'Game Schedule', icon: '🏉' },
-      { href: '/schedule/events', label: 'Events & Tournaments', icon: '📅' },
+      { href: '/schedule/practice', label: 'Practice Schedule', icon: PersonSimpleRun },
+      { href: '/schedule/game', label: 'Game Schedule', icon: FlagBanner },
+      { href: '/schedule/events', label: 'Events & Tournaments', icon: Calendar },
     ]
   },
   { 
     href: '/media', 
     label: 'Media',
     dropdown: [
-      { href: '/blog', label: 'Blog', icon: '📝' },
-      { href: '/media/film', label: 'Film Room', icon: '🎬' },
-      { href: '/media/social', label: 'Social Media', icon: '📱' },
+      { href: '/media/social', label: 'Social Media', icon: ShareNetwork },
+      { href: '/media/film', label: 'Film Room', icon: FilmStrip },
+      { href: '/blog', label: 'Blog', icon: Article },
     ]
   },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
+  { href: '/donate', label: 'Donate', highlight: true },
   { href: '/contact', label: 'Contact' },
   { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]
@@ -145,35 +166,36 @@ export default function Header() {
                     <>
                       <Link 
                         href={link.href}
-                        className="px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
+                        className="px-3 py-2 text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
                       >
                         {link.label}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                        <CaretDown className={`w-4 h-4 transition-transform duration-200 ${
                           hoveredDropdown === link.href ? 'rotate-180' : ''
-                        }`} />
+                        }`} weight="bold" />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
                       </Link>
                       
                       {/* Dropdown Menu */}
-                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
+                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
                         hoveredDropdown === link.href 
                           ? 'opacity-100 translate-y-0 visible' 
                           : 'opacity-0 -translate-y-2 invisible'
                       }`}>
                         <div className="py-2">
-                          {link.dropdown.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href}
-                              className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
-                              onClick={() => setHoveredDropdown(null)}
-                            >
-                              <span className="text-lg group-hover:scale-110 transition-transform duration-200">
-                                {dropdownItem.icon}
-                              </span>
-                              <span className="font-medium">{dropdownItem.label}</span>
-                            </Link>
-                          ))}
+                          {link.dropdown.map((dropdownItem) => {
+                            const IconComponent = dropdownItem.icon;
+                            return (
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
+                                className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
+                                onClick={() => setHoveredDropdown(null)}
+                              >
+                                <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" weight="duotone" />
+                                <span className="font-medium">{dropdownItem.label}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     </>
@@ -189,7 +211,7 @@ export default function Header() {
                   <span className="hidden xl:inline">JOIN THE LEGACY</span>
                   <span className="xl:hidden">JOIN</span>
                 </span>
-                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" />
+                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" weight="duotone" />
                 {/* Subtle gleaming border effect */}
                 <span className="absolute inset-0 rounded-lg pointer-events-none">
                   <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
@@ -216,13 +238,13 @@ export default function Header() {
                   setMobileOpenDropdown(null)
                 }
               }}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg text-gray-600 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               aria-label="Toggle mobile menu"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <XIcon className="w-6 h-6" weight="bold" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <List className="w-6 h-6" weight="bold" />
               )}
             </button>
           </div>
@@ -236,7 +258,7 @@ export default function Header() {
               : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
         >
-          <div className="mx-4 rounded-lg bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div className="mx-4 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700">
             {/* Navigation Links */}
             <div className="p-4 space-y-2">
               {NAV_LINKS.map((link) => (
@@ -245,33 +267,37 @@ export default function Header() {
                     <>
                       <button
                         onClick={() => setMobileOpenDropdown(mobileOpenDropdown === link.href ? null : link.href)}
-                        className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-300 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
+                        className="w-full flex items-center justify-between py-3 text-gray-600 dark:text-gray-100 font-medium hover:text-wrfc-navy dark:hover:text-white transition-colors"
                       >
                         <span>{link.label}</span>
-                        <ChevronDown 
+                        <CaretDown 
                           className={`w-4 h-4 transition-transform duration-200 ${
                             mobileOpenDropdown === link.href ? 'rotate-180' : ''
                           }`}
+                          weight="bold"
                         />
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
                         mobileOpenDropdown === link.href ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                       }`}>
                         <div className="pl-4 pb-2 space-y-1">
-                          {link.dropdown.map((dropdownItem) => (
-                            <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href}
-                              className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors"
-                              onClick={() => {
-                                setIsMobileMenuOpen(false)
-                                setMobileOpenDropdown(null)
-                              }}
-                            >
-                              <span>{dropdownItem.icon}</span>
-                              <span>{dropdownItem.label}</span>
-                            </Link>
-                          ))}
+                          {link.dropdown.map((dropdownItem) => {
+                            const IconComponent = dropdownItem.icon;
+                            return (
+                              <Link
+                                key={dropdownItem.href}
+                                href={dropdownItem.href}
+                                className="flex items-center gap-2 py-2 text-sm text-gray-500 dark:text-gray-400 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-md transition-colors px-3"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false)
+                                  setMobileOpenDropdown(null)
+                                }}
+                              >
+                                <IconComponent className="w-4 h-4" weight="duotone" />
+                                <span>{dropdownItem.label}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     </>
@@ -281,7 +307,7 @@ export default function Header() {
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
                             ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                            : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         style={{ cursor: 'pointer' }}
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -296,7 +322,7 @@ export default function Header() {
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
                             ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                            : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                            : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -309,7 +335,7 @@ export default function Header() {
                       className={`block py-3 rounded-md transition-colors ${
                         link.highlight 
                           ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
-                          : 'text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
+                          : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -329,7 +355,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="relative z-10 font-semibold tracking-wide">JOIN</span>
-                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" weight="duotone" />
                 {/* Subtle gleaming border effect */}
                 <span className="absolute inset-0 rounded-lg pointer-events-none">
                   <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
@@ -361,7 +387,7 @@ function NavLink({ href, children, external, highlight, isZeffy }: { href: strin
   const baseClass = "px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
   const linkClass = highlight 
     ? `${baseClass} text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300`
-    : `${baseClass} text-gray-600 dark:text-gray-300 hover:text-wrfc-navy dark:hover:text-white`
+    : `${baseClass} text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white`
   
   if (external) {
     if (isZeffy) {
@@ -404,4 +430,4 @@ function NavLink({ href, children, external, highlight, isZeffy }: { href: strin
       }`} />
     </Link>
   )
-} 
+}

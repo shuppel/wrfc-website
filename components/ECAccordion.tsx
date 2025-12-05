@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { CaretDown } from '@phosphor-icons/react'
 
 interface ECMember {
   position: string
@@ -38,7 +38,7 @@ export default function ECAccordion({ previousYears }: ECAccordionProps) {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {yearData.year} Executive Committee
             </h3>
-            <ChevronDown 
+            <CaretDown 
               className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200 ${
                 openYear === yearData.year ? 'rotate-180' : ''
               }`}

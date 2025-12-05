@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { MapPin, Calendar, Users, ArrowRight } from 'lucide-react'
+import { MapPin, Calendar, Users, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 import JsonLd from '../../../components/JsonLd'
 import { generateSEOMetadata } from '../../utils/seo'

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, UserCheck, Trophy, Target, GraduationCap, Heart, Calendar, Award } from 'lucide-react'
+import { Users, UserCheck, Trophy, Target, GraduationCap, Heart, Calendar, Medal } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Teams',
@@ -129,7 +129,7 @@ export default function TeamsPage() {
             {/* Commitment */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-red-600 dark:text-red-300" />
+                <Medal className="w-8 h-8 text-red-600 dark:text-red-300" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                 Commitment

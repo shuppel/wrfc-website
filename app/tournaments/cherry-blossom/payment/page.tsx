@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useState, Suspense } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
-import { Smartphone, Banknote, ArrowRight, Copy, Check } from 'lucide-react';
+import { DeviceMobile, Money, ArrowRight, Copy, Check } from '@phosphor-icons/react';
 import ZeffyPaymentButton from '@/components/ZeffyPaymentButton';
 import { ZEFFY_LINKS } from '@/data/zeffy-links';
 import { useToast } from '@/components/ui/use-toast';
@@ -85,7 +85,7 @@ function PaymentContent() {
                 onClick={() => setIsZelleDialogOpen(true)}
               >
                 <div className="flex items-center gap-3">
-                  <Smartphone className="h-5 w-5 text-wrfc-navy" />
+                  <DeviceMobile className="h-5 w-5 text-wrfc-navy" />
                   <div className="text-left">
                     <div className="font-semibold text-wrfc-navy">Pay with Zelle</div>
                     <div className="text-sm text-gray-600">Send to: 440-391-4344</div>
@@ -100,7 +100,7 @@ function PaymentContent() {
                 onClick={() => setIsCheckDialogOpen(true)}
               >
                 <div className="flex items-center gap-3">
-                  <Banknote className="h-5 w-5 text-wrfc-navy" />
+                  <Money className="h-5 w-5 text-wrfc-navy" />
                   <div className="text-left">
                     <div className="font-semibold text-wrfc-navy">Pay with Check</div>
                     <div className="text-sm text-gray-600">Mail to WRFC address below</div>

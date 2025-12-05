@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { generateSEOMetadata } from '@/app/utils/seo'
-import { ChevronLeft, Award, Users, Target } from 'lucide-react'
+import { CaretLeft, Users, Target, Medal } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Coaching Staff - Expert Rugby Coaches',
@@ -86,7 +86,7 @@ const tierConfig = {
     label: 'Head Coaching Staff',
     description: 'Leading our rugby program with vision and expertise',
     color: 'from-blue-600 to-blue-800',
-    icon: Award
+    icon: Medal
   },
   assistant: {
     label: 'Assistant Coaches',
@@ -110,7 +110,7 @@ export default function CoachesPage() {
           href="/teams" 
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
         >
-          <ChevronLeft className="w-5 h-5 mr-1" />
+          <CaretLeft className="w-5 h-5 mr-1" />
           Back to Teams
         </Link>
 

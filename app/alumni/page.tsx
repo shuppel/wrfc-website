@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Heart, Calendar, Users, Trophy, CreditCard, Mail } from 'lucide-react'
+import { ArrowRight, Heart, Calendar, Users, Trophy, CreditCard, Envelope } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'
@@ -263,7 +263,7 @@ export default function AlumniPage() {
                 href="/contact"
                 className="inline-flex items-center bg-wrfc-navy hover:bg-wrfc-navy/90 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg group"
               >
-                <Mail className="mr-2 w-5 h-5" />
+                <Envelope className="mr-2 w-5 h-5" />
                 Join Alumni Newsletter
               </Link>
             </div>

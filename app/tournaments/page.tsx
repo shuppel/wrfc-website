@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, MapPin, Trophy, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Trophy, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getStructuredData } from '../utils/seo'
 import { BreadcrumbJsonLd } from '../../components/JsonLd'
 import JsonLd from '../../components/JsonLd'

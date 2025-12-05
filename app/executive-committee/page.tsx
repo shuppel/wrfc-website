@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, Mail, Phone, Crown, Star, DollarSign, FileText, Shield, Heart, Hash, Target, HandshakeIcon, PartyPopper, Camera } from 'lucide-react'
+import { Users, Envelope, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera } from '@phosphor-icons/react/dist/ssr'
 import ECAccordion from '@/components/ECAccordion'
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -32,7 +32,7 @@ const currentEC: ECMember[] = [
   {
     position: "Treasurer",
     name: "Erikk Shupp",
-    icon: DollarSign
+    icon: CurrencyDollar
   },
   {
     position: "Secretary",
@@ -70,13 +70,13 @@ const currentEC: ECMember[] = [
     position: "Fundraising Chair",
     name: "Nick Cippolone",
     panel: ["Chris DeVore", "Masen"],
-    icon: HandshakeIcon
+    icon: Handshake
   },
   {
     position: "Social Chair",
     name: "Austin 'Ox' Longo",
     panel: ["Daniel Perez", "Joshua Quick"],
-    icon: PartyPopper
+    icon: Confetti
   },
   {
     position: "Social Media Chair",
@@ -178,7 +178,7 @@ export default function ExecutiveCommitteePage() {
                         href={`mailto:${member.email}`}
                         className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
                       >
-                        <Mail className="w-4 h-4" />
+                        <Envelope className="w-4 h-4" />
                         {member.email}
                       </a>
                     )}

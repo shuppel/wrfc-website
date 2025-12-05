@@ -9,7 +9,7 @@ import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Calendar, Quote } from 'lucide-react';
+import { MapPin, Calendar, Quotes } from '@phosphor-icons/react/dist/ssr';
 
 interface AlumniSpotlightPageProps {
   params: {
@@ -143,7 +143,7 @@ export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps
         {quote && (
           <Card className="mb-8 bg-gray-50 dark:bg-gray-800">
             <CardContent className="pt-6">
-              <Quote className="w-8 h-8 text-wrfc-red mb-4" />
+              <Quotes className="w-8 h-8 text-wrfc-red mb-4" />
               <blockquote className="text-xl md:text-2xl italic text-gray-700 dark:text-gray-300">
                 &ldquo;{quote}&rdquo;
               </blockquote>

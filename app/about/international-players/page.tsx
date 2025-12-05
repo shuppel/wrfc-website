@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Globe, Trophy, Star, ArrowLeft } from 'lucide-react'
+import { Globe, Trophy, Star, ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 

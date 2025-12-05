@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from 'lucide-react';
+import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft } from '@phosphor-icons/react';
 import TournamentRegistration from '@/components/feature/tournament/TournamentRegistration';
 import TournamentRegisterButton from '@/components/feature/tournament/TournamentRegisterButton';
 

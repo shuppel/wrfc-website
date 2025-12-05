@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Youtube, Instagram, ChevronDown } from 'lucide-react';
+import { YoutubeLogo, InstagramLogo, CaretDown } from '@phosphor-icons/react';
 import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
@@ -101,7 +101,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
             }`}
             onClick={() => setActiveTab('videos')}
           >
-            <Youtube className="w-5 h-5" />
+            <YoutubeLogo className="w-5 h-5" />
             Match Videos
           </button>
           <button 
@@ -112,7 +112,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
             }`}
             onClick={() => setActiveTab('instagram')}
           >
-            <Instagram className="w-5 h-5" />
+            <InstagramLogo className="w-5 h-5" />
             Instagram Feed
           </button>
         </div>
@@ -152,7 +152,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
                     onClick={loadMoreVideos}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-wrfc-navy text-white rounded-lg hover:bg-wrfc-navy/90 transition-colors"
                   >
-                    <ChevronDown className="w-5 h-5" />
+                    <CaretDown className="w-5 h-5" />
                     Load More Videos
                   </button>
                 </div>
@@ -165,7 +165,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                 >
-                  <Youtube className="w-5 h-5" />
+<YoutubeLogo className="w-5 h-5" />
                   Visit Our YouTube Channel
                 </a>
               </div>
@@ -192,7 +192,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <InstagramLogo className="w-5 h-5" />
                   Follow Us on Instagram
                 </a>
               </div>

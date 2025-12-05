@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { getPlayerBySlug, getAllPlayerSlugs } from '@/data/players';
 import { Badge } from '@/components/ui/badge';

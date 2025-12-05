@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, X } from '@phosphor-icons/react';
 import Image from 'next/image';
 import { Promotion } from '@/data/promotions';
 
@@ -37,7 +37,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
             onClick={onClose}
             className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
           >
-            <X className="h-4 w-4" />
+            <X className="h-4 w-4" weight="bold" />
             <span className="sr-only">Close</span>
           </button>
         </DialogHeader>
@@ -69,7 +69,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
             >
               <span className="flex items-center">
                 {promotion.buttonText}
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="ml-2 w-4 h-4" weight="bold" />
               </span>
             </Button>
           </div>

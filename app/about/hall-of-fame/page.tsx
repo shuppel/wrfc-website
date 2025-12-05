@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Award, Star, Trophy, Globe, ArrowLeft } from 'lucide-react'
+import { Trophy, Star, Medal, Globe, ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -113,11 +113,11 @@ export default function HallOfFamePage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <Award className="w-12 h-12 text-yellow-400" />
+              <Medal className="w-12 h-12 text-yellow-400" />
               <h1 className="text-5xl md:text-6xl font-bold font-nasalization">
                 Hall of Fame
               </h1>
-              <Award className="w-12 h-12 text-yellow-400" />
+              <Medal className="w-12 h-12 text-yellow-400" />
             </div>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
               Celebrating WRFC&apos;s legendary contributions to American rugby
@@ -212,7 +212,7 @@ export default function HallOfFamePage() {
                       </div>
                     </div>
                     <div className="mt-4 md:mt-0">
-                      <Award className="w-16 h-16 text-yellow-500" />
+                      <Medal className="w-16 h-16 text-yellow-500" />
                     </div>
                   </div>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, ChevronRight, Newspaper } from 'lucide-react';
+import { X, CaretRight, Newspaper } from '@phosphor-icons/react';
 import Image from 'next/image';
 
 interface ArticleDrawerProps {
@@ -36,9 +36,10 @@ export default function ArticleDrawer({ isOpen, onClose }: ArticleDrawerProps) {
           <Newspaper className="w-5 h-5" />
 
           {/* Arrow */}
-          <ChevronRight 
+          <CaretRight 
             className="w-5 h-5 text-white 
               animate-pulse group-hover:animate-bounce"
+            weight="bold"
           />
         </button>
       </div>

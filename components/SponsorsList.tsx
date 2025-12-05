@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { Trophy, Heart, Building, Info, MapPin, Tag, Shield } from 'lucide-react';
+import { Trophy, Heart, Buildings, Info, MapPin, Tag, Shield } from '@phosphor-icons/react';
 import { Sponsor } from '../app/sponsors/page';
 
 const BADGE_COLORS = {
@@ -121,7 +121,7 @@ export default function SponsorsList({ sponsors }: SponsorsListProps) {
       {/* Club Sponsors */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-8">
-          <Building className="w-8 h-8 text-wrfc-navy" />
+          <Buildings className="w-8 h-8 text-wrfc-navy" />
           <h2 className="text-3xl font-bold">Club Sponsors</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

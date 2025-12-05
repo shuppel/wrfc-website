@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, User, Clock, ChevronRight } from 'lucide-react';
+import { Calendar, User, Clock, CaretRight } from '@phosphor-icons/react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent } from '@/components/ui/card';
@@ -215,7 +215,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
                       </div>
                       <span className="text-wrfc-red font-semibold flex items-center gap-2 group">
                         Read More
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <CaretRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </div>
                   </CardContent>
@@ -322,7 +322,7 @@ function BlogPostCard({ post }: { post: BlogPostCardData }) {
                 {post.author?.name || 'WRFC Staff'}
               </span>
             </div>
-            <ChevronRight className="w-4 h-4 text-wrfc-red group-hover:translate-x-1 transition-transform" />
+            <CaretRight className="w-4 h-4 text-wrfc-red group-hover:translate-x-1 transition-transform" />
           </div>
         </CardContent>
       </Card>

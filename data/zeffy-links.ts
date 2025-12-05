@@ -12,7 +12,7 @@ export const ZEFFY_LINKS = {
     description: 'WRFC Membership'
   },
   donations: {
-    general: 'https://www.zeffy.com/en-US/donation-form/your-donation-link', // TODO: Replace with actual Zeffy link
+    general: 'https://www.zeffy.com/en-US/donation-form/wrfc-donations',
     description: 'Support WRFC'
   }
 };

@@ -24,5 +24,46 @@ Below is the design rubric for assessing and refreshing our interfaces:
 
 ---
 
+## Icon Library
+
+This project uses **Phosphor Icons** (`@phosphor-icons/react`) exclusively for all iconography. Do NOT use Lucide React, Heroicons, or other icon libraries.
+
+### Usage
+
+**For client components** (`'use client'`):
+```tsx
+import { Trophy, Users, Calendar } from '@phosphor-icons/react';
+```
+
+**For server components** (default in App Router):
+```tsx
+import { Trophy, Users, Calendar } from '@phosphor-icons/react/dist/ssr';
+```
+
+### Sizing with Tailwind
+
+```tsx
+<Trophy className="w-6 h-6" />  // 24px
+<Trophy className="w-8 h-8" />  // 32px
+```
+
+### Common Icon Mappings
+
+| Other Libraries | Phosphor Equivalent |
+|-----------------|---------------------|
+| `Mail`, `Email` | `Envelope` |
+| `ExternalLink` | `ArrowSquareOut` |
+| `Building` | `Buildings` |
+| `Award`, `Medal` | `Trophy` or `Medal` |
+| `School` | `GraduationCap` |
+| `Youtube` | `YoutubeLogo` |
+| `Instagram` | `InstagramLogo` |
+| `Search` | `MagnifyingGlass` |
+| `Filter` | `Funnel` |
+
+Browse all icons at: https://phosphoricons.com/
+
+---
+
 **Remember:** *It Sucks, Make it Pop!*  
 If it sucks, we make it pop. Let's refresh our designs and create user interfaces that truly stand out.

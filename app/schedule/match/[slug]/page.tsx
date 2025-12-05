@@ -6,7 +6,7 @@ import { formatDate } from '@/lib/utils';
 import { BreadcrumbJsonLd, SportEventJsonLd } from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Calendar, Clock } from 'lucide-react';
+import { MapPin, Calendar, Clock } from '@phosphor-icons/react/dist/ssr';
 
 interface MatchPageProps {
   params: {

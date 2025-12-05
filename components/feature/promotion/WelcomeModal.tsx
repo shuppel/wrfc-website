@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, X } from '@phosphor-icons/react';
 import Image from 'next/image';
 import { getActivePromotions, Promotion } from '@/data/promotions';
 

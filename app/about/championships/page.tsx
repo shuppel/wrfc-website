@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Trophy, Award, Crown, Calendar, ArrowLeft, Star } from 'lucide-react'
+import { Trophy, Medal, Crown, Calendar, ArrowLeft, Star } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -42,7 +42,7 @@ const championships: Championship[] = [
     description: 'Mid-Atlantic Rugby Football Union Division 1 Championships in fifteen-a-side rugby.',
     significance: 'MARFU represented the highest level of Mid-Atlantic rugby competition, with victory requiring excellence against top-tier regional clubs.',
     category: 'regional',
-    icon: <Award className="w-8 h-8" />
+    icon: <Medal className="w-8 h-8" />
   },
   {
     title: 'Division 1 MARFU Sevens Champions',
@@ -300,7 +300,7 @@ export default function ChampionshipsPage() {
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-yellow-400" />
+                  <Medal className="w-8 h-8 text-yellow-400" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Sustained Excellence</h3>
                 <p className="text-white/80">Championships spanning 50+ years (1971-2021)</p>

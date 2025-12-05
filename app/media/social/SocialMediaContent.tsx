@@ -1,6 +1,6 @@
 'use client';
 
-import { Users, Heart, MessageCircle, Share2 } from 'lucide-react';
+import { Users, Heart, ChatCircle, ShareNetwork } from '@phosphor-icons/react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 
@@ -72,7 +72,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
           </Card>
           <Card>
             <CardContent className="p-6 text-center">
-              <MessageCircle className="w-8 h-8 mx-auto mb-2 text-wrfc-red" />
+              <ChatCircle className="w-8 h-8 mx-auto mb-2 text-wrfc-red" />
               <h3 className="text-2xl font-bold">500+</h3>
               <p className="text-gray-600 dark:text-gray-400">Posts</p>
             </CardContent>
@@ -174,14 +174,14 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <Share2 className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
+                <ShareNetwork className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
                 <h3 className="font-semibold mb-2">Share Your Experience</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Tag us in your rugby photos and stories using #WRFC1963
                 </p>
               </div>
               <div className="text-center">
-                <MessageCircle className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
+                <ChatCircle className="w-12 h-12 mx-auto mb-3 text-wrfc-red" />
                 <h3 className="font-semibold mb-2">Engage With Us</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Comment on our posts and join the WRFC community discussions

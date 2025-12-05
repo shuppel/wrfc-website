@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { format, parseISO, isPast } from 'date-fns';
 import { Game } from '@/types/game';
 import { getLogoForTeam } from '@/utils/logoHelper';
-import { Trophy, Table } from 'lucide-react';
+import { Trophy, Table } from '@phosphor-icons/react';
 import { DivisionType, getGameDivision } from './types';
 
 type ViewType = 'upcoming' | 'past' | 'standings';

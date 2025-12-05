@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Calendar, Clock, ExternalLink } from 'lucide-react';
+import { MapPin, Calendar, Clock, ArrowSquareOut } from '@phosphor-icons/react/dist/ssr';
 import { Button } from '@/components/ui/button';
 
 interface EventPageProps {
@@ -195,7 +195,7 @@ export default function EventPage({ params }: EventPageProps) {
                   className="inline-block"
                 >
                   <Button size="lg" className="bg-wrfc-red hover:bg-red-700">
-                    <ExternalLink className="w-4 h-4 mr-2" />
+                    <ArrowSquareOut className="w-4 h-4 mr-2" />
                     Register for Event
                   </Button>
                 </a>

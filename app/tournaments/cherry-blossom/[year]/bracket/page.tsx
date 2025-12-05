@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Card } from 'components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'components/ui/tabs';
-import { ArrowLeft, Trophy, Medal, Users } from 'lucide-react';
+import { ArrowLeft, Trophy, Medal, Users } from '@phosphor-icons/react';
 
 interface Division {
   name: string;

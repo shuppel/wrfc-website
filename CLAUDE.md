@@ -93,6 +93,58 @@ CONTENTFUL_ACCESS_TOKEN=your_access_token_here
 CONTENTFUL_ENVIRONMENT=master
 ```
 
+## Icons
+
+This project uses **Phosphor Icons** (`@phosphor-icons/react`) as the icon library. Do NOT use Lucide React, Heroicons, or other icon libraries.
+
+### Phosphor Icons Usage
+
+**For client components** (`'use client'`):
+```tsx
+import { Trophy, Users, Calendar } from '@phosphor-icons/react';
+```
+
+**For server components** (default in App Router):
+```tsx
+import { Trophy, Users, Calendar } from '@phosphor-icons/react/dist/ssr';
+```
+
+### Common Icon Name Mappings
+
+Phosphor uses different naming conventions than other libraries. Here are common mappings:
+
+| Other Libraries | Phosphor Equivalent |
+|-----------------|---------------------|
+| `Mail`, `Email` | `Envelope` |
+| `ExternalLink` | `ArrowSquareOut` |
+| `Building` | `Buildings` |
+| `Award`, `Medal` | `Trophy` or `Medal` |
+| `School` | `GraduationCap` |
+| `Youtube` | `YoutubeLogo` |
+| `Instagram` | `InstagramLogo` |
+| `Search` | `MagnifyingGlass` |
+| `Filter` | `Funnel` |
+| `MessageCircle` | `ChatCircle` |
+| `Share2` | `ShareNetwork` |
+| `Quote` | `Quotes` |
+| `ClipboardList` | `ClipboardText` |
+| `Smartphone` | `DeviceMobile` |
+| `Banknote` | `Money` |
+| `History` | `ClockCounterClockwise` |
+| `DollarSign` | `CurrencyDollar` |
+
+### Icon Sizing
+
+Use Tailwind classes for sizing:
+```tsx
+<Trophy className="w-6 h-6" />  // 24px
+<Trophy className="w-8 h-8" />  // 32px
+```
+
+### Finding Icons
+
+Browse all available Phosphor icons at: https://phosphoricons.com/
+
 ## Working with the Codebase
 
 When making changes:
@@ -102,5 +154,6 @@ When making changes:
 4. Maintain SEO best practices for any new or modified pages
 5. Use the Zeffy payment integration for any payment-related features
 6. Add new content types to Contentful when extending dynamic content
+7. **Use Phosphor Icons** (`@phosphor-icons/react`) for all icons - never use Lucide, Heroicons, or other icon libraries
 
 The codebase follows a component-based approach with a clear separation of UI components, layout elements, and feature implementations. For dynamic content, use the Contentful integration rather than hardcoding data.

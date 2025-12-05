@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Youtube, Instagram, FileText, ArrowRight, Calendar, Clock } from 'lucide-react';
+import { YoutubeLogo, InstagramLogo, FileText, ArrowRight, Calendar, Clock } from '@phosphor-icons/react';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import JsonLd from '@/components/JsonLd';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -120,7 +120,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <Youtube className="w-8 h-8 text-red-600" />
+                <YoutubeLogo className="w-8 h-8 text-red-600" />
                 <span className="text-sm text-gray-500">Video Content</span>
               </div>
               <CardTitle className="text-2xl">Film Room</CardTitle>
@@ -149,7 +149,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <Instagram className="w-8 h-8 text-pink-600" />
+                <InstagramLogo className="w-8 h-8 text-pink-600" />
                 <span className="text-sm text-gray-500">Live Updates</span>
               </div>
               <CardTitle className="text-2xl">Social Media</CardTitle>

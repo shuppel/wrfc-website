@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Play, ChevronDown, Calendar, Eye } from 'lucide-react';
+import { Play, CaretDown, Calendar, Eye } from '@phosphor-icons/react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import Image from 'next/image';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
@@ -223,7 +223,7 @@ export default function FilmRoomContent({ structuredData }: FilmRoomContentProps
               size="lg"
               className="group"
             >
-              <ChevronDown className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
+              <CaretDown className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform" />
               Load More Videos
             </Button>
           </div>

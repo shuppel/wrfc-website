@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { generateSEOMetadata } from '@/app/utils/seo'
-import { Flag, Calendar, Trophy, Users, ChevronLeft } from 'lucide-react'
+import { Flag, Calendar, Trophy, Users, CaretLeft } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'USA Eagles Players - Hall of Fame',
@@ -178,7 +178,7 @@ export default function USEaglesPage() {
           href="/about/hall-of-fame" 
           className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
         >
-          <ChevronLeft className="w-5 h-5 mr-1" />
+          <CaretLeft className="w-5 h-5 mr-1" weight="bold" />
           Back to Hall of Fame
         </Link>
 

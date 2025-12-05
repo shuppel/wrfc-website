@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { CheckCircle, Calendar, MapPin, ClipboardList, Users } from 'lucide-react';
+import { CheckCircle, Calendar, MapPin, ClipboardText, Users } from '@phosphor-icons/react';
 import confetti from 'canvas-confetti';
 
 function ConfirmationContent() {
@@ -80,7 +80,7 @@ function ConfirmationContent() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <ClipboardList className="h-5 w-5 text-wrfc-red flex-shrink-0 mt-1" />
+                <ClipboardText className="h-5 w-5 text-wrfc-red flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-semibold">Complete Team Roster</p>
                   <p className="text-gray-600">Deadline: March 15, 2025</p>

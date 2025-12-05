@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Calendar, Trophy, Users, Globe, Award, School, Building, ExternalLink } from 'lucide-react'
+import { Calendar, Trophy, Users, Globe, Medal, GraduationCap, Buildings, ArrowSquareOut } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../../utils/seo'
 import { BreadcrumbJsonLd } from '../../../components/JsonLd'
 
@@ -24,7 +24,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '1963',
     title: 'Foundation of WRFC',
     description: 'Washington RFC established in February as the second rugby club in the Mid-Atlantic region. Founded by diplomatic expatriates from various foreign embassies, becoming a cornerstone of American rugby\'s modern revival.',
-    icon: <Building className="w-6 h-6" />,
+    icon: <Buildings className="w-6 h-6" />,
     category: 'founding',
     imagePlaceholder: 'Early WRFC founding members at practice'
   },
@@ -40,7 +40,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '1971 & 1974',
     title: 'Early Championship Success',
     description: 'WRFC captures the Blume Trophy twice, demonstrating competitive excellence within the first decade. Club begins producing international-caliber players.',
-    icon: <Award className="w-6 h-6" />,
+    icon: <Medal className="w-6 h-6" />,
     category: 'championship',
     imagePlaceholder: 'Blume Trophy celebration'
   },
@@ -64,7 +64,7 @@ const timelineEvents: TimelineEvent[] = [
     year: '2004',
     title: 'Washington DC Youth Rugby Founded',
     description: 'WRFC pioneers youth rugby development for underserved communities. Starting with 7 participants, the program now reaches over 100 children across all DC quadrants.',
-    icon: <School className="w-6 h-6" />,
+    icon: <GraduationCap className="w-6 h-6" />,
     category: 'community',
     imagePlaceholder: 'Youth rugby program in action',
     link: 'https://www.washingtondcyouthrugby.org/'
@@ -120,7 +120,7 @@ export default function HistoryPage() {
                 <span>62+ Years</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-6 h-6 text-wrfc-red" />
+                <Medal className="w-6 h-6 text-wrfc-red" />
                 <span>4 Hall of Famers</span>
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function HistoryPage() {
                                 className="inline-flex items-center gap-2 text-wrfc-red hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-semibold text-sm transition-colors"
                               >
                                 Visit Washington DC Youth Rugby
-                                <ExternalLink className="w-4 h-4" />
+                                <ArrowSquareOut className="w-4 h-4" />
                               </a>
                             </div>
                           )}
@@ -266,7 +266,7 @@ export default function HistoryPage() {
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-wrfc-red" />
+                  <Medal className="w-8 h-8 text-wrfc-red" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">International Recognition</h3>
                 <p className="text-white/80">4 Hall of Fame inductees and 20+ USA Eagles produced</p>

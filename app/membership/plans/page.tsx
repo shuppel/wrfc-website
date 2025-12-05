@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { getAllMembershipPlans } from '@/data/membership';
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
