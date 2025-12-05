@@ -1,0 +1,85 @@
+name: Auto Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version bump type from labels
+        id: bump
+        run: |
+          LABELS='${{ toJson(github.event.pull_request.labels.*.name) }}'
+          if echo "$LABELS" | grep -q "release:major"; then
+            echo "type=major" >> $GITHUB_OUTPUT
+          elif echo "$LABELS" | grep -q "release:minor"; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+          elif echo "$LABELS" | grep -q "release:patch"; then
+            echo "type=patch" >> $GITHUB_OUTPUT
+          else
+            echo "type=minor" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get latest tag
+        id: latest_tag
+        run: |
+          git fetch --tags
+          LATEST=$(git tag -l "v*" --sort=-v:refname | head -n 1)
+          if [ -z "$LATEST" ]; then
+            LATEST="v0.0.0"
+          fi
+          echo "tag=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Calculate next version
+        id: next_version
+        run: |
+          CURRENT="${{ steps.latest_tag.outputs.tag }}"
+          CURRENT="${CURRENT#v}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+          
+          BUMP_TYPE="${{ steps.bump.outputs.type }}"
+          
+          if [ "$BUMP_TYPE" = "major" ]; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+          elif [ "$BUMP_TYPE" = "minor" ]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          else
+            PATCH=$((PATCH + 1))
+          fi
+          
+          echo "version=v${MAJOR}.${MINOR}.${PATCH}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.next_version.outputs.version }}
+          release_name: ${{ steps.next_version.outputs.version }} - ${{ github.event.pull_request.title }}
+          body: |
+            ## What's Changed
+            
+            ${{ github.event.pull_request.body }}
+            
+            **Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ steps.latest_tag.outputs.tag }}...${{ steps.next_version.outputs.version }}
+            
+            ---
+            *Merged PR #${{ github.event.pull_request.number }} by @${{ github.event.pull_request.user.login }}*
+          draft: false
+          prerelease: false
