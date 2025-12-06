@@ -83,6 +83,7 @@ const NAV_LINKS: NavLink[] = [
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/alumni', label: 'Alumni' },
   { href: '/sponsors', label: 'Sponsors' },
+  { href: '/donate', label: 'Donate', highlight: true },
   { href: '/contact', label: 'Contact' },
   { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]

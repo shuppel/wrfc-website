@@ -3,8 +3,12 @@
 
 export const ZEFFY_LINKS = {
   cherryBlossom: {
-    registration: 'https://www.zeffy.com/en-US/ticketing/your-cherry-blossom-link', // TODO: Replace with actual Zeffy link
+    registration: 'https://www.zeffy.com/en-US/ticketing/cherry-blossom-tournament--2026',
     description: 'Cherry Blossom Tournament Registration'
+  },
+  cherryBlossom2026: {
+    registration: 'https://www.zeffy.com/en-US/ticketing/cherry-blossom-tournament--2026',
+    description: 'Cherry Blossom Tournament 2026 Registration'
   },
   membership: {
     full: 'https://www.zeffy.com/en-US/membership/your-full-membership-link', // TODO: Replace with actual Zeffy link
