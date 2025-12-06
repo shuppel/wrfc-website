@@ -4,41 +4,39 @@ import { ZEFFY_LINKS } from '@/data/zeffy-links';
 export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2026',
   title: 'Cherry Blossom Tournament 2026',
-  description: 'Join us for the 2026 Cherry Blossom Rugby Tournament in Washington DC. Register your team now for this premier East Coast rugby event!',
-  imageUrl: '/assets/pictures/tournament_banner_watercolor.png',
+  description: 'We\'re back in DC! The 58th Annual Cherry Blossom Rugby Tournament returns to The Fields at RFK on April 11, 2026.',
+  imageUrl: '/assets/pictures/138A4076.jpg',
   buttonText: 'Register Your Team',
-  buttonUrl: ZEFFY_LINKS.cherryBlossom2026.registration,
+  buttonUrl: ZEFFY_LINKS.cherryBlossom.registration,
   startDate: '2025-12-01T00:00:00Z',
-  endDate: '2026-04-10T23:59:59Z',
+  endDate: '2026-04-11T23:59:59Z',
   priority: 100,
   isActive: true,
   type: 'tournament',
-  tags: ['rugby', 'tournament', 'cherry blossom', '2026', 'DC'],
+  tags: ['rugby', 'tournament', 'cherry blossom', '2026', 'DC', 'RFK', 'washington dc'],
   ctaType: 'external',
   modalContent: {
     title: 'Cherry Blossom Tournament 2026',
     content: `
-      <p class="text-lg mb-4">The Washington Rugby Football Club is proud to host the annual Cherry Blossom Tournament - one of the premier rugby events on the East Coast!</p>
+      <p class="text-lg mb-4"><strong>We're back in DC!</strong> The Washington Rugby Football Club is proud to host the 58th Annual Cherry Blossom Tournament - returning to the heart of the nation's capital!</p>
       
       <h3 class="text-xl font-bold mb-2 text-wrfc-red">Tournament Details</h3>
-      <p class="mb-4"><strong>Date:</strong> April 11-12, 2026</p>
-      <p class="mb-4"><strong>Location:</strong> Liberty Sports Park, 220 Prince George's Boulevard, Upper Marlboro, MD 20774</p>
+      <p class="mb-4"><strong>Date:</strong> April 11, 2026</p>
+      <p class="mb-4"><strong>Location:</strong> The Fields at RFK, Washington DC</p>
       
-      <h3 class="text-xl font-bold mb-2 text-wrfc-red">Divisions & Entry Fees</h3>
+      <h3 class="text-xl font-bold mb-2 text-wrfc-red">15s Only - Men's & Women's</h3>
       <ul class="list-disc pl-5 mb-4 space-y-1">
-        <li>Senior Men's 15s - $400</li>
-        <li>Senior Women's 15s - $400</li>
-        <li>Collegiate Men's 7s - $400</li>
-        <li>Collegiate Women's 7s - $400</li>
-        <li>High School Boy's 15s - $350</li>
-        <li>High School Girl's 15s - $350</li>
-        <li>Old Boy's 15s - $350</li>
+        <li>Club 15s - $485 (Early Bird) / $500</li>
+        <li>College 15s - $450 (Early Bird) / $475</li>
+        <li>High School 15s - $485</li>
+        <li>Two Teams Bundle - $650</li>
       </ul>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Early bird pricing ends January 4th!</p>
       
-      <p class="text-center font-bold text-lg bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">Early Bird Registration Now Open!</p>
+      <p class="text-center font-bold text-lg bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">Registration Now Open!</p>
       
       <p class="mt-4">Don't miss your chance to compete in DC's premier spring rugby tournament. Register your team today!</p>
     `,
-    imageUrl: '/assets/pictures/tournament_banner_watercolor.png'
+    imageUrl: '/assets/pictures/138A4076.jpg'
   }
 }; 

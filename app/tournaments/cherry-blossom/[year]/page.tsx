@@ -2,9 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Calendar, MapPin, Camera, Trophy, Users, ArrowLeft, Clock, CheckCircle, Ticket } from '@phosphor-icons/react';
+import { Calendar, MapPin, Trophy, Users, ArrowLeft, Clock, CheckCircle, Ticket } from '@phosphor-icons/react';
 import TournamentRegistration from '@/components/feature/tournament/TournamentRegistration';
 import { getTournamentByYear, getHistoricalTournaments } from '@/data/cherry-blossom-tournaments';
 import { ZEFFY_LINKS } from '@/data/zeffy-links';
@@ -19,49 +18,37 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
   const tournamentData = tournament || {
     year: 2026,
     edition: 58,
-    date: 'April 11-12, 2026',
+    date: 'April 11, 2026',
     datePending: false,
     status: 'upcoming' as const,
     location: {
-      name: 'Liberty Sports Park',
-      address: '220 Prince George\'s Boulevard, Upper Marlboro, MD 20774'
+      name: 'The Fields at RFK',
+      address: 'Washington, DC'
     },
     divisions: [
-      { name: 'Senior Men\'s 15s', description: 'Premier division for club teams', fee: 400, format: '15s' as const, maxTeams: 12 },
-      { name: 'Senior Women\'s 15s', description: 'Premier women\'s division', fee: 400, format: '15s' as const, maxTeams: 8 },
-      { name: 'Collegiate Men\'s 7s', description: 'CRC Qualifier', fee: 400, format: '7s' as const, maxTeams: 12 },
-      { name: 'Collegiate Women\'s 7s', description: 'CRC Qualifier', fee: 400, format: '7s' as const, maxTeams: 12 },
-      { name: 'High School Boy\'s 15s', description: 'Youth competition', fee: 350, format: '15s' as const, maxTeams: 8 },
-      { name: 'High School Girl\'s 15s', description: 'Youth women\'s competition', fee: 350, format: '15s' as const, maxTeams: 8 },
-      { name: 'Old Boy\'s 15s', description: 'Veterans division', fee: 350, format: '15s' as const, maxTeams: 8 }
+      { name: 'Club 15s', description: 'Men\'s & Women\'s Club teams', fee: 485, format: '15s' as const, maxTeams: 12 },
+      { name: 'College 15s', description: 'Men\'s & Women\'s College teams', fee: 450, format: '15s' as const, maxTeams: 12 },
+      { name: 'High School 15s', description: 'Men\'s & Women\'s High School teams', fee: 485, format: '15s' as const, maxTeams: 8 },
+      { name: 'Two Teams Bundle', description: 'Register two sides at a discount', fee: 650, format: '15s' as const, maxTeams: 8 }
     ],
     registrationOpen: true,
     registrationOpens: 'December 1, 2025',
     registrationCloses: 'April 1, 2026',
     paymentDeadlineDays: 14,
-    highlights: ['58th Annual Cherry Blossom Tournament', 'Premier East Coast spring rugby event']
+    highlights: ['58th Annual Cherry Blossom Tournament', 'We\'re back in DC at The Fields at RFK!', 'Premier East Coast spring rugby event']
   };
 
+  const isBackInDC = yearNum === 2026;
+
   const coverImage = '/assets/pictures/2025_irish_ruck.jpg';
-  const galleryImages = [
-    '/assets/pictures/2025_irish_ruck.jpg',
-    '/assets/pictures/huddle_2025_irish.jpg',
-    '/assets/pictures/2025_irish_harry.jpg'
-  ];
 
   const previousYearData = {
-    featuredTeams: [
-      'Washington Irish',
-      'New York Reds',
-      'White Plains',
-      'Mount Saint Marys',
-      'Old Breed',
-      'Washington Old Boys',
-      'NoVA',
-      'Kutztown',
-      'Marysville',
-      'Cincinnati RFC'
-    ],
+    teamsByCategory: {
+      'Men\'s Club': ['Washington Irish', 'New York Reds', 'White Plains', 'Cincinnati RFC', 'NoVA'],
+      'Women\'s Club': [],
+      'College': ['Mount Saint Marys', 'Kutztown', 'St. Bonnaventure'],
+      'High School': ['Marysville', 'Old Breed'],
+    },
     totalTeams: 31,
     results: [
       { division: 'Senior Men\'s 15s', champion: 'White Plains', runnerUp: 'New York Reds' },
@@ -70,7 +57,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
   };
 
   const isUpcoming = tournamentData.status === 'upcoming';
-  const registrationLink = yearNum === 2026 ? ZEFFY_LINKS.cherryBlossom2026.registration : ZEFFY_LINKS.cherryBlossom.registration;
+  const registrationLink = ZEFFY_LINKS.cherryBlossom.registration;
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -87,8 +74,14 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          {isBackInDC && (
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-navy to-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
+              <MapPin className="w-4 h-4" />
+              We&apos;re Back in DC!
+            </div>
+          )}
           {isUpcoming && (
-            <div className="inline-flex items-center gap-2 bg-wrfc-red/90 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 bg-wrfc-red/90 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 ml-2">
               <CheckCircle className="w-4 h-4" />
               Registration Now Open
             </div>
@@ -294,51 +287,31 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               ))}
               <div>
                 <h3 className="font-bold mb-3">Participating Teams</h3>
-                <div className="space-y-2">
-                  <div className="flex flex-wrap gap-2">
-                    {previousYearData.featuredTeams.map((team) => (
-                      <span 
-                        key={team} 
-                        className="inline-flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1 text-sm"
-                      >
-                        {team}
-                      </span>
-                    ))}
-                  </div>
+                <div className="space-y-4">
+                  {Object.entries(previousYearData.teamsByCategory).map(([category, teams]) => (
+                    teams.length > 0 && (
+                      <div key={category}>
+                        <h4 className="text-sm font-semibold text-wrfc-red mb-2">{category}</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {teams.map((team) => (
+                            <span 
+                              key={team} 
+                              className="inline-flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1 text-sm"
+                            >
+                              {team}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  ))}
                   <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
-                    + {previousYearData.totalTeams - previousYearData.featuredTeams.length} other teams
+                    + more teams participated across all divisions
                   </p>
                 </div>
               </div>
             </div>
           </Card>
-        </div>
-
-        {/* Photo Highlights */}
-        <div className="mt-16">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-wrfc-navy dark:text-blue-400">
-              Photo Highlights
-            </h2>
-            <Link href={`/tournaments/cherry-blossom/${params.year}/photos`}>
-              <Button variant="outline">
-                View All Photos
-                <Camera className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {galleryImages.map((image, index) => (
-              <div key={index} className="relative aspect-video rounded-lg overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`Tournament Photo ${index + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Final CTA */}
@@ -356,7 +329,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               className="inline-flex items-center gap-2 bg-white text-wrfc-red hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105"
             >
               <Ticket className="w-5 h-5" />
-              Register Now - Starting at $350
+              Register Now - Starting at $450
             </a>
           </div>
         )}

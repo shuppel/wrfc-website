@@ -35,6 +35,54 @@ const tournaments: Tournament[] = [
   {
     id: 'cherry-blossom',
     name: 'Cherry Blossom Tournament',
+    date: 'April 11, 2026',
+    location: 'The Fields at RFK, Washington DC',
+    coverImage: '/assets/pictures/138A4076.jpg',
+    description: '58th Annual Cherry Blossom Tournament - We\'re back in DC! Join us at The Fields at RFK for the premier East Coast spring rugby event.',
+    divisions: [
+      {
+        id: 'club-2026',
+        name: 'Club 15s',
+        description: 'Men\'s & Women\'s Club teams',
+        price: 485,
+        maxTeams: 12,
+        teamsRegistered: 0,
+        registrationDeadline: '2026-04-01'
+      },
+      {
+        id: 'college-2026',
+        name: 'College 15s',
+        description: 'Men\'s & Women\'s College teams',
+        price: 450,
+        maxTeams: 12,
+        teamsRegistered: 0,
+        registrationDeadline: '2026-04-01'
+      },
+      {
+        id: 'high-school-2026',
+        name: 'High School 15s',
+        description: 'Men\'s & Women\'s High School teams',
+        price: 485,
+        maxTeams: 8,
+        teamsRegistered: 0,
+        registrationDeadline: '2026-04-01'
+      },
+      {
+        id: 'two-teams-2026',
+        name: 'Two Teams Bundle',
+        description: 'Register two sides at a discount',
+        price: 650,
+        maxTeams: 8,
+        teamsRegistered: 0,
+        registrationDeadline: '2026-04-01'
+      }
+    ],
+    status: 'upcoming',
+    year: 2026
+  },
+  {
+    id: 'cherry-blossom',
+    name: 'Cherry Blossom Tournament',
     date: 'April 12-13, 2025',
     location: 'Liberty Sports Park, MD',
     coverImage: '/assets/pictures/2025_irish_ruck.jpg',
@@ -277,9 +325,16 @@ export default async function TournamentsPage() {
                         </div>
                       </Link>
                       <div>
-                        <div className="flex items-center gap-2 text-wrfc-red font-semibold mb-2">
-                          <Trophy className="w-5 h-5" />
-                          <span>57th Annual Tournament</span>
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <div className="flex items-center gap-2 text-wrfc-red font-semibold">
+                            <Trophy className="w-5 h-5" />
+                            <span>{upcomingTournament.year === 2026 ? '58th' : '57th'} Annual Tournament</span>
+                          </div>
+                          {upcomingTournament.year === 2026 && (
+                            <span className="inline-flex items-center gap-1 bg-gradient-to-r from-pink-500 to-wrfc-red text-white text-xs font-bold px-3 py-1 rounded-full">
+                              🌸 We&apos;re Back in DC!
+                            </span>
+                          )}
                         </div>
                         <Link href={`/tournaments/${upcomingTournament.id}`}>
                           <h2 className="text-4xl font-bold mb-4 display-large text-wrfc-navy dark:text-white group-hover:text-wrfc-red transition-colors">
@@ -300,7 +355,7 @@ export default async function TournamentsPage() {
                           </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <Link href={`/tournaments/${upcomingTournament.id}`}>
+                          <Link href={upcomingTournament.year === 2026 ? '/tournaments/cherry-blossom/2026' : `/tournaments/${upcomingTournament.id}`}>
                             <Button className="bg-wrfc-navy hover:bg-wrfc-navy/90 text-white transition-colors">
                               View Tournament Details
                               <ArrowRight className="ml-2 w-4 h-4" />
