@@ -44,54 +44,74 @@ export const cherryBlossomTournaments: TournamentYear[] = [
   {
     year: 2026,
     edition: 58,
-    date: 'TBD',
-    datePending: true,
+    date: 'April 11-12, 2026',
+    datePending: false,
     status: 'upcoming',
     location: {
-      name: 'TBD',
-      address: 'Location to be announced'
+      name: 'Liberty Sports Park',
+      address: '220 Prince George\'s Boulevard, Upper Marlboro, MD 20774'
     },
     divisions: [
       {
-        name: 'Men\'s Club',
+        name: 'Senior Men\'s 15s',
         description: 'Premier division for men\'s club teams',
         fee: 400,
         format: '15s',
         maxTeams: 12
       },
       {
-        name: 'Women\'s College',
-        description: 'Collegiate women\'s division',
+        name: 'Senior Women\'s 15s',
+        description: 'Premier women\'s division for club teams',
         fee: 400,
         format: '15s',
         maxTeams: 8
       },
       {
-        name: 'Men\'s College',
-        description: 'Collegiate men\'s division',
+        name: 'Collegiate Men\'s 7s',
+        description: 'CRC Qualifier - Collegiate men\'s division',
         fee: 400,
-        format: '15s',
-        maxTeams: 8
+        format: '7s',
+        maxTeams: 12
       },
       {
-        name: 'Old Boys 15s',
-        description: 'Veterans division for men 35+',
+        name: 'Collegiate Women\'s 7s',
+        description: 'CRC Qualifier - Collegiate women\'s division',
+        fee: 400,
+        format: '7s',
+        maxTeams: 12
+      },
+      {
+        name: 'High School Boy\'s 15s',
+        description: 'Youth competition for high school boys',
         fee: 350,
         format: '15s',
         maxTeams: 8
       },
       {
-        name: 'U18/College Boys',
-        description: 'Youth competition for high school and college boys',
+        name: 'High School Girl\'s 15s',
+        description: 'Youth competition for high school girls',
+        fee: 350,
+        format: '15s',
+        maxTeams: 8
+      },
+      {
+        name: 'Old Boy\'s 15s',
+        description: 'Veterans division for men 35+',
         fee: 350,
         format: '15s',
         maxTeams: 8
       }
     ],
-    registrationOpen: true, // Testing enabled - set to false before production
-    registrationOpens: 'November 15, 2025',
-    registrationCloses: 'April 22, 2026',
-    paymentDeadlineDays: 14
+    registrationOpen: true,
+    registrationOpens: 'December 1, 2025',
+    registrationCloses: 'April 1, 2026',
+    paymentDeadlineDays: 14,
+    highlights: [
+      '58th Annual Cherry Blossom Tournament',
+      'Premier East Coast spring rugby event',
+      '7 divisions across all levels of play',
+      'CRC Qualifier for collegiate 7s'
+    ]
   },
   {
     year: 2025,
