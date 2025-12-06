@@ -44,60 +44,39 @@ export const cherryBlossomTournaments: TournamentYear[] = [
   {
     year: 2026,
     edition: 58,
-    date: 'April 11-12, 2026',
+    date: 'April 11, 2026',
     datePending: false,
     status: 'upcoming',
     location: {
-      name: 'Liberty Sports Park',
-      address: '220 Prince George\'s Boulevard, Upper Marlboro, MD 20774'
+      name: 'The Fields at RFK',
+      address: 'Washington, DC'
     },
     divisions: [
       {
-        name: 'Senior Men\'s 15s',
-        description: 'Premier division for men\'s club teams',
-        fee: 400,
+        name: 'Club 15s',
+        description: 'Men\'s & Women\'s Club teams',
+        fee: 485,
         format: '15s',
         maxTeams: 12
       },
       {
-        name: 'Senior Women\'s 15s',
-        description: 'Premier women\'s division for club teams',
-        fee: 400,
+        name: 'College 15s',
+        description: 'Men\'s & Women\'s College teams',
+        fee: 450,
         format: '15s',
-        maxTeams: 8
-      },
-      {
-        name: 'Collegiate Men\'s 7s',
-        description: 'CRC Qualifier - Collegiate men\'s division',
-        fee: 400,
-        format: '7s',
         maxTeams: 12
       },
       {
-        name: 'Collegiate Women\'s 7s',
-        description: 'CRC Qualifier - Collegiate women\'s division',
-        fee: 400,
-        format: '7s',
-        maxTeams: 12
-      },
-      {
-        name: 'High School Boy\'s 15s',
-        description: 'Youth competition for high school boys',
-        fee: 350,
+        name: 'High School 15s',
+        description: 'Men\'s & Women\'s High School teams',
+        fee: 485,
         format: '15s',
         maxTeams: 8
       },
       {
-        name: 'High School Girl\'s 15s',
-        description: 'Youth competition for high school girls',
-        fee: 350,
-        format: '15s',
-        maxTeams: 8
-      },
-      {
-        name: 'Old Boy\'s 15s',
-        description: 'Veterans division for men 35+',
-        fee: 350,
+        name: 'Two Teams Bundle',
+        description: 'Register two sides at a discount',
+        fee: 650,
         format: '15s',
         maxTeams: 8
       }
@@ -108,9 +87,9 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     paymentDeadlineDays: 14,
     highlights: [
       '58th Annual Cherry Blossom Tournament',
+      'We\'re back in DC at The Fields at RFK!',
       'Premier East Coast spring rugby event',
-      '7 divisions across all levels of play',
-      'CRC Qualifier for collegiate 7s'
+      '5 divisions across all levels of play'
     ]
   },
   {
