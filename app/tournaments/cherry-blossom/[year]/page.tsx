@@ -42,11 +42,22 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
 
   const coverImage = '/assets/pictures/2025_irish_ruck.jpg';
 
+  // For upcoming tournaments, show registered teams (currently empty)
+  // For past tournaments, show results
+  const registeredTeamsByCategory = {
+    'Men\'s Club': [] as string[],
+    'Women\'s Club': [] as string[],
+    'Men\'s College': [] as string[],
+    'Women\'s College': [] as string[],
+    'High School': [] as string[],
+  };
+
   const previousYearData = {
     teamsByCategory: {
       'Men\'s Club': ['Washington Irish', 'New York Reds', 'White Plains', 'Cincinnati RFC', 'NoVA'],
       'Women\'s Club': [],
-      'College': ['Mount Saint Marys', 'Kutztown', 'St. Bonnaventure'],
+      'Men\'s College': ['Mount Saint Marys', 'Kutztown', 'St. Bonnaventure'],
+      'Women\'s College': [],
       'High School': ['Marysville', 'Old Breed'],
     },
     totalTeams: 31,
@@ -262,13 +273,14 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
             </div>
           </Card>
 
-          {/* Past Results Card */}
+          {/* Registered Teams Card (for upcoming) or Past Results Card (for past) */}
           <Card className="p-8" id="past-results">
             <h2 className="text-3xl font-bold mb-6 text-wrfc-navy dark:text-blue-400">
-              {lastTournament ? `${lastTournament.year} Results` : 'Past Results'}
+              {isUpcoming ? 'Registered Teams' : (lastTournament ? `${lastTournament.year} Results` : 'Past Results')}
             </h2>
             <div className="space-y-6">
-              {previousYearData.results.map((result) => (
+              {/* Show results only for past tournaments */}
+              {!isUpcoming && previousYearData.results.map((result) => (
                 <div key={result.division} className="border-b border-gray-200 dark:border-gray-700 pb-4">
                   <h3 className="font-bold mb-2">{result.division}</h3>
                   <div className="space-y-1 text-sm">
@@ -286,28 +298,27 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                 </div>
               ))}
               <div>
-                <h3 className="font-bold mb-3">Participating Teams</h3>
+                {!isUpcoming && <h3 className="font-bold mb-3">Participating Teams</h3>}
                 <div className="space-y-4">
-                  {Object.entries(previousYearData.teamsByCategory).map(([category, teams]) => (
-                    teams.length > 0 && (
-                      <div key={category}>
-                        <h4 className="text-sm font-semibold text-wrfc-red mb-2">{category}</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {teams.map((team) => (
+                  {Object.entries(isUpcoming ? registeredTeamsByCategory : previousYearData.teamsByCategory).map(([category, teams]) => (
+                    <div key={category}>
+                      <h4 className="text-sm font-semibold text-wrfc-red mb-2">{category}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {teams.length > 0 ? (
+                          teams.map((team) => (
                             <span 
                               key={team} 
                               className="inline-flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-3 py-1 text-sm"
                             >
                               {team}
                             </span>
-                          ))}
-                        </div>
+                          ))
+                        ) : (
+                          <span className="text-sm text-gray-500 italic">No teams registered yet</span>
+                        )}
                       </div>
-                    )
+                    </div>
                   ))}
-                  <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
-                    + more teams participated across all divisions
-                  </p>
                 </div>
               </div>
             </div>
