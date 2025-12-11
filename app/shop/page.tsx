@@ -27,16 +27,16 @@ export default function ShopPage() {
           <Card className="p-8 md:p-12">
             <div className="text-center space-y-6">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                  O'Neill's Team Store
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Browse our complete selection of WRFC jerseys, merchandise, and gear from O'Neill's, the world's leading rugby retailer.
-                </p>
+               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                   O&apos;Neill&apos;s Team Store
+                 </h2>
+                 <p className="text-gray-600 dark:text-gray-300 mb-4">
+                   Browse our complete selection of WRFC jerseys, merchandise, and gear from O&apos;Neill&apos;s, the world&apos;s leading rugby retailer.
+                 </p>
               </div>
 
               <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 space-y-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">What You'll Find:</h3>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-lg">What You&apos;ll Find:</h3>
                 <ul className="text-left space-y-2 text-gray-700 dark:text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-wrfc-red font-bold">•</span>
@@ -63,12 +63,12 @@ export default function ShopPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-red to-red-700 hover:from-red-700 hover:to-wrfc-red text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
               >
-                <span>Visit O'Neill's Store</span>
+                <span>Visit O&apos;Neill&apos;s Store</span>
                 <ArrowSquareOut className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />
               </a>
 
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                You'll be redirected to O'Neill's official WRFC team store
+                You&apos;ll be redirected to O&apos;Neill&apos;s official WRFC team store
               </p>
             </div>
           </Card>

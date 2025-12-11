@@ -23,7 +23,6 @@ import {
   Trophy,
   ShieldCheckered,
   FlagBanner,
-  ShoppingBag,
   type Icon
 } from '@phosphor-icons/react'
 
