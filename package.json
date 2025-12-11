@@ -55,6 +55,7 @@
     "next-seo": "^6.6.0",
     "nodemailer": "^6.10.0",
     "phaser": "^3.70.0",
+    "pnpm": "^10.25.0",
     "reac": "^0.0.0",
     "react": "^18.3.1",
     "react-day-picker": "^9.5.1",

@@ -12,6 +12,12 @@
   color: #333;
 }
 
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #e0e0e0;
+  }
+}
+
 .tabContainer {
   display: flex;
   justify-content: center;
@@ -31,6 +37,17 @@
 
 .tab:hover {
   background-color: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tab {
+    background-color: #374151;
+    color: #e0e0e0;
+  }
+
+  .tab:hover {
+    background-color: #4b5563;
+  }
 }
 
 .activeTab {
@@ -55,6 +72,13 @@
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .videoCard {
+    background: #1f2937;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .videoCard:hover {
@@ -84,6 +108,12 @@
   color: #333;
 }
 
+@media (prefers-color-scheme: dark) {
+  .videoTitle {
+    color: #e0e0e0;
+  }
+}
+
 .instagramContainer {
   text-align: center;
   padding: 2rem;
@@ -92,6 +122,12 @@
 .comingSoon {
   font-size: 1.2rem;
   color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .comingSoon {
+    color: #b0b0b0;
+  }
 }
 
 .comingSoon a {

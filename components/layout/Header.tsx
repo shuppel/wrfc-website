@@ -23,6 +23,7 @@ import {
   Trophy,
   ShieldCheckered,
   FlagBanner,
+  ShoppingBag,
   type Icon
 } from '@phosphor-icons/react'
 
@@ -44,13 +45,15 @@ interface NavLink {
 const NAV_LINKS: NavLink[] = [
   { 
     href: '/about', 
-    label: 'About',
+    label: 'Club',
     dropdown: [
       { href: '/about', label: 'About WRFC', icon: ShieldCheckered },
       { href: '/about/history', label: 'Our History', icon: Scroll },
       { href: '/about/hall-of-fame', label: 'Hall of Fame', icon: Medal },
       { href: '/about/championships', label: 'Championships', icon: Crown },
       { href: '/about/international-players', label: 'Player Commendations', icon: Star },
+      { href: '/sponsors', label: 'Sponsors', icon: Star },
+      { href: '/alumni', label: 'Alumni Network', icon: UserCircle },
     ]
   },
   { 
@@ -81,11 +84,8 @@ const NAV_LINKS: NavLink[] = [
     ]
   },
   { href: '/tournaments', label: 'Tournaments' },
-  { href: '/alumni', label: 'Alumni' },
-  { href: '/sponsors', label: 'Sponsors' },
-  { href: '/donate', label: 'Donate', highlight: true },
+  { href: '/shop', label: 'Shop' },
   { href: '/contact', label: 'Contact' },
-  { href: 'https://www.zeffy.com/ticketing/wrfc-player-dues', label: 'Pay Dues', external: true, highlight: true, isZeffy: true },
 ]
 
 export default function Header() {
@@ -154,7 +154,8 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex flex-1 justify-end items-center">
-            <div className="flex items-center space-x-1">
+            {/* Main Navigation Links */}
+            <div className="flex items-center space-x-2">
               {NAV_LINKS.map((link) => (
                 <div 
                   key={link.href} 
@@ -169,14 +170,14 @@ export default function Header() {
                         className="px-3 py-2 text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group flex items-center gap-1"
                       >
                         {link.label}
-                        <CaretDown className={`w-4 h-4 transition-transform duration-200 ${
+                        <CaretDown className={`w-3 h-3 transition-transform duration-200 ${
                           hoveredDropdown === link.href ? 'rotate-180' : ''
                         }`} weight="bold" />
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-wrfc-red group-hover:w-full transition-all duration-300" />
                       </Link>
                       
                       {/* Dropdown Menu */}
-                      <div className={`absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
+                      <div className={`absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 transform-gpu ${
                         hoveredDropdown === link.href 
                           ? 'opacity-100 translate-y-0 visible' 
                           : 'opacity-0 -translate-y-2 invisible'
@@ -188,10 +189,10 @@ export default function Header() {
                               <Link
                                 key={dropdownItem.href}
                                 href={dropdownItem.href}
-                                className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
+                                className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-wrfc-navy dark:hover:text-white transition-colors group"
                                 onClick={() => setHoveredDropdown(null)}
                               >
-                                <IconComponent className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" weight="duotone" />
+                                <IconComponent className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" weight="duotone" />
                                 <span className="font-medium">{dropdownItem.label}</span>
                               </Link>
                             );
@@ -200,32 +201,44 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                     <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={link.isZeffy}>{link.label}</NavLink>                  )}
+                    <NavLink href={link.href} external={link.external} highlight={link.highlight} isZeffy={link.isZeffy}>{link.label}</NavLink>
+                  )}
                 </div>
               ))}
+            </div>
+
+            {/* Divider */}
+            <div className="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-4" />
+
+            {/* CTA Section */}
+            <div className="flex items-center space-x-3">
+              {/* Donate Link */}
+              <Link 
+                href="/donate"
+                className="px-3 py-2 text-wrfc-red dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 text-sm font-semibold tracking-wide transition-all duration-300"
+              >
+                Donate
+              </Link>
+
+              {/* Pay Dues Button */}
+              <a
+                zeffy-form-link="https://www.zeffy.com/ticketing/wrfc-player-dues"
+                className="px-4 py-2 border-2 border-wrfc-navy dark:border-gray-400 text-wrfc-navy dark:text-gray-100 hover:bg-wrfc-navy hover:text-white dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer"
+              >
+                Pay Dues
+              </a>
+
+              {/* Join Button */}
               <Link 
                 href="/membership" 
-                className="ml-6 px-8 py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl group flex items-center gap-3 relative"
+                className="px-5 py-2 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg group flex items-center gap-2 relative"
               >
-                <span className="relative z-10 inline-block transform group-hover:-translate-y-px transition-transform font-semibold tracking-wide">
-                  <span className="hidden xl:inline">JOIN THE LEGACY</span>
-                  <span className="xl:hidden">JOIN</span>
-                </span>
-                <Trophy className="relative z-10 w-5 h-5 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 hidden xl:block" />
-                {/* Subtle gleaming border effect */}
-                <span className="absolute inset-0 rounded-lg pointer-events-none">
-                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
-                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
-                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
-                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
-                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
-                  </span>
-                </span>
+                <span className="relative z-10 font-semibold tracking-wide text-sm">JOIN</span>
+                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
               </Link>
-              <div className="ml-4">
-                <ThemeToggle />
-              </div>
+
+              {/* Theme Toggle */}
+              <ThemeToggle />
             </div>
           </div>
 
@@ -346,27 +359,35 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Theme Toggle and Join Button Container */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
-              <ThemeToggle />
+            {/* CTA Section */}
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-3">
+              <div className="flex gap-3">
+                <Link 
+                  href="/donate"
+                  className="flex-1 py-2.5 text-center text-wrfc-red dark:text-red-400 font-semibold border-2 border-wrfc-red dark:border-red-400 rounded-lg hover:bg-wrfc-red hover:text-white dark:hover:bg-red-600 transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Donate
+                </Link>
+                <a
+                  zeffy-form-link="https://www.zeffy.com/ticketing/wrfc-player-dues"
+                  className="flex-1 py-2.5 text-center text-wrfc-navy dark:text-gray-100 font-semibold border-2 border-wrfc-navy dark:border-gray-400 rounded-lg hover:bg-wrfc-navy hover:text-white dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Pay Dues
+                </a>
+              </div>
               <Link 
                 href="/membership"
-                className="px-6 py-2.5 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 relative group"
+                className="w-full py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 flex items-center justify-center gap-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="relative z-10 font-semibold tracking-wide">JOIN</span>
-                <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                {/* Subtle gleaming border effect */}
-                <span className="absolute inset-0 rounded-lg pointer-events-none">
-                  <span className="absolute inset-0 rounded-lg border border-white/0 group-hover:border-white/20 transition-all duration-300" />
-                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="absolute top-0 left-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000" />
-                    <span className="absolute bottom-0 right-0 h-px w-0 bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:w-full transition-all duration-1000 delay-500" />
-                    <span className="absolute top-0 right-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-250" />
-                    <span className="absolute bottom-0 left-0 w-px h-0 bg-gradient-to-b from-transparent via-white/40 to-transparent group-hover:h-full transition-all duration-1000 delay-750" />
-                  </span>
-                </span>
+                <span className="font-semibold tracking-wide">JOIN THE CLUB</span>
+                <Trophy className="w-5 h-5" />
               </Link>
+              <div className="flex justify-center pt-2">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
 

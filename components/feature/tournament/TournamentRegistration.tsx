@@ -34,20 +34,20 @@ export default function TournamentRegistration({ divisions }: TournamentRegistra
         </Button>
       </div>
       
-      {divisions && divisions.length > 0 && (
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold">Tournament Divisions</h3>
-          {divisions.map((division, index) => (
-            <div key={index} className="bg-gray-100 p-4 rounded-lg">
-              <h4 className="font-semibold text-lg">{division.name}</h4>
-              {division.description && (
-                <p className="text-gray-600 mt-2">{division.description}</p>
-              )}
-              <p className="text-wrfc-red font-medium mt-2">
-                Registration Fee: ${division.fee.toFixed(2)}
-              </p>
-            </div>
-          ))}
+       {divisions && divisions.length > 0 && (
+         <div className="space-y-4">
+           <h3 className="text-xl font-bold text-gray-900 dark:text-white">Tournament Divisions</h3>
+           {divisions.map((division, index) => (
+             <div key={index} className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+               <h4 className="font-semibold text-lg text-gray-900 dark:text-white">{division.name}</h4>
+               {division.description && (
+                 <p className="text-gray-600 dark:text-gray-300 mt-2">{division.description}</p>
+               )}
+               <p className="text-wrfc-red font-medium mt-2">
+                 Registration Fee: ${division.fee.toFixed(2)}
+               </p>
+             </div>
+           ))}
         </div>
       )}
     </div>
