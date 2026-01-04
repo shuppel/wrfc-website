@@ -221,7 +221,9 @@ export default function Header() {
 
               {/* Pay Dues Button */}
               <a
-                zeffy-form-link="https://www.zeffy.com/ticketing/wrfc-player-dues"
+                href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2 border-2 border-wrfc-navy dark:border-gray-400 text-wrfc-navy dark:text-gray-100 hover:bg-wrfc-navy hover:text-white dark:hover:bg-gray-700 text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer"
               >
                 Pay Dues
@@ -369,7 +371,9 @@ export default function Header() {
                   Donate
                 </Link>
                 <a
-                  zeffy-form-link="https://www.zeffy.com/ticketing/wrfc-player-dues"
+                  href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 py-2.5 text-center text-wrfc-navy dark:text-gray-100 font-semibold border-2 border-wrfc-navy dark:border-gray-400 rounded-lg hover:bg-wrfc-navy hover:text-white dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

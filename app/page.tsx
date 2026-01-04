@@ -138,7 +138,7 @@ export default function Home() {
                 Donate
               </Link>
               <a 
-                href="https://www.zeffy.com/ticketing/wrfc-player-dues" 
+                href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg"
