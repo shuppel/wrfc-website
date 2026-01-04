@@ -306,7 +306,7 @@ export default function TeamsPage() {
                 Become a Member
               </Link>
               <a 
-                zeffy-form-link="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
+                zeffy-form-link="https://www.zeffy.com/en-US/embed/ticketing/wrfc-player-dues?modal=true"
                 className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors cursor-pointer"
               >
                 Pay Dues
