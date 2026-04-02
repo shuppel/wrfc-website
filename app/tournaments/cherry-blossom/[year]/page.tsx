@@ -22,8 +22,8 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
     datePending: false,
     status: 'upcoming' as const,
     location: {
-      name: 'The Fields at RFK',
-      address: 'Washington, DC'
+      name: '22006 James Monroe Highway',
+      address: 'Aldie, VA 20105'
     },
     divisions: [
       { name: 'Club 15s', description: 'Men\'s & Women\'s Club teams', fee: 485, format: '15s' as const, maxTeams: 12 },
@@ -35,7 +35,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
     registrationOpens: 'December 1, 2025',
     registrationCloses: 'April 1, 2026',
     paymentDeadlineDays: 14,
-    highlights: ['58th Annual Cherry Blossom Tournament', 'We\'re back in DC at The Fields at RFK!', 'Premier East Coast spring rugby event']
+    highlights: ['58th Annual Cherry Blossom Tournament', 'Join us in Aldie, VA!', 'Premier East Coast spring rugby event']
   };
 
   const isBackInDC = yearNum === 2026;
@@ -88,7 +88,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
           {isBackInDC && (
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-navy to-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
               <MapPin className="w-4 h-4" />
-              We&apos;re Back in DC!
+              Now in Aldie, VA!
             </div>
           )}
           {isUpcoming && (

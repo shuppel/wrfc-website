@@ -96,7 +96,7 @@ export default function Home() {
                   </div>
                   <div className="flex-grow text-center md:text-left">
                     <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
-                      <span className="text-xs font-bold uppercase tracking-wider text-pink-300">We&apos;re Back in DC!</span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-pink-300">58th Annual CBT in Aldie, VA!</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-bold text-white mb-1">
                       58th Annual Cherry Blossom Tournament
@@ -108,7 +108,7 @@ export default function Home() {
                       </span>
                       <span className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
-                        The Fields at RFK
+                        Aldie, VA
                       </span>
                     </div>
                   </div>

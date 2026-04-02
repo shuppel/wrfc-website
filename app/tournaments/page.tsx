@@ -36,9 +36,9 @@ const tournaments: Tournament[] = [
     id: 'cherry-blossom',
     name: 'Cherry Blossom Tournament',
     date: 'April 11, 2026',
-    location: 'The Fields at RFK, Washington DC',
+    location: '22006 James Monroe Highway, Aldie, VA 20105',
     coverImage: '/assets/pictures/138A4076.jpg',
-    description: '58th Annual Cherry Blossom Tournament - We\'re back in DC! Join us at The Fields at RFK for the premier East Coast spring rugby event.',
+    description: '58th Annual Cherry Blossom Tournament - Join us in Aldie, VA for the premier East Coast spring rugby event.',
     divisions: [
       {
         id: 'club-2026',
@@ -332,7 +332,7 @@ export default async function TournamentsPage() {
                           </div>
                           {upcomingTournament.year === 2026 && (
                             <span className="inline-flex items-center gap-1 bg-gradient-to-r from-pink-500 to-wrfc-red text-white text-xs font-bold px-3 py-1 rounded-full">
-                              🌸 We&apos;re Back in DC!
+                              🌸 Now in Aldie, VA!
                             </span>
                           )}
                         </div>
