@@ -48,8 +48,8 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     datePending: false,
     status: 'upcoming',
     location: {
-      name: 'The Fields at RFK',
-      address: 'Washington, DC'
+      name: '22006 James Monroe Highway',
+      address: 'Aldie, VA 20105'
     },
     divisions: [
       {
@@ -87,7 +87,7 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     paymentDeadlineDays: 14,
     highlights: [
       '58th Annual Cherry Blossom Tournament',
-      'We\'re back in DC at The Fields at RFK!',
+      'Join us in Aldie, VA!',
       'Premier East Coast spring rugby event',
       '5 divisions across all levels of play'
     ]

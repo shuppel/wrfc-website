@@ -69,11 +69,11 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                   <CalendarBlank className="w-4 h-4 text-pink-500" weight="duotone" />
-                  April 11-12, 2026
+                  April 11, 2026
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                   <MapPin className="w-4 h-4 text-pink-500" weight="duotone" />
-                  Liberty Sports Park, MD
+                  Aldie, VA 20105
                 </span>
               </div>
             )}

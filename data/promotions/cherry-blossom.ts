@@ -4,7 +4,7 @@ import { ZEFFY_LINKS } from '@/data/zeffy-links';
 export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2026',
   title: 'Cherry Blossom Tournament 2026',
-  description: 'We\'re back in DC! The 58th Annual Cherry Blossom Rugby Tournament returns to The Fields at RFK on April 11, 2026.',
+  description: 'The 58th Annual Cherry Blossom Rugby Tournament is coming to Aldie, VA on April 11, 2026.',
   imageUrl: '/assets/pictures/138A4076.jpg',
   buttonText: 'Register Your Team',
   buttonUrl: ZEFFY_LINKS.cherryBlossom.registration,
@@ -13,16 +13,16 @@ export const cherryBlossomPromotion: Promotion = {
   priority: 100,
   isActive: true,
   type: 'tournament',
-  tags: ['rugby', 'tournament', 'cherry blossom', '2026', 'DC', 'RFK', 'washington dc'],
+  tags: ['rugby', 'tournament', 'cherry blossom', '2026', 'Aldie', 'Virginia', 'VA'],
   ctaType: 'external',
   modalContent: {
     title: 'Cherry Blossom Tournament 2026',
     content: `
-      <p class="text-lg mb-4"><strong>We're back in DC!</strong> The Washington Rugby Football Club is proud to host the 58th Annual Cherry Blossom Tournament - returning to the heart of the nation's capital!</p>
-      
+      <p class="text-lg mb-4">The Washington Rugby Football Club is proud to host the 58th Annual Cherry Blossom Tournament in Aldie, VA!</p>
+
       <h3 class="text-xl font-bold mb-2 text-wrfc-red">Tournament Details</h3>
       <p class="mb-4"><strong>Date:</strong> April 11, 2026</p>
-      <p class="mb-4"><strong>Location:</strong> The Fields at RFK, Washington DC</p>
+      <p class="mb-4"><strong>Location:</strong> 22006 James Monroe Highway, Aldie, VA 20105</p>
       
       <h3 class="text-xl font-bold mb-2 text-wrfc-red">15s Only - Men's & Women's</h3>
       <ul class="list-disc pl-5 mb-4 space-y-1">
