@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, CaretDown, MapPin, Ticket } from '@phosphor-icons/react/dist/ssr'
+import { Calendar, Trophy, Users, ArrowRight, CaretDown } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
@@ -80,48 +80,6 @@ export default function Home() {
               DC&apos;s Premier Rugby Club - Tradition. Excellence. Community.
               <span className="block text-lg mt-2 text-gray-300">Est. 1963 - Leading DC Rugby Since Day One</span>
             </p>
-
-            {/* Cherry Blossom Tournament 2026 Banner */}
-            <a 
-              href="https://www.zeffy.com/en-US/ticketing/cherry-blossom-tournament--2026"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative mb-8 mx-auto max-w-2xl block"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-wrfc-red to-pink-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition-opacity" />
-              <div className="relative bg-gradient-to-r from-wrfc-navy/95 to-blue-900/95 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/20 shadow-2xl">
-                <div className="flex flex-col md:flex-row items-center gap-4">
-                  <div className="flex-shrink-0 text-4xl">
-                    🌸
-                  </div>
-                  <div className="flex-grow text-center md:text-left">
-                    <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
-                      <span className="text-xs font-bold uppercase tracking-wider text-pink-300">58th Annual CBT in Aldie, VA!</span>
-                    </div>
-                    <h3 className="text-lg md:text-xl font-bold text-white mb-1">
-                      58th Annual Cherry Blossom Tournament
-                    </h3>
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-4 text-sm text-gray-300">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        April 11, 2026
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4" />
-                        Aldie, VA
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0">
-                    <span className="inline-flex items-center gap-2 bg-wrfc-red hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all group-hover:scale-105 group-hover:shadow-lg">
-                      <Ticket className="w-4 h-4" />
-                      Register Team
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </a>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 

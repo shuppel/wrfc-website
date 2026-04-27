@@ -279,8 +279,28 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               {isUpcoming ? 'Registered Teams' : (lastTournament ? `${lastTournament.year} Results` : 'Past Results')}
             </h2>
             <div className="space-y-6">
-              {/* Show results only for past tournaments */}
-              {!isUpcoming && previousYearData.results.map((result) => (
+              {/* Show results for past tournaments using champions data */}
+              {!isUpcoming && tournamentData.champions && tournamentData.champions.map((result) => (
+                <div key={result.division} className="border-b border-gray-200 dark:border-gray-700 pb-4">
+                  <h3 className="font-bold mb-2">{result.division}</h3>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center gap-2">
+                      <Trophy className="w-4 h-4 text-yellow-500" />
+                      <span className="font-semibold">Champion:</span>
+                      <span>{result.team}</span>
+                    </div>
+                    {result.runnerUp && (
+                      <div className="flex items-center gap-2">
+                        <span className="w-4 h-4" />
+                        <span className="font-semibold">Runner-up:</span>
+                        <span>{result.runnerUp}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {/* Fallback for past tournaments without champions data */}
+              {!isUpcoming && !tournamentData.champions && previousYearData.results.map((result) => (
                 <div key={result.division} className="border-b border-gray-200 dark:border-gray-700 pb-4">
                   <h3 className="font-bold mb-2">{result.division}</h3>
                   <div className="space-y-1 text-sm">

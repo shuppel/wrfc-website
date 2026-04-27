@@ -35,6 +35,7 @@ export interface TournamentYear {
   champions?: {
     division: string;
     team: string;
+    runnerUp?: string;
   }[];
   highlights?: string[];
   teamsCount?: number;
@@ -46,7 +47,7 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     edition: 58,
     date: 'April 11, 2026',
     datePending: false,
-    status: 'upcoming',
+    status: 'completed',
     location: {
       name: '22006 James Monroe Highway',
       address: 'Aldie, VA 20105'
@@ -81,15 +82,22 @@ export const cherryBlossomTournaments: TournamentYear[] = [
         maxTeams: 8
       }
     ],
-    registrationOpen: true,
+    registrationOpen: false,
     registrationOpens: 'December 1, 2025',
     registrationCloses: 'April 1, 2026',
     paymentDeadlineDays: 14,
+    champions: [
+      {
+        division: "Men's Club Bracket",
+        team: 'Washington Rugby',
+        runnerUp: 'Fayetteville RFC'
+      }
+    ],
     highlights: [
       '58th Annual Cherry Blossom Tournament',
-      'Join us in Aldie, VA!',
+      'Back in Aldie, VA!',
       'Premier East Coast spring rugby event',
-      '5 divisions across all levels of play'
+      'Washington Rugby wins Men\'s Club Bracket!'
     ]
   },
   {
