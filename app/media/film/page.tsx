@@ -1,9 +1,12 @@
 import { Metadata } from 'next';
-import { generateMetadata, getStructuredData } from '@/app/utils/seo';
+import { generateSEOMetadata, getStructuredData } from '@/app/utils/seo';
 import FilmRoomContent from './FilmRoomContent';
 
-// Generate metadata for the film room page
-export const metadata: Metadata = generateMetadata('media');
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Film Room | WRFC Match Highlights & Rugby Videos',
+  description: 'Watch Washington Rugby Football Club match highlights, training footage, and rugby videos. Film analysis and video coverage from DC\'s premier rugby club.',
+  path: '/media/film',
+});
 
 export default function FilmRoomPage() {
   // Structured data for video gallery

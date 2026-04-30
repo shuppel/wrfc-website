@@ -18,19 +18,28 @@ export async function generateMetadata({ params }: PlayerProfilePageProps): Prom
   const hardcodedPlayer = getPlayerBySlug(params.slug);
   
   if (hardcodedPlayer) {
-    const { name, position } = hardcodedPlayer;
+    const { name, position, division, number } = hardcodedPlayer;
+    const canonicalUrl = `https://washingtonrugby.org/teams/players/${params.slug}`;
+    const divisionText = division === 'Both' ? "WRFC's D1 and D3 men's rugby teams" : `WRFC's Men's ${division} rugby team`;
+    const numberText = number ? ` (#${number})` : '';
+    const description = `${name}${numberText} plays ${position} for ${divisionText}. View player profile, stats, and biography on the official Washington Rugby Football Club roster.`;
+
     return {
-      title: `${name} | WRFC Player`,
-      description: `${name} is a ${position} for Washington Rugby Football Club.`,
+      title: `${name} - ${position} | WRFC Player Profile`,
+      description,
+      alternates: {
+        canonical: canonicalUrl,
+      },
       openGraph: {
         title: `${name} - ${position} | Washington Rugby Football Club`,
-        description: `${name} is a ${position} for Washington Rugby Football Club.`,
+        description,
+        url: canonicalUrl,
         images: [hardcodedPlayer.image],
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${name} | WRFC Player`,
-        description: `${name} is a ${position} for Washington Rugby Football Club.`,
+        title: `${name} - ${position} | WRFC Player`,
+        description,
         images: [hardcodedPlayer.image],
       },
     };
@@ -38,6 +47,7 @@ export async function generateMetadata({ params }: PlayerProfilePageProps): Prom
 
   return {
     title: 'Player Not Found',
+    robots: { index: false, follow: false },
   };
 }
 
