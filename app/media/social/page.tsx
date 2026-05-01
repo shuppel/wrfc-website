@@ -1,9 +1,12 @@
 import { Metadata } from 'next';
-import { generateMetadata, getStructuredData } from '@/app/utils/seo';
+import { generateSEOMetadata, getStructuredData } from '@/app/utils/seo';
 import SocialMediaContent from './SocialMediaContent';
 
-// Generate metadata for the social media page
-export const metadata: Metadata = generateMetadata('media');
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Social Media | WRFC',
+  description: 'Follow Washington Rugby Football Club on Instagram and Facebook for real-time updates, match coverage, and behind-the-scenes content from DC\'s premier rugby club.',
+  path: '/media/social',
+});
 
 export default function SocialMediaPage() {
   // Structured data for social media hub

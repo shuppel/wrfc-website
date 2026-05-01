@@ -59,9 +59,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: 'https://washingtonrugby.org'
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
