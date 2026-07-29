@@ -43,6 +43,57 @@ export interface TournamentYear {
 
 export const cherryBlossomTournaments: TournamentYear[] = [
   {
+    // 59th Annual — next edition. Date, venue and fees carried forward from 2026
+    // as placeholders; confirm with the CBT chair before registration opens.
+    year: 2027,
+    edition: 59,
+    date: 'April 2027',
+    datePending: true,
+    status: 'upcoming',
+    location: {
+      name: 'Venue to be confirmed',
+      address: 'Washington, DC area'
+    },
+    divisions: [
+      {
+        name: 'Club 15s',
+        description: 'Men\'s & Women\'s Club teams',
+        fee: 485,
+        format: '15s',
+        maxTeams: 12
+      },
+      {
+        name: 'College 15s',
+        description: 'Men\'s & Women\'s College teams',
+        fee: 450,
+        format: '15s',
+        maxTeams: 12
+      },
+      {
+        name: 'High School 15s',
+        description: 'Men\'s & Women\'s High School teams',
+        fee: 485,
+        format: '15s',
+        maxTeams: 8
+      },
+      {
+        name: 'Two Teams Bundle',
+        description: 'Register two sides at a discount',
+        fee: 650,
+        format: '15s',
+        maxTeams: 8
+      }
+    ],
+    registrationOpen: false,
+    registrationOpens: 'December 2026',
+    paymentDeadlineDays: 14,
+    highlights: [
+      '59th Annual Cherry Blossom Tournament',
+      'Continuously run by Washington Rugby since 1968',
+      'Date and venue to be announced'
+    ]
+  },
+  {
     year: 2026,
     edition: 58,
     date: 'April 11, 2026',
@@ -95,9 +146,8 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     ],
     highlights: [
       '58th Annual Cherry Blossom Tournament',
-      'Back in Aldie, VA!',
-      'Premier East Coast spring rugby event',
-      'Washington Rugby wins Men\'s Club Bracket!'
+      'Hosted in Aldie, VA',
+      'Washington Rugby won the Men\'s Club Bracket'
     ]
   },
   {
@@ -113,7 +163,7 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     divisions: [
       {
         name: 'Senior Men\'s 15s',
-        description: 'Premier division for club teams',
+        description: 'Top division for club teams',
         fee: 400,
         format: '15s',
         maxTeams: 8
@@ -168,7 +218,7 @@ export const cherryBlossomTournaments: TournamentYear[] = [
     divisions: [
       {
         name: 'Men\'s Division 1',
-        description: 'Premier men\'s division',
+        description: 'Top men\'s division',
         fee: 750,
         format: '15s',
         maxTeams: 8
@@ -204,7 +254,7 @@ export function getHistoricalTournaments(): TournamentYear[] {
   return cherryBlossomTournaments.filter(t => t.status === 'completed');
 }
 
-export function getDivisionOptions(year: number = 2026): { value: string; label: string; fee: number }[] {
+export function getDivisionOptions(year: number = 2027): { value: string; label: string; fee: number }[] {
   const tournament = getTournamentByYear(year);
   if (!tournament) return [];
   

@@ -24,7 +24,7 @@ const championships: Championship[] = [
     title: 'Division 1 PRU Champions',
     years: ['1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993'],
     description: 'Nine consecutive Potomac Rugby Union Division 1 Championships - one of the most remarkable championship runs in American club rugby history.',
-    significance: 'This unprecedented nine-year dominance established WRFC as the premier rugby club in the Mid-Atlantic region and demonstrated sustained excellence rarely seen in American rugby.',
+    significance: 'Nine consecutive years of regional titles, a run rarely matched in American club rugby at the time.',
     category: 'consecutive',
     icon: <Crown className="w-8 h-8" />
   },
@@ -32,7 +32,7 @@ const championships: Championship[] = [
     title: 'Division 1 ERU Champions',
     years: ['1988'],
     description: 'Eastern Rugby Union Division 1 Championship victory during WRFC\'s golden era of dominance.',
-    significance: 'Competing against the best clubs from the entire Eastern seaboard, this championship demonstrated WRFC\'s ability to excel beyond regional competition.',
+    significance: 'A title won against clubs from across the Eastern seaboard, beyond WRFC\'s usual regional competition.',
     category: 'national',
     icon: <Trophy className="w-8 h-8" />
   },
@@ -94,14 +94,14 @@ const eras = [
     period: '1997-2009',
     description: 'Competing at the highest level of American club rugby',
     championships: ['MARFU Sevens Champions (2003)'],
-    significance: 'Maintained elite status in national competition'
+    significance: 'Held a place in national competition'
   },
   {
     name: 'Modern Resurgence',
     period: '2021-Present',
     description: 'Return to championship form and Division I rugby',
     championships: ['Capital Region Division 2 Champions (2021)'],
-    significance: 'Successful rebuild and return to elite competition'
+    significance: 'Rebuild completed and return to top-flight competition'
   }
 ]
 

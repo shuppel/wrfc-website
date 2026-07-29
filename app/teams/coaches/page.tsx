@@ -5,8 +5,8 @@ import { generateSEOMetadata } from '@/app/utils/seo'
 import { CaretLeft, Medal, Users, Target } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Coaching Staff - Expert Rugby Coaches',
-  description: 'Meet the experienced coaching staff at Washington Rugby Football Club, including former USA Eagles captain Jamason Fa\'anana-Schultz and professional rugby player Thretton Palamo. Our dedicated coaches bring elite-level expertise in player development and rugby excellence.',
+  title: 'Coaching Staff',
+  description: 'Washington Rugby Football Club is coached by Thretton Palamo, a former USA Eagles international and professional player, and Jamason Fa\'anana-Schultz, a former USA Eagles captain and former Old Glory DC captain, alongside four assistant and player-coaches.',
   path: '/teams/coaches'
 })
 
@@ -29,7 +29,7 @@ const coaches: Coach[] = [
     title: 'Head Coach',
     tier: 'head',
     photo: '/assets/pictures/thretton-coach-headshot.jpg',
-    bio: 'Thretton brings exceptional international rugby experience to WRFC as a former USA Eagles player and professional rugby athlete. Having competed at the highest levels of the sport, his leadership and tactical expertise drive our competitive excellence and player development.',
+    bio: 'Thretton played for the USA Eagles and spent his career as a professional rugby player before joining WRFC. He runs the senior programme and works closely with backs on attacking shape and decision-making. He also coaches players who arrived at the club having never played rugby.',
     specialties: ['Backs Development', 'Game Strategy', 'High Performance'],
     wikiUrl: 'https://en.wikipedia.org/wiki/Thretton_Palamo'
   },
@@ -39,7 +39,7 @@ const coaches: Coach[] = [
     title: 'Lead Assistant Coach',
     tier: 'head',
     photo: '/assets/pictures/jama-coach-headshot.jpg',
-    bio: 'Jama serves as our Lead Assistant Coach, bringing elite-level rugby experience as a former USA Eagles captain and Old Glory DC captain. His deep rugby knowledge, leadership experience, and passion for player development make him instrumental to our success. His expertise in forward play and set pieces is unmatched.',
+    bio: 'Jama captained the USA Eagles and captained Old Glory DC in Major League Rugby. At WRFC he runs the forwards, scrum and lineout, and sets the tone for how the squad trains. New forwards learn set piece and contact technique directly from him.',
     specialties: ['Forward Play', 'Set Pieces', 'Team Culture', 'Leadership'],
     wikiUrl: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz'
   },
@@ -102,9 +102,37 @@ const tierConfig = {
   }
 }
 
+// Person nodes for the coaching staff. The wikiUrl entries become `sameAs`,
+// which is what lets a search or answer engine tie a name on this page to the
+// same person's international playing record elsewhere.
+const coachingStaffJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsTeam',
+  '@id': 'https://washingtonrugby.org/#organization',
+  name: 'Washington Rugby Football Club',
+  url: 'https://washingtonrugby.org',
+  coach: coaches.map((coach) => ({
+    '@type': 'Person',
+    name: coach.name,
+    jobTitle: coach.title,
+    description: coach.bio,
+    knowsAbout: coach.specialties,
+    ...(coach.wikiUrl ? { sameAs: coach.wikiUrl } : {}),
+    memberOf: {
+      '@type': 'SportsTeam',
+      name: 'Washington Rugby Football Club',
+      url: 'https://washingtonrugby.org'
+    }
+  }))
+}
+
 export default function CoachesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(coachingStaffJsonLd) }}
+      />
       <div className="container mx-auto px-4">
         <Link 
           href="/teams" 
@@ -119,8 +147,9 @@ export default function CoachesPage() {
             Coaching Staff
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
-            Meet the dedicated coaches who guide Washington Rugby Football Club to excellence. 
-            Our coaching staff combines professional experience, tactical expertise, and a passion for player development.
+            Two former USA Eagles internationals lead the WRFC programme, one of whom also captained
+            Old Glory DC in Major League Rugby. They coach the Division 1 side and the players who
+            turned up having never held a rugby ball, in the same sessions.
           </p>
         </div>
 
@@ -257,9 +286,10 @@ export default function CoachesPage() {
 
         <div className="mt-12 text-center">
           <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Train with the Best</h2>
+            <h2 className="text-3xl font-bold mb-4">Train Under Them</h2>
             <p className="text-lg mb-6">
-              Join WRFC and learn from experienced coaches committed to your development and success.
+              Practice is Tuesdays and Thursdays at Rosedale Rec Center in NE DC, and it is open to
+              anyone who turns up — no trial, no experience required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 

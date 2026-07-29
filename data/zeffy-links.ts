@@ -3,8 +3,13 @@
 
 export const ZEFFY_LINKS = {
   cherryBlossom: {
-    registration: 'https://www.zeffy.com/en-US/ticketing/cherry-blossom-tournament--2026',
-    description: 'Cherry Blossom Tournament 2026 Registration'
+    // CBT 2026 (58th) is complete. Replace with the CBT 2027 (59th) Zeffy form
+    // once the tournament committee opens registration, then flip
+    // `registrationOpen` to true on the 2027 entry in
+    // /data/cherry-blossom-tournaments.ts and activate the promotion in
+    // /data/promotions/cherry-blossom.ts.
+    registration: '',
+    description: 'Cherry Blossom Tournament 2027 Registration (not yet open)'
   },
   membership: {
     full: 'https://www.zeffy.com/en-US/membership/your-full-membership-link', // TODO: Replace with actual Zeffy link

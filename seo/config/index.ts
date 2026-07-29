@@ -5,6 +5,8 @@ export const siteConfig = {
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.washingtonrugby.org',
   routes: [
     { path: '/', priority: 1.0 },
+    { path: '/faq', priority: 0.9 },
+    { path: '/dc-rugby', priority: 0.9 },
     { path: '/about', priority: 0.8 },
     { path: '/roster', priority: 0.8 },
     { path: '/schedule', priority: 0.8 },
@@ -26,20 +28,20 @@ export const viewport = {
 // Default metadata configuration for Next.js 13+
 export const defaultMetadata: Metadata = {
   title: {
-    default: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
+    default: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
     template: '%s | WRFC - DC Rugby Club'
   },
-  description: 'Washington Rugby Football Club (WRFC) is DC\'s premier men\'s rugby club and top DC rugby team, established in 1963. Join the best DC rugby club for competitive DC rugby matches, social events, and the strongest DC rugby community.',
+  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby in 2004.',
   metadataBase: new URL(siteConfig.baseUrl),
-  keywords: 'dc rugby, dc rugby club, dc rugby team, washington dc rugby, rugby dc, best dc rugby, mens rugby dc, mens rugby washington, club mens rugby, Rugby Club DC, Washington Rugby, WRFC, Rugby Team, Rugby Union, Cherry Blossom Tournament, Rugby Community, Sports Club DC, Rugby Training, Join Rugby Club, mens rugby team dc, washington mens rugby, dc mens rugby club',
+  keywords: 'dc rugby, dc rugby club, dc rugby team, washington dc rugby, rugby dc, mens rugby dc, mens rugby washington, club mens rugby, Rugby Club DC, Washington Rugby, WRFC, Rugby Team, Rugby Union, Cherry Blossom Tournament, Rugby Community, Sports Club DC, Rugby Training, Join Rugby Club, mens rugby team dc, washington mens rugby, dc mens rugby club, how to join a rugby club in dc, rugby for beginners dc, adult rugby dc',
   authors: [{ name: 'Washington Rugby Football Club' }],
   
   // Open Graph
   openGraph: {
     type: 'website',
     siteName: 'Washington Rugby Football Club - DC Rugby',
-    title: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
-    description: 'Join DC\'s premier men\'s rugby club and top DC rugby team. Washington Rugby Football Club (WRFC) offers competitive DC rugby matches, expert coaching, and the strongest DC rugby community since 1963.',
+    title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
+    description: 'DC\'s oldest rugby club, founded 1963. Men\'s D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome, no experience required.',
     locale: 'en_US',
     url: siteConfig.baseUrl,
     images: [{

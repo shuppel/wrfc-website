@@ -31,7 +31,7 @@ export const events: Event[] = [
       parkingInfo: 'Street parking available. Consider public transportation.'
     },
     description: `
-      <p>Join us for the annual Cherry Blossom Rugby Tournament, one of the premier rugby events in the nation's capital.</p>
+      <p>Join us for the annual Cherry Blossom Rugby Tournament, hosted by Washington Rugby every spring since 1968.</p>
       <p>Teams from across the country will compete in this prestigious tournament during DC's beautiful cherry blossom season.</p>
     `,
     registrationLink: 'https://www.washingtonrugby.org/tournaments/cherry-blossom',

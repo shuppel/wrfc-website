@@ -8,7 +8,7 @@ import { generateSEOMetadata } from '../../utils/seo'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Rugby in Capitol Hill DC',
-  description: 'Join Washington Rugby Football Club - the premier rugby club serving Capitol Hill and downtown DC. Training locations, schedule, and how to join.',
+  description: 'Washington Rugby Football Club trains a 15-minute ride from Capitol Hill at Rosedale Rec Center in NE DC, Tuesdays and Thursdays at 8 PM. Founded 1963, beginners welcome.',
   path: '/local/capitol-hill'
 })
 
@@ -16,7 +16,7 @@ export default function CapitolHillPage() {
   const structuredData = {
     '@type': 'LocalBusiness',
     name: 'Washington Rugby Football Club - Capitol Hill',
-    description: 'Premier rugby club serving Capitol Hill, Washington DC',
+    description: 'Rugby club founded 1963, training in NE DC and drawing players from Capitol Hill',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Washington',
@@ -67,7 +67,7 @@ export default function CapitolHillPage() {
               Rugby in Capitol Hill
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              Washington DC&apos;s Premier Rugby Club
+              Rugby Within Reach of Capitol Hill
             </p>
             <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-200">
               Join WRFC and train with passionate rugby players from Capitol Hill, 
@@ -197,7 +197,7 @@ export default function CapitolHillPage() {
           <p className="text-xl mb-12 max-w-2xl mx-auto">
             Whether you&apos;re new to rugby or an experienced player, WRFC welcomes 
             all Capitol Hill residents. Join us for a practice and experience 
-            the camaraderie of DC&apos;s premier rugby club.
+            the camaraderie of a club that has been here since 1963.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

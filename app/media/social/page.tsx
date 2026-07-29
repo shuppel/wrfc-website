@@ -4,7 +4,7 @@ import SocialMediaContent from './SocialMediaContent';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Social Media | WRFC',
-  description: 'Follow Washington Rugby Football Club on Instagram and Facebook for real-time updates, match coverage, and behind-the-scenes content from DC\'s premier rugby club.',
+  description: 'Follow Washington Rugby Football Club on Instagram and Facebook for real-time updates, match coverage, and behind-the-scenes content from Washington Rugby Football Club, founded 1963.',
   path: '/media/social',
 });
 

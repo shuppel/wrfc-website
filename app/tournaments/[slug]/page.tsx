@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: TournamentPageProps): Promise
 
   return {
     title: `${name} ${year} | WRFC Tournaments`,
-    description: `${name} ${year} - Premier rugby tournament hosted by Washington Rugby Football Club. Registration, schedule, and tournament information.`,
+    description: `${name} ${year}, hosted by Washington Rugby Football Club. Registration, schedule, and tournament information.`,
     openGraph: {
       title: `${name} ${year} | Washington Rugby Football Club`,
       description: `Join us for the ${name} ${year} rugby tournament`,

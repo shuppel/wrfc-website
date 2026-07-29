@@ -26,16 +26,16 @@ interface PageSEOData {
 
 const pageSEOConfig: Record<PageKey, PageSEOData> = {
   home: {
-    title: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
-    description: 'Join DC\'s premier men\'s rugby club and top DC rugby team. Washington Rugby Football Club (WRFC) is the leading DC rugby club, offering competitive DC rugby matches, expert coaching, and the strongest DC rugby community since 1963.',
-    keywords: ['dc rugby', 'dc rugby club', 'dc rugby team', 'washington dc rugby', 'rugby dc', 'best dc rugby', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club'],
+    title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
+    description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides train year-round in NE DC under former USA Eagles internationals. WRFC founded Washington DC Youth Rugby in 2004 and hosts the Cherry Blossom Tournament each spring. No experience required.',
+    keywords: ['dc rugby', 'dc rugby club', 'dc rugby team', 'washington dc rugby', 'rugby dc', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club', 'how to join a rugby club in dc', 'rugby for beginners dc', 'adult rugby dc'],
     imagePath: '/assets/pictures/huddle_2025_irish.jpg',
     imageAlt: 'WRFC Men\'s Rugby Team Huddle'
   },
   about: {
     title: 'About WRFC | DC Rugby History & Tradition Since 1963',
-    description: 'Learn about Washington Rugby Football Club\'s rich DC rugby history, traditions, and commitment to excellence as DC\'s premier rugby club since 1963.',
-    keywords: ['wrfc history', 'washington rugby history', 'dc rugby tradition', 'dc rugby history', 'rugby club history', 'dc rugby club history'],
+    description: 'Washington Rugby Football Club was founded in February 1963, making it the oldest rugby club in the nation\'s capital. Founding member of the USA Rugby Super League in 1997, founder of Washington DC Youth Rugby in 2004, and host of the Cherry Blossom Tournament since 1968.',
+    keywords: ['wrfc history', 'washington rugby history', 'dc rugby tradition', 'dc rugby history', 'rugby club history', 'dc rugby club history', 'oldest rugby club in dc'],
     imagePath: '/assets/pictures/team_photo.jpg',
     imageAlt: 'WRFC Team Photo'
   },
@@ -76,15 +76,15 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
   },
   tournaments: {
     title: 'Rugby Tournaments | WRFC Events & Championships',
-    description: 'Explore WRFC\'s tournament schedule, including our famous Cherry Blossom Tournament and other rugby competitions.',
-    keywords: ['rugby tournaments dc', 'cherry blossom rugby', 'rugby championships', 'wrfc tournaments'],
+    description: 'Washington Rugby Football Club has hosted the Cherry Blossom Tournament every spring since 1968. See the current edition, past results and archives from previous years.',
+    keywords: ['rugby tournaments dc', 'cherry blossom rugby', 'cherry blossom tournament', 'rugby championships', 'wrfc tournaments', 'spring rugby tournament east coast'],
     imagePath: '/assets/pictures/tournament_action.jpg',
     imageAlt: 'WRFC Tournament Action'
   },
   membership: {
-    title: 'Join DC Rugby | WRFC Membership - Best DC Rugby Club',
-    description: 'Become a member of Washington Rugby Football Club, DC\'s premier rugby club. Learn about DC rugby membership benefits, dues, and how to join the top DC rugby community.',
-    keywords: ['join rugby club', 'rugby membership', 'wrfc registration', 'dc rugby join', 'join dc rugby', 'dc rugby membership', 'best dc rugby club'],
+    title: 'Join DC Rugby | WRFC Membership & How to Get Started',
+    description: 'How to join Washington Rugby Football Club: turn up to a training session in NE DC, no experience or kit required. Details on membership dues, what your first practice looks like, and who to contact.',
+    keywords: ['join rugby club', 'rugby membership', 'wrfc registration', 'dc rugby join', 'join dc rugby', 'dc rugby membership', 'how to join a rugby club in dc', 'rugby for beginners dc', 'play rugby with no experience'],
     imagePath: '/assets/pictures/team_practice.jpg',
     imageAlt: 'WRFC Team Practice'
   },

@@ -14,16 +14,16 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
   const historicalTournaments = getHistoricalTournaments();
   const lastTournament = historicalTournaments[0];
   
-  // Default data for 2026 if not found
+  // Fallback to the next edition if the requested year has no data
   const tournamentData = tournament || {
-    year: 2026,
-    edition: 58,
-    date: 'April 11, 2026',
-    datePending: false,
+    year: 2027,
+    edition: 59,
+    date: 'April 2027',
+    datePending: true,
     status: 'upcoming' as const,
     location: {
-      name: '22006 James Monroe Highway',
-      address: 'Aldie, VA 20105'
+      name: 'Venue to be confirmed',
+      address: 'Washington, DC area'
     },
     divisions: [
       { name: 'Club 15s', description: 'Men\'s & Women\'s Club teams', fee: 485, format: '15s' as const, maxTeams: 12 },
@@ -31,14 +31,16 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
       { name: 'High School 15s', description: 'Men\'s & Women\'s High School teams', fee: 485, format: '15s' as const, maxTeams: 8 },
       { name: 'Two Teams Bundle', description: 'Register two sides at a discount', fee: 650, format: '15s' as const, maxTeams: 8 }
     ],
-    registrationOpen: true,
-    registrationOpens: 'December 1, 2025',
-    registrationCloses: 'April 1, 2026',
+    registrationOpen: false,
+    registrationOpens: 'December 2026',
+    registrationCloses: undefined as string | undefined,
     paymentDeadlineDays: 14,
-    highlights: ['58th Annual Cherry Blossom Tournament', 'Join us in Aldie, VA!', 'Premier East Coast spring rugby event']
+    highlights: [
+      '59th Annual Cherry Blossom Tournament',
+      'Continuously run by Washington Rugby since 1968',
+      'Date and venue to be announced'
+    ]
   };
-
-  const isBackInDC = yearNum === 2026;
 
   const coverImage = '/assets/pictures/2025_irish_ruck.jpg';
 
@@ -85,16 +87,12 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          {isBackInDC && (
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-navy to-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
-              <MapPin className="w-4 h-4" />
-              Now in Aldie, VA!
-            </div>
-          )}
           {isUpcoming && (
-            <div className="inline-flex items-center gap-2 bg-wrfc-red/90 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 ml-2">
+            <div className="inline-flex items-center gap-2 bg-wrfc-red/90 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
               <CheckCircle className="w-4 h-4" />
-              Registration Now Open
+              {tournamentData.registrationOpen
+                ? 'Registration Now Open'
+                : `Registration opens ${tournamentData.registrationOpens ?? 'soon'}`}
             </div>
           )}
           <h1 className="text-5xl md:text-7xl font-bold mb-4">

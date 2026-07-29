@@ -2,7 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 
-const navItems = [
+interface NavItem {
+  label: string
+  path: string
+  /** Renders the item as a red call-to-action. Reserved for a live campaign. */
+  highlight?: boolean
+}
+
+const navItems: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Membership', path: '/membership' },
   { label: 'Schedule', path: '/schedule' },
@@ -11,7 +18,7 @@ const navItems = [
   { label: 'Sponsors', path: '/sponsors' },
   { label: 'News', path: '/news' },
   { label: 'Shop', path: '/shop' },
-  { label: 'Cherry Blossom Tournament', path: '/cherry-blossom-tournament', highlight: true },
+  { label: 'Cherry Blossom Tournament', path: '/tournaments/cherry-blossom' },
 ]
 
 export function Navigation() {

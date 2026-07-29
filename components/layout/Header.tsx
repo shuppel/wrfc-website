@@ -84,6 +84,7 @@ const NAV_LINKS: NavLink[] = [
   },
   { href: '/tournaments', label: 'Tournaments' },
   { href: '/shop', label: 'Shop' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ]
 

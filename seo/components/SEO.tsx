@@ -24,7 +24,7 @@ interface SEOProps {
 
 export function SEO({
   title = 'Washington Rugby Football Club',
-  description = 'Join DC\'s premier rugby club. WRFC offers competitive matches, expert coaching, and a strong community of rugby enthusiasts.',
+  description = 'Washington Rugby Football Club, the oldest rugby club in Washington, DC, founded in 1963. Coached by former USA Eagles internationals. New players welcome.',
   image = '/images/wrfc-logo.png',
   article = false,
   canonicalUrl,
