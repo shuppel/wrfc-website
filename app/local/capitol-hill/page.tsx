@@ -16,7 +16,7 @@ export default function CapitolHillPage() {
   const structuredData = {
     '@type': 'LocalBusiness',
     name: 'Washington Rugby Football Club - Capitol Hill',
-    description: 'Rugby club founded 1963, training in NE DC and drawing players from Capitol Hill',
+    description: 'Rugby club founded 1963, training around the District and drawing players from Capitol Hill',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Washington',

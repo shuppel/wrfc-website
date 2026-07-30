@@ -29,6 +29,8 @@ export interface TournamentYear {
   };
   divisions: Division[];
   registrationOpen: boolean;
+  /** False until the committee sets entry fees. Unconfirmed fees render as TBA. */
+  feesConfirmed?: boolean;
   registrationOpens?: string;
   registrationCloses?: string;
   paymentDeadlineDays: number;
@@ -43,8 +45,10 @@ export interface TournamentYear {
 
 export const cherryBlossomTournaments: TournamentYear[] = [
   {
-    // 59th Annual — next edition. Date, venue and fees carried forward from 2026
-    // as placeholders; confirm with the CBT chair before registration opens.
+    // 59th Annual — next edition. Date, venue and fees are not yet set. Division
+    // names carry forward from 2026; fees are 0 with feesConfirmed false so the
+    // UI shows "TBA" rather than a stale price. Confirm all of this with the CBT
+    // chair, then set the real fees and flip feesConfirmed before opening.
     year: 2027,
     edition: 59,
     date: 'April 2027',
@@ -58,33 +62,34 @@ export const cherryBlossomTournaments: TournamentYear[] = [
       {
         name: 'Club 15s',
         description: 'Men\'s & Women\'s Club teams',
-        fee: 485,
+        fee: 0,
         format: '15s',
         maxTeams: 12
       },
       {
         name: 'College 15s',
         description: 'Men\'s & Women\'s College teams',
-        fee: 450,
+        fee: 0,
         format: '15s',
         maxTeams: 12
       },
       {
         name: 'High School 15s',
         description: 'Men\'s & Women\'s High School teams',
-        fee: 485,
+        fee: 0,
         format: '15s',
         maxTeams: 8
       },
       {
         name: 'Two Teams Bundle',
         description: 'Register two sides at a discount',
-        fee: 650,
+        fee: 0,
         format: '15s',
         maxTeams: 8
       }
     ],
     registrationOpen: false,
+    feesConfirmed: false,
     registrationOpens: 'December 2026',
     paymentDeadlineDays: 14,
     highlights: [
@@ -260,7 +265,9 @@ export function getDivisionOptions(year: number = 2027): { value: string; label:
   
   return tournament.divisions.map(d => ({
     value: d.name,
-    label: `${d.name} - $${d.fee} (${d.format})`,
+    label: tournament.feesConfirmed === false
+      ? `${d.name} (${d.format})`
+      : `${d.name} - $${d.fee} (${d.format})`,
     fee: d.fee
   }));
 }

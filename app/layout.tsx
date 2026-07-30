@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     default: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
     template: '%s | WRFC - DC Rugby'
   },
-  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. We field D1, D3 and social sides, train year-round in NE DC, are coached by former USA Eagles internationals, and founded Washington DC Youth Rugby in 2004. No experience required to join.',
+  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. We field D1, D3 and social sides, practise Tuesdays and Thursdays with matches Saturdays, are coached by two USA Eagles internationals, and founded Washington DC Youth Rugby in 2004. No experience required to join.',
   keywords: [
     'dc rugby', 'washington dc rugby', 'rugby dc', 'dc rugby club', 'washington rugby', 'wrfc',
     'washington rfc', 'rugby club', 'sports team', 'DC sports', 'dc rugby team',
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     url: 'https://washingtonrugby.org',
     siteName: 'Washington Rugby FC',
     title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
-    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
+    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
     images: [
       {
         url: '/logos/wrfc_logo.png',
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
-    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
+    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
     images: ['/logos/wrfc_logo.png'],
     creator: '@WRFC_DC',
     site: '@WRFC_DC',

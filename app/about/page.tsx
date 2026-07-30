@@ -114,7 +114,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-lg leading-relaxed">
                   In 2022, we captured the D II Capitol Region Championship, marking a significant milestone 
-                  in our club&apos;s journey. Today, with two former USA Eagles internationals coaching and a growing roster of 
+                  in our club&apos;s journey. Today, with two USA Eagles internationals coaching and a growing roster of 
                   talented players, we&apos;re building on this success and setting our sights on even greater achievements.
                 </p>
               </div>

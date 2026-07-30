@@ -27,7 +27,7 @@ interface PageSEOData {
 const pageSEOConfig: Record<PageKey, PageSEOData> = {
   home: {
     title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
-    description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides train year-round in NE DC under former USA Eagles internationals. WRFC founded Washington DC Youth Rugby in 2004 and hosts the Cherry Blossom Tournament each spring. No experience required.',
+    description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides, coached by two USA Eagles internationals, practising Tuesdays and Thursdays with matches on Saturdays across fall and spring 15s, winter workouts and summer 7s. No experience required.',
     keywords: ['dc rugby', 'dc rugby club', 'dc rugby team', 'washington dc rugby', 'rugby dc', 'mens rugby dc', 'mens rugby washington', 'club mens rugby', 'washington rugby', 'rugby union', 'wrfc', 'join rugby team', 'mens rugby team dc', 'washington mens rugby', 'dc mens rugby club', 'how to join a rugby club in dc', 'rugby for beginners dc', 'adult rugby dc'],
     imagePath: '/assets/pictures/huddle_2025_irish.jpg',
     imageAlt: 'WRFC Men\'s Rugby Team Huddle'
@@ -83,7 +83,7 @@ const pageSEOConfig: Record<PageKey, PageSEOData> = {
   },
   membership: {
     title: 'Join DC Rugby | WRFC Membership & How to Get Started',
-    description: 'How to join Washington Rugby Football Club: turn up to a training session in NE DC, no experience or kit required. Details on membership dues, what your first practice looks like, and who to contact.',
+    description: 'How to join Washington Rugby Football Club: get in touch, come to a session, no experience or kit required. What your first practice looks like, how membership works, and who to contact.',
     keywords: ['join rugby club', 'rugby membership', 'wrfc registration', 'dc rugby join', 'join dc rugby', 'dc rugby membership', 'how to join a rugby club in dc', 'rugby for beginners dc', 'play rugby with no experience'],
     imagePath: '/assets/pictures/team_practice.jpg',
     imageAlt: 'WRFC Team Practice'

@@ -26,7 +26,7 @@ export function OrganizationJsonLd() {
             "@type": "Sport",
             "name": "Rugby"
           },
-          "description": "Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men's D1, D3 and social sides, coached by former USA Eagles internationals.",
+          "description": "Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men's D1, D3 and social sides, coached by two USA Eagles internationals.",
           "foundingDate": "1963",
           "member": {
             "@type": "SportsOrganization",

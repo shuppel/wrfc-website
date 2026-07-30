@@ -31,7 +31,7 @@ export const defaultMetadata: Metadata = {
     default: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
     template: '%s | WRFC - DC Rugby Club'
   },
-  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby in 2004.',
+  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. Men\'s D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby in 2004.',
   metadataBase: new URL(siteConfig.baseUrl),
   keywords: 'dc rugby, dc rugby club, dc rugby team, washington dc rugby, rugby dc, mens rugby dc, mens rugby washington, club mens rugby, Rugby Club DC, Washington Rugby, WRFC, Rugby Team, Rugby Union, Cherry Blossom Tournament, Rugby Community, Sports Club DC, Rugby Training, Join Rugby Club, mens rugby team dc, washington mens rugby, dc mens rugby club, how to join a rugby club in dc, rugby for beginners dc, adult rugby dc',
   authors: [{ name: 'Washington Rugby Football Club' }],
@@ -41,7 +41,7 @@ export const defaultMetadata: Metadata = {
     type: 'website',
     siteName: 'Washington Rugby Football Club - DC Rugby',
     title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
-    description: 'DC\'s oldest rugby club, founded 1963. Men\'s D1, D3 and social sides, year-round training in NE DC, coaching from former USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome, no experience required.',
+    description: 'DC\'s oldest rugby club, founded 1963. Men\'s D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome, no experience required.',
     locale: 'en_US',
     url: siteConfig.baseUrl,
     images: [{

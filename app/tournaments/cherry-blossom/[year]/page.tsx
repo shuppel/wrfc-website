@@ -26,12 +26,13 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
       address: 'Washington, DC area'
     },
     divisions: [
-      { name: 'Club 15s', description: 'Men\'s & Women\'s Club teams', fee: 485, format: '15s' as const, maxTeams: 12 },
-      { name: 'College 15s', description: 'Men\'s & Women\'s College teams', fee: 450, format: '15s' as const, maxTeams: 12 },
-      { name: 'High School 15s', description: 'Men\'s & Women\'s High School teams', fee: 485, format: '15s' as const, maxTeams: 8 },
-      { name: 'Two Teams Bundle', description: 'Register two sides at a discount', fee: 650, format: '15s' as const, maxTeams: 8 }
+      { name: 'Club 15s', description: 'Men\'s & Women\'s Club teams', fee: 0, format: '15s' as const, maxTeams: 12 },
+      { name: 'College 15s', description: 'Men\'s & Women\'s College teams', fee: 0, format: '15s' as const, maxTeams: 12 },
+      { name: 'High School 15s', description: 'Men\'s & Women\'s High School teams', fee: 0, format: '15s' as const, maxTeams: 8 },
+      { name: 'Two Teams Bundle', description: 'Register two sides at a discount', fee: 0, format: '15s' as const, maxTeams: 8 }
     ],
     registrationOpen: false,
+    feesConfirmed: false,
     registrationOpens: 'December 2026',
     registrationCloses: undefined as string | undefined,
     paymentDeadlineDays: 14,
@@ -238,7 +239,9 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               <div className="flex items-start gap-4">
                 <Users className="w-6 h-6 text-wrfc-red shrink-0" />
                 <div className="w-full">
-                  <h3 className="font-bold mb-2">Divisions & Entry Fees</h3>
+                  <h3 className="font-bold mb-2">
+                    {tournamentData.feesConfirmed === false ? 'Divisions' : 'Divisions & Entry Fees'}
+                  </h3>
                   <div className="space-y-3">
                     {tournamentData.divisions.map((division) => (
                       <div key={division.name} className="flex items-center justify-between">
@@ -251,7 +254,9 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
                             )}
                           </div>
                         </div>
-                        <span className="font-semibold">${division.fee}</span>
+                        <span className="font-semibold">
+                          {tournamentData.feesConfirmed === false ? 'TBA' : `$${division.fee}`}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -358,7 +363,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               className="inline-flex items-center gap-2 bg-white text-wrfc-red hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105"
             >
               <Ticket className="w-5 h-5" />
-              Register Now - Starting at $450
+              Register Now
             </a>
           </div>
         )}

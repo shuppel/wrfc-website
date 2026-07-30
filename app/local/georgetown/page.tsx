@@ -16,7 +16,7 @@ export default function GeorgetownPage() {
   const structuredData = {
     '@type': 'SportsOrganization',
     name: 'Washington Rugby Football Club - Georgetown',
-    description: 'Rugby club founded 1963, training in NE DC and drawing players from Georgetown, Foggy Bottom and the West End',
+    description: 'Rugby club founded 1963, training around the District and drawing players from Georgetown, Foggy Bottom and the West End',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Washington',

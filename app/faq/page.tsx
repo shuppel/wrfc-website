@@ -22,7 +22,13 @@ export const metadata = generateSEOMetadata({
  *
  * Every entry is mirrored into FAQPage structured data below.
  */
-type Faq = { question: string; answer: string }
+type Faq = {
+  question: string
+  answer: string
+  /** Optional CTA rendered under the visible answer. Kept out of the FAQPage
+   *  schema, which takes the plain-text answer only. */
+  link?: { href: string; label: string; external?: boolean }
+}
 type FaqSection = { heading: string; items: Faq[] }
 
 const sections: FaqSection[] = [
@@ -77,7 +83,12 @@ const sections: FaqSection[] = [
       {
         question: 'How much does it cost to play for WRFC?',
         answer:
-          'Season dues are $200 for Division 1 players and $150 for Division 3 players, which covers season participation, match eligibility, training, a team gear package, social events and USA Rugby registration. Social membership, which covers club social events and newsletters without playing, is $50. Dues are paid once you decide to join rather than before your first session, and the club will discuss options if cost is a barrier.'
+          'Players pay season dues, which cover season participation, match eligibility, training, a gear package, social events and USA Rugby registration. Current rates are listed on the Pay Dues form, linked from the button in the site header. Dues are paid once you decide to join rather than before your first session, and the club will discuss options if cost is a barrier.',
+        link: {
+          href: 'https://www.zeffy.com/en-US/ticketing/wrfc-player-dues',
+          label: 'View current dues and pay',
+          external: true
+        }
       },
       {
         question: 'Is there an age limit?',
@@ -122,18 +133,20 @@ const sections: FaqSection[] = [
       {
         question: 'What is the Cherry Blossom Tournament?',
         answer:
-          'The Cherry Blossom Rugby Tournament is an annual spring tournament hosted by Washington Rugby Football Club, run every year since 1968. It draws club, college and high school sides from across the East Coast, with men\'s and women\'s brackets. The 58th edition was held on 11 April 2026 in Aldie, Virginia, where Washington Rugby won the Men\'s Club Bracket over Fayetteville RFC. The 57th edition in 2025 drew 31 teams and more than 600 players.'
+          'The Cherry Blossom Rugby Tournament is an annual spring tournament hosted by Washington Rugby Football Club, run every year since 1968. It draws club, college and high school sides from across the East Coast, with men\'s and women\'s brackets. The most recent edition was held in April 2026 in Aldie, Virginia, where Washington Rugby won the Men\'s Club Bracket over Fayetteville RFC.'
       },
       {
         question: 'When is the next Cherry Blossom Tournament and how do teams enter?',
         answer:
-          'The 59th edition takes place in spring 2027. The date and venue have not yet been announced, and registration is not yet open — it typically opens in December, with teams that played the previous year notified first. Teams wanting to be on the notification list should email cbt-chair@washingtonrugby.org.'
+          'The next edition takes place in spring 2027. The date, venue and entry fees have not yet been announced, and registration is not yet open — it typically opens in December, with teams that played the previous year notified first. Teams wanting to be on the notification list should email cbt-chair@washingtonrugby.org.'
       }
     ]
   }
 ]
 
-const allFaqs = sections.flatMap((section) => section.items)
+const allFaqs = sections
+  .flatMap((section) => section.items)
+  .map(({ question, answer }) => ({ question, answer }))
 
 export default function FAQPage() {
   return (
@@ -177,6 +190,18 @@ export default function FAQPage() {
                     <p className="text-gray-700 dark:text-gray-100 leading-relaxed">
                       {faq.answer}
                     </p>
+                    {faq.link && (
+                      <a
+                        href={faq.link.href}
+                        {...(faq.link.external
+                          ? { target: '_blank', rel: 'noopener noreferrer' }
+                          : {})}
+                        className="inline-flex items-center gap-1 mt-3 font-semibold text-wrfc-red hover:underline"
+                      >
+                        {faq.link.label}
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    )}
                   </article>
                 ))}
               </div>
