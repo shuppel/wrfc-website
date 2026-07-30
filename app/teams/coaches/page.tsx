@@ -6,7 +6,7 @@ import { CaretLeft, Medal, Users, Target } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Coaching Staff',
-  description: 'Washington Rugby Football Club is coached by Thretton Palamo, a former USA Eagles international and professional player, and Jamason Fa\'anana-Schultz, a former USA Eagles captain and former Old Glory DC captain, alongside four assistant and player-coaches.',
+  description: 'Washington Rugby Football Club is coached by two USA Eagles internationals: Thretton Palamo, for years the youngest player ever capped by the United States, and Jamason Fa\'anana-Schultz, who has captained the Eagles in test matches within the past three years and captained Old Glory DC.',
   path: '/teams/coaches'
 })
 
@@ -29,7 +29,7 @@ const coaches: Coach[] = [
     title: 'Head Coach',
     tier: 'head',
     photo: '/assets/pictures/thretton-coach-headshot.jpg',
-    bio: 'Thretton played for the USA Eagles and spent his career as a professional rugby player before joining WRFC. He runs the senior programme and works closely with backs on attacking shape and decision-making. He also coaches players who arrived at the club having never played rugby.',
+    bio: 'Thretton was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, going on to a professional career. At WRFC he runs the senior programme and works with the backs on attacking shape and decision-making, and coaches players who arrived having never played rugby.',
     specialties: ['Backs Development', 'Game Strategy', 'High Performance'],
     wikiUrl: 'https://en.wikipedia.org/wiki/Thretton_Palamo'
   },
@@ -39,7 +39,7 @@ const coaches: Coach[] = [
     title: 'Lead Assistant Coach',
     tier: 'head',
     photo: '/assets/pictures/jama-coach-headshot.jpg',
-    bio: 'Jama captained the USA Eagles and captained Old Glory DC in Major League Rugby. At WRFC he runs the forwards, scrum and lineout, and sets the tone for how the squad trains. New forwards learn set piece and contact technique directly from him.',
+    bio: 'Jama has captained the USA Eagles in test matches within the past three years and captained Old Glory DC in Major League Rugby. At WRFC he runs the forwards, scrum and lineout, and sets the tone for how the squad trains. New forwards learn set piece and contact technique directly from him.',
     specialties: ['Forward Play', 'Set Pieces', 'Team Culture', 'Leadership'],
     wikiUrl: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz'
   },
@@ -102,16 +102,19 @@ const tierConfig = {
   }
 }
 
-// Person nodes for the coaching staff. The wikiUrl entries become `sameAs`,
-// which is what lets a search or answer engine tie a name on this page to the
-// same person's international playing record elsewhere.
+// Person nodes for the head coaching staff only. Thretton and Jamason carry
+// international playing records that a search or answer engine can verify via
+// the `sameAs` Wikipedia links; the assistant and player-coaches are listed on
+// the page but left out of the schema so the credentials that matter stand out.
 const coachingStaffJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'SportsTeam',
   '@id': 'https://washingtonrugby.org/#organization',
   name: 'Washington Rugby Football Club',
   url: 'https://washingtonrugby.org',
-  coach: coaches.map((coach) => ({
+  coach: coaches
+    .filter((coach) => coach.tier === 'head')
+    .map((coach) => ({
     '@type': 'Person',
     name: coach.name,
     jobTitle: coach.title,
@@ -147,9 +150,10 @@ export default function CoachesPage() {
             Coaching Staff
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
-            Two former USA Eagles internationals lead the WRFC programme, one of whom also captained
-            Old Glory DC in Major League Rugby. They coach the Division 1 side and the players who
-            turned up having never held a rugby ball, in the same sessions.
+            Two USA Eagles internationals lead the WRFC programme — one held the record as the
+            youngest player ever capped by the United States, the other has captained the Eagles in
+            test matches within the past three years. They coach the Division 1 side and the players
+            who turned up having never held a rugby ball, in the same sessions.
           </p>
         </div>
 
@@ -288,8 +292,8 @@ export default function CoachesPage() {
           <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Train Under Them</h2>
             <p className="text-lg mb-6">
-              Practice is Tuesdays and Thursdays at Rosedale Rec Center in NE DC, and it is open to
-              anyone who turns up — no trial, no experience required.
+              Practices run Tuesday and Thursday evenings with matches on Saturdays, across fall and
+              spring 15s, winter workouts and summer 7s. Get in touch and we will point you to the next one.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 

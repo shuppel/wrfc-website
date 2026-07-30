@@ -78,7 +78,7 @@ export default function Home() {
             </h1>
             <p className="text-xl md:text-2xl mb-6 font-quantico opacity-90">
               The oldest rugby club in Washington, DC. Founded 1963.
-              <span className="block text-lg mt-2 text-gray-300">Turn up to a Tuesday practice in NE DC. No experience needed, no kit needed.</span>
+              <span className="block text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays, rugby all four seasons. No experience needed.</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -120,7 +120,7 @@ export default function Home() {
               <FeatureCard
                 icon={<Trophy className="w-12 h-12 text-wrfc-red" weight="duotone" />}
               title="Coached by Internationals"
-              description="Head Coach Thretton Palamo and Lead Assistant Jamason Fa'anana-Schultz are both former USA Eagles. Jama also captained Old Glory DC in Major League Rugby."
+              description="Thretton Palamo was for years the youngest player ever capped by the USA. Jamason Fa'anana-Schultz has captained the Eagles in test matches within the past three years, and captained Old Glory DC."
               image="/assets/pictures/2025_irish_ruck.jpg"
             />
               <FeatureCard
@@ -132,7 +132,7 @@ export default function Home() {
               <FeatureCard
                 icon={<Calendar className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
               title="Something On Year-Round"
-              description="15s from late August, 7s through the summer, plus socials, the Cherry Blossom Tournament and an annual tour. Sides for competitive and social players alike."
+              description="Fall and spring 15s seasons, winter workouts and summer 7s, plus socials, the Cherry Blossom Tournament and an annual tour. Practice Tuesdays and Thursdays, matches Saturdays."
               image="/assets/pictures/2025_irish_lami.jpg"
             />
           </div>

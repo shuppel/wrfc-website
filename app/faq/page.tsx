@@ -32,7 +32,7 @@ const sections: FaqSection[] = [
       {
         question: 'What is Washington Rugby Football Club?',
         answer:
-          'Washington Rugby Football Club (WRFC) is a men\'s rugby union club based in Washington, DC. It was founded in February 1963, which makes it the oldest rugby club in the District. The club fields Division 1, Division 3 and social sides, plays league rugby in the Eastern Penn Rugby Union, trains in Northeast DC, and is a registered nonprofit.'
+          'Washington Rugby Football Club (WRFC) is a men\'s rugby union club based in Washington, DC. It was founded in February 1963, which makes it the oldest rugby club in the District. The club fields Division 1, Division 3 and social sides, plays a full 15s calendar across the fall and spring with 7s in the summer, and is a registered nonprofit.'
       },
       {
         question: 'How old is WRFC and what has it done?',
@@ -42,7 +42,7 @@ const sections: FaqSection[] = [
       {
         question: 'Who coaches WRFC?',
         answer:
-          'Head Coach Thretton Palamo is a former USA Eagles international and professional rugby player. Lead Assistant Coach Jamason Fa\'anana-Schultz is a former USA Eagles captain and former captain of Old Glory DC, the DC-area Major League Rugby team. They are supported by assistant coaches Roger Evans and Eric Keys and player-coaches Doug Muilken and Trey Kierl.'
+          'Head Coach Thretton Palamo is a USA Eagles international and former professional player. He was capped by the USA at 19 and held the record as the youngest player ever capped by the United States for many years afterwards. Lead Assistant Coach Jamason Fa\'anana-Schultz has captained the USA Eagles in test matches within the past three years and also captained Old Glory DC, the DC-area Major League Rugby side. Both coach the Division 1 squad and first-season players in the same sessions.'
       },
       {
         question: 'What is WRFC\'s connection to youth rugby in DC?',
@@ -57,22 +57,22 @@ const sections: FaqSection[] = [
       {
         question: 'Can I join WRFC with no rugby experience?',
         answer:
-          'Yes. A large share of the current squad had never played rugby before joining, arriving from American football, soccer, wrestling, basketball, or no organised sport at all. New players are taught the laws of the game and safe contact technique before playing a match. There is no trial and no cut.'
+          'Yes. A large share of the current squad had never played rugby before joining, arriving from American football, soccer, wrestling, basketball, or no organised sport at all. New players are taught the laws of the game and safe contact technique before playing a match, and are brought into a side that matches where they are rather than left waiting for one.'
       },
       {
         question: 'How do I join WRFC?',
         answer:
-          'Come to a Tuesday or Thursday practice, or fill in the membership form at washingtonrugby.org/membership and someone will contact you before the next session. Questions can go to welcome@washingtonrugby.org. You do not need to pay or commit anything before your first session.'
+          'Fill in the membership form at washingtonrugby.org/membership, or email welcome@washingtonrugby.org, and someone will tell you where and when the next session is and what to expect. Sessions and venues move through the year, so it is worth checking in rather than turning up cold. You do not need to pay or commit anything before your first session.'
       },
       {
         question: 'When and where does WRFC train?',
         answer:
-          'Tuesdays and Thursdays. During the 15s season practice runs 8:00-10:00 PM; during the summer 7s season it runs 7:00-9:00 PM. The primary training ground is Rosedale Recreation Center, 1701 Gales St NE, Washington, DC 20002. Some sessions are held at Wallenberg Field near the Holocaust Museum. Both sites are reachable by Metro and bus.'
+          'WRFC does not train at one fixed time and place all year. The general pattern is practice on Tuesday and Thursday evenings with matches on Saturdays, at fields around Washington, DC. The calendar runs in four blocks: a fall 15s season, a spring 15s season, winter workouts between them, and 7s through the summer. Because venues and times shift with the season, check washingtonrugby.org/schedule/practice or email welcome@washingtonrugby.org for the current details before heading out.'
       },
       {
         question: 'What should I bring to my first practice?',
         answer:
-          'Trainers or cleats, shorts, and a water bottle. Boots and a gumshield are worth getting if you decide to stay, but you do not need either to turn up and take part in your first session.'
+          'Trainers or cleats, shorts, and a water bottle. Boots and a gumshield are worth getting if you decide to stay, but you do not need either for a first session. Confirm the location before you set out, as it changes through the season.'
       },
       {
         question: 'How much does it cost to play for WRFC?',
@@ -97,22 +97,22 @@ const sections: FaqSection[] = [
       {
         question: 'Which rugby club should I join in Washington, DC?',
         answer:
-          'It depends on what you want from the game. The DC area supports several adult clubs, and most of them are welcoming. WRFC is worth considering if you want a club that takes complete beginners while also running a competitive Division 1 side, trains inside the District rather than out in the suburbs, and has coaching from former international players. If you want to play at the professional level, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, look at the DC Furies or NOVA Women. Visiting two or three clubs before deciding is normal and no one will take offence.'
+          'It depends on what you want from the game. The DC area supports several adult clubs, and most of them are welcoming. WRFC is worth considering if you want a club that takes complete beginners while also running a competitive Division 1 side, plays a full calendar across all four seasons, and is coached by current and recent USA Eagles internationals. If you want to play at the professional level, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, look at the DC Furies or NOVA Women. Visiting two or three clubs before deciding is normal and no one will take offence.'
       },
       {
         question: 'What distinguishes WRFC from other DC-area clubs?',
         answer:
-          'Four things that can be checked rather than asserted. It is the oldest club in the District, founded 1963. Its head coach and lead assistant are both former USA Eagles internationals, one of whom captained Old Glory DC. It founded and still supports Washington DC Youth Rugby, which serves over 100 children a year for free. And it hosts the Cherry Blossom Tournament, run every spring since 1968. Whether that adds up to the right club for you is a separate question, and depends on what you are after.'
+          'Four things that can be checked rather than asserted. It is the oldest club in the District, founded 1963. It is coached by two USA Eagles internationals: Thretton Palamo, for years the youngest player ever capped by the United States, and Jamason Fa\'anana-Schultz, who has captained the Eagles in test matches within the past three years and captained Old Glory DC. It founded and still supports Washington DC Youth Rugby, which serves over 100 children a year for free. And it hosts the Cherry Blossom Tournament, run every spring since 1968. Whether that adds up to the right club for you depends on what you are after.'
       },
       {
         question: 'Is WRFC competitive or social?',
         answer:
-          'Both, by design. The Division 1 side selects competitively and trains accordingly. The Division 3 and social sides exist so that players who want regular game time without D1 commitment have somewhere real to play. Most members move between sides over a season. Off the pitch the club runs socials, an end-of-season banquet, the 30 Under 30 fixture and an annual overseas tour.'
+          'Both, by design. The Division 1 side selects competitively and trains accordingly. The Division 3 and social sides exist so that players who want regular game time without D1 commitment have somewhere real to play, and most members move between sides over a season. Off the pitch the club runs socials, an end-of-season banquet, the 30 Under 30 fixture and an annual overseas tour, and players volunteer with Washington DC Youth Rugby.'
       },
       {
         question: 'Who does WRFC play against?',
         answer:
-          'WRFC plays league fixtures in the Eastern Penn Rugby Union (EPRU). The 15s regular season runs from late August through November, with playoffs from February through early May, and summer is given to 7s. Across a full year the club plays roughly 30 matches between its sides, plus tournament fixtures.'
+          'WRFC plays regional club sides from across the Mid-Atlantic and the wider East Coast. Matches are generally on Saturdays. The year runs as a fall 15s season, winter workouts, a spring 15s season, and 7s over the summer, which works out to roughly 30 matches across the sides, plus tournament fixtures.'
       }
     ]
   },

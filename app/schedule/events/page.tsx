@@ -49,7 +49,7 @@ export default function EventsPage() {
     {
       name: "Regular Season",
       type: "Competition",
-      description: "EPRU Division matches and league play",
+      description: "Division matches against regional club sides",
       timing: "Late August - November",
       icon: <Calendar size={48} weight="bold" className="text-wrfc-red" />
     },

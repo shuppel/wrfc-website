@@ -7,7 +7,7 @@ import JsonLd, { FAQPageJsonLd } from '../../components/JsonLd'
 // Generate metadata for the DC Rugby page
 export const metadata = generateSEOMetadata({
   title: 'Playing Rugby in DC | Washington Rugby Football Club',
-  description: 'A straight answer to how adult rugby works in Washington, DC: which clubs exist, what WRFC offers, where and when we train, what it costs, and what your first practice is like. No experience required.',
+  description: 'A straight answer to how adult rugby works in Washington, DC: which clubs exist, what WRFC offers, how the season runs across fall 15s, winter, spring 15s and summer 7s, what it costs, and what your first practice is like. No experience required.',
   path: '/dc-rugby'
 });
 
@@ -22,27 +22,27 @@ const faqs = [
   {
     question: 'What makes WRFC different from other DC rugby clubs?',
     answer:
-      'Three things we can point to rather than assert. First, longevity: WRFC was founded in February 1963 and is the oldest rugby club in the District, a founding member of the USA Rugby Super League in 1997. Second, coaching: Head Coach Thretton Palamo is a former USA Eagles international and professional player, and Lead Assistant Coach Jamason Fa\'anana-Schultz is a former USA Eagles captain who also captained Old Glory DC in Major League Rugby. Third, community roots: WRFC founded Washington DC Youth Rugby in 2004, which now runs free programmes for over 100 children across all four quadrants of the city.'
+      'Three things we can point to rather than assert. First, longevity: WRFC was founded in February 1963 and is the oldest rugby club in the District, a founding member of the USA Rugby Super League in 1997. Second, coaching: Head Coach Thretton Palamo was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, and Lead Assistant Coach Jamason Fa\'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC in Major League Rugby. Third, community roots: WRFC founded Washington DC Youth Rugby in 2004, which now runs free programmes for over 100 children across all four quadrants of the city.'
   },
   {
     question: 'Do I need experience to play rugby in DC?',
     answer:
-      'No. A large share of WRFC players had never played rugby before joining, many having come from American football, soccer, wrestling, basketball or no sport at all. New players are taught contact technique and the laws of the game from scratch before playing a match, and the club fields social and Division 3 sides specifically so beginners have somewhere to play competitively rather than sitting on a bench. There is no trial and no cut.'
+      'No. A large share of WRFC players had never played rugby before joining, many having come from American football, soccer, wrestling, basketball or no sport at all. New players are taught contact technique and the laws of the game from scratch before playing a match, and the club fields social and Division 3 sides specifically so beginners have somewhere to play competitively rather than sitting on a bench.'
   },
   {
     question: 'Where and when does WRFC train?',
     answer:
-      'WRFC trains on Tuesdays and Thursdays. During the 15s season sessions run 8:00-10:00 PM; during summer 7s they run 7:00-9:00 PM. The main training ground is Rosedale Recreation Center at 1701 Gales St NE, Washington, DC 20002, with sessions also held at Wallenberg Field near the Holocaust Museum. Both are reachable by Metro and bus. Turn up in trainers and shorts; you do not need boots or a gumshield for your first session.'
+      'There is no single fixed time and place year-round. The general pattern is practice on Tuesday and Thursday evenings with matches on Saturdays, at fields around Washington, DC. The year runs in four blocks: a fall 15s season, winter workouts, a spring 15s season, and 7s through the summer. Venues and times move with the season, so check the practice schedule page or email welcome@washingtonrugby.org before heading out. Trainers and shorts are enough for a first session.'
   },
   {
     question: 'How do I join WRFC?',
     answer:
-      'Come to a Tuesday or Thursday practice, or fill in the membership form on this site and someone from the club will contact you before the next session. There is no tryout. Dues are paid once you decide to stick around, and the club will talk through options if cost is a barrier. Questions can go to welcome@washingtonrugby.org.'
+      'Fill in the membership form on this site or email welcome@washingtonrugby.org, and someone will tell you when and where the next session is. Because practice locations move through the season, checking in first beats turning up cold. Dues are paid once you decide to stick around, and the club will talk through options if cost is a barrier.'
   },
   {
     question: 'Who does WRFC play, and how often?',
     answer:
-      'WRFC plays league rugby in the Eastern Penn Rugby Union (EPRU), with a regular 15s season from late August through November and a playoff season from February through early May. Summer is given over to 7s. Across the year that works out to roughly 30 matches between the sides. WRFC also hosts the Cherry Blossom Tournament each spring and runs an annual overseas tour.'
+      'WRFC plays regional club sides from across the Mid-Atlantic and the wider East Coast, generally on Saturdays. The calendar runs as a fall 15s season, winter workouts, a spring 15s season, and 7s over the summer, which works out to roughly 30 matches between the sides. WRFC also hosts the Cherry Blossom Tournament each spring and runs an annual overseas tour.'
   },
   {
     question: 'Is WRFC a social club or a competitive one?',
@@ -57,7 +57,7 @@ export default function DCRugbyPage() {
     '@type': 'SportsOrganization',
     name: 'Washington Rugby Football Club',
     alternateName: 'WRFC',
-    description: 'The oldest rugby club in Washington, DC, founded in February 1963. Men\'s D1, D3 and social sides, coached by former USA Eagles internationals.',
+    description: 'The oldest rugby club in Washington, DC, founded in February 1963. Men\'s D1, D3 and social sides, coached by USA Eagles internationals.',
     foundingDate: '1963',
     sport: {
       '@type': 'Sport',
@@ -119,7 +119,7 @@ export default function DCRugbyPage() {
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">
               Washington Rugby Football Club — founded 1963, the District&apos;s oldest rugby club
-              <span className="block text-lg mt-2 text-gray-300">Tuesdays &amp; Thursdays at Rosedale Rec Center, NE DC. No experience required.</span>
+              <span className="block text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays. Fall and spring 15s, winter workouts, summer 7s. No experience required.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
@@ -150,8 +150,8 @@ export default function DCRugbyPage() {
             <DCRugbyFeature
               icon={<Trophy className="w-12 h-12 text-wrfc-red" />}
               title="Coaching from Internationals"
-              description="Head Coach Thretton Palamo is a former USA Eagles international and professional player. Lead Assistant Jamason Fa'anana-Schultz is a former USA Eagles captain and former Old Glory DC captain."
-              stats="2 Former USA Eagles on Staff"
+              description="Thretton Palamo was capped by the USA at 19 and was for years the youngest player ever capped by the United States. Jamason Fa'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC."
+              stats="2 USA Eagles Internationals on Staff"
             />
             <DCRugbyFeature
               icon={<Users className="w-12 h-12 text-wrfc-navy" />}
@@ -181,27 +181,27 @@ export default function DCRugbyPage() {
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-wrfc-red mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Rosedale Rec Center, NE DC</h3>
+                    <h3 className="text-xl font-bold mb-2">Fields Around the District</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      1701 Gales St NE, Washington, DC 20002, with additional sessions at Wallenberg Field. Both reachable by Metro and bus.
+                      WRFC uses several grounds around Washington, DC rather than one home pitch. Check the practice schedule for where the next session is.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Clock className="w-6 h-6 text-wrfc-navy mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Tuesdays &amp; Thursdays, Evenings</h3>
+                    <h3 className="text-xl font-bold mb-2">Tuesdays &amp; Thursdays, Games Saturdays</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      8:00-10:00 PM during the 15s season, 7:00-9:00 PM for summer 7s. Late enough to make it after work.
+                      Evening practices twice a week so they are reachable after work, with matches at the weekend. Exact times shift by season.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Star className="w-6 h-6 text-wrfc-teal mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Beginners Coached from Scratch</h3>
+                    <h3 className="text-xl font-bold mb-2">Rugby All Four Seasons</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      Contact technique and the laws of the game are taught before anyone plays a match. There is no trial and no cut.
+                      Fall 15s, winter workouts, spring 15s and summer 7s. There is somewhere to turn up whatever month you find us.
                     </p>
                   </div>
                 </div>
@@ -259,8 +259,8 @@ export default function DCRugbyPage() {
             Come Down to a Practice
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
-            Tuesdays and Thursdays at Rosedale Rec Center in NE DC. Trainers and shorts are enough
-            for a first session. If rugby turns out not to be for you, no one will chase you.
+            Practices run Tuesday and Thursday evenings, with matches on Saturdays. Get in touch and
+            we will tell you where the next one is — trainers and shorts are enough for a first session.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

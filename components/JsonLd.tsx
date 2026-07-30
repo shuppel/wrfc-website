@@ -69,24 +69,16 @@ export function OrganizationJsonLd() {
       addressRegion: 'DC',
       addressCountry: 'US',
     },
-    location: {
-      '@type': 'Place',
-      name: 'Rosedale Recreation Center',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '1701 Gales St NE',
-        addressLocality: 'Washington',
-        addressRegion: 'DC',
-        postalCode: '20002',
-        addressCountry: 'US',
-      },
+    areaServed: {
+      '@type': 'City',
+      name: 'Washington, DC',
     },
     sport: {
       '@type': 'Sport',
       name: 'Rugby union',
     },
     description:
-      'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in February 1963. The club fields Division 1, Division 3 and social men\'s sides, trains Tuesdays and Thursdays in Northeast DC, accepts players with no prior rugby experience, founded Washington DC Youth Rugby in 2004, and has hosted the Cherry Blossom Tournament every spring since 1968.',
+      'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in February 1963. The club fields Division 1, Division 3 and social men\'s sides, practises Tuesday and Thursday evenings with matches on Saturdays across a fall 15s season, winter workouts, a spring 15s season and summer 7s, accepts players with no prior rugby experience, founded Washington DC Youth Rugby in 2004, and has hosted the Cherry Blossom Tournament every spring since 1968.',
     foundingDate: '1963-02',
     foundingLocation: {
       '@type': 'Place',
@@ -94,7 +86,6 @@ export function OrganizationJsonLd() {
     },
     memberOf: [
       { '@type': 'SportsOrganization', name: 'USA Rugby', url: 'https://www.usa.rugby/' },
-      { '@type': 'SportsOrganization', name: 'Eastern Penn Rugby Union (EPRU)' },
     ],
     coach: [
       {
@@ -102,7 +93,7 @@ export function OrganizationJsonLd() {
         name: 'Thretton Palamo',
         jobTitle: 'Head Coach',
         description:
-          'Former USA Eagles international and professional rugby player.',
+          'USA Eagles international and former professional rugby player. Capped by the United States at 19 and for years the youngest player ever capped by the USA.',
         sameAs: 'https://en.wikipedia.org/wiki/Thretton_Palamo',
       },
       {
@@ -110,7 +101,7 @@ export function OrganizationJsonLd() {
         name: 'Jamason Fa\'anana-Schultz',
         jobTitle: 'Lead Assistant Coach',
         description:
-          'Former USA Eagles captain and former captain of Old Glory DC in Major League Rugby.',
+          'USA Eagles international who has captained the Eagles in test matches within the past three years, and former captain of Old Glory DC in Major League Rugby.',
         sameAs: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz',
       },
     ],

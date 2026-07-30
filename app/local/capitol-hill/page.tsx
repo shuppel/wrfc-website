@@ -8,7 +8,7 @@ import { generateSEOMetadata } from '../../utils/seo'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Rugby in Capitol Hill DC',
-  description: 'Washington Rugby Football Club trains a 15-minute ride from Capitol Hill at Rosedale Rec Center in NE DC, Tuesdays and Thursdays at 8 PM. Founded 1963, beginners welcome.',
+  description: 'Washington Rugby Football Club practises Tuesday and Thursday evenings at grounds a short ride from Capitol Hill, with matches on Saturdays. Founded 1963, beginners welcome.',
   path: '/local/capitol-hill'
 })
 
