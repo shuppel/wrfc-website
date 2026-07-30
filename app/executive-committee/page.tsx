@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Confetti } from '@phosphor-icons/react/dist/ssr'
+import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera, Code } from '@phosphor-icons/react/dist/ssr'
 import ECAccordion from '@/components/ECAccordion'
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -65,9 +65,24 @@ const currentEC: ECMember[] = [
     icon: Target
   },
   {
-    position: "Social Chairs",
-    name: "Daniel Perez & Dike",
+    position: "Fundraising Chair",
+    name: "Ben Goodlet",
+    icon: Handshake
+  },
+  {
+    position: "Social Chair",
+    name: "Daniel Perez",
     icon: Confetti
+  },
+  {
+    position: "Social Media Chair",
+    name: "Dike Ukuani",
+    icon: Camera
+  },
+  {
+    position: "Webmaster",
+    name: "Erikk Shupp",
+    icon: Code
   }
 ]
 
