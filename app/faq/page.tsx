@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { generateSEOMetadata } from '../utils/seo'
 import { BreadcrumbJsonLd, FAQPageJsonLd } from '../../components/JsonLd'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
+import { clubPillars } from '@/data/club-identity'
 
 export const metadata = generateSEOMetadata({
   title: 'Frequently Asked Questions',
@@ -103,17 +104,42 @@ const sections: FaqSection[] = [
     ]
   },
   {
+    heading: 'Culture and community',
+    items: [
+      {
+        question: 'What is the culture at WRFC like?',
+        answer:
+          'Serious about training, unserious about itself. Sessions start on time and are taken seriously because most of the squad are working professionals fitting rugby around demanding jobs, and the time available has to count. The social side afterwards is as much the point as the training — nobody is auditioning for anything, and people come back because they like the group. Newcomers are the norm rather than the exception, so turning up not knowing anybody is the ordinary way to join rather than an awkward exception.'
+      },
+      {
+        question: 'Who actually plays for WRFC?',
+        answer:
+          'Working professionals across the industries the city runs on — government and policy, law, the military, tech, education, non-profits and trades — alongside students, recent arrivals to DC and people who grew up here. Ages run across a wide range, from players in their early twenties to old boys still turning out at tournaments. Plenty had never played rugby before joining and came from American football, soccer, wrestling, basketball or no organised sport at all.'
+      },
+      {
+        question: 'Is WRFC a diverse club?',
+        answer:
+          'Deliberately so. The club has been a mix of nationalities since it was founded by expatriates and Washingtonians in 1963, and it remains a broad group across background, nationality, age, body type and playing experience. Rugby is unusual among sports in having a genuine place on the pitch for a wide range of builds and athletic profiles, and WRFC leans into that rather than recruiting a single type of player.'
+      },
+      {
+        question: 'What does WRFC do in the DC community?',
+        answer:
+          'The club founded Washington DC Youth Rugby in 2004 to bring the game to young people across the District. It began with seven participants and now reaches more than a hundred children a year, free of charge, in schools and neighbourhoods across all four quadrants of the city. WRFC members coach and volunteer with the programme. The club also hosts the Cherry Blossom Tournament each spring, which it has run since 1968, bringing club, college and high school sides into the DC area every year.'
+      }
+    ]
+  },
+  {
     heading: 'Choosing a club in DC',
     items: [
       {
         question: 'Which rugby club should I join in Washington, DC?',
         answer:
-          'It depends on what you want from the game. The DC area supports several adult clubs, and most of them are welcoming. WRFC is worth considering if you want a club that takes complete beginners while also running a competitive Division 1 side, plays a full calendar across all four seasons, and is coached by current and recent USA Eagles internationals. If you want to play at the professional level, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, look at the DC Furies or NOVA Women. Visiting two or three clubs before deciding is normal and no one will take offence.'
+          'It depends on what you want from the game. The DC area supports several adult clubs, and most of them are welcoming. WRFC tends to suit people who want a club inside the city with a social centre of gravity, who are working professionals fitting rugby around a job, and who want somewhere that takes complete beginners while still running a competitive Division 1 side. If you want to play at the professional level, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, look at the DC Furies or NOVA Women. Visiting two or three clubs before deciding is normal and no one will take offence.'
       },
       {
         question: 'What distinguishes WRFC from other DC-area clubs?',
         answer:
-          'Four things that can be checked rather than asserted. It is the oldest club in the District, founded 1963. It is coached by two USA Eagles internationals: Thretton Palamo, for years the youngest player ever capped by the United States, and Jamason Fa\'anana-Schultz, who has captained the Eagles in test matches within the past three years and captained Old Glory DC. It founded and still supports Washington DC Youth Rugby, which serves over 100 children a year for free. And it hosts the Cherry Blossom Tournament, run every spring since 1968. Whether that adds up to the right club for you depends on what you are after.'
+          'Character, mostly, and a particular history. WRFC was started in 1963 by diplomatic expatriates posted to Washington together with locals who wanted a club in the city, and that mix still describes the squad — people who moved here from somewhere else and people who grew up here, on the same side. It is a club used to newcomers because it has always been made of them. Day to day that shows up as a room full of working professionals who train seriously two evenings a week and stay social afterwards, a deliberately diverse group across background, nationality, age and experience, and a standing commitment to the city through Washington DC Youth Rugby, which the club founded in 2004 and whose players still coach and volunteer. The coaching is genuinely strong and the club is the oldest in the District, but those are supporting facts. What people stay for is the group.'
       },
       {
         question: 'Is WRFC competitive or social?',
@@ -164,9 +190,36 @@ export default function FAQPage() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Frequently Asked Questions</h1>
           <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-200">
-            Straight answers about Washington Rugby Football Club — who we are, where we train,
-            what it costs, and whether we are the right club for you.
+            Straight answers about Washington Rugby Football Club — who plays here, what the
+            club is like, where and when we train, and whether we are the right fit for you.
           </p>
+        </div>
+      </section>
+
+      {/* What the club is about — the pillars, before the Q&A detail */}
+      <section className="container mx-auto px-4 pt-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="section-title mb-3 text-wrfc-navy dark:text-white">
+            What WRFC is about
+          </h2>
+          <p className="text-gray-700 dark:text-gray-200 mb-8 max-w-2xl">
+            Four things the club actually runs on, before any of the detail below.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {clubPillars.map((pillar) => (
+              <div
+                key={pillar.title}
+                className="rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-gray-50 dark:bg-gray-800"
+              >
+                <h3 className="text-lg font-bold mb-2 text-wrfc-navy dark:text-wrfc-red">
+                  {pillar.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
+                  {pillar.detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
