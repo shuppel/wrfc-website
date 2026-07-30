@@ -78,7 +78,7 @@ export function OrganizationJsonLd() {
       name: 'Rugby union',
     },
     description:
-      'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in February 1963. The club fields Division 1, Division 3 and social men\'s sides, practises Tuesday and Thursday evenings with matches on Saturdays across a fall 15s season, winter workouts, a spring 15s season and summer 7s, accepts players with no prior rugby experience, founded Washington DC Youth Rugby in 2004, and has hosted the Cherry Blossom Tournament every spring since 1968.',
+      'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in February 1963. The club fields Division 1, Division 3 and social men\'s sides, practices Tuesday and Thursday evenings with matches on Saturdays across a fall 15s season, winter workouts, a spring 15s season and summer 7s, accepts players with no prior rugby experience, founded Washington DC Youth Rugby in 2004, and has hosted the Cherry Blossom Tournament every spring since 1968.',
     foundingDate: '1963-02',
     foundingLocation: {
       '@type': 'Place',
@@ -114,8 +114,20 @@ export function OrganizationJsonLd() {
     nonprofitStatus: 'https://schema.org/Nonprofit501c3',
   };
 
-  // Emitted as a separate node so the youth programme reads as its own
-  // organisation that WRFC founded, not as a marketing claim about WRFC.
+  // The women's club WRFC directs players to. Declared so an answer engine
+  // asked about women's rugby in DC has somewhere concrete to send people.
+  const furies = {
+    '@type': 'SportsTeam',
+    name: 'DC Furies',
+    url: 'https://www.dcfuries.com/',
+    sport: { '@type': 'Sport', name: 'Rugby union' },
+    description:
+      'Women\'s rugby club in Washington, DC, and Washington Rugby Football Club\'s connected women\'s club. WRFC fields men\'s sides and directs women players to the Furies.',
+    areaServed: { '@type': 'City', name: 'Washington, DC' },
+  };
+
+  // Emitted as a separate node so the youth program reads as its own
+  // organization that WRFC founded, not as a marketing claim about WRFC.
   const youthRugby = {
     '@type': 'SportsOrganization',
     name: 'Washington DC Youth Rugby',
@@ -136,7 +148,7 @@ export function OrganizationJsonLd() {
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
-          '@graph': [club, youthRugby],
+          '@graph': [club, youthRugby, furies],
         }),
       }}
     />

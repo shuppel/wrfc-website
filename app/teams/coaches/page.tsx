@@ -29,7 +29,7 @@ const coaches: Coach[] = [
     title: 'Head Coach',
     tier: 'head',
     photo: '/assets/pictures/thretton-coach-headshot.jpg',
-    bio: 'Thretton was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, going on to a professional career. At WRFC he runs the senior programme and works with the backs on attacking shape and decision-making, and coaches players who arrived having never played rugby.',
+    bio: 'Thretton was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, going on to a professional career. At WRFC he runs the senior program and works with the backs on attacking shape and decision-making, and coaches players who arrived having never played rugby.',
     specialties: ['Backs Development', 'Game Strategy', 'High Performance'],
     wikiUrl: 'https://en.wikipedia.org/wiki/Thretton_Palamo'
   },
@@ -150,7 +150,7 @@ export default function CoachesPage() {
             Coaching Staff
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-100 max-w-3xl mx-auto">
-            Two USA Eagles internationals lead the WRFC programme — one held the record as the
+            Two USA Eagles internationals lead the WRFC program — one held the record as the
             youngest player ever capped by the United States, the other has captained the Eagles in
             test matches within the past three years. They coach the Division 1 side and the players
             who turned up having never held a rugby ball, in the same sessions.

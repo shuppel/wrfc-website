@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera } from '@phosphor-icons/react/dist/ssr'
+import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera, Code } from '@phosphor-icons/react/dist/ssr'
 import ECAccordion from '@/components/ECAccordion'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Executive Committee',
-  description: 'Meet the Washington Rugby Football Club Executive Committee. Our dedicated leadership team guides the club with passion and commitment to rugby excellence.',
+  description: 'The Washington Rugby Football Club Executive Committee for 2026-2027, the volunteers who run the club, plus an archive of previous committees back to 2024.',
   path: '/executive-committee'
 })
 
@@ -25,14 +25,9 @@ const currentEC: ECMember[] = [
     icon: Crown
   },
   {
-    position: "Vice President", 
-    name: "Austin Park",
+    position: "Vice President",
+    name: "Matthew Bainbridge",
     icon: Star
-  },
-  {
-    position: "Treasurer",
-    name: "Erikk Shupp",
-    icon: CurrencyDollar
   },
   {
     position: "Secretary",
@@ -40,53 +35,76 @@ const currentEC: ECMember[] = [
     icon: FileText
   },
   {
+    position: "Treasurer",
+    name: "Thomas Britt",
+    icon: CurrencyDollar
+  },
+  {
     position: "Match Secretary",
-    name: "Matthew Bainbridge",
+    name: "Zach Zuzuelo",
     icon: Shield
   },
   {
     position: "Club Captain",
-    name: "Chris Miller",
+    name: "Nate Santa-Maria",
     icon: Users
   },
   {
-    position: "Alumni/Youth Relations",
-    name: "Jonathan Fuentecilla",
+    position: "Alumni/Youth Director",
+    name: "Roger Rog",
     icon: Heart
   },
   {
     position: "CBT Chair",
-    name: "Andrew Klock",
-    panel: ["Doug Muilken (Assistant to CBT Chair)"],
+    name: "Josh Quick",
     icon: Hash
   },
   {
     position: "Recruitment Chair",
-    name: "Noah Davidson",
-    panel: ["Ray Gajkowski", "Tom Demetriou", "DK"],
+    name: "Issac Greenspan",
     icon: Target
   },
   {
     position: "Fundraising Chair",
-    name: "Nick Cippolone",
-    panel: ["Chris DeVore", "Masen"],
+    name: "Ben Goodlet",
     icon: Handshake
   },
   {
     position: "Social Chair",
-    name: "Austin 'Ox' Longo",
-    panel: ["Daniel Perez", "Joshua Quick"],
+    name: "Daniel Perez",
     icon: Confetti
   },
   {
     position: "Social Media Chair",
-    name: "Stephen Okala",
+    name: "Dike Ukuani",
     icon: Camera
+  },
+  {
+    position: "Webmaster",
+    name: "Erikk Shupp",
+    icon: Code
   }
 ]
 
 // Previous years' EC data for accordion
 const previousYears = [
+  {
+    year: "2025-2026",
+    members: [
+      { position: "President", name: "Harry Higginbottom" },
+      { position: "Vice President", name: "Austin Park" },
+      { position: "Treasurer", name: "Erikk Shupp" },
+      { position: "Secretary", name: "Dom Boresta" },
+      { position: "Match Secretary", name: "Matthew Bainbridge" },
+      { position: "Club Captain", name: "Chris Miller" },
+      { position: "Alumni/Youth Relations", name: "Jonathan Fuentecilla" },
+      { position: "CBT Chair", name: "Andrew Klock" },
+      { position: "Recruitment Chair", name: "Noah Davidson" },
+      { position: "Fundraising Chair", name: "Nick Cippolone" },
+      { position: "Social Chair", name: "Austin 'Ox' Longo" },
+      { position: "Social Media Chair", name: "Stephen Okala" }
+    ]
+  },
   {
     year: "2024-2025",
     members: [
@@ -126,7 +144,7 @@ export default function ExecutiveCommitteePage() {
         {/* Current Year EC */}
         <div className="mb-12">
           <h2 className="section-title text-center mb-8">
-            2025-2026 Executive Committee
+            2026-2027 Executive Committee
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

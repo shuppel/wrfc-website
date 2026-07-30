@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, CaretDown } from '@phosphor-icons/react/dist/ssr'
+import { Barbell, GraduationCap, Globe, ArrowRight, CaretDown } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
@@ -118,21 +118,21 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <FeatureCard
-                icon={<Trophy className="w-12 h-12 text-wrfc-red" weight="duotone" />}
-              title="Coached by Internationals"
-              description="Thretton Palamo was for years the youngest player ever capped by the USA. Jamason Fa'anana-Schultz has captained the Eagles in test matches within the past three years, and captained Old Glory DC."
+                icon={<Globe className="w-12 h-12 text-wrfc-red" weight="duotone" />}
+              title="Newcomers and Natives, Since 1963"
+              description="Started in 1963 when diplomats posted to DC and locals who wanted a club found each other. Still that mix, which is why walking in knowing nobody is normal here."
               image="/assets/pictures/2025_irish_ruck.jpg"
             />
               <FeatureCard
-                icon={<Users className="w-12 h-12 text-wrfc-navy" weight="duotone" />}
-              title="Rooted in the City"
-              description="WRFC founded Washington DC Youth Rugby in 2004. It now runs free programs for 100+ kids across all four DC quadrants, and our players volunteer with it."
+                icon={<GraduationCap className="w-12 h-12 text-wrfc-navy" weight="duotone" />}
+              title="We Owe the City Something"
+              description="WRFC started Washington DC Youth Rugby in 2004. It now reaches 100+ kids a year, free, in schools and neighborhoods across all four quadrants, coached by our players."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
               <FeatureCard
-                icon={<Calendar className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
-              title="Something On Year-Round"
-              description="Fall and spring 15s seasons, winter workouts and summer 7s, plus socials, the Cherry Blossom Tournament and an annual tour. Practice Tuesdays and Thursdays, matches Saturdays."
+                icon={<Barbell className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
+              title="Day Jobs, Then Boots On"
+              description="Almost everyone here works full time. Practice Tuesdays and Thursdays, matches Saturdays, and a social side that is a good part of why people come back."
               image="/assets/pictures/2025_irish_lami.jpg"
             />
           </div>
@@ -186,7 +186,8 @@ export default function Home() {
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200 text-center">
             Plenty of our players had never touched a rugby ball before their first WRFC practice.
             Others have played internationally. Both are welcome, and we sort you into a side that fits.
-            Fill in the form below and someone will be in touch before the next session.
+            Turning up knowing nobody is the ordinary way to join. Fill in the form below and someone
+            will be in touch before the next session.
           </p>
           
           {/* Embedded Google Form */}

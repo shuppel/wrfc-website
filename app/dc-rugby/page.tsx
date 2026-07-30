@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, Trophy, Users, ArrowRight, MapPin, Clock, Star } from '@phosphor-icons/react/dist/ssr'
+import { Calendar, Users, ArrowRight, MapPin, Clock, Star } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../utils/seo'
 import JsonLd, { FAQPageJsonLd } from '../../components/JsonLd'
 
@@ -22,12 +22,17 @@ const faqs = [
   {
     question: 'What makes WRFC different from other DC rugby clubs?',
     answer:
-      'Three things we can point to rather than assert. First, longevity: WRFC was founded in February 1963 and is the oldest rugby club in the District, a founding member of the USA Rugby Super League in 1997. Second, coaching: Head Coach Thretton Palamo was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, and Lead Assistant Coach Jamason Fa\'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC in Major League Rugby. Third, community roots: WRFC founded Washington DC Youth Rugby in 2004, which now runs free programmes for over 100 children across all four quadrants of the city.'
+      'The people and where the club came from. WRFC started in February 1963 when diplomats posted to Washington and locals who wanted a rugby club found each other, and the squad is still that combination — some moved here for a job, some grew up around the corner. That is why walking in knowing nobody is completely normal here. Day to day it looks like a group of people with real jobs who show up on time, train hard for two hours, and stay just as long afterward. A lot of them also coach free youth rugby across the city through Washington DC Youth Rugby, which the club founded in 2004. Strong coaching and being the oldest club in the District are both true, but they are supporting facts rather than why anyone stays.'
+  },
+  {
+    question: 'Who plays for WRFC, and what is the club like?',
+    answer:
+      'Working professionals across the industries this city runs on, alongside students, people newly posted to DC, and people who grew up here. Ages run from early twenties to old boys still turning out at tournaments. The tone is serious about the rugby and not serious about itself — practice starts on time because everyone is fitting it around a job, and the bar afterward is much of why people come back. Turning up knowing nobody is the normal way to join.'
   },
   {
     question: 'Do I need experience to play rugby in DC?',
     answer:
-      'No. A large share of WRFC players had never played rugby before joining, many having come from American football, soccer, wrestling, basketball or no sport at all. New players are taught contact technique and the laws of the game from scratch before playing a match, and the club fields social and Division 3 sides specifically so beginners have somewhere to play competitively rather than sitting on a bench.'
+      'No. A large share of WRFC players had never played rugby before joining, coming from football, soccer, wrestling, basketball or no sport at all. New players learn contact technique and the laws of the game from scratch before playing a match, and the club runs social and Division 3 sides specifically so beginners get real minutes instead of a season on the bench.'
   },
   {
     question: 'Where and when does WRFC train?',
@@ -47,7 +52,7 @@ const faqs = [
   {
     question: 'Is WRFC a social club or a competitive one?',
     answer:
-      'Both, deliberately. The Division 1 side trains and selects competitively; the Division 3 and social sides exist so that players who want the game without the commitment level of D1 still get regular minutes. Most members move between them over a season. Off the pitch the club runs socials, an end-of-season banquet, the 30 Under 30 fixture, and an annual tour, and players volunteer with Washington DC Youth Rugby.'
+      'Both, deliberately. The Division 1 side trains and selects competitively; D3 and social exist so players who want the game without the D1 commitment still get regular minutes, and most people move between them over a season. The social side is not an afterthought — for a squad of people with full-time jobs it is much of the appeal. There are socials, an end-of-season banquet, the 30 Under 30 fixture and an annual tour, and plenty of members coach with DC Youth Rugby.'
   }
 ];
 
@@ -75,8 +80,8 @@ export default function DCRugbyPage() {
     },
     url: 'https://washingtonrugby.org',
     sameAs: [
-      'https://www.facebook.com/WashingtonRFC',
-      'https://www.instagram.com/wrfc_dc',
+      'https://www.facebook.com/WashingtonRugbyFootballClub/',
+      'https://www.instagram.com/wrfc1963/',
       'https://twitter.com/WRFC_DC'
     ]
   };
@@ -144,26 +149,26 @@ export default function DCRugbyPage() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
-            What WRFC Actually Offers
+            What WRFC Is About
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <DCRugbyFeature
-              icon={<Trophy className="w-12 h-12 text-wrfc-red" />}
-              title="Coaching from Internationals"
-              description="Thretton Palamo was capped by the USA at 19 and was for years the youngest player ever capped by the United States. Jamason Fa'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC."
-              stats="2 USA Eagles Internationals on Staff"
+              icon={<Users className="w-12 h-12 text-wrfc-navy" />}
+              title="Newcomers and Natives, Since 1963"
+              description="Started when diplomats posted to Washington and locals who wanted a club found each other. The squad is still that mix, which is why walking in knowing nobody is normal here."
+              stats="Founded February 1963"
             />
             <DCRugbyFeature
-              icon={<Users className="w-12 h-12 text-wrfc-navy" />}
-              title="Roots in the City"
-              description="WRFC founded Washington DC Youth Rugby in 2004. It started with 7 kids and now runs free programmes for over 100 children across all four DC quadrants."
-              stats="Founded DC Youth Rugby, 2004"
+              icon={<Star className="w-12 h-12 text-wrfc-red" />}
+              title="Day Jobs, Then Boots On"
+              description="Almost everyone here works full time, so practice starts when it says it will and the two hours count. Then people stay. The bar afterward is a good part of why they come back."
+              stats="Serious About Rugby, Not About Itself"
             />
             <DCRugbyFeature
               icon={<Calendar className="w-12 h-12 text-wrfc-teal" />}
-              title="A Side for Your Level"
-              description="D1 for players chasing competitive rugby, D3 and social sides for everyone else. Beginners get real minutes rather than a seat on the bench."
-              stats="D1, D3 & Social Sides"
+              title="We Owe the City Something"
+              description="WRFC started Washington DC Youth Rugby in 2004. It began with 7 kids and now reaches 100+ a year, free, in schools and neighborhoods across all four quadrants."
+              stats="Founded DC Youth Rugby, 2004"
             />
           </div>
         </div>
