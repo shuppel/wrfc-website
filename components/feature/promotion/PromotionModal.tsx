@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, X, CalendarBlank, MapPin } from '@phosphor-icons/react';
 import Image from 'next/image';
 import { Promotion } from '@/data/promotions';
+import { getCurrentTournament } from '@/data/cherry-blossom-tournaments';
 
 interface PromotionModalProps {
   promotion: Promotion;
@@ -28,6 +29,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
 
   // Check if this is a Cherry Blossom promotion for special styling
   const isCherryBlossom = promotion.id.includes('cherry-blossom');
+  const tournament = getCurrentTournament();
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -69,11 +71,11 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                   <CalendarBlank className="w-4 h-4 text-pink-500" weight="duotone" />
-                  April 11, 2026
+                  {tournament.date}{tournament.datePending ? ' (TBC)' : ''}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                   <MapPin className="w-4 h-4 text-pink-500" weight="duotone" />
-                  Aldie, VA 20105
+                  {tournament.location.address}
                 </span>
               </div>
             )}

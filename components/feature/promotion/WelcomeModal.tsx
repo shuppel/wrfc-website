@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, X, CalendarBlank, MapPin, Trophy } from '@phosphor-icons/react';
 import Image from 'next/image';
 import { getActivePromotions, Promotion } from '@/data/promotions';
+import { getCurrentTournament } from '@/data/cherry-blossom-tournaments';
 
 export default function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,6 +57,7 @@ export default function WelcomeModal() {
 
   // Check if this is a Cherry Blossom promotion for special styling
   const isCherryBlossom = promotion.id.includes('cherry-blossom');
+  const tournament = getCurrentTournament();
 
   return (
     <>
@@ -88,7 +90,7 @@ export default function WelcomeModal() {
                 <div className="absolute top-4 left-4 z-10">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-500/90 text-white text-xs font-semibold backdrop-blur-sm shadow-lg">
                     <Trophy className="w-3.5 h-3.5" weight="fill" />
-                    Early Bird Open
+                    {tournament.registrationOpen ? 'Registration Open' : 'Save the Date'}
                   </span>
                 </div>
               )}
@@ -106,11 +108,11 @@ export default function WelcomeModal() {
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                     <CalendarBlank className="w-4 h-4 text-pink-500" weight="duotone" />
-                    April 11, 2026
+                    {tournament.date}{tournament.datePending ? ' (TBC)' : ''}
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm">
                     <MapPin className="w-4 h-4 text-pink-500" weight="duotone" />
-                    Aldie, VA 20105
+                    {tournament.location.address}
                   </span>
                 </div>
               )}

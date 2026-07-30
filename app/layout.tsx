@@ -30,15 +30,17 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://washingtonrugby.org'),
   applicationName: 'Washington Rugby Football Club',
   title: {
-    default: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Club',
+    default: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
     template: '%s | WRFC - DC Rugby'
   },
-  description: 'Washington Rugby Football Club (WRFC) is DC\'s premier rugby club and the top DC rugby team, established in 1963. Join the best DC rugby club for competitive matches, expert coaching, and a strong rugby community.',
+  description: 'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in 1963. We field D1, D3 and social sides, practise Tuesdays and Thursdays with matches Saturdays, are coached by two USA Eagles internationals, and founded Washington DC Youth Rugby in 2004. No experience required to join.',
   keywords: [
-    'dc rugby', 'washington dc rugby', 'rugby dc', 'dc rugby club', 'washington rugby', 'wrfc', 
+    'dc rugby', 'washington dc rugby', 'rugby dc', 'dc rugby club', 'washington rugby', 'wrfc',
     'washington rfc', 'rugby club', 'sports team', 'DC sports', 'dc rugby team',
     'rugby union', 'usa rugby', 'rugby training', 'rugby matches', 'dc rugby games',
-    'rugby community', 'washington sports', 'rugby tournaments', 'best dc rugby'
+    'rugby community', 'washington sports', 'rugby tournaments',
+    'how to join a rugby club in dc', 'rugby for beginners dc', 'adult rugby dc',
+    'play rugby washington dc', 'rugby near me dc'
   ],
   authors: [{ name: 'Washington Rugby Football Club' }],
   creator: 'Washington Rugby Football Club',
@@ -64,8 +66,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://washingtonrugby.org',
     siteName: 'Washington Rugby FC',
-    title: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
-    description: 'Join DC\'s premier rugby club and top DC rugby team. WRFC offers competitive DC rugby matches, expert coaching, and the strongest DC rugby community since 1963.',
+    title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
+    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
     images: [
       {
         url: '/logos/wrfc_logo.png',
@@ -77,8 +79,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DC Rugby | Washington Rugby Football Club - Premier DC Rugby Team',
-    description: 'Join DC\'s premier rugby club and top DC rugby team. WRFC offers competitive DC rugby matches, expert coaching, and the strongest DC rugby community since 1963.',
+    title: 'Washington Rugby Football Club | DC\'s Oldest Rugby Club, Founded 1963',
+    description: 'DC\'s oldest rugby club, founded 1963. D1, D3 and social sides, coached by two USA Eagles internationals, and the club that founded Washington DC Youth Rugby. New players welcome.',
     images: ['/logos/wrfc_logo.png'],
     creator: '@WRFC_DC',
     site: '@WRFC_DC',

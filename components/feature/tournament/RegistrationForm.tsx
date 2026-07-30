@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { getDivisionOptions } from '@/data/cherry-blossom-tournaments';
+import { getCurrentTournament, getDivisionOptions } from '@/data/cherry-blossom-tournaments';
 
 interface FormData {
   teamName: string;
@@ -43,7 +43,7 @@ export default function RegistrationForm() {
     notes: ''
   });
 
-  const divisions = getDivisionOptions(2026);
+  const divisions = getDivisionOptions(getCurrentTournament().year);
 
   const updateField = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));

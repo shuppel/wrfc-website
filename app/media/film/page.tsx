@@ -4,7 +4,7 @@ import FilmRoomContent from './FilmRoomContent';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Film Room | WRFC Match Highlights & Rugby Videos',
-  description: 'Watch Washington Rugby Football Club match highlights, training footage, and rugby videos. Film analysis and video coverage from DC\'s premier rugby club.',
+  description: 'Watch Washington Rugby Football Club match highlights, training footage, and rugby videos. Film analysis and video coverage from Washington Rugby Football Club, founded 1963.',
   path: '/media/film',
 });
 

@@ -43,6 +43,7 @@ export default function Footer() {
                 <li><FooterLink href="/teams/players">Player Roster</FooterLink></li>
                 <li><FooterLink href="/schedule/game">Game Schedule</FooterLink></li>
                 <li><FooterLink href="/tournaments">Tournaments</FooterLink></li>
+                <li><FooterLink href="/faq">FAQ</FooterLink></li>
                 <li><FooterLink href="/contact">Contact</FooterLink></li>
               </ul>
             </nav>

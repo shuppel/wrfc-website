@@ -17,9 +17,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'welcome-to-wrfc',
     title: 'Welcome to Washington Rugby Football Club',
-    excerpt: 'Discover the rich history and vibrant community of DC\'s premier rugby club.',
+    excerpt: 'The history and community of the oldest rugby club in Washington, DC.',
     content: `
-      <p>Welcome to Washington Rugby Football Club, DC's premier men's rugby team with a rich tradition dating back to 1963.</p>
+      <p>Welcome to Washington Rugby Football Club, the oldest rugby club in Washington, DC, playing continuously since 1963.</p>
       
       <p>For over six decades, WRFC has been a cornerstone of rugby in the nation's capital, developing players, fostering community, and competing at the highest levels of American rugby.</p>
       

@@ -9,6 +9,7 @@ import JsonLd from '../../components/JsonLd'
 import { Button } from '@/components/ui/button';
 import RegisterButton from '@/components/RegisterButton';
 import { getAllTournaments } from '@/data/tournaments';
+import { getTournamentByYear } from '@/data/cherry-blossom-tournaments';
 import { formatDate } from '@/lib/utils';
 
 interface Tournament {
@@ -35,10 +36,58 @@ const tournaments: Tournament[] = [
   {
     id: 'cherry-blossom',
     name: 'Cherry Blossom Tournament',
+    date: 'Spring 2027 - date to be announced',
+    location: 'Washington, DC area - venue to be announced',
+    coverImage: '/assets/pictures/138A4076.jpg',
+    description: '59th Annual Cherry Blossom Tournament. Washington Rugby has run this tournament every spring since 1968. Registration typically opens in December; returning teams are notified first.',
+    divisions: [
+      {
+        id: 'club-2027',
+        name: 'Club 15s',
+        description: 'Men\'s & Women\'s Club teams',
+        price: 485,
+        maxTeams: 12,
+        teamsRegistered: 0,
+        registrationDeadline: '2027-04-01'
+      },
+      {
+        id: 'college-2027',
+        name: 'College 15s',
+        description: 'Men\'s & Women\'s College teams',
+        price: 450,
+        maxTeams: 12,
+        teamsRegistered: 0,
+        registrationDeadline: '2027-04-01'
+      },
+      {
+        id: 'high-school-2027',
+        name: 'High School 15s',
+        description: 'Men\'s & Women\'s High School teams',
+        price: 485,
+        maxTeams: 8,
+        teamsRegistered: 0,
+        registrationDeadline: '2027-04-01'
+      },
+      {
+        id: 'two-teams-2027',
+        name: 'Two Teams Bundle',
+        description: 'Register two sides at a discount',
+        price: 650,
+        maxTeams: 8,
+        teamsRegistered: 0,
+        registrationDeadline: '2027-04-01'
+      }
+    ],
+    status: 'upcoming',
+    year: 2027
+  },
+  {
+    id: 'cherry-blossom',
+    name: 'Cherry Blossom Tournament',
     date: 'April 11, 2026',
     location: '22006 James Monroe Highway, Aldie, VA 20105',
     coverImage: '/assets/pictures/138A4076.jpg',
-    description: '58th Annual Cherry Blossom Tournament - Join us in Aldie, VA for the premier East Coast spring rugby event.',
+    description: '58th Annual Cherry Blossom Tournament in Aldie, VA. Washington Rugby won the Men\'s Club Bracket over Fayetteville RFC.',
     divisions: [
       {
         id: 'club-2026',
@@ -77,7 +126,7 @@ const tournaments: Tournament[] = [
         registrationDeadline: '2026-04-01'
       }
     ],
-    status: 'upcoming',
+    status: 'past',
     year: 2026
   },
   {
@@ -86,12 +135,12 @@ const tournaments: Tournament[] = [
     date: 'April 12-13, 2025',
     location: 'Liberty Sports Park, MD',
     coverImage: '/assets/pictures/2025_irish_ruck.jpg',
-    description: '57th Annual Cherry Blossom Tournament - A premier rugby event featuring multiple divisions for both men and women.',
+    description: '57th Annual Cherry Blossom Tournament at Liberty Sports Park, MD. 31 teams and 600+ players across four divisions.',
     divisions: [
       {
         id: 'mens-d1',
         name: 'Men\'s Division 1',
-        description: 'Premier men\'s division for top-level club teams',
+        description: 'Top men\'s division for established club teams',
         price: 750,
         maxTeams: 8,
         teamsRegistered: 3,
@@ -109,7 +158,7 @@ const tournaments: Tournament[] = [
       {
         id: 'womens-premier',
         name: 'Women\'s Premier',
-        description: 'Premier women\'s division for top-level club teams',
+        description: 'Top women\'s division for established club teams',
         price: 750,
         maxTeams: 8,
         teamsRegistered: 1,
@@ -157,7 +206,7 @@ const tournaments: Tournament[] = [
       {
         id: 'mens-d1-2024',
         name: 'Men\'s Division 1',
-        description: 'Premier men\'s division',
+        description: 'Top men\'s division',
         price: 750,
         maxTeams: 8,
         teamsRegistered: 8,
@@ -187,7 +236,7 @@ const tournaments: Tournament[] = [
       {
         id: 'mens-d1-2023',
         name: 'Men\'s Division 1',
-        description: 'Premier men\'s division',
+        description: 'Top men\'s division',
         price: 700,
         maxTeams: 8,
         teamsRegistered: 8,
@@ -260,6 +309,14 @@ export default async function TournamentsPage() {
 
   const upcomingTournament = displayTournaments.find(t => t.status === 'upcoming');
 
+  // Edition number and registration state come from the Cherry Blossom data so
+  // rolling the tournament forward only requires editing one file.
+  const upcomingCbt = upcomingTournament
+    ? getTournamentByYear(upcomingTournament.year)
+    : undefined;
+  const upcomingEdition = upcomingCbt?.edition;
+  const upcomingRegistrationOpen = upcomingCbt?.registrationOpen ?? false;
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Structured Data */}
@@ -288,7 +345,7 @@ export default async function TournamentsPage() {
             WRFC Tournaments
           </h1>
           <p className="text-xl md:text-2xl accent-text opacity-100 drop-shadow-lg">
-            Celebrating rugby excellence in the nation&apos;s capital
+            Rugby in the nation&apos;s capital since 1963
           </p>
           <p className="text-lg mt-4 drop-shadow-lg">
             For Cherry Blossom Tournament inquiries: <a href="mailto:cbt-chair@washingtonrugby.org" className="underline hover:text-wrfc-red transition-colors">cbt-chair@washingtonrugby.org</a>
@@ -328,11 +385,11 @@ export default async function TournamentsPage() {
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <div className="flex items-center gap-2 text-wrfc-red font-semibold">
                             <Trophy className="w-5 h-5" />
-                            <span>{upcomingTournament.year === 2026 ? '58th' : '57th'} Annual Tournament</span>
+                            <span>{upcomingEdition ? `${upcomingEdition}th Annual Tournament` : 'Annual Tournament'}</span>
                           </div>
-                          {upcomingTournament.year === 2026 && (
-                            <span className="inline-flex items-center gap-1 bg-gradient-to-r from-pink-500 to-wrfc-red text-white text-xs font-bold px-3 py-1 rounded-full">
-                              🌸 Now in Aldie, VA!
+                          {!upcomingRegistrationOpen && (
+                            <span className="inline-flex items-center gap-1 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs font-bold px-3 py-1 rounded-full">
+                              Registration not yet open
                             </span>
                           )}
                         </div>
@@ -355,7 +412,7 @@ export default async function TournamentsPage() {
                           </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4">
-                          <Link href={upcomingTournament.year === 2026 ? '/tournaments/cherry-blossom/2026' : `/tournaments/${upcomingTournament.id}`}>
+                          <Link href={upcomingTournament.id === 'cherry-blossom' ? `/tournaments/cherry-blossom/${upcomingTournament.year}` : `/tournaments/${upcomingTournament.id}`}>
                             <Button className="bg-wrfc-navy hover:bg-wrfc-navy/90 text-white transition-colors">
                               View Tournament Details
                               <ArrowRight className="ml-2 w-4 h-4" />

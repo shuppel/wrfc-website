@@ -65,7 +65,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
       id: '2',
       title: 'Cherry Blossom Tournament 2025 Registration Now Open',
       slug: 'cherry-blossom-2025-registration',
-      excerpt: 'Early bird registration is now available for the premier rugby tournament in the DC area. Multiple divisions available for all skill levels.',
+      excerpt: 'Registration details for the Cherry Blossom Tournament, hosted by WRFC every spring since 1968. Multiple divisions for all skill levels.',
       content: 'Full article content here...',
       publishDate: '2025-01-10',
       featuredImage: { url: '/assets/art/tournament_banner_watercolor.png' },

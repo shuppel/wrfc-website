@@ -77,8 +77,8 @@ export default function Home() {
               <span className="block text-wrfc-red">Football Club</span>
             </h1>
             <p className="text-xl md:text-2xl mb-6 font-quantico opacity-90">
-              DC&apos;s Premier Rugby Club - Tradition. Excellence. Community.
-              <span className="block text-lg mt-2 text-gray-300">Est. 1963 - Leading DC Rugby Since Day One</span>
+              The oldest rugby club in Washington, DC. Founded 1963.
+              <span className="block text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays, rugby all four seasons. No experience needed.</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -117,22 +117,22 @@ export default function Home() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <FeatureCard 
+              <FeatureCard
                 icon={<Trophy className="w-12 h-12 text-wrfc-red" weight="duotone" />}
-              title="Growing Legacy"
-              description="Former D II Capitol Region Champions, building towards new heights with a world-class coaching staff and dedicated players."
+              title="Coached by Internationals"
+              description="Thretton Palamo was for years the youngest player ever capped by the USA. Jamason Fa'anana-Schultz has captained the Eagles in test matches within the past three years, and captained Old Glory DC."
               image="/assets/pictures/2025_irish_ruck.jpg"
             />
-              <FeatureCard 
+              <FeatureCard
                 icon={<Users className="w-12 h-12 text-wrfc-navy" weight="duotone" />}
-              title="DC Rugby Community"
-              description="Join the strongest DC rugby brotherhood of passionate men's rugby players and supporters in the heart of Washington DC."
+              title="Rooted in the City"
+              description="WRFC founded Washington DC Youth Rugby in 2004. It now runs free programs for 100+ kids across all four DC quadrants, and our players volunteer with it."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
-              <FeatureCard 
+              <FeatureCard
                 icon={<Calendar className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
-              title="Year-Round Action"
-              description="Compete in both 15s and 7s seasons with opportunities for players of all levels."
+              title="Something On Year-Round"
+              description="Fall and spring 15s seasons, winter workouts and summer 7s, plus socials, the Cherry Blossom Tournament and an annual tour. Practice Tuesdays and Thursdays, matches Saturdays."
               image="/assets/pictures/2025_irish_lami.jpg"
             />
           </div>
@@ -181,11 +181,12 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6  text-white text-center">
-            Ready to Join the Legacy?
+            Ready to Come Down to a Practice?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200 text-center">
-            Whether you&apos;re an experienced player or new to DC rugby, WRFC welcomes athletes of all levels. 
-            Join us and be part of Washington DC&apos;s premier men&apos;s rugby club and the top DC rugby team.
+            Plenty of our players had never touched a rugby ball before their first WRFC practice.
+            Others have played internationally. Both are welcome, and we sort you into a side that fits.
+            Fill in the form below and someone will be in touch before the next session.
           </p>
           
           {/* Embedded Google Form */}

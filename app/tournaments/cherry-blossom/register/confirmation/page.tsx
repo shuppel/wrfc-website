@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle, Clock, Envelope } from '@phosphor-icons/react/dist/ssr';
+import { getCurrentTournament } from '@/data/cherry-blossom-tournaments';
 
 function ConfirmationContent() {
   const searchParams = useSearchParams();
@@ -18,6 +19,7 @@ function ConfirmationContent() {
   }, [searchParams]);
 
   const isWaitlist = status === 'waitlist';
+  const tournamentYear = getCurrentTournament().year;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
@@ -34,7 +36,7 @@ function ConfirmationContent() {
               {isWaitlist ? 'Added to Waitlist' : 'Registration Received!'}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Thank you for registering for CBT 2026
+              Thank you for registering for CBT {tournamentYear}
             </p>
           </div>
 
@@ -138,7 +140,7 @@ function ConfirmationContent() {
               View Tournament Info
             </Link>
             <Link
-              href="/tournaments/cherry-blossom/2026/teams"
+              href={`/tournaments/cherry-blossom/${tournamentYear}/teams`}
               className="inline-block bg-white dark:bg-gray-800 border-2 border-wrfc-navy text-wrfc-navy dark:text-white text-center px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               View Registered Teams

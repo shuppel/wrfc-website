@@ -2,14 +2,54 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Trophy, Users, ArrowRight, MapPin, Clock, Star } from '@phosphor-icons/react/dist/ssr'
 import { generateSEOMetadata } from '../utils/seo'
-import JsonLd from '../../components/JsonLd'
+import JsonLd, { FAQPageJsonLd } from '../../components/JsonLd'
 
 // Generate metadata for the DC Rugby page
 export const metadata = generateSEOMetadata({
-  title: 'DC Rugby | Join Washington DC\'s Premier Rugby Club - WRFC',
-  description: 'Looking for DC rugby? Washington Rugby Football Club is DC\'s premier rugby club since 1963. Join the best DC rugby team for competitive matches, training, and community. All levels welcome.',
+  title: 'Playing Rugby in DC | Washington Rugby Football Club',
+  description: 'A straight answer to how adult rugby works in Washington, DC: which clubs exist, what WRFC offers, how the season runs across fall 15s, winter, spring 15s and summer 7s, what it costs, and what your first practice is like. No experience required.',
   path: '/dc-rugby'
 });
+
+// Visible copy and FAQPage schema are generated from the same source so they
+// can never drift apart.
+const faqs = [
+  {
+    question: 'Which rugby clubs are there in Washington, DC?',
+    answer:
+      'The DC area has several adult rugby clubs, and which one suits you depends on what you want. Washington Rugby Football Club (WRFC) is the oldest, founded in 1963, and fields Division 1, Division 3 and social men\'s sides. Other clubs in the area include Washington Irish, Potomac Athletic Club, NOVA and Baltimore-area sides, plus Old Glory DC, the region\'s professional Major League Rugby team. If you want a men\'s club that takes complete beginners and also has a competitive D1 side, WRFC is a reasonable first call. If you want women\'s rugby, the DC Furies and NOVA Women are the established options and we are happy to point you there.'
+  },
+  {
+    question: 'What makes WRFC different from other DC rugby clubs?',
+    answer:
+      'Three things we can point to rather than assert. First, longevity: WRFC was founded in February 1963 and is the oldest rugby club in the District, a founding member of the USA Rugby Super League in 1997. Second, coaching: Head Coach Thretton Palamo was capped by the USA Eagles at 19 and held the record as the youngest player ever capped by the United States for years afterwards, and Lead Assistant Coach Jamason Fa\'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC in Major League Rugby. Third, community roots: WRFC founded Washington DC Youth Rugby in 2004, which now runs free programmes for over 100 children across all four quadrants of the city.'
+  },
+  {
+    question: 'Do I need experience to play rugby in DC?',
+    answer:
+      'No. A large share of WRFC players had never played rugby before joining, many having come from American football, soccer, wrestling, basketball or no sport at all. New players are taught contact technique and the laws of the game from scratch before playing a match, and the club fields social and Division 3 sides specifically so beginners have somewhere to play competitively rather than sitting on a bench.'
+  },
+  {
+    question: 'Where and when does WRFC train?',
+    answer:
+      'There is no single fixed time and place year-round. The general pattern is practice on Tuesday and Thursday evenings with matches on Saturdays, at fields around Washington, DC. The year runs in four blocks: a fall 15s season, winter workouts, a spring 15s season, and 7s through the summer. Venues and times move with the season, so check the practice schedule page or email welcome@washingtonrugby.org before heading out. Trainers and shorts are enough for a first session.'
+  },
+  {
+    question: 'How do I join WRFC?',
+    answer:
+      'Fill in the membership form on this site or email welcome@washingtonrugby.org, and someone will tell you when and where the next session is. Because practice locations move through the season, checking in first beats turning up cold. Dues are paid once you decide to stick around, and the club will talk through options if cost is a barrier.'
+  },
+  {
+    question: 'Who does WRFC play, and how often?',
+    answer:
+      'WRFC plays regional club sides from across the Mid-Atlantic and the wider East Coast, generally on Saturdays. The calendar runs as a fall 15s season, winter workouts, a spring 15s season, and 7s over the summer, which works out to roughly 30 matches between the sides. WRFC also hosts the Cherry Blossom Tournament each spring and runs an annual overseas tour.'
+  },
+  {
+    question: 'Is WRFC a social club or a competitive one?',
+    answer:
+      'Both, deliberately. The Division 1 side trains and selects competitively; the Division 3 and social sides exist so that players who want the game without the commitment level of D1 still get regular minutes. Most members move between them over a season. Off the pitch the club runs socials, an end-of-season banquet, the 30 Under 30 fixture, and an annual tour, and players volunteer with Washington DC Youth Rugby.'
+  }
+];
 
 export default function DCRugbyPage() {
   const structuredData = {
@@ -17,7 +57,7 @@ export default function DCRugbyPage() {
     '@type': 'SportsOrganization',
     name: 'Washington Rugby Football Club',
     alternateName: 'WRFC',
-    description: 'DC\'s premier rugby club and top DC rugby team since 1963',
+    description: 'The oldest rugby club in Washington, DC, founded in February 1963. Men\'s D1, D3 and social sides, coached by USA Eagles internationals.',
     foundingDate: '1963',
     sport: {
       '@type': 'Sport',
@@ -45,6 +85,7 @@ export default function DCRugbyPage() {
     <div className="flex flex-col w-full">
       {/* Structured Data */}
       <JsonLd type="Organization" data={structuredData} />
+      <FAQPageJsonLd items={faqs} />
       
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
@@ -73,12 +114,12 @@ export default function DCRugbyPage() {
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
-              DC Rugby
-              <span className="block text-wrfc-red">Starts Here</span>
+              Playing Rugby
+              <span className="block text-wrfc-red">in Washington, DC</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico opacity-90">
-              Washington Rugby Football Club - DC&apos;s Premier Rugby Club Since 1963
-              <span className="block text-lg mt-2 text-gray-300">Join the Best DC Rugby Team</span>
+              Washington Rugby Football Club — founded 1963, the District&apos;s oldest rugby club
+              <span className="block text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays. Fall and spring 15s, winter workouts, summer 7s. No experience required.</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
@@ -103,26 +144,26 @@ export default function DCRugbyPage() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
-            Why Choose WRFC for DC Rugby?
+            What WRFC Actually Offers
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <DCRugbyFeature 
+            <DCRugbyFeature
               icon={<Trophy className="w-12 h-12 text-wrfc-red" />}
-              title="DC Rugby Excellence"
-              description="Former D II Capitol Region Champions with a proven track record of success in DC rugby competitions."
-              stats="60+ Years of DC Rugby"
+              title="Coaching from Internationals"
+              description="Thretton Palamo was capped by the USA at 19 and was for years the youngest player ever capped by the United States. Jamason Fa'anana-Schultz has captained the USA Eagles in test matches within the past three years and captained Old Glory DC."
+              stats="2 USA Eagles Internationals on Staff"
             />
-            <DCRugbyFeature 
+            <DCRugbyFeature
               icon={<Users className="w-12 h-12 text-wrfc-navy" />}
-              title="Strongest DC Rugby Community"
-              description="Join the most established DC rugby brotherhood with players from all backgrounds and skill levels."
-              stats="100+ Active Members"
+              title="Roots in the City"
+              description="WRFC founded Washington DC Youth Rugby in 2004. It started with 7 kids and now runs free programmes for over 100 children across all four DC quadrants."
+              stats="Founded DC Youth Rugby, 2004"
             />
-            <DCRugbyFeature 
+            <DCRugbyFeature
               icon={<Calendar className="w-12 h-12 text-wrfc-teal" />}
-              title="Year-Round DC Rugby"
-              description="Compete in both 15s and 7s seasons with regular matches against top DC rugby clubs."
-              stats="30+ Matches Per Year"
+              title="A Side for Your Level"
+              description="D1 for players chasing competitive rugby, D3 and social sides for everyone else. Beginners get real minutes rather than a seat on the bench."
+              stats="D1, D3 & Social Sides"
             />
           </div>
         </div>
@@ -140,27 +181,27 @@ export default function DCRugbyPage() {
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-wrfc-red mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Prime DC Rugby Location</h3>
+                    <h3 className="text-xl font-bold mb-2">Fields Around the District</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      Train at premier DC rugby facilities with easy access from all parts of Washington DC and surrounding areas.
+                      WRFC uses several grounds around Washington, DC rather than one home pitch. Check the practice schedule for where the next session is.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Clock className="w-6 h-6 text-wrfc-navy mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Flexible DC Rugby Schedule</h3>
+                    <h3 className="text-xl font-bold mb-2">Tuesdays &amp; Thursdays, Games Saturdays</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      Multiple training sessions per week to accommodate busy DC lifestyles while maintaining competitive edge.
+                      Evening practices twice a week so they are reachable after work, with matches at the weekend. Exact times shift by season.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Star className="w-6 h-6 text-wrfc-teal mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Expert DC Rugby Coaching</h3>
+                    <h3 className="text-xl font-bold mb-2">Rugby All Four Seasons</h3>
                     <p className="text-gray-600 dark:text-gray-100">
-                      Learn from experienced coaches who understand DC rugby and have developed players at all levels.
+                      Fall 15s, winter workouts, spring 15s and summer 7s. There is somewhere to turn up whatever month you find us.
                     </p>
                   </div>
                 </div>
@@ -192,25 +233,12 @@ export default function DCRugbyPage() {
       <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 ">
-            DC Rugby Frequently Asked Questions
+            Common Questions About Rugby in DC
           </h2>
           <div className="max-w-4xl mx-auto space-y-8">
-            <DCRugbyFAQ 
-              question="Is WRFC the best DC rugby club?"
-              answer="WRFC is DC's premier rugby club with over 60 years of history, former championship titles, and the strongest DC rugby community. We welcome players of all levels and provide the best DC rugby experience."
-            />
-            <DCRugbyFAQ 
-              question="How do I join DC rugby with WRFC?"
-              answer="Joining DC rugby with WRFC is easy! Attend one of our practice sessions, fill out our membership form, or contact us directly. We welcome new players year-round and provide all the support you need to start your DC rugby journey."
-            />
-            <DCRugbyFAQ 
-              question="Do I need experience to play DC rugby?"
-              answer="No experience necessary! WRFC welcomes players of all skill levels to DC rugby. Our experienced coaches and veteran players will help you learn the game and develop your skills in a supportive environment."
-            />
-            <DCRugbyFAQ 
-              question="Where does WRFC play DC rugby matches?"
-              answer="WRFC plays DC rugby matches at various premier rugby facilities throughout the Washington DC area. We compete against other top DC rugby clubs and regional teams in organized league play."
-            />
+            {faqs.map((faq) => (
+              <DCRugbyFAQ key={faq.question} question={faq.question} answer={faq.answer} />
+            ))}
           </div>
         </div>
       </section>
@@ -228,11 +256,11 @@ export default function DCRugbyPage() {
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6  text-white">
-            Ready to Start Your DC Rugby Journey?
+            Come Down to a Practice
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-200">
-            Join Washington Rugby Football Club and become part of DC&apos;s premier rugby community. 
-            Experience the best DC rugby has to offer with WRFC.
+            Practices run Tuesday and Thursday evenings, with matches on Saturdays. Get in touch and
+            we will tell you where the next one is — trainers and shorts are enough for a first session.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

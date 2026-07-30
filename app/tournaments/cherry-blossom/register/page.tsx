@@ -5,9 +5,11 @@ import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { generateSEOMetadata } from '@/app/utils/seo';
 import { getCurrentTournament } from '@/data/cherry-blossom-tournaments';
 
+const currentTournament = getCurrentTournament();
+
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Register for Cherry Blossom Tournament 2026',
-  description: 'Register your team for the 58th Annual Cherry Blossom Rugby Tournament. Multiple divisions available including Men\'s Club, Women\'s College, Old Boys, and High School.',
+  title: `Register for Cherry Blossom Tournament ${currentTournament.year}`,
+  description: `Team registration for the ${currentTournament.edition}th Annual Cherry Blossom Rugby Tournament, hosted by Washington Rugby Football Club. Men's and women's club, college and high school 15s brackets.`,
   path: '/tournaments/cherry-blossom/register'
 });
 

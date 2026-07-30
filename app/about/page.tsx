@@ -11,12 +11,12 @@ export default function AboutPage() {
   // Additional structured data specific to the about page
   const structuredData = getStructuredData('about', {
     foundingDate: '1963',
-    description: 'Washington Rugby Football Club (WRFC) was founded in 1963 and has grown to become one of the premier rugby clubs in the DC area.',
+    description: 'Washington Rugby Football Club was founded in February 1963 and is the oldest rugby club in Washington, DC. Founding member of the USA Rugby Super League, founder of Washington DC Youth Rugby.',
     mainEntity: {
       '@type': 'SportsOrganization',
       name: 'Washington Rugby Football Club',
       foundingDate: '1963',
-      description: 'Premier rugby club in Washington DC area, established in 1963',
+      description: 'The oldest rugby club in Washington, DC, established February 1963',
       location: {
         '@type': 'Place',
         name: 'Washington, DC',
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 </p>
                 <p className="text-lg leading-relaxed">
                   In 2022, we captured the D II Capitol Region Championship, marking a significant milestone 
-                  in our club&apos;s journey. Today, with our world-class coaching staff and growing roster of 
+                  in our club&apos;s journey. Today, with two USA Eagles internationals coaching and a growing roster of 
                   talented players, we&apos;re building on this success and setting our sights on even greater achievements.
                 </p>
               </div>

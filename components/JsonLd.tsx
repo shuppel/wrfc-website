@@ -38,13 +38,26 @@ export default function JsonLd({ type, data }: JsonLdProps) {
 }
 
 // Pre-defined JSON-LD components for common use cases
+
+/**
+ * Club-level structured data.
+ *
+ * Everything asserted here is a checkable fact — founding date, coach
+ * credentials, training ground, affiliations — rather than a self-assessment.
+ * Answer engines cite specifics and discount adjectives, so keep it that way:
+ * add facts, not superlatives.
+ */
 export function OrganizationJsonLd() {
-  const orgData = {
+  const clubId = 'https://washingtonrugby.org/#organization';
+
+  const club = {
     '@type': 'SportsTeam',
+    '@id': clubId,
     name: 'Washington Rugby Football Club',
-    alternateName: 'WRFC',
+    alternateName: ['WRFC', 'Washington RFC', 'Washington Rugby'],
     url: 'https://washingtonrugby.org',
     logo: 'https://washingtonrugby.org/logos/wrfc_logo.png',
+    slogan: 'Rugby in the nation\'s capital since 1963',
     sameAs: [
       'https://www.facebook.com/WashingtonRugbyFootballClub/',
       'https://twitter.com/WRFC_DC',
@@ -56,15 +69,64 @@ export function OrganizationJsonLd() {
       addressRegion: 'DC',
       addressCountry: 'US',
     },
+    areaServed: {
+      '@type': 'City',
+      name: 'Washington, DC',
+    },
     sport: {
       '@type': 'Sport',
-      name: 'Rugby',
+      name: 'Rugby union',
     },
-    description: 'Washington Rugby Football Club (WRFC) is a premier rugby club in Washington, DC, offering competitive matches, expert coaching, and a strong community of rugby enthusiasts.',
-    foundingDate: '1963',
-    member: {
-      '@type': 'SportsOrganization',
-      name: 'USA Rugby',
+    description:
+      'Washington Rugby Football Club is the oldest rugby club in Washington, DC, founded in February 1963. The club fields Division 1, Division 3 and social men\'s sides, practises Tuesday and Thursday evenings with matches on Saturdays across a fall 15s season, winter workouts, a spring 15s season and summer 7s, accepts players with no prior rugby experience, founded Washington DC Youth Rugby in 2004, and has hosted the Cherry Blossom Tournament every spring since 1968.',
+    foundingDate: '1963-02',
+    foundingLocation: {
+      '@type': 'Place',
+      name: 'Washington, DC',
+    },
+    memberOf: [
+      { '@type': 'SportsOrganization', name: 'USA Rugby', url: 'https://www.usa.rugby/' },
+    ],
+    coach: [
+      {
+        '@type': 'Person',
+        name: 'Thretton Palamo',
+        jobTitle: 'Head Coach',
+        description:
+          'USA Eagles international and former professional rugby player. Capped by the United States at 19 and for years the youngest player ever capped by the USA.',
+        sameAs: 'https://en.wikipedia.org/wiki/Thretton_Palamo',
+      },
+      {
+        '@type': 'Person',
+        name: 'Jamason Fa\'anana-Schultz',
+        jobTitle: 'Lead Assistant Coach',
+        description:
+          'USA Eagles international who has captained the Eagles in test matches within the past three years, and former captain of Old Glory DC in Major League Rugby.',
+        sameAs: 'https://en.wikipedia.org/wiki/Jamason_Fa%27anana-Schultz',
+      },
+    ],
+    knowsAbout: [
+      'Rugby union',
+      'Rugby coaching for beginners',
+      'Youth rugby development in Washington, DC',
+      'Cherry Blossom Rugby Tournament',
+    ],
+    nonprofitStatus: 'https://schema.org/Nonprofit501c3',
+  };
+
+  // Emitted as a separate node so the youth programme reads as its own
+  // organisation that WRFC founded, not as a marketing claim about WRFC.
+  const youthRugby = {
+    '@type': 'SportsOrganization',
+    name: 'Washington DC Youth Rugby',
+    url: 'https://www.washingtondcyouthrugby.org/',
+    foundingDate: '2004',
+    founder: { '@id': clubId },
+    description:
+      'Free youth rugby programming founded by Washington Rugby Football Club in 2004. Began with 7 participants and now reaches over 100 children across all four quadrants of Washington, DC.',
+    areaServed: {
+      '@type': 'City',
+      name: 'Washington, DC',
     },
   };
 
@@ -74,7 +136,33 @@ export function OrganizationJsonLd() {
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
-          ...orgData,
+          '@graph': [club, youthRugby],
+        }),
+      }}
+    />
+  );
+}
+
+/**
+ * FAQ structured data. Pair this with visible on-page Q&A copy — answer engines
+ * discard schema that has no matching text in the rendered page.
+ */
+export function FAQPageJsonLd({ items }: { items: { question: string; answer: string }[] }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: items.map(({ question, answer }) => ({
+            '@type': 'Question',
+            name: question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: answer,
+            },
+          })),
         }),
       }}
     />

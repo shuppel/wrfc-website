@@ -35,7 +35,7 @@ export default function EventsPage() {
     {
       name: "Cherry Blossom Tournament",
       type: "Tournament",
-      description: "Participation in the prestigious Cherry Blossom Rugby Tournament",
+      description: "The tournament WRFC has hosted every spring since 1968, drawing club, college and high school sides from across the East Coast",
       timing: "Spring",
       icon: <Flower size={48} weight="bold" className="text-wrfc-red" />
     },
@@ -49,7 +49,7 @@ export default function EventsPage() {
     {
       name: "Regular Season",
       type: "Competition",
-      description: "EPRU Division matches and league play",
+      description: "Division matches against regional club sides",
       timing: "Late August - November",
       icon: <Calendar size={48} weight="bold" className="text-wrfc-red" />
     },

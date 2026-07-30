@@ -156,7 +156,7 @@ export default function TeamsPage() {
                 <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
               </div>
               <p className="text-gray-600 dark:text-gray-100 mb-6">
-                Our premier competitive division competing at the highest level in the MAC Conference
+                Our most competitive side, playing in the MAC Conference
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">

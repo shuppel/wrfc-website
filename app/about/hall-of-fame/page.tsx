@@ -44,7 +44,7 @@ const hallOfFameMembers = [
       'One of the most capped American rugby players',
       'Leadership both on field for USA and at WRFC'
     ],
-    biography: 'Dan Lyle stands as one of American rugby\'s most decorated players. His leadership as USA Eagles captain and his two World Cup appearances represent the pinnacle of international rugby achievement. At WRFC, Lyle exemplified the club\'s tradition of developing world-class talent while maintaining the community spirit that defines Washington rugby.',
+    biography: 'Dan Lyle stands as one of American rugby\'s most decorated players. His leadership as USA Eagles captain and his two World Cup appearances represent the pinnacle of international rugby achievement. Lyle came through WRFC before reaching the international game.',
     honors: [
       'USA Rugby Hall of Fame (2016)',
       '45 International Caps',
@@ -163,7 +163,7 @@ export default function HallOfFamePage() {
             <p className="text-lg leading-relaxed text-gray-700 dark:text-white">
               The Washington Rugby Football Club has produced four USA Rugby Hall of Fame inductees, 
               representing the highest honor in American rugby. These legendary figures exemplify WRFC&apos;s 
-              60+ year tradition of developing world-class talent while maintaining the community spirit 
+              60+ year record of players reaching the international game, alongside the community spirit 
               and excellence that defines our club. Beyond our Hall of Fame inductees, WRFC has produced 
               over 20 USA Eagles and international players who have represented their countries at the highest levels.
             </p>

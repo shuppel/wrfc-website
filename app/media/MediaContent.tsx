@@ -36,7 +36,7 @@ const mockBlogPosts = [
   {
     id: '2',
     title: 'Cherry Blossom Tournament 2025 Registration Now Open',
-    excerpt: 'Early bird registration is now available for the premier rugby tournament in the DC area. Register your team today!',
+    excerpt: 'Registration details for the Cherry Blossom Tournament, hosted by WRFC every spring since 1968.',
     publishDate: '2025-01-10',
     author: { name: 'Tournament Director', picture: '/logos/wrfc_logo.png' },
     featuredImage: '/assets/art/tournament_banner_watercolor.png',

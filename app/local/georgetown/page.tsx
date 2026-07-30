@@ -16,7 +16,7 @@ export default function GeorgetownPage() {
   const structuredData = {
     '@type': 'SportsOrganization',
     name: 'Washington Rugby Football Club - Georgetown',
-    description: 'Premier rugby club serving Georgetown, Foggy Bottom, and West End Washington DC',
+    description: 'Rugby club founded 1963, training around the District and drawing players from Georgetown, Foggy Bottom and the West End',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Washington',
@@ -67,7 +67,7 @@ export default function GeorgetownPage() {
               Rugby in Georgetown
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-quantico">
-              DC&apos;s Premier Rugby Club for Georgetown Professionals
+              Evening Rugby for Georgetown Professionals
             </p>
             <p className="text-lg mb-12 max-w-2xl mx-auto text-gray-200">
               Perfect for Georgetown, Foggy Bottom, and West End residents. 
@@ -247,7 +247,7 @@ export default function GeorgetownPage() {
             Start Your Rugby Journey from Georgetown
           </h2>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
-            Join DC&apos;s premier rugby club and experience the perfect blend of 
+            Join a club that has been part of the city since 1963 and get the blend of 
             competitive sport and professional networking. New players welcome!
           </p>
           

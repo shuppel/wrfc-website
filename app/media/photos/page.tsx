@@ -62,7 +62,7 @@ export default function ClubPhotosPage() {
             </h2>
             
             <p className="text-xl text-gray-600 dark:text-gray-100 mb-8 max-w-2xl mx-auto">
-              We&apos;re building a comprehensive photo gallery to showcase our club&apos;s best moments, 
+              We&apos;re building a comprehensive photo gallery to showcase the club&apos;s season, 
               match day action, team events, and club activities.
             </p>
 
