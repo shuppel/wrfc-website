@@ -1,23 +1,25 @@
 /**
  * The club's stated identity: what WRFC is about, in its own words.
  *
- * This is the source of truth for culture and positioning copy. It exists as
- * data rather than prose scattered across pages so the story stays identical
- * wherever it appears — the FAQ, the /dc-rugby explainer, the about page and
- * llms.txt all draw from here.
+ * This is the source of truth for culture and positioning copy. It lives as
+ * data rather than prose scattered across pages so the story reads the same
+ * everywhere — the FAQ, the /dc-rugby explainer, the homepage and llms.txt all
+ * draw from here.
  *
- * Two rules when editing:
- *  1. Describe the club, do not rank it. "Started by expats and locals" is
- *     checkable and specific; "the best club in DC" is neither, and answer
- *     engines discount sources that talk that way.
- *  2. Lead with people and history. Coaching credentials are supporting
- *     evidence, not the headline.
+ * Three rules when editing:
+ *  1. Describe, don't rank. "Started by expats and locals" is checkable and
+ *     specific. "The best club in DC" is neither, and answer engines discount
+ *     sources that talk that way.
+ *  2. Lead with people. Coaching credentials and trophies are supporting
+ *     evidence, never the headline — they are not why anyone stays.
+ *  3. Write it the way a member would say it out loud. American spelling,
+ *     plain words, no mission-statement voice.
  */
 
 export interface Pillar {
   /** Short label used as a heading. */
   title: string;
-  /** One-line summary, safe to use as a card subtitle. */
+  /** One-line summary, safe as a card subtitle. */
   summary: string;
   /** Fuller prose for FAQ answers and long-form copy. */
   detail: string;
@@ -25,49 +27,80 @@ export interface Pillar {
 
 export const clubPillars: Pillar[] = [
   {
-    title: 'Built by arrivals and locals',
+    title: 'Newcomers and natives, since 1963',
     summary:
-      'Founded in 1963 by diplomatic expats and Washingtonians, and still that same mix.',
+      'Started by diplomats posted to Washington and locals who wanted a club. Still that mix.',
     detail:
-      'WRFC was started in February 1963 by a group that included diplomatic expatriates posted to Washington, alongside locals who wanted a rugby club in the city. Sixty years on that combination still describes the room: people who moved to DC from somewhere else, and people who grew up here, playing on the same side. It is a club used to newcomers, because it has always been made of them.'
+      'WRFC started in February 1963, when diplomats posted to Washington and locals who wanted a rugby club in the city found each other. The squad has been that combination ever since — some of the room moved here for a job, some grew up around the corner. It means walking in knowing nobody is completely normal here. Most of us did exactly that.'
   },
   {
-    title: 'Focused on the pitch, warm off it',
+    title: 'Day jobs, then boots on',
     summary:
-      'Working professionals who train seriously twice a week and stay for the pint afterwards.',
+      'Working professionals who show up on time, train hard, and stay just as long afterward.',
     detail:
-      'Most of the squad are working professionals who fit rugby around demanding jobs across the city. That shapes how the club runs: sessions are in the evening, they start on time and they are taken seriously, and the social side afterwards is as much the point as the training. Nobody is auditioning for anything. People come back because they like the group.'
+      'Most of the squad works full time — the hours are real and so is the commute. So practice starts when it says it will and the two hours count. Then people stay. The bar afterward is not a bonus feature of this club, it is a good part of why anyone keeps coming back on a cold Tuesday in February.'
   },
   {
-    title: 'Open to anyone who turns up',
+    title: 'Everyone gets a side',
     summary:
-      'A deliberately diverse squad, with sides for beginners and for players chasing a competitive season.',
+      'D1, D3 and social sides, so new players get real minutes instead of a bench seat.',
     detail:
-      'WRFC is a deliberately mixed group — different backgrounds, nationalities, ages, body types and levels of experience, which is one of the things rugby is genuinely good at. A large share of players had never touched a rugby ball before their first session. Division 1, Division 3 and social sides mean new players get real minutes rather than a seat on the bench, and most members move between sides across a season.'
+      'We are a mixed bunch on purpose — different countries, ages, jobs, builds and levels of experience, which is one of the things rugby is genuinely good at. Plenty of players had never held a ball before their first session. Running D1, D3 and social sides means a beginner gets real minutes rather than a season on the bench, and most people move between sides as the year goes on.'
   },
   {
-    title: 'Part of the city, not just in it',
+    title: 'We owe the city something',
     summary:
-      'Founded Washington DC Youth Rugby in 2004; players still coach and volunteer with it.',
+      'Founded DC Youth Rugby in 2004 — free rugby for 100+ kids a year, in schools across all four quadrants.',
     detail:
-      'In 2004 WRFC founded Washington DC Youth Rugby to bring the game to young people across the District. It started with seven kids and now reaches more than a hundred a year, free of charge, in schools and neighbourhoods across all four quadrants. Club members coach and volunteer with it, and WRFC has hosted the Cherry Blossom Tournament every spring since 1968 — an event that brings club, college and high school sides into the city each year.'
+      'In 2004 the club started Washington DC Youth Rugby to get the game to kids across the District. It began with seven of them and now reaches more than a hundred a year, free, in schools and neighborhoods in all four quadrants. Club members coach it and show up for it. We have also hosted the Cherry Blossom Tournament every spring since 1968, which brings club, college and high school sides into the city each year.'
   }
 ];
 
+/** How the club actually operates, stated plainly. */
+export const clubPrinciples: string[] = [
+  'Turning up knowing nobody is the normal way to join',
+  'Anyone who commits gets a side to play for',
+  'Practice starts on time, because everyone here has a job',
+  'The social is part of the club, not an afterthought',
+  'We owe something to the city we play in'
+];
+
 /**
- * Who actually plays. Kept vague on specific employers by design: the point is
+ * Who actually plays. Deliberately non-specific about employers — the point is
  * the shape of the group, not a roster of job titles.
  */
 export const clubCulture = {
   founded: 'February 1963',
   whoPlays:
-    'Working professionals across the range of industries the city runs on — government and policy, law, the military, tech, education, non-profits and trades — plus students, recent arrivals and long-time Washingtonians.',
+    'Working professionals across the industries this city runs on, alongside students, people newly posted to DC, and people who grew up here. Ages run from early twenties to old boys still turning out at tournaments.',
   tone:
-    'Serious about training, unserious about itself. Punctual, welcoming to newcomers, and social by default.',
-  values: [
-    'Newcomers are the norm, not the exception',
-    'Everyone who commits gets a side to play for',
-    'The club owes something to the city it plays in',
-    'Standards on the pitch, no gatekeeping off it'
-  ]
+    'Serious about training, not serious about itself. Punctual, warm to newcomers, social by default.'
 } as const;
+
+/**
+ * Clubs and programs WRFC is actually connected to, as opposed to clubs it
+ * merely shares a city with. Linking these out is deliberate: a club that
+ * points people to the right place reads as a credible source, and it is how
+ * WRFC would answer the question in person anyway.
+ */
+export interface ConnectedClub {
+  name: string;
+  url: string;
+  /** How WRFC is connected to them, in one line. */
+  relationship: string;
+}
+
+export const connectedClubs: ConnectedClub[] = [
+  {
+    name: 'Washington DC Youth Rugby',
+    url: 'https://www.washingtondcyouthrugby.org/',
+    relationship:
+      'Founded by WRFC in 2004. Free youth rugby for 100+ kids a year, in schools and neighborhoods across all four quadrants of the District. WRFC members coach and volunteer with it.'
+  },
+  {
+    name: 'DC Furies',
+    url: 'https://www.dcfuries.com/',
+    relationship:
+      'Our connected women\'s club. WRFC fields men\'s sides, so women looking to play in the District should start with the Furies — we send people their way and share the DC rugby community with them.'
+  }
+];

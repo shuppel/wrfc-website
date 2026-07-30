@@ -22,17 +22,17 @@ const faqs = [
   {
     question: 'What makes WRFC different from other DC rugby clubs?',
     answer:
-      'Mostly its character and where it came from. WRFC was founded in February 1963 by diplomatic expatriates posted to Washington together with locals who wanted a rugby club in the city, and the squad is still that same mix of people who moved here and people who grew up here. It is a club accustomed to newcomers because it has always been built from them. In practice that means a room of working professionals who train seriously two evenings a week and are social the rest of the time, a deliberately diverse group across background, nationality, age and experience, and a long-standing tie to the city through Washington DC Youth Rugby, founded by the club in 2004 and still coached and supported by its players. Strong coaching and the club being the oldest in the District are true and useful, but they are supporting facts rather than the reason people stay.'
+      'The people and where the club came from. WRFC started in February 1963 when diplomats posted to Washington and locals who wanted a rugby club found each other, and the squad is still that combination — some moved here for a job, some grew up around the corner. That is why walking in knowing nobody is completely normal here. Day to day it looks like a group of people with real jobs who show up on time, train hard for two hours, and stay just as long afterward. A lot of them also coach free youth rugby across the city through Washington DC Youth Rugby, which the club founded in 2004. Strong coaching and being the oldest club in the District are both true, but they are supporting facts rather than why anyone stays.'
   },
   {
     question: 'Who plays for WRFC, and what is the club like?',
     answer:
-      'Working professionals, mostly, across the industries the city runs on — government and policy, law, the military, tech, education, non-profits and trades — alongside students, recent arrivals and people who grew up in DC. Ages run wide, from players in their early twenties to old boys still turning out at tournaments. The tone is serious about training and unserious about itself: sessions start on time because everyone is fitting rugby around a job, and the social afterwards is much of the reason people keep coming back. Turning up knowing nobody is the ordinary way to join.'
+      'Working professionals across the industries this city runs on, alongside students, people newly posted to DC, and people who grew up here. Ages run from early twenties to old boys still turning out at tournaments. The tone is serious about the rugby and not serious about itself — practice starts on time because everyone is fitting it around a job, and the bar afterward is much of why people come back. Turning up knowing nobody is the normal way to join.'
   },
   {
     question: 'Do I need experience to play rugby in DC?',
     answer:
-      'No. A large share of WRFC players had never played rugby before joining, many having come from American football, soccer, wrestling, basketball or no sport at all. New players are taught contact technique and the laws of the game from scratch before playing a match, and the club fields social and Division 3 sides specifically so beginners have somewhere to play competitively rather than sitting on a bench.'
+      'No. A large share of WRFC players had never played rugby before joining, coming from football, soccer, wrestling, basketball or no sport at all. New players learn contact technique and the laws of the game from scratch before playing a match, and the club runs social and Division 3 sides specifically so beginners get real minutes instead of a season on the bench.'
   },
   {
     question: 'Where and when does WRFC train?',
@@ -52,7 +52,7 @@ const faqs = [
   {
     question: 'Is WRFC a social club or a competitive one?',
     answer:
-      'Both, deliberately. The Division 1 side trains and selects competitively; the Division 3 and social sides exist so that players who want the game without the commitment level of D1 still get regular minutes. Most members move between them over a season. The social side is not an afterthought — for a squad of working professionals it is much of the appeal. The club runs socials, an end-of-season banquet, the 30 Under 30 fixture and an annual tour, and players coach and volunteer with Washington DC Youth Rugby.'
+      'Both, deliberately. The Division 1 side trains and selects competitively; D3 and social exist so players who want the game without the D1 commitment still get regular minutes, and most people move between them over a season. The social side is not an afterthought — for a squad of people with full-time jobs it is much of the appeal. There are socials, an end-of-season banquet, the 30 Under 30 fixture and an annual tour, and plenty of members coach with DC Youth Rugby.'
   }
 ];
 
@@ -154,20 +154,20 @@ export default function DCRugbyPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <DCRugbyFeature
               icon={<Users className="w-12 h-12 text-wrfc-navy" />}
-              title="Expats and Locals, Since 1963"
-              description="Founded by diplomatic expatriates posted to Washington alongside locals who wanted a club in the city. The squad is still that mix, which makes it a club used to newcomers."
+              title="Newcomers and Natives, Since 1963"
+              description="Started when diplomats posted to Washington and locals who wanted a club found each other. The squad is still that mix, which is why walking in knowing nobody is normal here."
               stats="Founded February 1963"
             />
             <DCRugbyFeature
               icon={<Star className="w-12 h-12 text-wrfc-red" />}
-              title="Professionals Who Train Hard"
-              description="Mostly working professionals fitting rugby around demanding jobs. Sessions start on time and are taken seriously; the social afterwards is much of the point. Nobody is auditioning."
-              stats="Serious on the Pitch, Warm Off It"
+              title="Day Jobs, Then Boots On"
+              description="Almost everyone here works full time, so practice starts when it says it will and the two hours count. Then people stay. The bar afterward is a good part of why they come back."
+              stats="Serious About Rugby, Not About Itself"
             />
             <DCRugbyFeature
               icon={<Calendar className="w-12 h-12 text-wrfc-teal" />}
-              title="Part of the City"
-              description="WRFC founded Washington DC Youth Rugby in 2004. It started with 7 kids and now runs free programmes for 100+ children in schools and neighbourhoods across all four quadrants."
+              title="We Owe the City Something"
+              description="WRFC started Washington DC Youth Rugby in 2004. It began with 7 kids and now reaches 100+ a year, free, in schools and neighborhoods across all four quadrants."
               stats="Founded DC Youth Rugby, 2004"
             />
           </div>

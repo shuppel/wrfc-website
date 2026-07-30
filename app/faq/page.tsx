@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { generateSEOMetadata } from '../utils/seo'
 import { BreadcrumbJsonLd, FAQPageJsonLd } from '../../components/JsonLd'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
-import { clubPillars } from '@/data/club-identity'
+import { clubPillars, clubPrinciples } from '@/data/club-identity'
 
 export const metadata = generateSEOMetadata({
   title: 'Frequently Asked Questions',
@@ -26,9 +26,9 @@ export const metadata = generateSEOMetadata({
 type Faq = {
   question: string
   answer: string
-  /** Optional CTA rendered under the visible answer. Kept out of the FAQPage
+  /** Optional CTAs rendered under the visible answer. Kept out of the FAQPage
    *  schema, which takes the plain-text answer only. */
-  link?: { href: string; label: string; external?: boolean }
+  links?: { href: string; label: string; external?: boolean }[]
 }
 type FaqSection = { heading: string; items: Faq[] }
 
@@ -54,7 +54,14 @@ const sections: FaqSection[] = [
       {
         question: 'What is WRFC\'s connection to youth rugby in DC?',
         answer:
-          'WRFC founded Washington DC Youth Rugby in 2004 to bring rugby to underserved parts of the city. The programme began with 7 participants and now reaches over 100 children a year across all four quadrants of Washington, DC, free of charge. WRFC players volunteer with it and the club continues to support it.'
+          'WRFC started Washington DC Youth Rugby in 2004 to bring the game to underserved parts of the city. It began with 7 participants and now reaches over 100 kids a year across all four quadrants of Washington, DC, free of charge. WRFC players coach and volunteer with it, and the club continues to support it.',
+        links: [
+          {
+            href: 'https://www.washingtondcyouthrugby.org/',
+            label: 'Washington DC Youth Rugby',
+            external: true
+          }
+        ]
       }
     ]
   },
@@ -64,7 +71,7 @@ const sections: FaqSection[] = [
       {
         question: 'Can I join WRFC with no rugby experience?',
         answer:
-          'Yes. A large share of the current squad had never played rugby before joining, arriving from American football, soccer, wrestling, basketball, or no organised sport at all. New players are taught the laws of the game and safe contact technique before playing a match, and are brought into a side that matches where they are rather than left waiting for one.'
+          'Yes. A large share of the current squad had never played rugby before joining, arriving from football, soccer, wrestling, basketball, or no organized sport at all. New players are taught the laws of the game and safe contact technique before playing a match, and get brought into a side that matches where they are rather than left waiting for one.'
       },
       {
         question: 'How do I join WRFC?',
@@ -85,21 +92,26 @@ const sections: FaqSection[] = [
         question: 'How much does it cost to play for WRFC?',
         answer:
           'Players pay season dues, which cover season participation, match eligibility, training, a gear package, social events and USA Rugby registration. Current rates are listed on the Pay Dues form, linked from the button in the site header. Dues are paid once you decide to join rather than before your first session, and the club will discuss options if cost is a barrier.',
-        link: {
-          href: 'https://www.zeffy.com/en-US/ticketing/wrfc-player-dues',
-          label: 'View current dues and pay',
-          external: true
-        }
+        links: [
+          {
+            href: 'https://www.zeffy.com/en-US/ticketing/wrfc-player-dues',
+            label: 'View current dues and pay',
+            external: true
+          }
+        ]
       },
       {
         question: 'Is there an age limit?',
         answer:
-          'WRFC is an adult club, so players need to be 18 or over. There is no upper limit — the club has players across a wide age range and old boys sides appear at tournaments. Anyone younger should look at Washington DC Youth Rugby, the programme WRFC founded in 2004.'
+          'WRFC is an adult club, so players need to be 18 or over. There is no upper limit — the club has players across a wide age range and old boys sides appear at tournaments. Anyone younger should look at Washington DC Youth Rugby, the program WRFC founded in 2004.'
       },
       {
         question: 'Does WRFC have a women\'s team?',
         answer:
-          'No. WRFC fields men\'s sides. The DC area has established women\'s clubs including the DC Furies and NOVA Women, and WRFC is happy to point prospective women players toward them. The Cherry Blossom Tournament that WRFC hosts does include women\'s club and college brackets.'
+          'WRFC fields men\'s sides, and the DC Furies are our connected women\'s club — if you want to play women\'s rugby in the District, start there. We send people their way and share the DC rugby community with them. The Cherry Blossom Tournament that WRFC hosts also includes women\'s club and college brackets.',
+        links: [
+          { href: 'https://www.dcfuries.com/', label: 'DC Furies', external: true }
+        ]
       }
     ]
   },
@@ -109,22 +121,29 @@ const sections: FaqSection[] = [
       {
         question: 'What is the culture at WRFC like?',
         answer:
-          'Serious about training, unserious about itself. Sessions start on time and are taken seriously because most of the squad are working professionals fitting rugby around demanding jobs, and the time available has to count. The social side afterwards is as much the point as the training — nobody is auditioning for anything, and people come back because they like the group. Newcomers are the norm rather than the exception, so turning up not knowing anybody is the ordinary way to join rather than an awkward exception.'
+          'Serious about the rugby, not serious about itself. Almost everyone here works full time, so practice starts when it says it will and the two hours count. Then people stay — the bar afterward is not a bonus feature, it is a good part of why anyone comes back out on a cold Tuesday in February. Nobody is auditioning for anything. Newcomers are the normal case rather than the awkward exception, because most of the squad joined the same way.'
       },
       {
         question: 'Who actually plays for WRFC?',
         answer:
-          'Working professionals across the industries the city runs on — government and policy, law, the military, tech, education, non-profits and trades — alongside students, recent arrivals to DC and people who grew up here. Ages run across a wide range, from players in their early twenties to old boys still turning out at tournaments. Plenty had never played rugby before joining and came from American football, soccer, wrestling, basketball or no organised sport at all.'
+          'Working professionals across the industries this city runs on, alongside students, people newly posted to DC, and people who grew up here. Ages run from early twenties to old boys still turning out at tournaments. Plenty had never played rugby before joining — they came from football, soccer, wrestling, basketball, or no organized sport at all. If you are picturing a room of former college athletes, that is only part of it.'
       },
       {
         question: 'Is WRFC a diverse club?',
         answer:
-          'Deliberately so. The club has been a mix of nationalities since it was founded by expatriates and Washingtonians in 1963, and it remains a broad group across background, nationality, age, body type and playing experience. Rugby is unusual among sports in having a genuine place on the pitch for a wide range of builds and athletic profiles, and WRFC leans into that rather than recruiting a single type of player.'
+          'On purpose, yes. The club has been a mix of nationalities since expats and Washingtonians founded it in 1963, and it still is — different countries, ages, jobs, builds and levels of experience. Rugby is unusual in having a real place on the field for a wide range of body types and athletic profiles, and we lean into that instead of recruiting one kind of player.'
       },
       {
         question: 'What does WRFC do in the DC community?',
         answer:
-          'The club founded Washington DC Youth Rugby in 2004 to bring the game to young people across the District. It began with seven participants and now reaches more than a hundred children a year, free of charge, in schools and neighbourhoods across all four quadrants of the city. WRFC members coach and volunteer with the programme. The club also hosts the Cherry Blossom Tournament each spring, which it has run since 1968, bringing club, college and high school sides into the DC area every year.'
+          'The club started Washington DC Youth Rugby in 2004 to get the game to kids across the District. It began with seven of them and now reaches more than a hundred a year, free, in schools and neighborhoods in all four quadrants. WRFC members coach it and show up for it. The club also hosts the Cherry Blossom Tournament each spring, which it has run since 1968, bringing club, college and high school sides into the DC area every year.',
+        links: [
+          {
+            href: 'https://www.washingtondcyouthrugby.org/',
+            label: 'Washington DC Youth Rugby',
+            external: true
+          }
+        ]
       }
     ]
   },
@@ -134,17 +153,20 @@ const sections: FaqSection[] = [
       {
         question: 'Which rugby club should I join in Washington, DC?',
         answer:
-          'It depends on what you want from the game. The DC area supports several adult clubs, and most of them are welcoming. WRFC tends to suit people who want a club inside the city with a social centre of gravity, who are working professionals fitting rugby around a job, and who want somewhere that takes complete beginners while still running a competitive Division 1 side. If you want to play at the professional level, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, look at the DC Furies or NOVA Women. Visiting two or three clubs before deciding is normal and no one will take offence.'
+          'It depends what you want from the game. The DC area has several adult clubs and most of them are welcoming. WRFC tends to suit people working full time who want a club in the city with a real social side, and who want somewhere that takes complete beginners while still running a competitive Division 1 squad. If you want to play professionally, that is Old Glory DC in Major League Rugby. If you want women\'s rugby, start with the DC Furies, our connected women\'s club. Visiting two or three clubs before you decide is normal and nobody will take offense.',
+        links: [
+          { href: 'https://www.dcfuries.com/', label: 'DC Furies', external: true }
+        ]
       },
       {
         question: 'What distinguishes WRFC from other DC-area clubs?',
         answer:
-          'Character, mostly, and a particular history. WRFC was started in 1963 by diplomatic expatriates posted to Washington together with locals who wanted a club in the city, and that mix still describes the squad — people who moved here from somewhere else and people who grew up here, on the same side. It is a club used to newcomers because it has always been made of them. Day to day that shows up as a room full of working professionals who train seriously two evenings a week and stay social afterwards, a deliberately diverse group across background, nationality, age and experience, and a standing commitment to the city through Washington DC Youth Rugby, which the club founded in 2004 and whose players still coach and volunteer. The coaching is genuinely strong and the club is the oldest in the District, but those are supporting facts. What people stay for is the group.'
+          'The people, honestly. WRFC started in 1963 when diplomats posted to Washington and locals who wanted a rugby club found each other, and the squad has been that combination ever since — some of the room moved here for a job, some grew up around the corner. That history is why walking in knowing nobody is completely normal here. Day to day it looks like a group of people with real jobs who show up on time, train hard for two hours, and then stay just as long afterward. A lot of them also spend weekends coaching free youth rugby across the city, which the club has run since 2004. There are strong coaches here and a long record, and both matter — but neither is why anyone stays.'
       },
       {
         question: 'Is WRFC competitive or social?',
         answer:
-          'Both, by design. The Division 1 side selects competitively and trains accordingly. The Division 3 and social sides exist so that players who want regular game time without D1 commitment have somewhere real to play, and most members move between sides over a season. Off the pitch the club runs socials, an end-of-season banquet, the 30 Under 30 fixture and an annual overseas tour, and players volunteer with Washington DC Youth Rugby.'
+          'Both, by design. The Division 1 side selects competitively and trains that way. D3 and social exist so players who want regular game time without the D1 commitment have somewhere real to play, and most people move between sides across a season. Off the field there are socials, an end-of-season banquet, the 30 Under 30 fixture and an annual tour, and a lot of members coach with DC Youth Rugby.'
       },
       {
         question: 'Who does WRFC play against?',
@@ -203,7 +225,7 @@ export default function FAQPage() {
             What WRFC is about
           </h2>
           <p className="text-gray-700 dark:text-gray-200 mb-8 max-w-2xl">
-            Four things the club actually runs on, before any of the detail below.
+            Four things that describe this club better than a list of trophies would.
           </p>
           <div className="grid gap-6 sm:grid-cols-2">
             {clubPillars.map((pillar) => (
@@ -219,6 +241,25 @@ export default function FAQPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+            <h3 className="text-lg font-bold mb-4 text-wrfc-navy dark:text-white">
+              How that works in practice
+            </h3>
+            <ul className="space-y-2">
+              {clubPrinciples.map((principle) => (
+                <li
+                  key={principle}
+                  className="flex gap-3 text-gray-700 dark:text-gray-200 leading-relaxed"
+                >
+                  <span aria-hidden="true" className="text-wrfc-red font-bold">
+                    &rsaquo;
+                  </span>
+                  {principle}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -243,17 +284,22 @@ export default function FAQPage() {
                     <p className="text-gray-700 dark:text-gray-100 leading-relaxed">
                       {faq.answer}
                     </p>
-                    {faq.link && (
-                      <a
-                        href={faq.link.href}
-                        {...(faq.link.external
-                          ? { target: '_blank', rel: 'noopener noreferrer' }
-                          : {})}
-                        className="inline-flex items-center gap-1 mt-3 font-semibold text-wrfc-red hover:underline"
-                      >
-                        {faq.link.label}
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
+                    {faq.links && (
+                      <div className="flex flex-wrap gap-x-6 gap-y-2 mt-3">
+                        {faq.links.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            {...(link.external
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
+                            className="inline-flex items-center gap-1 font-semibold text-wrfc-red hover:underline"
+                          >
+                            {link.label}
+                            <ArrowRight className="w-4 h-4" />
+                          </a>
+                        ))}
+                      </div>
                     )}
                   </article>
                 ))}

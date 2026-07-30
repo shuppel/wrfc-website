@@ -119,20 +119,20 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <FeatureCard
                 icon={<Globe className="w-12 h-12 text-wrfc-red" weight="duotone" />}
-              title="Expats and Locals, Since 1963"
-              description="Founded in 1963 by diplomatic expats and Washingtonians, and still that mix. A club used to newcomers, because it has always been built from them."
+              title="Newcomers and Natives, Since 1963"
+              description="Started in 1963 when diplomats posted to DC and locals who wanted a club found each other. Still that mix, which is why walking in knowing nobody is normal here."
               image="/assets/pictures/2025_irish_ruck.jpg"
             />
               <FeatureCard
                 icon={<GraduationCap className="w-12 h-12 text-wrfc-navy" weight="duotone" />}
-              title="Part of the City"
-              description="WRFC founded Washington DC Youth Rugby in 2004. It now reaches 100+ kids a year for free, in schools and neighbourhoods across all four quadrants, coached by our players."
+              title="We Owe the City Something"
+              description="WRFC started Washington DC Youth Rugby in 2004. It now reaches 100+ kids a year, free, in schools and neighborhoods across all four quadrants, coached by our players."
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
               <FeatureCard
                 icon={<Barbell className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
-              title="Professionals Who Train Hard"
-              description="Mostly working professionals fitting rugby around demanding jobs. Practice Tuesdays and Thursdays, matches Saturdays, and a social side that is much of the point."
+              title="Day Jobs, Then Boots On"
+              description="Almost everyone here works full time. Practice Tuesdays and Thursdays, matches Saturdays, and a social side that is a good part of why people come back."
               image="/assets/pictures/2025_irish_lami.jpg"
             />
           </div>
