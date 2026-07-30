@@ -75,8 +75,8 @@ export default function DCRugbyPage() {
     },
     url: 'https://washingtonrugby.org',
     sameAs: [
-      'https://www.facebook.com/WashingtonRFC',
-      'https://www.instagram.com/wrfc_dc',
+      'https://www.facebook.com/WashingtonRugbyFootballClub/',
+      'https://www.instagram.com/wrfc1963/',
       'https://twitter.com/WRFC_DC'
     ]
   };

@@ -20,7 +20,7 @@ export default function SocialMediaPage() {
       name: 'Washington Rugby Football Club',
       sameAs: [
         'https://www.instagram.com/wrfc1963/',
-        'https://www.facebook.com/washingtonrugby'
+        'https://www.facebook.com/WashingtonRugbyFootballClub/'
       ]
     }
   });

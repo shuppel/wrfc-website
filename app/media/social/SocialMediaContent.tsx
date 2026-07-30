@@ -157,7 +157,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
                 </div>
               </div>
               <a 
-                href="https://www.facebook.com/washingtonrugby"
+                href="https://www.facebook.com/WashingtonRugbyFootballClub/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
@@ -221,7 +221,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
               </Button>
             </a>
             <a 
-              href="https://www.facebook.com/washingtonrugby"
+              href="https://www.facebook.com/WashingtonRugbyFootballClub/"
               target="_blank"
               rel="noopener noreferrer"
             >
