@@ -4,14 +4,10 @@ import type { PositionGroupId, PositionId, Unit } from './positions';
 export type Division = 'D1' | 'D3' | 'Both';
 
 /**
- * Which list a player belongs to.
- *
- * `fall-2026` is the squad that registered for the current season.
- * `club-roster` is everyone else the club has listed. They are deliberately not
- * called "past players" — not filling in a season sign-up form is not the same
- * as leaving the club, and the site should not assert that it is.
+ * Which list a player belongs to: the squad registered for the current season,
+ * or a player from a previous season's roster.
  */
-export type SquadList = 'fall-2026' | 'club-roster';
+export type SquadList = 'fall-2026' | 'past';
 
 /** Match availability. Deliberately coarse — see the privacy note in roster.ts. */
 export type Availability = 'available' | 'unavailable';
@@ -46,12 +42,16 @@ export interface Player {
   photo?: string;
   photoCredit?: string;
 
-  height?: string;
-  /** Total inches. Used for sorting only. */
-  heightInches?: number;
-  weightLbs?: number;
-  /** Overrides the weight display where the player gave a range. */
-  weightLabel?: string;
+  /**
+   * Height and weight are stored in metric and converted for display.
+   *
+   * The previous roster stored a bare `weight` number that was kilograms for
+   * some players and pounds for others, and the profile page rendered every one
+   * of them as "kg" — so a 260 lb prop was published as a 260 kg prop. One
+   * canonical unit removes that whole class of error.
+   */
+  heightCm?: number;
+  weightKg?: number;
 
   /** Seasons with WRFC. 0 means a rookie season. */
   seasons?: number;

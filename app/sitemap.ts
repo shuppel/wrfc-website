@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { clubRosterPlayers, squadPlayers } from '@/data/roster'
+import { pastPlayers, squadPlayers } from '@/data/roster'
 
 type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
 
@@ -169,9 +169,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  // Player profile pages. The current squad ranks above the wider club roster:
-  // both stay indexed, but a page for someone playing this season is the one
-  // worth crawling first.
+  // Player profile pages. The current squad ranks above previous players: both
+  // stay indexed, but a page for someone playing this season is the one worth
+  // crawling first.
   const playerRoutes = [
     ...squadPlayers.map(player => ({
       url: `${baseUrl}/teams/players/${player.slug}`,
@@ -179,7 +179,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as ChangeFreq,
       priority: 0.6,
     })),
-    ...clubRosterPlayers.map(player => ({
+    ...pastPlayers.map(player => ({
       url: `${baseUrl}/teams/players/${player.slug}`,
       lastModified: new Date(),
       changeFrequency: 'yearly' as ChangeFreq,

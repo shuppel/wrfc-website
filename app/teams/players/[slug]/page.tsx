@@ -19,7 +19,7 @@ import { PlayerCard } from '@/components/feature/roster/PlayerCard';
 import { PlayerProfileJsonLd } from '@/components/feature/roster/PlayerJsonLd';
 import { PlayerSocialLinks } from '@/components/feature/roster/PlayerSocialLinks';
 import { ShareProfile } from '@/components/feature/roster/ShareProfile';
-import { splitAccolades } from '@/data/roster/accolades';
+
 import { POSITIONS, POSITION_GROUPS } from '@/data/roster/positions';
 import {
   CLUB_URL,
@@ -28,10 +28,12 @@ import {
   getAllPlayerSlugs,
   getPlayerBySlug,
   groupOf,
+  height,
+  playerAccolades,
   positionLabelFor,
   relatedPlayers,
   shirtNumbersFor,
-  weightLabel,
+  weight,
 } from '@/data/roster';
 import type { Player } from '@/data/roster/types';
 
@@ -44,7 +46,7 @@ interface PlayerProfilePageProps {
  * default share text — so a shared profile reads the same everywhere.
  */
 function summaryLine(player: Player): string {
-  const { honours } = splitAccolades(player.accolades);
+  const { honours } = playerAccolades(player);
   const parts = [`${player.name} plays ${positionLabelFor(player)} for Washington Rugby Football Club`];
 
   const experience = experienceLabel(player);
@@ -95,21 +97,41 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
   const player = getPlayerBySlug(params.slug);
   if (!player) notFound();
 
-  const { honours, clubRoles } = splitAccolades(player.accolades);
+  const { honours, clubRoles } = playerAccolades(player);
   const group = POSITION_GROUPS[groupOf(player)];
   const numbers = shirtNumbersFor(player.positions);
   const experience = experienceLabel(player);
-  const weight = weightLabel(player);
+  const playerHeight = height(player);
+  const playerWeight = weight(player);
   const url = `${CLUB_URL}${ROSTER_PATH}/${player.slug}`;
   const related = relatedPlayers(player);
 
   const vitals = [
-    player.height && { icon: Ruler, label: 'Height', value: player.height },
-    weight && { icon: Scales, label: 'Weight', value: weight },
-    { icon: TShirt, label: numbers.length > 1 ? 'Shirt numbers' : 'Shirt number', value: numbers.join(', ') },
+    playerHeight && {
+      icon: Ruler,
+      label: 'Height',
+      value: playerHeight.primary,
+      note: playerHeight.secondary,
+    },
+    playerWeight && {
+      icon: Scales,
+      label: 'Weight',
+      value: playerWeight.primary,
+      note: playerWeight.secondary,
+    },
+    {
+      icon: TShirt,
+      label: numbers.length > 1 ? 'Shirt numbers' : 'Shirt number',
+      value: numbers.join(', '),
+    },
     experience && { icon: CalendarCheck, label: 'Experience', value: experience },
     player.previousClub && { icon: Buildings, label: 'Came from', value: player.previousClub },
-  ].filter(Boolean) as { icon: typeof Ruler; label: string; value: string }[];
+  ].filter(Boolean) as {
+    icon: typeof Ruler;
+    label: string;
+    value: string;
+    note?: string;
+  }[];
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
@@ -200,7 +222,7 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
                 Player card
               </h2>
               <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {vitals.map(({ icon: Icon, label, value }) => (
+                {vitals.map(({ icon: Icon, label, value, note }) => (
                   <div
                     key={label}
                     className="rounded-xl border border-gray-200 p-4 dark:border-white/10"
@@ -211,6 +233,11 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
                     </dt>
                     <dd className="mt-1.5 font-heading text-base font-semibold text-gray-900 dark:text-white">
                       {value}
+                      {note && (
+                        <span className="ml-1.5 font-sans text-sm font-normal text-gray-400">
+                          {note}
+                        </span>
+                      )}
                     </dd>
                   </div>
                 ))}

@@ -1,13 +1,15 @@
 import { ImageResponse } from 'next/og';
 
-import { splitAccolades } from '@/data/roster/accolades';
+
 import { POSITIONS } from '@/data/roster/positions';
 import {
   experienceLabel,
   getAllPlayerSlugs,
   getPlayerBySlug,
+  height,
+  playerAccolades,
   positionLabelFor,
-  weightLabel,
+  weight,
 } from '@/data/roster';
 
 /**
@@ -60,12 +62,14 @@ export default async function Image({ params }: { params: { slug: string } }) {
     );
   }
 
-  const { honours, clubRoles } = splitAccolades(player.accolades);
+  const { honours, clubRoles } = playerAccolades(player);
   const accolades = [...honours, ...clubRoles].slice(0, 3);
   const number = player.number ?? POSITIONS[player.positions[0]].numbers[0];
+  const playerHeight = height(player);
+  const playerWeight = weight(player);
   const stats = [
-    player.height && ['Height', player.height],
-    weightLabel(player) && ['Weight', weightLabel(player)],
+    playerHeight && ['Height', playerHeight.primary],
+    playerWeight && ['Weight', playerWeight.primary],
     experienceLabel(player) && ['At WRFC', experienceLabel(player)!.replace(' at WRFC', '')],
   ].filter(Boolean) as [string, string][];
 

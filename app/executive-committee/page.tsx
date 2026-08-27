@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 import { generateSEOMetadata } from '../utils/seo'
-import { Users, EnvelopeSimple, Phone, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera, Code } from '@phosphor-icons/react/dist/ssr'
+import { Users, Crown, Star, CurrencyDollar, FileText, Shield, Heart, Hash, Target, Handshake, Confetti, Camera, Code } from '@phosphor-icons/react/dist/ssr'
+import Link from 'next/link'
 import ECAccordion from '@/components/ECAccordion'
+import { currentTerm, pastTerms } from '@/data/roster/committee'
+import type { CommitteeMember } from '@/data/roster/committee'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Executive Committee',
@@ -9,122 +12,42 @@ export const metadata: Metadata = generateSEOMetadata({
   path: '/executive-committee'
 })
 
-interface ECMember {
-  position: string
-  name: string
-  email?: string
-  phone?: string
-  panel?: string[]
-  icon?: React.ComponentType<{ className?: string }>
+/**
+ * Icons are presentation, so they live here rather than in the data. Everything
+ * factual — who holds which post, in which term — comes from
+ * data/roster/committee.ts, which the player roster reads from too. That is why
+ * a committee member's name here links straight to their playing profile.
+ */
+const POSITION_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  President: Crown,
+  'Vice President': Star,
+  Secretary: FileText,
+  Treasurer: CurrencyDollar,
+  'Match Secretary': Shield,
+  'Club Captain': Users,
+  'Alumni/Youth Director': Heart,
+  'CBT Chair': Hash,
+  'Recruitment Chair': Target,
+  'Fundraising Chair': Handshake,
+  'Social Chair': Confetti,
+  'Social Media Chair': Camera,
+  Webmaster: Code,
 }
 
-const currentEC: ECMember[] = [
-  {
-    position: "President",
-    name: "Harry Higginbottom",
-    icon: Crown
-  },
-  {
-    position: "Vice President",
-    name: "Matthew Bainbridge",
-    icon: Star
-  },
-  {
-    position: "Secretary",
-    name: "Dom Boresta",
-    icon: FileText
-  },
-  {
-    position: "Treasurer",
-    name: "Thomas Britt",
-    icon: CurrencyDollar
-  },
-  {
-    position: "Match Secretary",
-    name: "Zach Zuzuelo",
-    icon: Shield
-  },
-  {
-    position: "Club Captain",
-    name: "Nate Santa-Maria",
-    icon: Users
-  },
-  {
-    position: "Alumni/Youth Director",
-    name: "Roger Rog",
-    icon: Heart
-  },
-  {
-    position: "CBT Chair",
-    name: "Josh Quick",
-    icon: Hash
-  },
-  {
-    position: "Recruitment Chair",
-    name: "Issac Greenspan",
-    icon: Target
-  },
-  {
-    position: "Fundraising Chair",
-    name: "Ben Goodlet",
-    icon: Handshake
-  },
-  {
-    position: "Social Chair",
-    name: "Daniel Perez",
-    icon: Confetti
-  },
-  {
-    position: "Social Media Chair",
-    name: "Dike Ukuani",
-    icon: Camera
-  },
-  {
-    position: "Webmaster",
-    name: "Erikk Shupp",
-    icon: Code
+function MemberName({ member }: { member: CommitteeMember }) {
+  if (!member.slug) {
+    return <span>{member.name}</span>
   }
-]
 
-// Previous years' EC data for accordion
-const previousYears = [
-  {
-    year: "2025-2026",
-    members: [
-      { position: "President", name: "Harry Higginbottom" },
-      { position: "Vice President", name: "Austin Park" },
-      { position: "Treasurer", name: "Erikk Shupp" },
-      { position: "Secretary", name: "Dom Boresta" },
-      { position: "Match Secretary", name: "Matthew Bainbridge" },
-      { position: "Club Captain", name: "Chris Miller" },
-      { position: "Alumni/Youth Relations", name: "Jonathan Fuentecilla" },
-      { position: "CBT Chair", name: "Andrew Klock" },
-      { position: "Recruitment Chair", name: "Noah Davidson" },
-      { position: "Fundraising Chair", name: "Nick Cippolone" },
-      { position: "Social Chair", name: "Austin 'Ox' Longo" },
-      { position: "Social Media Chair", name: "Stephen Okala" }
-    ]
-  },
-  {
-    year: "2024-2025",
-    members: [
-      { position: "President", name: "Harry Higginbottom" },
-      { position: "Vice President", name: "Austin Park" },
-      { position: "Secretary", name: "Joshua Levine" },
-      { position: "Treasurer", name: "Erikk Shupp" },
-      { position: "Club Captain", name: "Chris Miller" },
-      { position: "Member at Large (Retired after 2025)", name: "Scott H." },
-      { position: "Director of Player Operations", name: "Jonathan Fuentecilla" },
-      { position: "Youth Outreach (Retired after 2025)", name: "Kwon Dailey" },
-      { position: "Alumni Outreach (Retired after 2025)", name: "Casey Ling" },
-      { position: "CBT Chair", name: "Doug Muilken" },
-      { position: "Social Chair", name: "Austin 'Ox' Longo" },
-      { position: "Social Media Chair", name: "Stephen Okala" },
-      { position: "Recruitment Chair", name: "Nick Cippolone" },
-      { position: "Fundraising Chair", name: "Chris DeVore" }
-    ]
-  }
-]
+  return (
+    <Link
+      href={`/teams/players/${member.slug}`}
+      className="underline-offset-4 hover:underline"
+    >
+      {member.name}
+    </Link>
+  )
+}
 
 export default function ExecutiveCommitteePage() {
   return (
@@ -144,11 +67,11 @@ export default function ExecutiveCommitteePage() {
         {/* Current Year EC */}
         <div className="mb-12">
           <h2 className="section-title text-center mb-8">
-            2026-2027 Executive Committee
+            {currentTerm?.label} Executive Committee
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {currentEC.map((member, index) => (
+            {(currentTerm?.members ?? []).map((member, index) => (
               <div 
                 key={index}
                 className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
@@ -159,58 +82,17 @@ export default function ExecutiveCommitteePage() {
                       {member.position}
                     </h3>
                     <p className="text-lg text-blue-600 dark:text-blue-400">
-                      {member.name}
+                      <MemberName member={member} />
                     </p>
                   </div>
                   <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                    {member.icon ? (
-                      <member.icon className="w-6 h-6 text-blue-600 dark:text-blue-300" />
-                    ) : (
-                      <Users className="w-6 h-6 text-blue-600 dark:text-blue-300" />
-                    )}
+                    {(() => {
+                      const Icon = POSITION_ICONS[member.position] ?? Users
+                      return <Icon className="w-6 h-6 text-blue-600 dark:text-blue-300" />
+                    })()}
                   </div>
                 </div>
                 
-                {/* Panel Members */}
-                {member.panel && member.panel.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-sm font-semibold text-gray-700 dark:text-white mb-2">
-                      Panel Members:
-                    </p>
-                    <ul className="text-sm text-gray-600 dark:text-gray-100 space-y-1">
-                      {member.panel.map((panelMember, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-blue-500 mr-2">•</span>
-                          {panelMember}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Contact Information (if available) */}
-                {(member.email || member.phone) && (
-                  <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
-                    {member.email && (
-                      <a 
-                        href={`mailto:${member.email}`}
-                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
-                      >
-                        <EnvelopeSimple className="w-4 h-4" />
-                        {member.email}
-                      </a>
-                    )}
-                    {member.phone && (
-                      <a 
-                        href={`tel:${member.phone}`}
-                        className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400"
-                      >
-                        <Phone className="w-4 h-4" />
-                        {member.phone}
-                      </a>
-                    )}
-                  </div>
-                )}
               </div>
             ))}
           </div>
@@ -264,7 +146,7 @@ export default function ExecutiveCommitteePage() {
           <h2 className="section-title text-center mb-6">
             Previous Executive Committees
           </h2>
-          <ECAccordion previousYears={previousYears} />
+          <ECAccordion terms={pastTerms} />
         </div>
 
         {/* Call to Action */}

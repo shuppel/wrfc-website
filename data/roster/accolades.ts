@@ -43,6 +43,7 @@ export type AccoladeId =
   | 'vice-captain'
   | 'player-coach'
   | 'executive-committee'
+  | 'former-executive-committee'
   | 'club-veteran'
   | 'rookie';
 
@@ -62,6 +63,8 @@ export interface AccoladeDefinition {
   /** What this honour actually is, for a reader who does not know. */
   description: string;
   org?: AccoladeOrg;
+  /** A page on this site that backs the honour up, e.g. the committee records. */
+  internalUrl?: string;
 }
 
 export interface AccoladeTierStyle {
@@ -231,6 +234,7 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
     shortLabel: 'President',
     tier: 'club',
     description: 'Elected head of the club, responsible to the membership for how Washington Rugby is run.',
+    internalUrl: '/executive-committee',
   },
   'club-captain': {
     id: 'club-captain',
@@ -238,6 +242,7 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
     shortLabel: 'Captain',
     tier: 'club',
     description: 'Leads the squad on the field and sets the standard at training.',
+    internalUrl: '/executive-committee',
   },
   'vice-captain': {
     id: 'vice-captain',
@@ -259,6 +264,16 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
     shortLabel: 'Exec Committee',
     tier: 'club',
     description: 'Serves on the committee that runs the club\'s operations, finances and fixtures.',
+    internalUrl: '/executive-committee',
+  },
+  'former-executive-committee': {
+    id: 'former-executive-committee',
+    label: 'Former Executive Committee',
+    shortLabel: 'Former EC',
+    tier: 'club',
+    description:
+      'Served on a previous Executive Committee. The club is run entirely by players who volunteer for these posts alongside playing.',
+    internalUrl: '/executive-committee',
   },
   'club-veteran': {
     id: 'club-veteran',
