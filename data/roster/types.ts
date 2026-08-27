@@ -41,6 +41,15 @@ export interface Player {
   /** Path under /public, or omitted to fall back to the monogram avatar. */
   photo?: string;
   photoCredit?: string;
+  /**
+   * CSS object-position for the photo, e.g. '50% 25%'.
+   *
+   * The cards crop 4:5 and the profile hero crops 3:4, both portrait. A
+   * landscape shot of someone standing has the face high in the frame, so
+   * centring the crop cuts the head off. Nudge this per photo rather than
+   * re-cropping the source. Defaults to centred, which suits the action shots.
+   */
+  photoFocus?: string;
 
   /**
    * Height and weight are stored in metric and converted for display.
