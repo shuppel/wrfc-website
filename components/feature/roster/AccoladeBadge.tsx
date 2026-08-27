@@ -10,7 +10,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 
 import { cn } from '@/lib/utils';
-import { ACCOLADE_TIERS, accoladeText } from '@/data/roster/accolades';
+import { ACCOLADE_TIERS } from '@/data/roster/accolades';
 import type { AccoladeTier, ResolvedAccolade } from '@/data/roster/accolades';
 
 const TIER_ICONS: Record<AccoladeTier, typeof Trophy> = {
@@ -22,16 +22,18 @@ const TIER_ICONS: Record<AccoladeTier, typeof Trophy> = {
 
 interface AccoladeBadgeProps {
   accolade: ResolvedAccolade;
-  /** Compact form for roster cards. */
-  short?: boolean;
   className?: string;
 }
 
 /**
- * The chip form — used on cards and anywhere a list of honours needs to stay
- * on one line. The full explanation lives in `AccoladeDetail` on the profile.
+ * The chip form.
+ *
+ * A badge is the short label and nothing else — "Capital Selects", "Rookie",
+ * "Exec Committee". It has to be readable at a glance in a row of five. The
+ * counts, terms of office and years live in `AccoladeDetail` on the profile,
+ * which is where someone has actually stopped to read.
  */
-export function AccoladeBadge({ accolade, short = false, className }: AccoladeBadgeProps) {
+export function AccoladeBadge({ accolade, className }: AccoladeBadgeProps) {
   const tier = ACCOLADE_TIERS[accolade.tier];
   const Icon = TIER_ICONS[accolade.tier];
 
@@ -47,7 +49,7 @@ export function AccoladeBadge({ accolade, short = false, className }: AccoladeBa
       )}
     >
       <Icon weight="fill" className="h-3.5 w-3.5 shrink-0" />
-      <span className="truncate">{accoladeText(accolade, short)}</span>
+      <span className="truncate">{accolade.shortLabel}</span>
     </span>
   );
 }

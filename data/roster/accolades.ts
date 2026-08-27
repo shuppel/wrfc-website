@@ -61,6 +61,7 @@ export type AccoladeId =
   | 'player-coach'
   | 'executive-committee'
   | 'former-executive-committee'
+  | 'starter'
   | 'club-veteran'
   | 'rookie';
 
@@ -302,6 +303,13 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
       'Served on a previous Executive Committee. The club is run entirely by players who volunteer for these posts alongside playing.',
     internalUrl: '/executive-committee',
   },
+  starter: {
+    id: 'starter',
+    label: 'Starter',
+    shortLabel: 'Starter',
+    tier: 'club',
+    description: 'A regular in the matchday starting XV.',
+  },
   'club-veteran': {
     id: 'club-veteran',
     label: 'Club Veteran',
@@ -362,8 +370,3 @@ export function splitAccolades(accolades: PlayerAccolade[] = []): {
   };
 }
 
-/** "Capital Selects · 6 selections" — the badge's visible text. */
-export function accoladeText(accolade: ResolvedAccolade, short = false): string {
-  const label = short ? accolade.shortLabel : accolade.label;
-  return accolade.detail ? `${label} · ${accolade.detail}` : label;
-}

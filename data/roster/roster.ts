@@ -547,6 +547,22 @@ export const players: Player[] = [
     collegeProgram: 'University of Delaware',
   },
 
+  {
+    id: 37,
+    name: 'Noah Cooper',
+    slug: 'noah-cooper',
+    squad: 'fall-2026',
+    positions: ['full-back'],
+    // 6'1" and 185 lb as given; stored metric like the rest of the roster.
+    heightCm: 185,
+    weightKg: 84,
+    military: 'United States Marine Corps',
+    accolades: [
+      { id: 'capital-selects', verification: 'club-verified' },
+      { id: 'starter', verification: 'club-verified' },
+    ],
+  },
+
   // ===========================================================================
   // PREVIOUS PLAYERS
   //
