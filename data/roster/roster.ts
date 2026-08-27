@@ -53,9 +53,8 @@ export const players: Player[] = [
     heightCm: 177,
     weightKg: 125,
     seasons: 6,
-    caps: { d1: 6 },
     accolades: [
-      { id: 'capital-selects', detail: '6 selections', verification: 'self-reported' },
+      { id: 'capital-selects', verification: 'self-reported' },
       { id: 'alexandria-selects', verification: 'self-reported' },
       { id: 'club-veteran', verification: 'club-verified' },
     ],
@@ -71,7 +70,6 @@ export const players: Player[] = [
     weightKg: 104,
     seasons: 3.5,
     previousClub: 'Upper Eden RUFC (Cumbria, England)',
-    caps: { d1: 4 },
     accolades: [{ id: 'capital-selects', verification: 'self-reported' }],
   },
   {
@@ -85,7 +83,6 @@ export const players: Player[] = [
     weightKg: 116,
     seasons: 5,
     previousClub: 'Waverley Rugby Club (Sydney, Australia)',
-    caps: { d1: 4 },
     accolades: [{ id: 'nsw-suburban-finalist', verification: 'self-reported' }],
   },
   {
@@ -146,8 +143,8 @@ export const players: Player[] = [
     weightKg: 100,
     seasons: 0,
     previousClub: 'Fordham University RFC',
+    collegeProgram: 'Fordham University',
     accolades: [
-      { id: 'collegiate-program', detail: 'Fordham University', verification: 'self-reported' },
       { id: 'rookie', detail: 'First season at WRFC', verification: 'club-verified' },
     ],
   },
@@ -161,8 +158,8 @@ export const players: Player[] = [
     weightKg: 100,
     seasons: 0,
     previousClub: 'Vienna International School (Austria)',
+    collegeProgram: 'Vienna International School',
     accolades: [
-      { id: 'international-schools', detail: 'Five seasons, Vienna International School', verification: 'self-reported' },
       { id: 'rookie', detail: 'First season at WRFC', verification: 'club-verified' },
     ],
   },
@@ -219,9 +216,13 @@ export const players: Player[] = [
     heightCm: 188,
     weightKg: 116,
     seasons: 6,
-    caps: { d1: 5 },
     accolades: [
-      { id: 'capital-selects', verification: 'self-reported' },
+      // TODO(club): confirm the exact figures before this ships. They came in
+      // as approximations ("like 12"), and a count on a public profile should
+      // be the real one — the club has the match records, the roster does not.
+      { id: 'capital-selects', detail: '12 selections', verification: 'club-verified' },
+      { id: 'match-captain', detail: '9 matches', verification: 'club-verified' },
+      { id: 'man-of-the-match', detail: '3x', verification: 'club-verified' },
       { id: 'old-glory-inaugural', verification: 'self-reported' },
       { id: 'vice-captain', verification: 'club-verified' },
       { id: 'club-veteran', verification: 'club-verified' },
@@ -312,7 +313,7 @@ export const players: Player[] = [
     heightCm: 190,
     weightKg: 109,
     seasons: 4,
-    caps: { d1: 8 },
+    accolades: [{ id: 'capital-selects', verification: 'club-verified' }],
   },
   {
     id: 21,
@@ -326,7 +327,6 @@ export const players: Player[] = [
     heightCm: 180,
     weightKg: 88,
     seasons: 3.5,
-    caps: { d1: 3, d3: 5 },
   },
   {
     id: 22,
@@ -368,9 +368,7 @@ export const players: Player[] = [
     weightKg: 92,
     seasons: 3.5,
     previousClub: 'Mount St. Mary\'s University',
-    accolades: [
-      { id: 'collegiate-program', detail: 'Mount St. Mary\'s University', verification: 'self-reported' },
-    ],
+    collegeProgram: 'Mount St. Mary\'s University',
   },
   {
     id: 26,
@@ -429,9 +427,7 @@ export const players: Player[] = [
     weightKg: 88,
     seasons: 2,
     previousClub: 'Georgetown University Rugby',
-    accolades: [
-      { id: 'collegiate-program', detail: 'Georgetown University', verification: 'self-reported' },
-    ],
+    collegeProgram: 'Georgetown University',
   },
 
   // --- Centers -------------------------------------------------------------
@@ -446,9 +442,7 @@ export const players: Player[] = [
     weightKg: 95,
     seasons: 2,
     previousClub: 'Cornell University RFC',
-    accolades: [
-      { id: 'collegiate-program', detail: 'Cornell University', verification: 'self-reported' },
-    ],
+    collegeProgram: 'Cornell University',
   },
   {
     id: 32,
@@ -505,19 +499,19 @@ export const players: Player[] = [
   // recent history stays on the site.
   // ===========================================================================
 
-  { id: 101, name: 'Christopher Miller', slug: 'christopher-miller', squad: 'past', positions: ['flanker', 'number-8'], division: 'Both', heightCm: 178, weightKg: 90, caps: { d1: 7, d3: 3 } },
-  { id: 102, name: 'Douglas Mulliken', slug: 'douglas-mulliken', squad: 'past', positions: ['lock'], division: 'D1', heightCm: 193, weightKg: 113, caps: { d1: 4 }, accolades: [{ id: 'player-coach', verification: 'club-verified' }] },
+  { id: 101, name: 'Christopher Miller', slug: 'christopher-miller', squad: 'past', positions: ['flanker', 'number-8'], division: 'Both', heightCm: 178, weightKg: 90 },
+  { id: 102, name: 'Douglas Mulliken', slug: 'douglas-mulliken', squad: 'past', positions: ['lock'], division: 'D1', heightCm: 193, weightKg: 113, accolades: [{ id: 'player-coach', verification: 'club-verified' }] },
   { id: 103, name: 'John Veras', slug: 'john-veras', squad: 'past', positions: ['prop'], division: 'D3', accolades: [{ id: 'club-captain', detail: 'D3 side', verification: 'club-verified' }] },
   { id: 104, name: 'Leo Fangmeyer', slug: 'leo-fangmeyer', squad: 'past', positions: ['fly-half'], division: 'D1', accolades: [{ id: 'club-captain', detail: 'Early 2024', verification: 'club-verified' }] },
   { id: 105, name: 'Dewayne Jones', slug: 'dewayne-jones', squad: 'past', positions: ['center'], division: 'Both', accolades: [{ id: 'old-glory-academy', verification: 'club-verified' }] },
   { id: 106, name: 'Ryan Dodds', slug: 'ryan-dodds', squad: 'past', positions: ['center', 'wing'], positionLabel: 'Utility Back', division: 'D1', accolades: [{ id: 'old-glory-academy', verification: 'club-verified' }] },
   { id: 107, name: 'Juwamer Hawrami', slug: 'juwamer-hawrami', squad: 'past', positions: ['center', 'full-back'], division: 'D3', accolades: [{ id: 'old-glory-academy', verification: 'club-verified' }] },
-  { id: 108, name: 'Diamond Jones', slug: 'diamond-jones', squad: 'past', positions: ['prop'], division: 'D1', heightCm: 175, weightKg: 118, caps: { d1: 3 } },
-  { id: 109, name: 'Austin Longo', slug: 'austin-longo', squad: 'past', positions: ['prop'], division: 'Both', photo: '/assets/pictures/2025_irish_ox.jpg', photoCredit: 'WRFC v Washington Irish, 2025', heightCm: 180, weightKg: 127, caps: { d1: 2, d3: 4 } },
-  { id: 110, name: 'Xavier Landreville', slug: 'xavier-landreville', squad: 'past', positions: ['prop'], division: 'D1', heightCm: 188, caps: { d1: 5 } },
-  { id: 111, name: 'Anton Meyer', slug: 'anton-meyer', squad: 'past', positions: ['lock'], division: 'Both', caps: { d1: 2, d3: 6 } },
-  { id: 112, name: 'Raymond Gajkowski', slug: 'raymond-gajkowski', squad: 'past', positions: ['lock'], division: 'D1', heightCm: 198, weightKg: 109, caps: { d1: 5 } },
-  { id: 113, name: 'Stephen Okala', slug: 'stephen-okala', squad: 'past', positions: ['flanker', 'center'], division: 'D1', heightCm: 178, weightKg: 88, caps: { d1: 6 } },
+  { id: 108, name: 'Diamond Jones', slug: 'diamond-jones', squad: 'past', positions: ['prop'], division: 'D1', heightCm: 175, weightKg: 118 },
+  { id: 109, name: 'Austin Longo', slug: 'austin-longo', squad: 'past', positions: ['prop'], division: 'Both', photo: '/assets/pictures/2025_irish_ox.jpg', photoCredit: 'WRFC v Washington Irish, 2025', heightCm: 180, weightKg: 127 },
+  { id: 110, name: 'Xavier Landreville', slug: 'xavier-landreville', squad: 'past', positions: ['prop'], division: 'D1', heightCm: 188 },
+  { id: 111, name: 'Anton Meyer', slug: 'anton-meyer', squad: 'past', positions: ['lock'], division: 'Both' },
+  { id: 112, name: 'Raymond Gajkowski', slug: 'raymond-gajkowski', squad: 'past', positions: ['lock'], division: 'D1', heightCm: 198, weightKg: 109 },
+  { id: 113, name: 'Stephen Okala', slug: 'stephen-okala', squad: 'past', positions: ['flanker', 'center'], division: 'D1', heightCm: 178, weightKg: 88 },
   { id: 114, name: 'Samuel Follansbee', slug: 'samuel-follansbee', squad: 'past', positions: ['flanker'], division: 'D1', heightCm: 188, weightKg: 109 },
   { id: 115, name: 'Nicholas Barone', slug: 'nicholas-barone', squad: 'past', positions: ['scrum-half'], division: 'D1', heightCm: 170, weightKg: 80 },
   { id: 116, name: 'Nicholas Lami', slug: 'nicholas-lami', squad: 'past', positions: ['scrum-half'], division: 'D1', photo: '/assets/pictures/2025_irish_lami.jpg', photoCredit: 'WRFC v Washington Irish, 2025' },

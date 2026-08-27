@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Buildings,
   CalendarCheck,
+  GraduationCap,
   Info,
   Ruler,
   Scales,
@@ -50,7 +51,7 @@ function summaryLine(player: Player): string {
   const parts = [`${player.name} plays ${positionLabelFor(player)} for Washington Rugby Football Club`];
 
   const experience = experienceLabel(player);
-  if (experience) parts.push(experience.toLowerCase());
+  if (experience) parts.push(`At the club ${experience.toLowerCase()}`);
   if (player.previousClub) parts.push(`previously ${player.previousClub}`);
   if (honours.length > 0) parts.push(honours[0].label);
 
@@ -124,8 +125,13 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
       label: numbers.length > 1 ? 'Shirt numbers' : 'Shirt number',
       value: numbers.join(', '),
     },
-    experience && { icon: CalendarCheck, label: 'Experience', value: experience },
+    experience && { icon: CalendarCheck, label: 'At the club', value: experience },
     player.previousClub && { icon: Buildings, label: 'Came from', value: player.previousClub },
+    player.collegeProgram && {
+      icon: GraduationCap,
+      label: 'College rugby',
+      value: player.collegeProgram,
+    },
   ].filter(Boolean) as {
     icon: typeof Ruler;
     label: string;

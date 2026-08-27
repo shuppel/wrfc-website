@@ -22,7 +22,23 @@
  * named private individual. If a claim needs a citation, it needs `sources`.
  */
 
-export type AccoladeTier = 'professional' | 'representative' | 'collegiate' | 'club';
+/**
+ * Tiers, most significant first.
+ *
+ * `club-honour` is for things won on the field at WRFC — Player of the Year, a
+ * Man of the Match, a matchday captaincy. `club` is for roles and standing —
+ * President, committee service, a rookie season.
+ *
+ * Note what is NOT here: where a player went to college. Background is not an
+ * honour, and putting "played at Cornell" on a card next to a Capital Selects
+ * call-up flattens a real difference. College programs live on
+ * `Player.collegeProgram` and render as a fact, not a badge.
+ */
+export type AccoladeTier =
+  | 'professional'
+  | 'representative'
+  | 'club-honour'
+  | 'club';
 
 export type Verification = 'club-verified' | 'self-reported';
 
@@ -36,8 +52,9 @@ export type AccoladeId =
   | 'free-jacks-academy'
   | 'maharlikans-7s'
   | 'nsw-suburban-finalist'
-  | 'collegiate-program'
-  | 'international-schools'
+  | 'man-of-the-match'
+  | 'match-captain'
+  | 'player-of-the-year'
   | 'club-president'
   | 'club-captain'
   | 'vice-captain'
@@ -93,13 +110,13 @@ export const ACCOLADE_TIERS: Record<AccoladeTier, AccoladeTierStyle> = {
     dot: 'bg-wrfc-red',
     ring: 'ring-wrfc-red/30',
   },
-  collegiate: {
-    label: 'Collegiate & academy',
-    weight: 2,
+  'club-honour': {
+    label: 'Won at the club',
+    weight: 3,
     badge:
-      'bg-wrfc-teal/10 text-teal-700 dark:text-teal-300 border-wrfc-teal/40 hover:border-wrfc-teal/70',
-    dot: 'bg-wrfc-teal',
-    ring: 'ring-wrfc-teal/30',
+      'bg-[#E31C79]/10 text-[#b8155f] dark:text-pink-300 border-[#E31C79]/40 hover:border-[#E31C79]/70',
+    dot: 'bg-[#E31C79]',
+    ring: 'ring-[#E31C79]/30',
   },
   club: {
     label: 'Club',
@@ -214,19 +231,29 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
       url: 'https://www.nsw.rugby/',
     },
   },
-  'collegiate-program': {
-    id: 'collegiate-program',
-    label: 'Collegiate rugby program',
-    shortLabel: 'College Rugby',
-    tier: 'collegiate',
-    description: 'Played rugby at university before joining WRFC.',
+  'man-of-the-match': {
+    id: 'man-of-the-match',
+    label: 'Man of the Match',
+    shortLabel: 'Man of the Match',
+    tier: 'club-honour',
+    description:
+      'Named the outstanding player in a Washington Rugby fixture. The award is decided after the match and is the club\'s own recognition of a performance.',
   },
-  'international-schools': {
-    id: 'international-schools',
-    label: 'International schools rugby',
-    shortLabel: 'Intl. Schools Rugby',
-    tier: 'collegiate',
-    description: 'Came up through a rugby programme outside the United States.',
+  'player-of-the-year': {
+    id: 'player-of-the-year',
+    label: 'Player of the Year',
+    shortLabel: 'Player of the Year',
+    tier: 'club-honour',
+    description:
+      'Voted the club\'s outstanding player across a full season by the squad and coaching staff.',
+  },
+  'match-captain': {
+    id: 'match-captain',
+    label: 'Match Captain',
+    shortLabel: 'Match Captain',
+    tier: 'club-honour',
+    description:
+      'Led Washington Rugby out as captain on matchday. Distinct from the elected Club Captain post: a match captaincy is the coaches handing a player the side for that fixture.',
   },
   'club-president': {
     id: 'club-president',

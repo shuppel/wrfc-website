@@ -62,9 +62,25 @@ export interface Player {
   heightCm?: number;
   weightKg?: number;
 
-  /** Seasons with WRFC. 0 means a rookie season. */
+  /**
+   * Years with WRFC, as given at registration. 0 means a rookie season, and 6
+   * means "6 or more" — that was the top option on the form, so it is a floor
+   * rather than a count.
+   */
   seasons?: number;
+  /**
+   * The year a player joined, where the club knows it exactly. Overrides the
+   * year derived from `seasons`, which is the only way to pin down anyone in
+   * the "6 or more" bucket.
+   */
+  since?: number;
   previousClub?: string;
+  /**
+   * A university or school rugby program the player came through. Deliberately
+   * not an accolade — where someone played before is background, not an honour
+   * won, and it should not sit on a card next to a Capital Selects call-up.
+   */
+  collegeProgram?: string;
 
   accolades?: PlayerAccolade[];
   socials?: PlayerSocials;
@@ -73,7 +89,12 @@ export interface Player {
   /** Shown alongside an `unavailable` status. Never a medical detail. */
   availabilityNote?: string;
 
-  /** Carried over from the club's earlier roster records. */
+  /**
+   * Appearances for the club. Left unset across the roster: the numbers the
+   * previous roster file carried understated the players the club could
+   * actually check against, so none of them could be trusted. The field stays
+   * so real counts can be filled in per player when the club has them.
+   */
   caps?: { d1?: number; d3?: number };
 }
 

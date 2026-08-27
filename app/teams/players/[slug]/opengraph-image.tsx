@@ -70,7 +70,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
   const stats = [
     playerHeight && ['Height', playerHeight.primary],
     playerWeight && ['Weight', playerWeight.primary],
-    experienceLabel(player) && ['At WRFC', experienceLabel(player)!.replace(' at WRFC', '')],
+    experienceLabel(player) && ['At WRFC', experienceLabel(player)!.replace('Since ', '')],
   ].filter(Boolean) as [string, string][];
 
   return new ImageResponse(

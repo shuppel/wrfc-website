@@ -100,14 +100,35 @@ export function groupOf(player: Player): PositionGroupId {
   return primaryGroupOf(player.positions);
 }
 
-/** "Rookie season", "3rd season", "6+ seasons". */
-export function experienceLabel(player: Player): string | undefined {
+/** The season the roster currently describes. Start years are derived from it. */
+export const CURRENT_SEASON_YEAR = 2026;
+
+export interface StartYear {
+  year: number;
+  /**
+   * True when the year is a ceiling rather than a fact — the player picked the
+   * form's "6 or more" option, so they joined that year or before it.
+   */
+  approximate: boolean;
+}
+
+export function startYear(player: Player): StartYear | undefined {
+  if (player.since !== undefined) return { year: player.since, approximate: false };
+
   const { seasons } = player;
   if (seasons === undefined) return undefined;
-  if (seasons === 0) return 'Rookie season';
-  if (seasons >= 6) return '6+ seasons at WRFC';
-  const rounded = Number.isInteger(seasons) ? `${seasons}` : `${seasons}`;
-  return `${rounded} season${seasons === 1 ? '' : 's'} at WRFC`;
+
+  return {
+    year: CURRENT_SEASON_YEAR - Math.floor(seasons),
+    approximate: seasons >= 6,
+  };
+}
+
+/** "Since 2025", or "Since 2020 or earlier" where the form only gave a floor. */
+export function experienceLabel(player: Player): string | undefined {
+  const start = startYear(player);
+  if (!start) return undefined;
+  return start.approximate ? `Since ${start.year} or earlier` : `Since ${start.year}`;
 }
 
 export type ExperienceBand = 'rookie' | 'developing' | 'established' | 'veteran';

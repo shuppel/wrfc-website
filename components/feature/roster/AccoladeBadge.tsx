@@ -3,9 +3,9 @@ import {
   ArrowSquareOut,
   CaretRight,
   CheckCircle,
-  GraduationCap,
   Medal,
   ShieldStar,
+  Star,
   Trophy,
 } from '@phosphor-icons/react/dist/ssr';
 
@@ -16,7 +16,7 @@ import type { AccoladeTier, ResolvedAccolade } from '@/data/roster/accolades';
 const TIER_ICONS: Record<AccoladeTier, typeof Trophy> = {
   professional: Trophy,
   representative: Medal,
-  collegiate: GraduationCap,
+  'club-honour': Star,
   club: ShieldStar,
 };
 

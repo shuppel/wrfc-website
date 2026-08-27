@@ -58,12 +58,9 @@ const authoredHighlights: SquadHighlight[] = [
 function collegiateHighlight(squad: Player[]): SquadHighlight | undefined {
   const programs = Array.from(
     new Set(
-      squad.flatMap((player) =>
-        (player.accolades ?? [])
-          .filter((accolade) => accolade.id === 'collegiate-program')
-          .map((accolade) => accolade.detail)
-          .filter((detail): detail is string => Boolean(detail)),
-      ),
+      squad
+        .map((player) => player.collegeProgram)
+        .filter((program): program is string => Boolean(program)),
     ),
   ).sort();
 
