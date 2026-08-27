@@ -81,6 +81,11 @@ export interface Player {
    * won, and it should not sit on a card next to a Capital Selects call-up.
    */
   collegeProgram?: string;
+  /**
+   * Military service branch, where a player has one and wants it listed. Shown
+   * as a fact on the profile, not a badge — service is not a rugby honour.
+   */
+  military?: string;
 
   accolades?: PlayerAccolade[];
   socials?: PlayerSocials;

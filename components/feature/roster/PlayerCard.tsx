@@ -96,7 +96,7 @@ export function PlayerCard({ player, priority = false }: PlayerCardProps) {
 
         {accolades.length > 0 && (
           <div className="flex min-w-0 flex-wrap gap-1.5">
-            <AccoladeBadge accolade={accolades[0]} short className="max-w-full" />
+            <AccoladeBadge accolade={accolades[0]} className="max-w-full" />
             {accolades.length > 1 && (
               <span className="inline-flex items-center rounded-full border border-gray-200 px-2 py-1 font-accent text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:border-white/15 dark:text-gray-400">
                 +{accolades.length - 1}

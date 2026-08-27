@@ -33,6 +33,18 @@ import type { Player } from './types';
  *
  * Players are welcome to correct their own entry or add socials; the profile
  * pages carry a link for that.
+ *
+ * ---------------------------------------------------------------------------
+ * PHOTOS NOT YET ATTACHED
+ * ---------------------------------------------------------------------------
+ * These files sit in /public/assets/pictures with nobody to attach them to:
+ *
+ *   johnny.jpg   Confirmed as someone not on the roster.
+ *   archie.jpg   Nickname the roster cannot resolve.
+ *   seth.jpg     Nickname the roster cannot resolve.
+ *
+ * A photo is only ever attached where the filename names the player or the
+ * club has confirmed who it is. Faces are not matched to names by guesswork.
  */
 
 export const players: Player[] = [
@@ -221,8 +233,8 @@ export const players: Player[] = [
     squad: 'fall-2026',
     positions: ['lock', 'flanker', 'number-8'],
     division: 'D1',
-    photo: '/assets/pictures/2025_irish_tom.jpg',
-    photoCredit: 'WRFC v Washington Irish, 2025',
+    photo: '/assets/pictures/bigtom.jpg',
+    photoCredit: 'WRFC squad portraits, 2026',
     heightCm: 188,
     weightKg: 116,
     seasons: 6,
@@ -281,6 +293,8 @@ export const players: Player[] = [
     id: 17,
     name: 'Timothy Palmer',
     slug: 'timothy-palmer',
+    photo: '/assets/pictures/tc.jpg',
+    photoCredit: 'WRFC squad portraits, 2026',
     squad: 'fall-2026',
     positions: ['lock', 'flanker'],
     heightCm: 183,
@@ -483,6 +497,8 @@ export const players: Player[] = [
     id: 33,
     name: 'Ryan Cooper',
     slug: 'ryan-cooper',
+    photo: '/assets/pictures/gumby.jpg',
+    photoCredit: 'WRFC squad portraits, 2026',
     squad: 'fall-2026',
     positions: ['wing', 'full-back'],
     heightCm: 180,
@@ -513,6 +529,38 @@ export const players: Player[] = [
     seasons: 0,
     previousClub: 'Alexandria City High School',
     accolades: [{ id: 'rookie', detail: 'First season at WRFC', verification: 'club-verified' }],
+  },
+
+  {
+    id: 36,
+    name: 'Justin Chatham',
+    slug: 'justin-chatham',
+    squad: 'fall-2026',
+    // Covers the back three and midfield rather than one specialist slot, so
+    // he is listed the way Ryan Dodds is — the label leads, the positions
+    // underneath it place him on the roster.
+    positions: ['center', 'wing', 'full-back'],
+    positionLabel: 'Utility Back',
+    photo: '/assets/pictures/chatman.jpg',
+    photoCredit: 'WRFC squad portraits, 2026',
+    previousClub: 'University of Delaware RFC',
+    collegeProgram: 'University of Delaware',
+  },
+
+  {
+    id: 37,
+    name: 'Noah Cooper',
+    slug: 'noah-cooper',
+    squad: 'fall-2026',
+    positions: ['full-back'],
+    // 6'1" and 185 lb as given; stored metric like the rest of the roster.
+    heightCm: 185,
+    weightKg: 84,
+    military: 'United States Marine Corps',
+    accolades: [
+      { id: 'capital-selects', verification: 'club-verified' },
+      { id: 'starter', verification: 'club-verified' },
+    ],
   },
 
   // ===========================================================================
@@ -555,7 +603,7 @@ export const players: Player[] = [
   { id: 130, name: 'Casey Ling', slug: 'casey-ling', squad: 'past', positions: ['flanker'], division: 'D3' },
   { id: 131, name: 'Grant Two Bulls', slug: 'grant-two-bulls', squad: 'past', positions: ['flanker'], division: 'D3' },
   { id: 132, name: 'Roberto Agrusta', slug: 'roberto-agrusta', squad: 'past', positions: ['flanker'], division: 'D3' },
-  { id: 133, name: 'Jonathan Fuentecilla', slug: 'jonathan-fuentecilla', squad: 'past', positions: ['number-8'], division: 'D3' },
+  { id: 133, name: 'Jonathan Fuentecilla', slug: 'jonathan-fuentecilla', photo: '/assets/pictures/fuego.jpg', photoCredit: 'WRFC squad portraits, 2026', squad: 'past', positions: ['number-8'], division: 'D3' },
   { id: 134, name: 'Liam Garven', slug: 'liam-garven', squad: 'past', positions: ['scrum-half'], division: 'D3' },
   { id: 135, name: 'Wesley Leckie', slug: 'wesley-leckie', squad: 'past', positions: ['fly-half'], division: 'D3' },
   { id: 136, name: 'Saxon Bryant', slug: 'saxon-bryant', squad: 'past', positions: ['center'], division: 'D3' },
@@ -563,7 +611,7 @@ export const players: Player[] = [
   { id: 138, name: 'Adrian Vigil-Coello', slug: 'adrian-vigilcoello', squad: 'past', positions: ['wing'], division: 'D3' },
   { id: 139, name: 'Ryunosuke Hashimoto', slug: 'ryunosuke-hashimoto', squad: 'past', positions: ['wing'], division: 'D3' },
   { id: 140, name: 'Rene Esteves', slug: 'rene-esteves', squad: 'past', positions: ['wing'], division: 'D3' },
-  { id: 141, name: 'Nicholas Cipollone', slug: 'nicholas-cipollone', squad: 'past', positions: ['wing'], division: 'D3' },
+  { id: 141, name: 'Nicholas Cipollone', slug: 'nicholas-cipollone', photo: '/assets/pictures/chip.jpg', photoCredit: 'WRFC squad portraits, 2026', squad: 'past', positions: ['wing'], division: 'D3' },
   { id: 142, name: 'Ian Elzinga', slug: 'ian-elzinga', squad: 'past', positions: ['wing', 'full-back'], division: 'D3' },
   { id: 143, name: 'Koki Mori', slug: 'koki-mori', squad: 'past', positions: ['wing'], division: 'D3' },
   { id: 144, name: 'Benjamin Sando', slug: 'benjamin-sando', squad: 'past', positions: ['wing'], division: 'D3' },

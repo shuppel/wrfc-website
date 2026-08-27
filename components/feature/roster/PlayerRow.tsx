@@ -57,7 +57,7 @@ export function PlayerRow({ player }: { player: Player }) {
 
         <span className="hidden w-48 shrink-0 lg:block">
           {accolades[0] ? (
-            <AccoladeBadge accolade={accolades[0]} short className="max-w-full" />
+            <AccoladeBadge accolade={accolades[0]} className="max-w-full" />
           ) : (
             <span className="text-sm text-gray-300 dark:text-white/20">—</span>
           )}

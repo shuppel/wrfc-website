@@ -8,6 +8,7 @@ import {
   CalendarCheck,
   GraduationCap,
   Info,
+  Medal,
   Ruler,
   Scales,
   TShirt,
@@ -132,6 +133,7 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
       label: 'College rugby',
       value: player.collegeProgram,
     },
+    player.military && { icon: Medal, label: 'Service', value: player.military },
   ].filter(Boolean) as {
     icon: typeof Ruler;
     label: string;
