@@ -39,9 +39,6 @@ import type { Player } from './types';
  * ---------------------------------------------------------------------------
  * These files sit in /public/assets/pictures with nobody to attach them to:
  *
- *   chatman.jpg  Justin Chatman — confirmed by the club, but he has no roster
- *                entry. Add him below (positions are required) and point him
- *                at this file.
  *   johnny.jpg   Confirmed as someone not on the roster.
  *   archie.jpg   Nickname the roster cannot resolve.
  *   seth.jpg     Nickname the roster cannot resolve.
@@ -532,6 +529,22 @@ export const players: Player[] = [
     seasons: 0,
     previousClub: 'Alexandria City High School',
     accolades: [{ id: 'rookie', detail: 'First season at WRFC', verification: 'club-verified' }],
+  },
+
+  {
+    id: 36,
+    name: 'Justin Chatham',
+    slug: 'justin-chatham',
+    squad: 'fall-2026',
+    // Covers the back three and midfield rather than one specialist slot, so
+    // he is listed the way Ryan Dodds is — the label leads, the positions
+    // underneath it place him on the roster.
+    positions: ['center', 'wing', 'full-back'],
+    positionLabel: 'Utility Back',
+    photo: '/assets/pictures/chatman.jpg',
+    photoCredit: 'WRFC squad portraits, 2026',
+    previousClub: 'University of Delaware RFC',
+    collegeProgram: 'University of Delaware',
   },
 
   // ===========================================================================
