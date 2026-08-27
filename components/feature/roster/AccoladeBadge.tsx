@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import {
   ArrowSquareOut,
+  CaretRight,
   CheckCircle,
-  GraduationCap,
   Medal,
   ShieldStar,
+  Star,
   Trophy,
 } from '@phosphor-icons/react/dist/ssr';
 
@@ -15,7 +16,7 @@ import type { AccoladeTier, ResolvedAccolade } from '@/data/roster/accolades';
 const TIER_ICONS: Record<AccoladeTier, typeof Trophy> = {
   professional: Trophy,
   representative: Medal,
-  collegiate: GraduationCap,
+  'club-honour': Star,
   club: ShieldStar,
 };
 
@@ -121,6 +122,16 @@ export function AccoladeDetail({ accolade }: { accolade: ResolvedAccolade }) {
               >
                 {accolade.org.name}
                 <ArrowSquareOut className="h-3.5 w-3.5" />
+              </Link>
+            )}
+
+            {accolade.internalUrl && (
+              <Link
+                href={accolade.internalUrl}
+                className="inline-flex items-center gap-1 text-xs font-medium text-wrfc-navy underline-offset-2 hover:underline dark:text-sky-300"
+              >
+                Committee records
+                <CaretRight className="h-3.5 w-3.5" />
               </Link>
             )}
           </div>

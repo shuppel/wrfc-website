@@ -4,14 +4,10 @@ import type { PositionGroupId, PositionId, Unit } from './positions';
 export type Division = 'D1' | 'D3' | 'Both';
 
 /**
- * Which list a player belongs to.
- *
- * `fall-2026` is the squad that registered for the current season.
- * `club-roster` is everyone else the club has listed. They are deliberately not
- * called "past players" — not filling in a season sign-up form is not the same
- * as leaving the club, and the site should not assert that it is.
+ * Which list a player belongs to: the squad registered for the current season,
+ * or a player from a previous season's roster.
  */
-export type SquadList = 'fall-2026' | 'club-roster';
+export type SquadList = 'fall-2026' | 'past';
 
 /** Match availability. Deliberately coarse — see the privacy note in roster.ts. */
 export type Availability = 'available' | 'unavailable';
@@ -45,17 +41,46 @@ export interface Player {
   /** Path under /public, or omitted to fall back to the monogram avatar. */
   photo?: string;
   photoCredit?: string;
+  /**
+   * CSS object-position for the photo, e.g. '50% 25%'.
+   *
+   * The cards crop 4:5 and the profile hero crops 3:4, both portrait. A
+   * landscape shot of someone standing has the face high in the frame, so
+   * centring the crop cuts the head off. Nudge this per photo rather than
+   * re-cropping the source. Defaults to centred, which suits the action shots.
+   */
+  photoFocus?: string;
 
-  height?: string;
-  /** Total inches. Used for sorting only. */
-  heightInches?: number;
-  weightLbs?: number;
-  /** Overrides the weight display where the player gave a range. */
-  weightLabel?: string;
+  /**
+   * Height and weight are stored in metric and converted for display.
+   *
+   * The previous roster stored a bare `weight` number that was kilograms for
+   * some players and pounds for others, and the profile page rendered every one
+   * of them as "kg" — so a 260 lb prop was published as a 260 kg prop. One
+   * canonical unit removes that whole class of error.
+   */
+  heightCm?: number;
+  weightKg?: number;
 
-  /** Seasons with WRFC. 0 means a rookie season. */
+  /**
+   * Years with WRFC, as given at registration. 0 means a rookie season, and 6
+   * means "6 or more" — that was the top option on the form, so it is a floor
+   * rather than a count.
+   */
   seasons?: number;
+  /**
+   * The year a player joined, where the club knows it exactly. Overrides the
+   * year derived from `seasons`, which is the only way to pin down anyone in
+   * the "6 or more" bucket.
+   */
+  since?: number;
   previousClub?: string;
+  /**
+   * A university or school rugby program the player came through. Deliberately
+   * not an accolade — where someone played before is background, not an honour
+   * won, and it should not sit on a card next to a Capital Selects call-up.
+   */
+  collegeProgram?: string;
 
   accolades?: PlayerAccolade[];
   socials?: PlayerSocials;
@@ -64,7 +89,12 @@ export interface Player {
   /** Shown alongside an `unavailable` status. Never a medical detail. */
   availabilityNote?: string;
 
-  /** Carried over from the club's earlier roster records. */
+  /**
+   * Appearances for the club. Left unset across the roster: the numbers the
+   * previous roster file carried understated the players the club could
+   * actually check against, so none of them could be trusted. The field stays
+   * so real counts can be filled in per player when the club has them.
+   */
   caps?: { d1?: number; d3?: number };
 }
 

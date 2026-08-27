@@ -107,6 +107,7 @@ export function PlayerAvatar({
         fill
         priority={priority}
         sizes={sizes}
+        style={player.photoFocus ? { objectPosition: player.photoFocus } : undefined}
         className={cn('object-cover', className)}
       />
     );

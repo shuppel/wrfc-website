@@ -6,9 +6,10 @@ import {
   cardAccolades,
   experienceLabel,
   groupOf,
+  height,
   playerUrl,
   positionLabelFor,
-  weightLabel,
+  weight,
 } from '@/data/roster';
 import type { Player } from '@/data/roster/types';
 
@@ -18,7 +19,7 @@ import { PlayerAvatar, signatureNumber } from './PlayerAvatar';
 /** The dense row used by the roster's list view — a team sheet, essentially. */
 export function PlayerRow({ player }: { player: Player }) {
   const accolades = cardAccolades(player);
-  const weight = weightLabel(player);
+  const figures = [height(player), weight(player)];
   const experience = experienceLabel(player);
 
   return (
@@ -47,7 +48,7 @@ export function PlayerRow({ player }: { player: Player }) {
         </span>
 
         <span className="hidden w-40 shrink-0 text-sm text-gray-500 sm:block dark:text-gray-400">
-          {[player.height, weight].filter(Boolean).join(' · ') || '—'}
+          {figures.filter(Boolean).map((figure) => figure!.primary).join(' · ') || '—'}
         </span>
 
         <span className="hidden w-40 shrink-0 text-sm text-gray-500 md:block dark:text-gray-400">

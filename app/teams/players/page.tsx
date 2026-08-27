@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Barbell, Medal, Ruler, Users } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, ArrowSquareOut, CaretRight } from '@phosphor-icons/react/dist/ssr';
 
 import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { RosterExplorer } from '@/components/feature/roster/RosterExplorer';
 import { RosterJsonLd } from '@/components/feature/roster/PlayerJsonLd';
-import { clubRosterPlayers, squadPlayers, summarise } from '@/data/roster';
+import { pastPlayers, squadHighlights, squadPlayers, summarise } from '@/data/roster';
 
 const SEASON = 'Fall 2026';
 
@@ -13,7 +13,7 @@ const summary = summarise(squadPlayers);
 
 export const metadata: Metadata = {
   title: `${SEASON} Squad | Washington Rugby Football Club`,
-  description: `The ${SEASON} Washington Rugby Football Club squad: ${summary.total} players across ${summary.forwards} forwards and ${summary.backs} backs, including Capital Selects and Major League Rugby academy honours. Filter by position, experience and honours, and open any player's profile.`,
+  description: `The ${SEASON} Washington Rugby Football Club senior squad — ${summary.total} players, six of them called into the 2026 Capital Selects. Browse the roster by position and experience, and open any player's profile.`,
   keywords: [
     'washington rugby roster',
     'wrfc players',
@@ -36,19 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { icon: Users, value: summary.total, label: 'In the squad', hint: `${summary.forwards} forwards · ${summary.backs} backs` },
-  {
-    icon: Medal,
-    value: summary.decorated,
-    label: 'With honours',
-    hint: summary.professional
-      ? `${summary.professional} with professional pathway honours`
-      : 'Representative and collegiate selections',
-  },
-  { icon: Barbell, value: summary.rookies, label: 'Rookies', hint: 'First season at the club' },
-  { icon: Ruler, value: summary.veterans, label: 'Veterans', hint: 'Six or more seasons' },
-];
+const highlights = squadHighlights(squadPlayers);
 
 export default function PlayersPage() {
   return (
@@ -74,25 +62,57 @@ export default function PlayersPage() {
           </p>
           <h1 className="display-large mt-3 text-white">{SEASON} Squad</h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">
-            {summary.total} players — {summary.forwards} forwards and {summary.backs} backs — from
-            first-season rookies to veterans with six or more seasons in the shirt. Filter by
-            position, experience or honours, and open any profile to see where a player came from and
-            what they have won.
+            The senior squad for the {SEASON} season. Filter by position, experience or honours, and
+            open any profile to see where a player came from and what they have won.
           </p>
 
-          <dl className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {STATS.map(({ icon: Icon, value, label, hint }) => (
-              <div
-                key={label}
-                className="rounded-xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-sm"
-              >
-                <Icon weight="duotone" className="h-5 w-5 text-white/50" />
-                <dd className="stat-number mt-2 text-white">{value}</dd>
-                <dt className="font-heading text-sm font-semibold text-white/90">{label}</dt>
-                <p className="mt-0.5 text-xs text-white/50">{hint}</p>
-              </div>
-            ))}
-          </dl>
+          <ul className="mt-10 grid gap-4 md:grid-cols-3">
+            {highlights.map((highlight) => {
+              const body = (
+                <>
+                  <p className="font-accent text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
+                    {highlight.label}
+                  </p>
+                  <p className="mt-2 font-heading text-xl font-bold leading-snug text-white">
+                    {highlight.statement}
+                  </p>
+                  {highlight.detail && (
+                    <p className="mt-2 text-sm leading-relaxed text-white/60">{highlight.detail}</p>
+                  )}
+                  {highlight.href && (
+                    <span className="mt-3 inline-flex items-center gap-1 font-accent text-xs font-semibold uppercase tracking-wider text-white/70 transition-colors group-hover:text-white">
+                      Read more
+                      {highlight.external ? (
+                        <ArrowSquareOut className="h-3.5 w-3.5" />
+                      ) : (
+                        <CaretRight weight="bold" className="h-3.5 w-3.5" />
+                      )}
+                    </span>
+                  )}
+                </>
+              );
+
+              return (
+                <li key={highlight.label}>
+                  {highlight.href ? (
+                    <Link
+                      href={highlight.href}
+                      {...(highlight.external
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                      className="group flex h-full flex-col rounded-xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-sm transition-colors hover:border-white/40 hover:bg-white/[0.1]"
+                    >
+                      {body}
+                    </Link>
+                  ) : (
+                    <div className="flex h-full flex-col rounded-xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-sm">
+                      {body}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </header>
 
@@ -100,17 +120,16 @@ export default function PlayersPage() {
       <main className="container mx-auto px-4 py-12">
         <RosterExplorer players={squadPlayers} />
 
-        {/* --- Wider club roster ------------------------------------------- */}
-        {clubRosterPlayers.length > 0 && (
+        {/* --- Previous players -------------------------------------------- */}
+        {pastPlayers.length > 0 && (
           <section className="mt-20 border-t border-gray-200 pt-12 dark:border-white/10">
-            <h2 className="display-small text-gray-900 dark:text-white">Also on the club roster</h2>
+            <h2 className="display-small text-gray-900 dark:text-white">Previous Players</h2>
             <p className="mt-3 max-w-2xl text-gray-600 dark:text-gray-400">
-              Players carried on the club roster who are not on the {SEASON} squad list. Rugby squads
-              turn over between seasons and a sign-up sheet is not a record of who has left, so these
-              profiles stay up.
+              {pastPlayers.length} players from earlier Washington Rugby rosters. Their profiles stay
+              up — the club&apos;s recent history is worth keeping, and so are the links to it.
             </p>
             <div className="mt-8">
-              <RosterExplorer players={clubRosterPlayers} sticky={false} />
+              <RosterExplorer players={pastPlayers} sticky={false} defaultView="list" />
             </div>
           </section>
         )}

@@ -7,9 +7,10 @@ import {
   cardAccolades,
   experienceLabel,
   groupOf,
+  height,
   playerUrl,
   positionLabelFor,
-  weightLabel,
+  weight,
 } from '@/data/roster';
 import type { Player } from '@/data/roster/types';
 
@@ -26,7 +27,7 @@ export function PlayerCard({ player, priority = false }: PlayerCardProps) {
   const headline = accolades[0];
   const group = POSITION_GROUPS[groupOf(player)];
   const experience = experienceLabel(player);
-  const weight = weightLabel(player);
+  const figures = [height(player), weight(player)].filter(Boolean);
   const unavailable = player.availability === 'unavailable';
 
   return (
@@ -77,20 +78,14 @@ export function PlayerCard({ player, priority = false }: PlayerCardProps) {
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <dl className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-600 dark:text-gray-400">
-          {player.height && (
-            <div className="flex items-center gap-1">
-              <dt className="sr-only">Height</dt>
+          {figures.map((figure, index) => (
+            <div key={index} className="flex items-center gap-1">
+              <dt className="sr-only">{index === 0 ? 'Height' : 'Weight'}</dt>
               <dd className="font-accent font-semibold text-gray-900 dark:text-gray-100">
-                {player.height}
+                {figure!.primary}
               </dd>
             </div>
-          )}
-          {weight && (
-            <div className="flex items-center gap-1">
-              <dt className="sr-only">Weight</dt>
-              <dd className="font-accent font-semibold text-gray-900 dark:text-gray-100">{weight}</dd>
-            </div>
-          )}
+          ))}
           {experience && (
             <div className="flex items-center gap-1">
               <dt className="sr-only">Experience</dt>

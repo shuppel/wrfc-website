@@ -1,14 +1,14 @@
-import { splitAccolades } from '@/data/roster/accolades';
+
 import { POSITIONS } from '@/data/roster/positions';
 import {
   CLUB_ID,
   CLUB_URL,
   ROSTER_PATH,
   experienceLabel,
+  playerAccolades,
   playerUrl,
   positionLabelFor,
   socialProfiles,
-  weightLabel,
 } from '@/data/roster';
 import type { Player } from '@/data/roster/types';
 
@@ -29,7 +29,7 @@ import type { Player } from '@/data/roster/types';
  */
 
 function personNode(player: Player) {
-  const { honours, clubRoles } = splitAccolades(player.accolades);
+  const { honours, clubRoles } = playerAccolades(player);
   const socials = socialProfiles(player).map((profile) => profile.url);
   const orgLinks = [...honours, ...clubRoles]
     .map((accolade) => accolade.org?.url)
@@ -51,8 +51,10 @@ function personNode(player: Player) {
       `Rugby union player — ${positionLabelFor(player)}`,
     ].join(', '),
     ...(player.photo ? { image: `${CLUB_URL}${player.photo}` } : {}),
-    height: player.height,
-    weight: weightLabel(player),
+    // Schema.org takes a QuantitativeValue; the bare metric figure is the one
+    // that parses unambiguously.
+    ...(player.heightCm ? { height: `${player.heightCm} cm` } : {}),
+    ...(player.weightKg ? { weight: `${player.weightKg} kg` } : {}),
     memberOf: { '@id': CLUB_ID },
     affiliation: { '@id': CLUB_ID },
     ...(player.previousClub

@@ -13,7 +13,6 @@ import {
   groupOf,
   positionLabelFor,
   unitOf,
-  weightLabel,
 } from '@/data/roster';
 import type { ExperienceBand } from '@/data/roster';
 import type { Player } from '@/data/roster/types';
@@ -43,12 +42,15 @@ interface RosterExplorerProps {
    * on a page should — two competing sticky bars stack on top of each other.
    */
   sticky?: boolean;
+  /** Which view the explorer opens in. */
+  defaultView?: ViewMode;
 }
 
 export function RosterExplorer({
   players,
   emptyMessage = 'No players match those filters.',
   sticky = true,
+  defaultView = 'grid',
 }: RosterExplorerProps) {
   const [query, setQuery] = useState('');
   const [unit, setUnit] = useState<UnitFilter>('all');
@@ -56,7 +58,7 @@ export function RosterExplorer({
   const [experience, setExperience] = useState<ExperienceFilter>('all');
   const [decoratedOnly, setDecoratedOnly] = useState(false);
   const [sort, setSort] = useState<SortKey>('position');
-  const [view, setView] = useState<ViewMode>('grid');
+  const [view, setView] = useState<ViewMode>(defaultView);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   // Only offer position-group chips that the current unit filter can reach —
@@ -102,9 +104,9 @@ export function RosterExplorer({
         case 'experience':
           return (b.seasons ?? -1) - (a.seasons ?? -1) || byName(a, b);
         case 'height':
-          return (b.heightInches ?? 0) - (a.heightInches ?? 0) || byName(a, b);
+          return (b.heightCm ?? 0) - (a.heightCm ?? 0) || byName(a, b);
         case 'weight':
-          return (b.weightLbs ?? 0) - (a.weightLbs ?? 0) || byName(a, b);
+          return (b.weightKg ?? 0) - (a.weightKg ?? 0) || byName(a, b);
         case 'position':
         default:
           return (
@@ -318,11 +320,9 @@ export function RosterExplorer({
         </ul>
       )}
 
-      {/* Weight column is only meaningful once you know the units. */}
       {view === 'list' && results.length > 0 && (
         <p className="mt-3 text-xs text-gray-400">
           Heights and weights are self-reported at squad registration.
-          {results.some((player) => weightLabel(player)) ? ' Weights in pounds.' : ''}
         </p>
       )}
     </div>

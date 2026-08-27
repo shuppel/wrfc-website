@@ -1,4 +1,6 @@
 import { resolveAccolades, splitAccolades } from './accolades';
+import type { PlayerAccolade } from './accolades';
+import { currentService, formatService, pastService } from './committee';
 import { players } from './roster';
 import {
   POSITION_GROUPS,
@@ -11,6 +13,8 @@ import type { PositionGroupId, Unit } from './positions';
 import type { Player, RosterSection } from './types';
 
 export * from './accolades';
+export * from './committee';
+export * from './highlights';
 export * from './positions';
 export * from './types';
 export { players };
@@ -23,7 +27,53 @@ export const ROSTER_PATH = '/teams/players';
 export const FALLBACK_PHOTO = '/assets/art/player_profile_rugby.png';
 
 export const squadPlayers = players.filter((player) => player.squad === 'fall-2026');
-export const clubRosterPlayers = players.filter((player) => player.squad === 'club-roster');
+export const pastPlayers = players.filter((player) => player.squad === 'past');
+
+/**
+ * Which unit heights and weights lead with. The roster stores metric; this
+ * only decides which figure is shown first and which is shown alongside it.
+ * Flip to 'imperial' to lead with feet and pounds instead.
+ */
+export const UNIT_SYSTEM: 'metric' | 'imperial' = 'metric';
+
+/** 177 -> `5'9.5"`. Halves are kept — rounding to the inch loses real detail. */
+export function cmToImperial(cm: number): string {
+  const totalInches = cm / 2.54;
+  const feet = Math.floor(totalInches / 12);
+  const inches = Math.round((totalInches - feet * 12) * 2) / 2;
+  // Rounding can push inches to 12; roll it into the next foot.
+  if (inches >= 12) return `${feet + 1}'0"`;
+  return `${feet}'${inches}"`;
+}
+
+export function kgToPounds(kg: number): number {
+  return Math.round(kg / 0.45359237);
+}
+
+export interface Measurement {
+  /** The figure shown first. */
+  primary: string;
+  /** The same figure in the other unit, shown alongside. */
+  secondary: string;
+}
+
+export function height(player: Player): Measurement | undefined {
+  if (player.heightCm === undefined) return undefined;
+  const metric = `${player.heightCm} cm`;
+  const imperial = cmToImperial(player.heightCm);
+  return UNIT_SYSTEM === 'metric'
+    ? { primary: metric, secondary: imperial }
+    : { primary: imperial, secondary: metric };
+}
+
+export function weight(player: Player): Measurement | undefined {
+  if (player.weightKg === undefined) return undefined;
+  const metric = `${player.weightKg} kg`;
+  const imperial = `${kgToPounds(player.weightKg)} lb`;
+  return UNIT_SYSTEM === 'metric'
+    ? { primary: metric, secondary: imperial }
+    : { primary: imperial, secondary: metric };
+}
 
 export function getPlayerBySlug(slug: string): Player | undefined {
   return players.find((player) => player.slug === slug);
@@ -50,14 +100,35 @@ export function groupOf(player: Player): PositionGroupId {
   return primaryGroupOf(player.positions);
 }
 
-/** "Rookie season", "3rd season", "6+ seasons". */
-export function experienceLabel(player: Player): string | undefined {
+/** The season the roster currently describes. Start years are derived from it. */
+export const CURRENT_SEASON_YEAR = 2026;
+
+export interface StartYear {
+  year: number;
+  /**
+   * True when the year is a ceiling rather than a fact — the player picked the
+   * form's "6 or more" option, so they joined that year or before it.
+   */
+  approximate: boolean;
+}
+
+export function startYear(player: Player): StartYear | undefined {
+  if (player.since !== undefined) return { year: player.since, approximate: false };
+
   const { seasons } = player;
   if (seasons === undefined) return undefined;
-  if (seasons === 0) return 'Rookie season';
-  if (seasons >= 6) return '6+ seasons at WRFC';
-  const rounded = Number.isInteger(seasons) ? `${seasons}` : `${seasons}`;
-  return `${rounded} season${seasons === 1 ? '' : 's'} at WRFC`;
+
+  return {
+    year: CURRENT_SEASON_YEAR - Math.floor(seasons),
+    approximate: seasons >= 6,
+  };
+}
+
+/** "Since 2025", or "Since 2020 or earlier" where the form only gave a floor. */
+export function experienceLabel(player: Player): string | undefined {
+  const start = startYear(player);
+  if (!start) return undefined;
+  return start.approximate ? `Since ${start.year} or earlier` : `Since ${start.year}`;
 }
 
 export type ExperienceBand = 'rookie' | 'developing' | 'established' | 'veteran';
@@ -78,10 +149,49 @@ export function experienceBand(player: Player): ExperienceBand | undefined {
   return 'developing';
 }
 
-export function weightLabel(player: Player): string | undefined {
-  if (player.weightLabel) return player.weightLabel;
-  if (player.weightLbs === undefined) return undefined;
-  return `${player.weightLbs} lb`;
+/**
+ * A player's declared accolades plus the ones derived from the committee
+ * records. Committee service is never written into roster.ts by hand — it is
+ * read from ./committee, so the roster and the Executive Committee page cannot
+ * disagree about who holds which post.
+ */
+export function accoladesOf(player: Player): PlayerAccolade[] {
+  const derived: PlayerAccolade[] = [];
+  const serving = currentService(player.slug);
+  const served = pastService(player.slug);
+
+  // A president or club captain gets the specific badge for the office rather
+  // than a generic committee one — those two posts are what people look for.
+  const office = serving.find(
+    (post) => post.position === 'President' || post.position === 'Club Captain',
+  );
+  if (office?.position === 'President') {
+    derived.push({ id: 'club-president', verification: 'club-verified' });
+  }
+  if (office?.position === 'Club Captain') {
+    derived.push({ id: 'club-captain', verification: 'club-verified' });
+  }
+
+  if (serving.length > 0) {
+    derived.push({
+      id: 'executive-committee',
+      detail: formatService(serving),
+      verification: 'club-verified',
+    });
+  }
+
+  if (served.length > 0) {
+    derived.push({
+      id: 'former-executive-committee',
+      detail: formatService(served),
+      verification: 'club-verified',
+    });
+  }
+
+  const declared = player.accolades ?? [];
+  // A hand-declared entry wins, so roster.ts can still override a derived one.
+  const declaredIds = new Set(declared.map((accolade) => accolade.id));
+  return [...declared, ...derived.filter((accolade) => !declaredIds.has(accolade.id))];
 }
 
 /**
@@ -89,13 +199,18 @@ export function weightLabel(player: Player): string | undefined {
  * a club role, so a card shows "All-American" rather than "Rookie".
  */
 export function headlineAccolade(player: Player) {
-  const { honours, clubRoles } = splitAccolades(player.accolades);
+  const { honours, clubRoles } = playerAccolades(player);
   return honours[0] ?? clubRoles[0];
+}
+
+/** A player's honours and club roles, resolved and split. */
+export function playerAccolades(player: Player) {
+  return splitAccolades(accoladesOf(player));
 }
 
 /** Accolades ordered as a card should show them. */
 export function cardAccolades(player: Player) {
-  const { honours, clubRoles } = splitAccolades(player.accolades);
+  const { honours, clubRoles } = playerAccolades(player);
   return [...honours, ...clubRoles];
 }
 
@@ -126,9 +241,9 @@ export interface SquadSummary {
 export function summarise(list: Player[] = squadPlayers): SquadSummary {
   // Club roles and rookie tags do not count as honours — otherwise almost
   // everyone is "decorated" and the number stops meaning anything.
-  const decorated = list.filter((player) => splitAccolades(player.accolades).honours.length > 0);
+  const decorated = list.filter((player) => playerAccolades(player).honours.length > 0);
   const professional = list.filter((player) =>
-    splitAccolades(player.accolades).honours.some((accolade) => accolade.tier === 'professional'),
+    playerAccolades(player).honours.some((accolade) => accolade.tier === 'professional'),
   );
 
   return {
@@ -217,7 +332,7 @@ export function socialProfiles(player: Player): SocialProfile[] {
  */
 export function relatedPlayers(player: Player, limit = 4): Player[] {
   const group = groupOf(player);
-  const pool = player.squad === 'fall-2026' ? squadPlayers : players;
+  const pool = player.squad === 'fall-2026' ? squadPlayers : pastPlayers;
 
   return pool
     .filter((other) => other.slug !== player.slug && groupOf(other) === group)
