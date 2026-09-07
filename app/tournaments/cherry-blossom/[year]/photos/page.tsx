@@ -40,7 +40,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
           <div className="flex items-center h-16">
             <Link 
               href={`/tournaments/cherry-blossom/${params.year}`}
-              className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
+              className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Tournament
@@ -52,7 +52,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-wrfc-blue-300">
             Photo Gallery
           </h1>
           <p className="text-xl mb-12 text-gray-600 dark:text-gray-100">
@@ -85,7 +85,7 @@ export default function TournamentPhotosPage({ params }: { params: { year: strin
 
         {/* Download Section */}
         <div className="mt-16 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
+          <h2 className="text-2xl font-bold mb-4  text-wrfc-navy dark:text-wrfc-blue-300">
             Download Photos
           </h2>
           <p className="text-gray-600 dark:text-gray-100 mb-8">

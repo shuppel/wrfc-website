@@ -160,7 +160,7 @@ export default function PlayersPage() {
         </section>
 
         {/* --- Recruitment --------------------------------------------------- */}
-        <section className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-r from-wrfc-red to-red-800 p-8 text-white md:p-12">
+        <section className="mt-12 overflow-hidden rounded-2xl bg-gradient-to-r from-wrfc-red to-wrfc-red-800 p-8 text-white md:p-12">
           <h2 className="display-small">Your name could be on this list</h2>
           <p className="mt-3 max-w-2xl text-lg text-white/85">
             Every season this squad takes in new players, including people who have never touched a

@@ -91,7 +91,7 @@ export default function PromotionModal({ promotion, isOpen, onClose }: Promotion
                 className={`flex-1 font-semibold py-3 rounded-xl shadow-lg transition-all duration-300 ${
                   isCherryBlossom 
                     ? 'bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white shadow-pink-500/25 hover:shadow-pink-500/40'
-                    : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-orange-500/25 hover:shadow-orange-500/40'
+                    : 'bg-gradient-to-r from-wrfc-blue to-wrfc-blue-700 hover:from-wrfc-blue-600 hover:to-wrfc-blue-800 text-white shadow-wrfc-blue-500/25 hover:shadow-wrfc-blue-500/40'
                 }`}
                 onClick={handleCTA}
               >

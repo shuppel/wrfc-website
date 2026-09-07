@@ -8,11 +8,17 @@
   --card-bg-light: #ffffff;
   --card-bg-dark: #1a1a1a;
   
-  /* Brand Colors */
-  --primary: #FFB800;
-  --primary-hover: #FFC933;
-  --background: #FFF5E6;
-  --text: #1A1A1A;
+  /* Brand Colors - from the club crest (blue #0000CC, red #FF0000, white) */
+  --wrfc-blue: #0000CC;
+  --wrfc-blue-light: #5252DC;
+  --wrfc-blue-dark: #000062;
+  --wrfc-red: #FF0000;
+  --wrfc-red-aa: #E60000;
+  --primary: #0000CC;
+  --primary-hover: #0000B8;
+  --accent-brand: #E60000;
+  --background: #FFFFFF;
+  --text: #0B0B1A;
   
   /* Semantic Colors */
   --success: #10B981;
@@ -100,19 +106,19 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
-    --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
-    --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 20 5.9% 90%;
-    --input: 20 5.9% 90%;
-    --ring: 24.6 95% 53.1%;
+    --primary: 240 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 60% 96%;
+    --secondary-foreground: 240 100% 19%;
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 8% 45%;
+    --accent: 0 100% 96%;
+    --accent-foreground: 0 100% 30%;
+    --destructive: 0 100% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 20% 90%;
+    --input: 240 20% 90%;
+    --ring: 240 100% 40%;
     --radius: 0.75rem;
   }
 
@@ -137,19 +143,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 24.6 95% 53.1%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 24.6 95% 53.1%;
+    --primary: 240 65% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 30% 18%;
+    --secondary-foreground: 240 60% 96%;
+    --muted: 240 25% 18%;
+    --muted-foreground: 240 15% 68%;
+    --accent: 240 30% 18%;
+    --accent-foreground: 0 100% 84%;
+    --destructive: 0 100% 66%;
+    --destructive-foreground: 240 40% 8%;
+    --border: 240 25% 20%;
+    --input: 240 25% 20%;
+    --ring: 240 65% 59%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -162,12 +168,12 @@
 
   .title-gradient {
     @apply text-transparent bg-clip-text bg-gradient-to-r;
-    @apply from-[#FFB800] to-[#FFC933];
-    @apply dark:from-[#FFB800] dark:to-[#FFA000];
+    @apply from-wrfc-blue to-wrfc-red-600;
+    @apply dark:from-wrfc-blue-300 dark:to-wrfc-red-400;
   }
 
   .title-container {
-    @apply inline-block p-2 bg-orange-50 dark:bg-orange-900/30 rounded-lg mb-4;
+    @apply inline-block p-2 bg-wrfc-blue-50 dark:bg-wrfc-blue-900/30 rounded-lg mb-4;
   }
 
   .section-title {
@@ -379,12 +385,12 @@
   }
 
   .icon-container {
-    @apply bg-orange-100 dark:bg-orange-900/50 p-2 rounded-lg mr-3 
+    @apply bg-wrfc-blue-100 dark:bg-wrfc-blue-900/50 p-2 rounded-lg mr-3 
            transition-colors duration-300 ease-in-out;
   }
 
   .icon-base {
-    @apply h-6 w-6 text-[#FFB800] dark:text-[#FFC933]
+    @apply h-6 w-6 text-wrfc-blue dark:text-wrfc-blue-300
            transition-all duration-300 ease-in-out;
   }
 
@@ -398,8 +404,8 @@
 
   .decorative-line {
     @apply w-24 h-1 mx-auto bg-gradient-to-r 
-           from-[#FFB800] to-[#FFC933]
-           dark:from-[#FFB800] dark:to-[#FFA000]
+           from-wrfc-blue to-wrfc-red-500
+           dark:from-wrfc-blue-300 dark:to-wrfc-red-400
            rounded-full;
   }
 
@@ -411,19 +417,19 @@
   }
 
   .card-hover {
-    @apply hover:shadow-lg hover:border-orange-200 dark:hover:border-orange-800
+    @apply hover:shadow-lg hover:border-wrfc-blue-200 dark:hover:border-wrfc-blue-800
            transform transition-all duration-300 ease-out;
   }
 
   .card-gradient {
-    @apply bg-gradient-to-br from-orange-50 to-orange-100/50
-           dark:from-orange-900/20 dark:to-orange-800/20;
+    @apply bg-gradient-to-br from-wrfc-blue-50 to-wrfc-blue-100/50
+           dark:from-wrfc-blue-900/20 dark:to-wrfc-blue-800/20;
   }
 
   .input-base {
     @apply w-full rounded-lg border-2 bg-transparent px-4 py-3 
            outline-none transition-all duration-300
-           focus:border-[#FFB800] dark:focus:border-[#FFC933]
+           focus:border-wrfc-blue dark:focus:border-wrfc-blue-300
            dark:bg-gray-800/50 dark:text-white;
   }
 
@@ -434,9 +440,9 @@
 
   .button-primary {
     @apply px-6 py-2 rounded-lg font-medium
-           bg-gradient-to-r from-[#FFB800] to-[#FFC933]
-           hover:from-[#FFC933] hover:to-[#FFD666]
-           dark:from-[#FFB800] dark:to-[#FFA000]
+           bg-gradient-to-r from-wrfc-blue to-wrfc-blue-600
+           hover:from-wrfc-blue-600 hover:to-wrfc-blue-700
+           dark:from-wrfc-blue-500 dark:to-wrfc-blue-700
            text-white shadow-sm
            transform transition-all duration-300
            hover:scale-[1.02] active:scale-[0.98]
@@ -444,13 +450,13 @@
   }
 
   .hero-badge {
-    @apply px-4 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg
+    @apply px-4 py-2 bg-wrfc-blue-100 dark:bg-wrfc-blue-900/30 rounded-lg
            transform transition-all duration-500
-           hover:scale-105 hover:bg-orange-200 dark:hover:bg-orange-800/40;
+           hover:scale-105 hover:bg-wrfc-blue-200 dark:hover:bg-wrfc-blue-800/40;
   }
 
   .hero-badge-text {
-    @apply font-mono text-sm text-orange-600 dark:text-orange-400;
+    @apply font-mono text-sm text-wrfc-blue-700 dark:text-wrfc-blue-300;
   }
 
   .hero-icon-container {
@@ -459,7 +465,7 @@
   }
 
   .hero-icon-background {
-    @apply absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl
+    @apply absolute inset-0 bg-wrfc-red-500/10 dark:bg-wrfc-red-500/20 rounded-2xl
            transform rotate-6 group-hover:rotate-12 transition-transform duration-500;
   }
 
@@ -581,10 +587,10 @@
 
   @keyframes badgeGlow {
     0%, 100% {
-      box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+      box-shadow: 0 0 5px rgba(0, 0, 204, 0.2);
     }
     50% {
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+      box-shadow: 0 0 15px rgba(0, 0, 204, 0.4);
     }
   }
 }

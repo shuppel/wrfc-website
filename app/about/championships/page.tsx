@@ -109,7 +109,7 @@ export default function ChampionshipsPage() {
   const totalChampionships = championships.reduce((total, champ) => total + champ.years.length, 0)
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900">
       <BreadcrumbJsonLd 
         items={[
           { name: 'Home', item: '/' },
@@ -156,7 +156,7 @@ export default function ChampionshipsPage() {
         <div className="container mx-auto px-4">
           <Link 
             href="/about/history"
-            className="inline-flex items-center gap-2 text-wrfc-navy dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+            className="inline-flex items-center gap-2 text-wrfc-navy dark:text-wrfc-blue-300 hover:text-wrfc-blue-800 dark:hover:text-wrfc-blue-200 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to WRFC History
@@ -175,7 +175,7 @@ export default function ChampionshipsPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {eras.map((era, index) => (
                 <div key={index} className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 hover:shadow-lg transition-shadow">
-                  <h3 className="text-lg font-bold text-wrfc-navy dark:text-blue-400 mb-2">
+                  <h3 className="text-lg font-bold text-wrfc-navy dark:text-wrfc-blue-300 mb-2">
                     {era.name}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-100 mb-3">
@@ -268,7 +268,7 @@ export default function ChampionshipsPage() {
       </section>
 
       {/* Legacy Section */}
-      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
+      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-wrfc-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-8 ">
@@ -310,7 +310,7 @@ export default function ChampionshipsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
               <Link 
                 href="/membership"
-                className="inline-block bg-wrfc-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                className="inline-block bg-wrfc-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-wrfc-red-700 transition-colors"
               >
                 Join the Champions
               </Link>
@@ -331,9 +331,9 @@ export default function ChampionshipsPage() {
 function getCategoryColor(category: string): string {
   switch (category) {
     case 'national':
-      return 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300'
+      return 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-600 dark:text-wrfc-red-200'
     case 'regional':
-      return 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300'
+      return 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-600 dark:text-wrfc-blue-200'
     case 'local':
       return 'bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300'
     case 'consecutive':
@@ -346,9 +346,9 @@ function getCategoryColor(category: string): string {
 function getCategoryBadge(category: string): string {
   switch (category) {
     case 'national':
-      return 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+      return 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-800 dark:text-wrfc-red-100'
     case 'regional':
-      return 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+      return 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100'
     case 'local':
       return 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
     case 'consecutive':

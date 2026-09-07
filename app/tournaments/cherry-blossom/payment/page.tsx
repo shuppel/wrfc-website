@@ -213,8 +213,8 @@ function PaymentContent() {
                 <p className="text-gray-700">
                   No! Zeffy is 100% free for nonprofits. There are no processing fees on credit cards, debit cards, or any other payment method. Zeffy is supported by optional donor tips.
                 </p>
-                <div className="mt-2 p-3 bg-blue-50 rounded-md border border-blue-200">
-                  <p className="text-sm text-blue-800">
+                <div className="mt-2 p-3 bg-wrfc-blue-50 rounded-md border border-wrfc-blue-200">
+                  <p className="text-sm text-wrfc-blue-800">
                     💡 Tip: Save money by paying with Zelle or check!
                   </p>
                 </div>

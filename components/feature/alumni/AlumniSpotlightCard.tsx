@@ -26,7 +26,7 @@ export default function AlumniSpotlightCard({
   featured = false
 }: AlumniSpotlightCardProps) {
   const categoryColors = {
-    'Community Service': 'bg-wrfc-teal/10 text-wrfc-teal',
+    'Community Service': 'bg-wrfc-blue/10 text-wrfc-blue',
     'Professional Achievement': 'bg-wrfc-navy/10 text-wrfc-navy',
     'Rugby Development': 'bg-wrfc-red/10 text-wrfc-red',
     'Coaching': 'bg-yellow-500/10 text-yellow-700'

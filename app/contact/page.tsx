@@ -45,7 +45,7 @@ export default function ContactPage() {
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6  text-center">
             Contact Us
@@ -61,7 +61,7 @@ export default function ContactPage() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Send Us a Message
               </h2>
               <form 
@@ -77,7 +77,7 @@ export default function ContactPage() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-wrfc-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-wrfc-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                     type="text"
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-wrfc-blue-500 outline-none transition-colors "
                     required
                   />
                 </div>
@@ -113,13 +113,13 @@ export default function ContactPage() {
                     id="message"
                     name="message"
                     rows={6}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-colors "
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-wrfc-blue-500 outline-none transition-colors "
                     required
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors "
+                  className="w-full md:w-auto px-8 py-3 bg-wrfc-blue-600 hover:bg-wrfc-blue-700 text-white font-bold rounded-lg transition-colors "
                 >
                   Send Message
                 </button>
@@ -128,7 +128,7 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
+              <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Contact Information
               </h2>
               <div className="space-y-6">
@@ -159,7 +159,7 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl">
-                <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400">
+                <h3 className="text-xl font-bold mb-4  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                   Training Hours
                 </h3>
                 <ul className="space-y-2  text-gray-700 dark:text-white">
@@ -168,11 +168,11 @@ export default function ContactPage() {
                   <li className="text-sm mt-3">
                     <strong>Summer 7s Locations:</strong>
                     <br />
-                    <a href="https://maps.app.goo.gl/YgkGvG25ZMvrzYWk9" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <a href="https://maps.app.goo.gl/YgkGvG25ZMvrzYWk9" target="_blank" rel="noopener noreferrer" className="text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:underline">
                       Wallenberg Field
                     </a> (Rugby field behind Holocaust Museum, Raoul Wallenberg Pl SW)
                     <br />
-                    <a href="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <a href="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002" target="_blank" rel="noopener noreferrer" className="text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:underline">
                       Rosedale Recreation Center
                     </a> (1701 Gales St NE)
                   </li>
@@ -189,7 +189,7 @@ export default function ContactPage() {
 function ContactInfo({ title, content, address, mapLink, icon }: { title: string; content: string; address?: string; mapLink?: string; icon: React.ReactNode }) {
   return (
     <div className="flex items-start space-x-4">
-      <div className="text-blue-600 dark:text-blue-400">
+      <div className="text-wrfc-blue-600 dark:text-wrfc-blue-300">
         {icon}
       </div>
       <div>
@@ -198,7 +198,7 @@ function ContactInfo({ title, content, address, mapLink, icon }: { title: string
         {address && (
           <p className=" text-sm text-gray-600 dark:text-gray-100 mt-1">
             {mapLink ? (
-              <a href={mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 underline">
+              <a href={mapLink} target="_blank" rel="noopener noreferrer" className="hover:text-wrfc-blue-600 dark:hover:text-wrfc-blue-300 underline">
                 {address}
               </a>
             ) : (

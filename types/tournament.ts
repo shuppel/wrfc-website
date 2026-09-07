@@ -148,7 +148,7 @@ export function getStatusBadgeColor(status: TeamStatus): string {
     case 'pending':
       return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
     case 'waitlist':
-      return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      return 'bg-wrfc-blue-100 text-wrfc-blue-800 dark:bg-wrfc-blue-900 dark:text-wrfc-blue-100';
     case 'cancelled':
       return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     default:

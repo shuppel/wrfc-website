@@ -63,7 +63,7 @@ export default function QuickNav({ links }: QuickNavProps) {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`bg-orange-500/90 hover:bg-orange-600/90 text-white p-4 rounded-full shadow-lg 
+        className={`bg-wrfc-blue/90 hover:bg-wrfc-blue-700/90 text-white p-4 rounded-full shadow-lg 
                    transition-all duration-500 backdrop-blur-sm relative group
                    ${isOpen ? 'rotate-180 bg-black/50 hover:bg-black/70' : ''}`}
         aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}

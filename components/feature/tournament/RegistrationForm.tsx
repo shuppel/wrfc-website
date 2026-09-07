@@ -163,7 +163,7 @@ export default function RegistrationForm() {
 
       {/* Error Message */}
       {error && (
-        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-200">
+        <div className="mb-6 p-4 bg-wrfc-red-50 dark:bg-wrfc-red-900/20 border border-wrfc-red-200 dark:border-wrfc-red-800 rounded-lg text-wrfc-red-800 dark:text-wrfc-red-100">
           {error}
         </div>
       )}
@@ -348,7 +348,7 @@ export default function RegistrationForm() {
             )}
           </div>
 
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <div className="bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 border border-wrfc-blue-200 dark:border-wrfc-blue-800 rounded-lg p-4">
             <h3 className="font-semibold mb-2">Next Steps:</h3>
             <ol className="list-decimal list-inside space-y-1 text-sm">
               <li>Submit your registration</li>

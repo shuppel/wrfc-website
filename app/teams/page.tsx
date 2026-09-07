@@ -11,7 +11,7 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function TeamsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900 py-12">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -29,23 +29,23 @@ export default function TeamsPage() {
           {/* Coaches Card */}
           <Link href="/teams/coaches" className="group">
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105">
-              <div className="h-64 bg-gradient-to-br from-blue-600 to-blue-800 relative">
+              <div className="h-64 bg-gradient-to-br from-wrfc-blue-600 to-wrfc-blue-800 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <UserCheck className="w-24 h-24 text-white/30" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h2 className="team-name text-white mb-2">Coaching Staff</h2>
-                  <p className="text-blue-100">
+                  <p className="text-wrfc-blue-100">
                     Meet our experienced coaches dedicated to player development
                   </p>
                 </div>
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">
+                  <span className="text-wrfc-blue-600 dark:text-wrfc-blue-300 font-semibold group-hover:underline">
                     View Coaching Staff
                   </span>
-                  <span className="text-blue-600 dark:text-blue-400 transform group-hover:translate-x-2 transition-transform">
+                  <span className="text-wrfc-blue-600 dark:text-wrfc-blue-300 transform group-hover:translate-x-2 transition-transform">
                     →
                   </span>
                 </div>
@@ -56,23 +56,23 @@ export default function TeamsPage() {
           {/* Players Card */}
           <Link href="/teams/players" className="group">
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform group-hover:scale-105">
-              <div className="h-64 bg-gradient-to-br from-red-600 to-red-800 relative">
+              <div className="h-64 bg-gradient-to-br from-wrfc-red-600 to-wrfc-red-800 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Users className="w-24 h-24 text-white/30" />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h2 className="team-name text-white mb-2">Player Roster</h2>
-                  <p className="text-red-100">
+                  <p className="text-wrfc-red-100">
                     Explore our talented roster of players across all divisions
                   </p>
                 </div>
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-red-600 dark:text-red-400 font-semibold group-hover:underline">
+                  <span className="text-wrfc-red-600 dark:text-wrfc-red-300 font-semibold group-hover:underline">
                     View Player Roster
                   </span>
-                  <span className="text-red-600 dark:text-red-400 transform group-hover:translate-x-2 transition-transform">
+                  <span className="text-wrfc-red-600 dark:text-wrfc-red-300 transform group-hover:translate-x-2 transition-transform">
                     →
                   </span>
                 </div>
@@ -89,8 +89,8 @@ export default function TeamsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {/* Excellence */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
-                <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
+              <div className="w-16 h-16 bg-wrfc-blue-100 dark:bg-wrfc-blue-900 rounded-full flex items-center justify-center mb-4">
+                <Trophy className="w-8 h-8 text-wrfc-blue-600 dark:text-wrfc-blue-200" />
               </div>
               <h3 className="text-xl font-bold mb-2">
                 Excellence
@@ -128,8 +128,8 @@ export default function TeamsPage() {
 
             {/* Commitment */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mb-4">
-                <Medal className="w-8 h-8 text-red-600 dark:text-red-300" weight="bold" />
+              <div className="w-16 h-16 bg-wrfc-red-100 dark:bg-wrfc-red-900 rounded-full flex items-center justify-center mb-4">
+                <Medal className="w-8 h-8 text-wrfc-red-600 dark:text-wrfc-red-200" weight="bold" />
               </div>
               <h3 className="text-xl font-bold mb-2">
                 Commitment
@@ -153,7 +153,7 @@ export default function TeamsPage() {
                 <h3 className="text-2xl font-bold">
                   Division 1
                 </h3>
-                <Trophy className="w-8 h-8 text-blue-600 dark:text-blue-300" />
+                <Trophy className="w-8 h-8 text-wrfc-blue-600 dark:text-wrfc-blue-200" />
               </div>
               <p className="text-gray-600 dark:text-gray-100 mb-6">
                 Our most competitive side, playing in the MAC Conference
@@ -243,7 +243,7 @@ export default function TeamsPage() {
           </h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+              <div className="text-4xl font-bold text-wrfc-blue-600 dark:text-wrfc-blue-300 mb-2">
                 60+
               </div>
               <p className="text-gray-600 dark:text-gray-100">Years of History</p>
@@ -261,7 +261,7 @@ export default function TeamsPage() {
               <p className="text-gray-600 dark:text-gray-100">Divisions</p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-2">
+              <div className="text-4xl font-bold text-wrfc-red-600 dark:text-wrfc-red-300 mb-2">
                 6
               </div>
               <p className="text-gray-600 dark:text-gray-100">Coaching Staff</p>
@@ -292,7 +292,7 @@ export default function TeamsPage() {
 
         {/* Call to Action */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-wrfc-blue-600 to-wrfc-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Join Washington Rugby</h2>
             <p className="text-lg mb-6">
               Whether you&apos;re an experienced player or new to rugby, there&apos;s a place for you at WRFC. 
@@ -301,7 +301,7 @@ export default function TeamsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/membership"
-                className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-wrfc-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
               >
                 Become a Member
               </Link>
@@ -309,13 +309,13 @@ export default function TeamsPage() {
                 href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors cursor-pointer"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-wrfc-blue-700 transition-colors cursor-pointer"
               >
                 Pay Dues
               </a>
               <Link 
                 href="/schedule/practice"
-                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-wrfc-blue-700 transition-colors"
               >
                 View Practice Schedule
               </Link>

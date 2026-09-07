@@ -74,7 +74,7 @@ export default function TournamentBracketPage({ params }: { params: { year: stri
           <div className="flex items-center h-16">
             <Link 
               href={`/tournaments/cherry-blossom/${params.year}`}
-              className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
+              className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Tournament
@@ -86,7 +86,7 @@ export default function TournamentBracketPage({ params }: { params: { year: stri
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-blue-400">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4  text-wrfc-navy dark:text-wrfc-blue-300">
             Tournament Bracket & Results
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-100">
@@ -108,7 +108,7 @@ export default function TournamentBracketPage({ params }: { params: { year: stri
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Results Card */}
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-blue-400 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-wrfc-blue-300 flex items-center gap-2">
                     <Trophy className="w-6 h-6 text-wrfc-red" />
                     Final Results
                   </h2>
@@ -141,7 +141,7 @@ export default function TournamentBracketPage({ params }: { params: { year: stri
 
                 {/* Teams Card */}
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-blue-400 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-wrfc-blue-300 flex items-center gap-2">
                     <Users className="w-6 h-6 text-wrfc-red" />
                     Participating Teams
                   </h2>
@@ -161,7 +161,7 @@ export default function TournamentBracketPage({ params }: { params: { year: stri
                 {/* Pool Results */}
                 {division.poolResults && (
                   <Card className="p-8 md:col-span-2">
-                    <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-blue-400">
+                    <h2 className="text-2xl font-bold mb-6  text-wrfc-navy dark:text-wrfc-blue-300">
                       Pool Standings
                     </h2>
                     <div className="grid md:grid-cols-2 gap-8">

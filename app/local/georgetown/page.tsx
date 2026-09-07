@@ -177,7 +177,7 @@ export default function GeorgetownPage() {
             </div>
             
             <div className="text-center">
-              <MapPin className="w-16 h-16 text-wrfc-teal mx-auto mb-4" />
+              <MapPin className="w-16 h-16 text-wrfc-blue mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Georgetown Tradition</h3>
               <p className="text-gray-600 dark:text-gray-100">
                 Many WRFC alumni live in Georgetown and continue supporting 
@@ -224,8 +224,8 @@ export default function GeorgetownPage() {
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-wrfc-teal/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl font-bold text-wrfc-teal">3</span>
+                <div className="w-12 h-12 bg-wrfc-blue/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl font-bold text-wrfc-blue">3</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-bold mb-2">Social Scene</h3>

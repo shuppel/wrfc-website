@@ -154,7 +154,7 @@ export default function TournamentPage({ params }: TournamentPageProps) {
                   rel="noopener noreferrer"
                   className="inline-block"
                 >
-                  <Button size="lg" className="bg-wrfc-red hover:bg-red-700">
+                  <Button size="lg" className="bg-wrfc-red hover:bg-wrfc-red-700">
                     <ArrowSquareOut className="w-4 h-4 mr-2" />
                     Register Now
                   </Button>

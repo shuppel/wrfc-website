@@ -79,7 +79,7 @@ export default function InternationalPlayersPage() {
   const totalUSAEagles = usaEagles.length
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900">
       <BreadcrumbJsonLd 
         items={[
           { name: 'Home', item: '/' },
@@ -126,7 +126,7 @@ export default function InternationalPlayersPage() {
         <div className="container mx-auto px-4">
           <Link 
             href="/about/hall-of-fame"
-            className="inline-flex items-center gap-2 text-wrfc-navy dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+            className="inline-flex items-center gap-2 text-wrfc-navy dark:text-wrfc-blue-300 hover:text-wrfc-blue-800 dark:hover:text-wrfc-blue-200 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Hall of Fame
@@ -156,7 +156,7 @@ export default function InternationalPlayersPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-4 mb-16">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-wrfc-red-600 rounded-full flex items-center justify-center">
                 <Globe className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-bold  text-gray-900 dark:text-white">
@@ -177,7 +177,7 @@ export default function InternationalPlayersPage() {
                           href={player.wikiLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="text-wrfc-blue-600 hover:text-wrfc-blue-800 dark:text-wrfc-blue-300 dark:hover:text-wrfc-blue-200"
                           title={`View ${player.name} on Wikipedia`}
                         >
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -208,7 +208,7 @@ export default function InternationalPlayersPage() {
                     {player.specialization && (
                       <div className="flex flex-wrap gap-1 mt-2">
                         {player.specialization.map((spec, specIndex) => (
-                          <span key={specIndex} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded">
+                          <span key={specIndex} className="px-2 py-1 bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100 text-xs rounded">
                             {spec}
                           </span>
                         ))}
@@ -313,7 +313,7 @@ export default function InternationalPlayersPage() {
               {capitalSelectsPlayers.map((player, index) => (
                 <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
                   <div className="w-12 h-12 bg-wrfc-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Star className="w-6 h-6 text-wrfc-navy dark:text-blue-400" />
+                    <Star className="w-6 h-6 text-wrfc-navy dark:text-wrfc-blue-300" />
                   </div>
                   <h4 className="font-bold text-gray-900 dark:text-white mb-3">
                     {player.name}
@@ -348,7 +348,7 @@ export default function InternationalPlayersPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
+      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-wrfc-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-8 ">
@@ -363,7 +363,7 @@ export default function InternationalPlayersPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/membership"
-                className="inline-block bg-wrfc-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                className="inline-block bg-wrfc-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-wrfc-red-700 transition-colors"
               >
                 Join WRFC
               </Link>

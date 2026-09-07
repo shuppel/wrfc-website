@@ -30,7 +30,7 @@ export default function PracticeSchedulePage() {
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             Practice Schedule
@@ -44,12 +44,12 @@ export default function PracticeSchedulePage() {
       {/* Coaching Philosophy */}
       <section className="w-full py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8 section-title text-blue-900 dark:text-blue-400 text-center">
+          <h2 className="text-3xl font-bold mb-8 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300 text-center">
             Our Coaching Philosophy
           </h2>
           <div className="prose prose-lg max-w-none dark:prose-invert">
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8 mb-8">
-              <h3 className="text-xl font-bold mb-4 section-title text-blue-900 dark:text-blue-400">
+            <div className="bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 rounded-xl p-8 mb-8">
+              <h3 className="text-xl font-bold mb-4 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Excellence Through Technical Mastery
               </h3>
               <p className="text-gray-700 dark:text-white mb-4 ">
@@ -93,49 +93,49 @@ export default function PracticeSchedulePage() {
       {/* Schedule Times */}
       <section className="w-full py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold mb-12 section-title text-blue-900 dark:text-blue-400 text-center">
+          <h2 className="text-3xl font-bold mb-12 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300 text-center">
             Training Times
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Fall/Spring Season */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 section-title text-blue-900 dark:text-blue-400">
+              <h3 className="text-2xl font-bold mb-4 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Fall & Spring Season
               </h3>
               <div className="space-y-4 ">
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                   <span className="text-gray-700 dark:text-white">D1 & D3 Practice</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">8:00 PM - 10:00 PM</span>
+                  <span className="font-semibold text-wrfc-blue-600 dark:text-wrfc-blue-300">8:00 PM - 10:00 PM</span>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                   <span className="text-gray-700 dark:text-white">Days</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">Tuesday & Thursday</span>
+                  <span className="font-semibold text-wrfc-blue-600 dark:text-wrfc-blue-300">Tuesday & Thursday</span>
                 </div>
               </div>
             </div>
 
             {/* Summer Season */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 section-title text-blue-900 dark:text-blue-400">
+              <h3 className="text-2xl font-bold mb-4 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Summer 7s Season
               </h3>
               <div className="space-y-4 ">
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                   <span className="text-gray-700 dark:text-white">7s Practice</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">7:00 PM - 9:00 PM</span>
+                  <span className="font-semibold text-wrfc-blue-600 dark:text-wrfc-blue-300">7:00 PM - 9:00 PM</span>
                 </div>
                 <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-gray-700">
                   <span className="text-gray-700 dark:text-white">Days</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">Tuesday & Thursday</span>
+                  <span className="font-semibold text-wrfc-blue-600 dark:text-wrfc-blue-300">Tuesday & Thursday</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Training Locations */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8">
-            <h3 className="text-2xl font-bold mb-6 section-title text-blue-900 dark:text-blue-400">
+          <div className="bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 rounded-xl p-8">
+            <h3 className="text-2xl font-bold mb-6 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
               Training Locations
             </h3>
             <div className="grid md:grid-cols-2 gap-6 ">
@@ -146,7 +146,7 @@ export default function PracticeSchedulePage() {
                   href="https://maps.google.com/maps?q=Rosedale+Recreation+Center+1701+Gales+St+NE+Washington+DC+20002" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  className="text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:underline text-sm"
                 >
                   1701 Gales St NE, Washington, DC 20002
                 </a>
@@ -158,7 +158,7 @@ export default function PracticeSchedulePage() {
                   href="https://maps.google.com/maps?q=Trinidad+Community+Center+1310+Childress+St+NE+Washington+DC+20002" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  className="text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:underline text-sm"
                 >
                   1310 Childress St NE, Washington, DC 20002
                 </a>
@@ -170,7 +170,7 @@ export default function PracticeSchedulePage() {
                     href="https://maps.app.goo.gl/YgkGvG25ZMvrzYWk9" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:underline"
                   >
                     Wallenberg Field
                   </a> (Rugby field behind Holocaust Museum) & Rosedale Recreation Center
@@ -184,7 +184,7 @@ export default function PracticeSchedulePage() {
       {/* Practice Breakdown */}
       <section className="w-full py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold mb-12 section-title text-blue-900 dark:text-blue-400 text-center">
+          <h2 className="text-3xl font-bold mb-12 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300 text-center">
             Typical Practice Breakdown
           </h2>
           
@@ -231,7 +231,7 @@ export default function PracticeSchedulePage() {
                 <div className="flex-shrink-0">{item.icon}</div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold section-title text-blue-900 dark:text-blue-400">
+                    <h3 className="text-xl font-bold section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
                       {item.phase}
                     </h3>
                     <span className="text-sm font-semibold text-gray-600 dark:text-gray-100 ">
@@ -246,7 +246,7 @@ export default function PracticeSchedulePage() {
             ))}
           </div>
 
-          <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+          <div className="mt-12 p-6 bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 rounded-xl">
             <p className="text-center text-gray-700 dark:text-white ">
               <strong>Note:</strong> Practice structure may vary based on upcoming matches, weather conditions, 
               and specific team needs. All players are expected to arrive on time and ready to train.

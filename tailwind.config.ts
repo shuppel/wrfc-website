@@ -16,6 +16,39 @@ const config: Config = {
   			sans: ['var(--font-inter)', 'sans-serif'],
   		},
   		colors: {
+  			// Club crest palette: shield blue #0000CC, shield red #FF0000, white.
+  			wrfc: {
+  				blue: {
+  					50: '#F2F2FC',
+  					100: '#E6E6FA',
+  					200: '#C7C7F4',
+  					300: '#9999EB',
+  					400: '#5252DC',
+  					500: '#0000CC',
+  					600: '#0000B8',
+  					700: '#00009F',
+  					800: '#000083',
+  					900: '#000062',
+  					950: '#000041',
+  					DEFAULT: '#0000CC'
+  				},
+  				red: {
+  					50: '#FFF2F2',
+  					100: '#FFE6E6',
+  					200: '#FFC7C7',
+  					300: '#FF9999',
+  					400: '#FF5252',
+  					500: '#FF0000',
+  					600: '#E60000',
+  					700: '#C70000',
+  					800: '#A30000',
+  					900: '#7A0000',
+  					950: '#520000',
+  					DEFAULT: '#E60000'
+  				},
+  				navy: '#000062',
+  				white: '#FFFFFF'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

@@ -102,7 +102,7 @@ export default function DCRugbyPage() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-900/95 via-blue-900/85 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-wrfc-blue-900/95 via-wrfc-blue-900/85 to-black/90" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10 text-white">
@@ -165,7 +165,7 @@ export default function DCRugbyPage() {
               stats="Serious About Rugby, Not About Itself"
             />
             <DCRugbyFeature
-              icon={<Calendar className="w-12 h-12 text-wrfc-teal" />}
+              icon={<Calendar className="w-12 h-12 text-wrfc-blue" />}
               title="We Owe the City Something"
               description="WRFC started Washington DC Youth Rugby in 2004. It began with 7 kids and now reaches 100+ a year, free, in schools and neighborhoods across all four quadrants."
               stats="Founded DC Youth Rugby, 2004"
@@ -202,7 +202,7 @@ export default function DCRugbyPage() {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <Star className="w-6 h-6 text-wrfc-teal mt-1 flex-shrink-0" />
+                  <Star className="w-6 h-6 text-wrfc-blue mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-bold mb-2">Rugby All Four Seasons</h3>
                     <p className="text-gray-600 dark:text-gray-100">
@@ -311,7 +311,7 @@ function DCRugbyFeature({ icon, title, description, stats }: {
 function DCRugbyFAQ({ question, answer }: { question: string; answer: string }) {
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 pb-8">
-      <h3 className="text-xl font-bold mb-4 text-wrfc-navy dark:text-wrfc-red">{question}</h3>
+      <h3 className="text-xl font-bold mb-4 text-wrfc-navy dark:text-wrfc-red-300">{question}</h3>
       <p className="text-gray-600 dark:text-gray-100 leading-relaxed">{answer}</p>
     </div>
   )

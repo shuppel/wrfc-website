@@ -116,7 +116,7 @@ export default function AlumniPage() {
                 </p>
               </div>
               <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-                <Heart className="w-12 h-12 text-wrfc-teal mx-auto mb-4" />
+                <Heart className="w-12 h-12 text-wrfc-blue mx-auto mb-4" />
                 <h3 className="font-bold text-xl mb-2">Community Impact</h3>
                 <p className="text-gray-600 dark:text-gray-100">
                   Youth rugby programs and community outreach initiatives
@@ -228,7 +228,7 @@ export default function AlumniPage() {
               title="Summer Reunion BBQ"
               date="Summer 2026"
               description="Family-friendly gathering at the clubhouse"
-              icon={<Users className="w-6 h-6 text-wrfc-teal" />}
+              icon={<Users className="w-6 h-6 text-wrfc-blue" />}
             />
             <EventCard 
               title="Hall of Fame Dinner"

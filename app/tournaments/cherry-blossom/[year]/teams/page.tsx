@@ -102,10 +102,10 @@ export default async function TeamsPage({ params }: PageProps) {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <ListBullets className="w-8 h-8 text-blue-600" />
+              <ListBullets className="w-8 h-8 text-wrfc-blue-600" />
               <div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">Waitlist</div>
-                <div className="text-2xl font-bold text-blue-600">{waitlistCount}</div>
+                <div className="text-2xl font-bold text-wrfc-blue-600">{waitlistCount}</div>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default async function TeamsPage({ params }: PageProps) {
       <section className="container mx-auto px-4 py-16">
         {error ? (
           <Card className="p-8 text-center">
-            <div className="text-red-600 dark:text-red-400 mb-4 text-lg font-semibold">
+            <div className="text-wrfc-red-600 dark:text-wrfc-red-300 mb-4 text-lg font-semibold">
               {error}
             </div>
             <Button asChild variant="outline">

@@ -233,7 +233,7 @@ export default function FAQPage() {
                 key={pillar.title}
                 className="rounded-xl border border-gray-200 dark:border-gray-700 p-6 bg-gray-50 dark:bg-gray-800"
               >
-                <h3 className="text-lg font-bold mb-2 text-wrfc-navy dark:text-wrfc-red">
+                <h3 className="text-lg font-bold mb-2 text-wrfc-navy dark:text-wrfc-red-300">
                   {pillar.title}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-200 leading-relaxed">
@@ -278,7 +278,7 @@ export default function FAQPage() {
                     key={faq.question}
                     className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-0"
                   >
-                    <h3 className="text-xl font-bold mb-3 text-wrfc-navy dark:text-wrfc-red">
+                    <h3 className="text-xl font-bold mb-3 text-wrfc-navy dark:text-wrfc-red-300">
                       {faq.question}
                     </h3>
                     <p className="text-gray-700 dark:text-gray-100 leading-relaxed">

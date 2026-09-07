@@ -170,7 +170,7 @@ export default function AlumniSpotlightPage({ params }: AlumniSpotlightPageProps
             Are you a WRFC alumni? We&apos;d love to feature your rugby journey and hear about your experiences with the club.
           </p>
           <Link href="/contact">
-            <Button size="lg" className="bg-wrfc-red hover:bg-red-700">
+            <Button size="lg" className="bg-wrfc-red hover:bg-wrfc-red-700">
               Get in Touch
             </Button>
           </Link>
