@@ -61,7 +61,7 @@ export default function ShopPage() {
                 href={oneilsStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-red to-red-700 hover:from-red-700 hover:to-wrfc-red text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-wrfc-red to-wrfc-red-700 hover:from-wrfc-red-700 hover:to-wrfc-red text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl group"
               >
                 <span>Visit O&apos;Neill&apos;s Store</span>
                 <ArrowSquareOut className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" weight="bold" />

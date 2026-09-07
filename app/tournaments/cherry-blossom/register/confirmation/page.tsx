@@ -90,9 +90,9 @@ function ConfirmationContent() {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                    <h3 className="font-bold mb-2 text-blue-800 dark:text-blue-200">Next Steps</h3>
-                    <ol className="list-decimal list-inside space-y-2 text-sm text-blue-900 dark:text-blue-100">
+                  <div className="bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 border border-wrfc-blue-200 dark:border-wrfc-blue-800 rounded-lg p-4">
+                    <h3 className="font-bold mb-2 text-wrfc-blue-800 dark:text-wrfc-blue-100">Next Steps</h3>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-wrfc-blue-900 dark:text-wrfc-blue-100">
                       <li>
                         <strong>Complete Payment Within 14 Days</strong>
                         <p className="ml-5 text-xs mt-1">
@@ -116,9 +116,9 @@ function ConfirmationContent() {
                     </ol>
                   </div>
 
-                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                    <h3 className="font-bold mb-2 text-red-800 dark:text-red-200">⚠️ Important</h3>
-                    <p className="text-sm text-red-900 dark:text-red-100">
+                  <div className="bg-wrfc-red-50 dark:bg-wrfc-red-900/20 border border-wrfc-red-200 dark:border-wrfc-red-800 rounded-lg p-4">
+                    <h3 className="font-bold mb-2 text-wrfc-red-800 dark:text-wrfc-red-100">⚠️ Important</h3>
+                    <p className="text-sm text-wrfc-red-900 dark:text-wrfc-red-100">
                       If you don&apos;t receive a confirmation email within 15 minutes, please check your spam folder. 
                       If you still don&apos;t see it, contact us at{' '}
                       <a href="mailto:cbt@washingtonrugby.org" className="underline font-semibold">

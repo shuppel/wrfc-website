@@ -172,7 +172,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                   key={year}
                   className={`px-4 py-2 rounded-md transition-colors ${
                     selectedSeason === year
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-wrfc-blue-600 text-white'
                       : 'bg-gray-200 dark:bg-gray-900 text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600'
                   }`}
                   onClick={() => setSelectedSeason(year)}
@@ -203,7 +203,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             <div className="max-w-md mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
               <div className="text-center">
                 <h2 className="text-2xl font-bold mb-2">{selectedSeason} {activeDivision} Division</h2>
-                <div className="text-5xl font-bold text-wrfc-navy dark:text-blue-400 mb-4">
+                <div className="text-5xl font-bold text-wrfc-navy dark:text-wrfc-blue-300 mb-4">
                   {records[activeDivision].wins}-{records[activeDivision].losses}
                   {records[activeDivision].draws > 0 ? `-${records[activeDivision].draws}` : ''}
                 </div>
@@ -221,7 +221,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
               {sortedYears.map((year) => (
                 <div key={year} className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                   {/* Year Header */}
-                  <div className="bg-gradient-to-r from-blue-900 to-blue-700 dark:from-blue-800 dark:to-blue-600 px-6 py-4">
+                  <div className="bg-gradient-to-r from-wrfc-blue-900 to-wrfc-blue-700 dark:from-wrfc-blue-800 dark:to-wrfc-blue-600 px-6 py-4">
                     <h2 className="text-2xl font-bold text-white font-nasalization">
                       {year} Season
                     </h2>
@@ -321,7 +321,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                                       wrfcScore !== null && opponentScore !== null && wrfcScore > opponentScore 
                                         ? 'text-green-600 dark:text-green-400' 
                                         : wrfcScore !== null && opponentScore !== null && wrfcScore < opponentScore
-                                        ? 'text-red-600 dark:text-red-400'
+                                        ? 'text-wrfc-red-600 dark:text-wrfc-red-300'
                                         : 'text-gray-600 dark:text-gray-100'
                                     }`}>
                                       {wrfcScore}
@@ -331,7 +331,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                                       wrfcScore !== null && opponentScore !== null && opponentScore > wrfcScore 
                                         ? 'text-green-600 dark:text-green-400'
                                         : wrfcScore !== null && opponentScore !== null && opponentScore < wrfcScore
-                                        ? 'text-red-600 dark:text-red-400'
+                                        ? 'text-wrfc-red-600 dark:text-wrfc-red-300'
                                         : 'text-gray-600 dark:text-gray-100'
                                     }`}>
                                       {opponentScore}
@@ -348,9 +348,9 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                               <td className="px-6 py-4 text-center">
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                                   game.competition === 'D1' 
-                                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                    ? 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100'
                                     : game.competition === 'D3'
-                                    ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                    ? 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-800 dark:text-wrfc-red-100'
                                     : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
                                 }`}>
                                   {game.competition}
@@ -381,7 +381,7 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
             <div className="lg:hidden space-y-8">
               {sortedYears.map((year) => (
                 <div key={`mobile-${year}`}>
-                  <h2 className="text-xl font-bold text-blue-900 dark:text-blue-400 font-nasalization mb-4 px-4">
+                  <h2 className="text-xl font-bold text-wrfc-blue-900 dark:text-wrfc-blue-300 font-nasalization mb-4 px-4">
                     {year} Season
                   </h2>
                   <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
@@ -400,9 +400,9 @@ export default function ScheduleView({ games: allGames }: ScheduleViewProps) {
                             </div>
                             <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                               game.competition === 'D1' 
-                                ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                                ? 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100'
                                 : game.competition === 'D3'
-                                ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+                                ? 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-800 dark:text-wrfc-red-100'
                                 : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
                             }`}>
                               {game.competition}

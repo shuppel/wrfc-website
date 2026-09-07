@@ -146,7 +146,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             WRFC Blog
@@ -167,7 +167,7 @@ export default function BlogContent({ structuredData, posts = [] }: BlogContentP
               variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(category)}
-              className={selectedCategory === category ? "bg-wrfc-red hover:bg-red-700" : ""}
+              className={selectedCategory === category ? "bg-wrfc-red hover:bg-wrfc-red-700" : ""}
             >
               {category}
             </Button>

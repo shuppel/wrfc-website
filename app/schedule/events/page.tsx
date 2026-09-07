@@ -75,7 +75,7 @@ export default function EventsPage() {
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             Events & Tournaments
@@ -95,11 +95,11 @@ export default function EventsPage() {
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">{event.icon}</div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2 section-title text-blue-900 dark:text-blue-400">
+                    <h3 className="text-xl font-bold mb-2 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300">
                       {event.name}
                     </h3>
                     <div className="mb-3">
-                      <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                      <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100">
                         {event.type}
                       </span>
                     </div>
@@ -117,8 +117,8 @@ export default function EventsPage() {
           </div>
 
           {/* Season Calendar Overview */}
-          <div className="mt-12 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-8">
-            <h2 className="text-2xl font-bold mb-6 section-title text-blue-900 dark:text-blue-400 text-center">
+          <div className="mt-12 bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 rounded-xl p-8">
+            <h2 className="text-2xl font-bold mb-6 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300 text-center">
               Season Overview
             </h2>
             <div className="space-y-4 max-w-3xl mx-auto">

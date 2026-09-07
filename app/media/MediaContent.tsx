@@ -72,7 +72,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             Stay Connected with WRFC
@@ -116,7 +116,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <YoutubeLogo className="w-8 h-8 text-red-600" weight="fill" />
+                <YoutubeLogo className="w-8 h-8 text-wrfc-red-600" weight="fill" />
                 <span className="text-sm text-gray-500 dark:text-gray-100">Video Content</span>
               </div>
               <CardTitle className="text-2xl">Film Room</CardTitle>
@@ -179,16 +179,16 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
           <Card className="hover:shadow-xl transition-shadow duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
-                <Camera className="w-8 h-8 text-blue-600" weight="duotone" />
+                <Camera className="w-8 h-8 text-wrfc-blue-600" weight="duotone" />
                 <span className="text-sm text-gray-500 dark:text-gray-100">Coming Soon</span>
               </div>
               <CardTitle className="text-2xl">Club Photos</CardTitle>
               <CardDescription>Match day photos and club events</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900 dark:to-gray-900 rounded-lg overflow-hidden mb-4 flex items-center justify-center">
+              <div className="aspect-video bg-gradient-to-br from-wrfc-blue-100 to-wrfc-blue-50 dark:from-wrfc-blue-900 dark:to-gray-900 rounded-lg overflow-hidden mb-4 flex items-center justify-center">
                 <div className="text-center">
-                  <Camera className="w-16 h-16 text-blue-600 dark:text-blue-400 mx-auto mb-2" weight="duotone" />
+                  <Camera className="w-16 h-16 text-wrfc-blue-600 dark:text-wrfc-blue-300 mx-auto mb-2" weight="duotone" />
                   <p className="text-sm text-gray-600 dark:text-gray-100">Gallery Coming Soon</p>
                 </div>
               </div>
@@ -214,7 +214,7 @@ export default function MediaContent({ structuredData }: MediaContentProps) {
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-wrfc-red"
             />
-            <Button className="bg-wrfc-red hover:bg-red-700 text-white px-6 py-3">
+            <Button className="bg-wrfc-red hover:bg-wrfc-red-700 text-white px-6 py-3">
               Subscribe
             </Button>
           </div>

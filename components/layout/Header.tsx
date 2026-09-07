@@ -134,13 +134,14 @@ export default function Header() {
       <nav className="container mx-auto px-4 pt-3">
         <div className="flex items-center h-16">
           {/* Logo Container */}
-          <div className="flex-shrink-0">
+          {/* Anchored to the top of the row so the crest hangs below the header
+              instead of being clipped by the viewport edge. */}
+          <div className="flex-shrink-0 self-start">
             <Link 
               href="/" 
-              className="relative w-32 h-32 -mb-8 hover:opacity-90 transition-opacity group block"
-              style={{ marginTop: '-0.25rem' }}
+              className="relative w-24 h-24 -mb-8 hover:opacity-90 transition-opacity group block"
             >
-              <div className="relative w-full h-full pt-2">
+              <div className="relative w-full h-full">
                 <Image
                   src="/logos/wrfc_logo.png"
                   alt="WRFC Logo"
@@ -215,7 +216,7 @@ export default function Header() {
               {/* Donate Link */}
               <Link 
                 href="/donate"
-                className="px-3 py-2 text-wrfc-red dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 text-sm font-semibold tracking-wide transition-all duration-300"
+                className="px-3 py-2 text-wrfc-red dark:text-wrfc-red-300 hover:text-wrfc-red-700 dark:hover:text-wrfc-red-200 text-sm font-semibold tracking-wide transition-all duration-300"
               >
                 Donate
               </Link>
@@ -233,7 +234,7 @@ export default function Header() {
               {/* Join Button */}
               <Link 
                 href="/membership" 
-                className="px-5 py-2 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg group flex items-center gap-2 relative"
+                className="px-5 py-2 bg-gradient-to-r from-wrfc-red to-wrfc-red-700 text-white font-bold rounded-lg hover:from-wrfc-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-lg group flex items-center gap-2 relative"
               >
                 <span className="relative z-10 font-semibold tracking-wide text-sm">JOIN</span>
                 <Trophy className="relative z-10 w-4 h-4 transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
@@ -321,7 +322,7 @@ export default function Header() {
                         zeffy-form-link={link.href}
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
-                            ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+                            ? 'text-wrfc-red dark:text-wrfc-red-300 font-bold hover:text-wrfc-red-700 dark:hover:text-wrfc-red-200 hover:bg-wrfc-red-50 dark:hover:bg-wrfc-red-900/20'
                             : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         style={{ cursor: 'pointer' }}
@@ -336,7 +337,7 @@ export default function Header() {
                         rel="noopener noreferrer"
                         className={`block py-3 rounded-md transition-colors ${
                           link.highlight 
-                            ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+                            ? 'text-wrfc-red dark:text-wrfc-red-300 font-bold hover:text-wrfc-red-700 dark:hover:text-wrfc-red-200 hover:bg-wrfc-red-50 dark:hover:bg-wrfc-red-900/20'
                             : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -349,7 +350,7 @@ export default function Header() {
                       href={link.href}
                       className={`block py-3 rounded-md transition-colors ${
                         link.highlight 
-                          ? 'text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20'
+                          ? 'text-wrfc-red dark:text-wrfc-red-300 font-bold hover:text-wrfc-red-700 dark:hover:text-wrfc-red-200 hover:bg-wrfc-red-50 dark:hover:bg-wrfc-red-900/20'
                           : 'text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700/50'
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -366,7 +367,7 @@ export default function Header() {
               <div className="flex gap-3">
                 <Link 
                   href="/donate"
-                  className="flex-1 py-2.5 text-center text-wrfc-red dark:text-red-400 font-semibold border-2 border-wrfc-red dark:border-red-400 rounded-lg hover:bg-wrfc-red hover:text-white dark:hover:bg-red-600 transition-all duration-300"
+                  className="flex-1 py-2.5 text-center text-wrfc-red dark:text-wrfc-red-300 font-semibold border-2 border-wrfc-red dark:border-wrfc-red-400 rounded-lg hover:bg-wrfc-red hover:text-white dark:hover:bg-wrfc-red-600 transition-all duration-300"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Donate
@@ -383,7 +384,7 @@ export default function Header() {
               </div>
               <Link 
                 href="/membership"
-                className="w-full py-3 bg-gradient-to-r from-wrfc-red to-red-700 text-white font-bold rounded-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full py-3 bg-gradient-to-r from-wrfc-red to-wrfc-red-700 text-white font-bold rounded-lg hover:from-wrfc-red-700 hover:to-wrfc-red transition-all duration-300 flex items-center justify-center gap-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="font-semibold tracking-wide">JOIN THE CLUB</span>
@@ -411,7 +412,7 @@ export default function Header() {
 function NavLink({ href, children, external, highlight, isZeffy }: { href: string; children: React.ReactNode; external?: boolean; highlight?: boolean; isZeffy?: boolean }) {
   const baseClass = "px-3 py-2 text-sm font-medium tracking-wide transition-all duration-300 relative group transform hover:scale-105"
   const linkClass = highlight 
-    ? `${baseClass} text-wrfc-red dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300`
+    ? `${baseClass} text-wrfc-red dark:text-wrfc-red-300 font-bold hover:text-wrfc-red-700 dark:hover:text-wrfc-red-200`
     : `${baseClass} text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-white`
   
   if (external) {

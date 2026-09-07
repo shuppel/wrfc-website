@@ -94,8 +94,13 @@ export const metadata: Metadata = {
         type: 'image/x-icon',
       },
       {
-        url: '/logos/icon.png',
+        url: '/logos/icon-32x32.png',
         sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/logos/icon-192x192.png',
+        sizes: '192x192',
         type: 'image/png',
       }
     ],
@@ -108,7 +113,7 @@ export const metadata: Metadata = {
       {
         rel: 'mask-icon',
         url: '/logos/icon.png',
-        color: '#003366',
+        color: '#0000CC',
       }
     ],
   },

@@ -60,7 +60,7 @@ export default function DonatePage() {
             description="Fund coaching programs, training camps, and player development initiatives."
           />
           <ImpactCard 
-            icon={<Shield className="w-12 h-12 text-wrfc-teal" weight="fill" />}
+            icon={<Shield className="w-12 h-12 text-wrfc-blue" weight="fill" />}
             title="Community Programs"
             description="Support youth outreach, tournament hosting, and community rugby events."
           />
@@ -78,7 +78,7 @@ export default function DonatePage() {
             <div className="text-center mb-8">
               <a
                 zeffy-form-link="https://www.zeffy.com/en-US/donation-form/wrfc-donations"
-                className="inline-block bg-gradient-to-r from-wrfc-red to-red-700 text-white px-12 py-4 rounded-lg font-bold text-lg hover:from-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="inline-block bg-gradient-to-r from-wrfc-red to-wrfc-red-700 text-white px-12 py-4 rounded-lg font-bold text-lg hover:from-wrfc-red-700 hover:to-wrfc-red transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
                 style={{ cursor: 'pointer' }}
               >
                 Donate Now
@@ -183,7 +183,7 @@ function SupportOption({ title, description, link, linkText }: {
       <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
       <a 
         href={link}
-        className="text-wrfc-red hover:text-red-700 font-semibold hover:underline"
+        className="text-wrfc-red hover:text-wrfc-red-700 font-semibold hover:underline"
       >
         {linkText} →
       </a>

@@ -177,7 +177,7 @@ export default function CapitolHillPage() {
             </div>
             
             <div className="text-center">
-              <MapPin className="w-16 h-16 text-wrfc-teal mx-auto mb-4" />
+              <MapPin className="w-16 h-16 text-wrfc-blue mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-3">Metro Accessible</h3>
               <p className="text-gray-600 dark:text-gray-100">
                 Training locations accessible via Union Station, Eastern Market, 

@@ -52,7 +52,7 @@ export default function AboutPage() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-900/95 via-blue-900/85 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-wrfc-blue-900/95 via-wrfc-blue-900/85 to-black/90" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -70,13 +70,13 @@ export default function AboutPage() {
       {/* Mission Section */}
       <section className="w-full py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
-          <Trophy className="w-full h-full text-wrfc-navy dark:text-blue-400" />
+          <Trophy className="w-full h-full text-wrfc-navy dark:text-wrfc-blue-300" />
         </div>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <Shield className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
+              <Shield className="w-8 h-8 text-wrfc-navy dark:text-wrfc-blue-300" />
+              <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Our Mission
               </h2>
             </div>
@@ -93,8 +93,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <ClockCounterClockwise className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
+              <ClockCounterClockwise className="w-8 h-8 text-wrfc-navy dark:text-wrfc-blue-300" />
+              <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Our History
               </h2>
             </div>
@@ -155,8 +155,8 @@ export default function AboutPage() {
       <section className="w-full py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="flex items-center gap-4 mb-12 justify-center">
-            <Star className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-            <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400 text-center">
+            <Star className="w-8 h-8 text-wrfc-navy dark:text-wrfc-blue-300" />
+            <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300 text-center">
               Our Core Values
             </h2>
           </div>
@@ -164,19 +164,19 @@ export default function AboutPage() {
             <ValueCard 
               title="Excellence"
               description="Striving for the highest standards in everything we do, both on and off the field."
-              icon={<Trophy className="w-12 h-12 text-wrfc-navy dark:text-blue-400" />}
+              icon={<Trophy className="w-12 h-12 text-wrfc-navy dark:text-wrfc-blue-300" />}
               image="/assets/pictures/2022_d2_champs.png"
             />
             <ValueCard 
               title="Community"
               description="We compete together, celebrate together, and support each other as a rugby family. From the pitch to the pub, we believe in the power of unity."
-              icon={<Users className="w-12 h-12 text-wrfc-navy dark:text-blue-400" />}
+              icon={<Users className="w-12 h-12 text-wrfc-navy dark:text-wrfc-blue-300" />}
               image="/assets/pictures/turkscaicosdc2025.png"
             />
             <ValueCard 
               title="Tradition"
               description="Honoring our heritage while embracing the future of rugby in Washington."
-              icon={<Shield className="w-12 h-12 text-wrfc-navy dark:text-blue-400" />}
+              icon={<Shield className="w-12 h-12 text-wrfc-navy dark:text-wrfc-blue-300" />}
               image="/assets/pictures/silly_santa_barcrawl_2024.png"
             />
           </div>
@@ -188,8 +188,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-12">
-              <BeerStein className="w-8 h-8 text-wrfc-navy dark:text-blue-400" />
-              <h2 className="text-3xl font-bold  text-blue-900 dark:text-blue-400">
+              <BeerStein className="w-8 h-8 text-wrfc-navy dark:text-wrfc-blue-300" />
+              <h2 className="text-3xl font-bold  text-wrfc-blue-900 dark:text-wrfc-blue-300">
                 Club Life
               </h2>
             </div>
@@ -242,7 +242,7 @@ function ValueCard({ title, description, icon, image }: {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white dark:bg-gray-900 rounded-full p-4 shadow-lg">
           {icon}
         </div>
-        <h3 className="text-xl font-bold mb-4  text-blue-900 dark:text-blue-400 pt-8">
+        <h3 className="text-xl font-bold mb-4  text-wrfc-blue-900 dark:text-wrfc-blue-300 pt-8">
           {title}
         </h3>
         <p className=" text-gray-700 dark:text-white">

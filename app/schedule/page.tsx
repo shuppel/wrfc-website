@@ -51,7 +51,7 @@ export default function SchedulePage() {
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             Schedule
@@ -73,7 +73,7 @@ export default function SchedulePage() {
                 className="group bg-gray-50 dark:bg-gray-900 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all hover:scale-105"
               >
                 <div className="flex justify-center mb-4">{item.icon}</div>
-                <h2 className="text-2xl font-bold mb-3 section-title text-blue-900 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 text-center">
+                <h2 className="text-2xl font-bold mb-3 section-title text-wrfc-blue-900 dark:text-wrfc-blue-300 group-hover:text-wrfc-blue-700 dark:group-hover:text-wrfc-blue-300 text-center">
                   {item.title}
                 </h2>
                 <p className="text-gray-700 dark:text-white  text-center">

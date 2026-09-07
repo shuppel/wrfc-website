@@ -263,7 +263,7 @@ export default function PlayerProfilePage({ params }: PlayerProfilePageProps) {
                   )}
                   {player.caps.d3 !== undefined && (
                     <div className="rounded-xl border border-gray-200 px-5 py-3 dark:border-white/10">
-                      <span className="stat-number text-wrfc-teal">{player.caps.d3}</span>
+                      <span className="stat-number text-wrfc-blue">{player.caps.d3}</span>
                       <p className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
                         D3 club caps
                       </p>

@@ -107,7 +107,7 @@ export const ACCOLADE_TIERS: Record<AccoladeTier, AccoladeTierStyle> = {
     label: 'Representative honours',
     weight: 3,
     badge:
-      'bg-wrfc-red/10 text-wrfc-red dark:text-red-300 border-wrfc-red/40 hover:border-wrfc-red/70',
+      'bg-wrfc-red/10 text-wrfc-red dark:text-wrfc-red-200 border-wrfc-red/40 hover:border-wrfc-red/70',
     dot: 'bg-wrfc-red',
     ring: 'ring-wrfc-red/30',
   },
@@ -115,17 +115,17 @@ export const ACCOLADE_TIERS: Record<AccoladeTier, AccoladeTierStyle> = {
     label: 'Won at the club',
     weight: 3,
     badge:
-      'bg-[#E31C79]/10 text-[#b8155f] dark:text-pink-300 border-[#E31C79]/40 hover:border-[#E31C79]/70',
-    dot: 'bg-[#E31C79]',
-    ring: 'ring-[#E31C79]/30',
+      'bg-wrfc-blue/10 text-wrfc-blue-700 dark:text-wrfc-blue-300 border-wrfc-blue/40 hover:border-wrfc-blue/70',
+    dot: 'bg-wrfc-blue',
+    ring: 'ring-wrfc-blue/30',
   },
   club: {
     label: 'Club',
     weight: 1,
     badge:
-      'bg-wrfc-navy/10 text-wrfc-navy dark:bg-white/10 dark:text-slate-200 border-wrfc-navy/30 dark:border-white/25 hover:border-wrfc-navy/60',
-    dot: 'bg-wrfc-navy dark:bg-slate-300',
-    ring: 'ring-wrfc-navy/20',
+      'bg-slate-500/10 text-slate-700 dark:bg-white/10 dark:text-slate-200 border-slate-500/30 dark:border-white/25 hover:border-slate-500/60',
+    dot: 'bg-slate-600 dark:bg-slate-300',
+    ring: 'ring-slate-500/20',
   },
 };
 

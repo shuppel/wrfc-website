@@ -55,7 +55,7 @@ export default function Home() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-900/95 via-blue-900/85 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-wrfc-blue-900/95 via-wrfc-blue-800/85 to-black/90" />
         </div>
 
         {/* Content */}
@@ -74,7 +74,7 @@ export default function Home() {
             </div>
             <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
               Washington Rugby
-              <span className="block text-wrfc-red">Football Club</span>
+              <span className="block text-white/95">Football Club</span>
             </h1>
             <p className="text-xl md:text-2xl mb-6 font-quantico opacity-90">
               The oldest rugby club in Washington, DC. Founded 1963.
@@ -130,7 +130,7 @@ export default function Home() {
               image="/assets/pictures/huddle_2025_irish.jpg"
             />
               <FeatureCard
-                icon={<Barbell className="w-12 h-12 text-wrfc-teal" weight="duotone" />}
+                icon={<Barbell className="w-12 h-12 text-wrfc-blue" weight="duotone" />}
               title="Day Jobs, Then Boots On"
               description="Almost everyone here works full time. Practice Tuesdays and Thursdays, matches Saturdays, and a social side that is a good part of why people come back."
               image="/assets/pictures/2025_irish_lami.jpg"
@@ -213,7 +213,7 @@ export default function Home() {
                   href="https://docs.google.com/forms/d/e/1FAIpQLSfrwiFB_oUzIvE8UHwtv9lz9JAACoPjDpWJ2LCo4xq_P01Atg/viewform" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="ml-1 text-blue-600 hover:underline"
+                  className="ml-1 text-wrfc-blue-600 hover:underline"
                 >
                   Open in new tab
                 </a>

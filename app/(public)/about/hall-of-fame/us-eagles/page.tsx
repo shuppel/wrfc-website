@@ -171,12 +171,12 @@ const eaglesPlayers: EaglesPlayer[] = [
 
 export default function USEaglesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-wrfc-blue-50 via-white to-wrfc-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-wrfc-blue-900 py-12">
       <div className="container mx-auto px-4">
         {/* Back Link */}
         <Link 
           href="/about/hall-of-fame" 
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
+          className="inline-flex items-center text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:text-wrfc-blue-800 dark:hover:text-wrfc-blue-200 mb-6 transition-colors"
         >
           <CaretLeft className="w-5 h-5 mr-1" />
           Back to Hall of Fame
@@ -186,8 +186,8 @@ export default function USEaglesPage() {
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <Flag className="w-20 h-20 text-blue-600 dark:text-blue-400" />
-              <div className="absolute -bottom-2 -right-2 bg-red-600 rounded-full p-2">
+              <Flag className="w-20 h-20 text-wrfc-blue-600 dark:text-wrfc-blue-300" />
+              <div className="absolute -bottom-2 -right-2 bg-wrfc-red-600 rounded-full p-2">
                 <Trophy className="w-8 h-8 text-white" />
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function USEaglesPage() {
         </div>
 
         {/* Note about accuracy */}
-        <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-600 p-4 mb-8 max-w-4xl mx-auto">
+        <div className="bg-wrfc-blue-50 dark:bg-wrfc-blue-900/20 border-l-4 border-wrfc-blue-600 p-4 mb-8 max-w-4xl mx-auto">
           <p className="text-sm text-gray-700 dark:text-white">
             <strong>Note:</strong> Caps and participation are accurate as of August 3, 2006. 
             This list represents the historical contribution of WRFC to USA Rugby.
@@ -219,7 +219,7 @@ export default function USEaglesPage() {
             <p className="text-gray-600 dark:text-gray-100">George Sucher (1999)</p>
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 text-center">
-            <Users className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
+            <Users className="w-12 h-12 text-wrfc-blue-600 dark:text-wrfc-blue-300 mx-auto mb-3" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">National Captain</h3>
             <p className="text-gray-600 dark:text-gray-100">Dan Lyle</p>
             <p className="text-sm text-gray-500 dark:text-gray-100">15s Captain</p>
@@ -261,7 +261,7 @@ export default function USEaglesPage() {
                       {player.achievements.map((achievement, idx) => (
                         <span 
                           key={idx}
-                          className="inline-block text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded mr-2 mb-1"
+                          className="inline-block text-xs bg-wrfc-blue-100 dark:bg-wrfc-blue-900/30 text-wrfc-blue-800 dark:text-wrfc-blue-200 px-2 py-1 rounded mr-2 mb-1"
                         >
                           {achievement}
                         </span>
@@ -270,7 +270,7 @@ export default function USEaglesPage() {
                   </div>
                   {player.specialNote && (
                     <div className="mt-2 md:mt-0 md:ml-4">
-                      <span className="text-sm font-medium text-red-600 dark:text-red-400">
+                      <span className="text-sm font-medium text-wrfc-red-600 dark:text-wrfc-red-300">
                         ★ {player.specialNote}
                       </span>
                     </div>
@@ -282,7 +282,7 @@ export default function USEaglesPage() {
         </div>
 
         {/* Legacy Section */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white text-center max-w-4xl mx-auto">
+        <div className="mt-12 bg-gradient-to-r from-wrfc-blue-600 to-wrfc-red-600 rounded-xl p-8 text-white text-center max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">A Legacy of Excellence</h2>
           <p className="text-lg mb-6">
             For over five decades, Washington Rugby Football Club has been a cornerstone 
@@ -291,7 +291,7 @@ export default function USEaglesPage() {
           </p>
           <Link 
             href="/teams/players"
-            className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="inline-block bg-white text-wrfc-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
             Meet Our Current Players
           </Link>

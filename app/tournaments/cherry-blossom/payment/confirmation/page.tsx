@@ -99,8 +99,8 @@ function ConfirmationContent() {
       </Card>
 
       <div className="max-w-2xl mx-auto">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <p className="text-blue-800 text-sm">
+        <div className="bg-wrfc-blue-50 border border-wrfc-blue-200 rounded-lg p-4 mb-6">
+          <p className="text-wrfc-blue-800 text-sm">
             📧 A confirmation email has been sent to your registered email address with all the details and next steps.
           </p>
         </div>

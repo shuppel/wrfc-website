@@ -90,7 +90,7 @@ const timelineEvents: TimelineEvent[] = [
 
 export default function HistoryPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900">
       <BreadcrumbJsonLd 
         items={[
           { name: 'Home', item: '/' },
@@ -159,7 +159,7 @@ export default function HistoryPage() {
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-wrfc-navy dark:bg-blue-400 transform md:-translate-x-px" />
+              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-wrfc-navy dark:bg-wrfc-blue-400 transform md:-translate-x-px" />
               
               {timelineEvents.map((event, index) => (
                 <div key={index} className={`relative flex items-start mb-12 ${
@@ -179,7 +179,7 @@ export default function HistoryPage() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl font-bold text-wrfc-navy dark:text-blue-400">
+                            <span className="text-2xl font-bold text-wrfc-navy dark:text-wrfc-blue-300">
                               {event.year}
                             </span>
                             <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getCategoryBadge(event.category)}`}>
@@ -200,7 +200,7 @@ export default function HistoryPage() {
                                 href={event.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-wrfc-red hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 font-semibold text-sm transition-colors"
+                                className="inline-flex items-center gap-2 text-wrfc-red hover:text-wrfc-red-700 dark:text-wrfc-red-300 dark:hover:text-wrfc-red-200 font-semibold text-sm transition-colors"
                               >
                                 Visit Washington DC Youth Rugby
                                 <ArrowSquareOut className="w-4 h-4" />
@@ -234,7 +234,7 @@ export default function HistoryPage() {
 
 
       {/* Legacy Section */}
-      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-blue-800">
+      <section className="py-20 bg-gradient-to-r from-wrfc-navy to-wrfc-blue-800">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-8 ">
@@ -282,7 +282,7 @@ export default function HistoryPage() {
 function getCategoryColor(category: string): string {
   switch (category) {
     case 'founding':
-      return 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300'
+      return 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-600 dark:text-wrfc-blue-200'
     case 'championship':
       return 'bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300'
     case 'community':
@@ -290,7 +290,7 @@ function getCategoryColor(category: string): string {
     case 'milestone':
       return 'bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300'
     case 'tournament':
-      return 'bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300'
+      return 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-600 dark:text-wrfc-red-200'
     default:
       return 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-100'
   }
@@ -299,7 +299,7 @@ function getCategoryColor(category: string): string {
 function getCategoryBadge(category: string): string {
   switch (category) {
     case 'founding':
-      return 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+      return 'bg-wrfc-blue-100 dark:bg-wrfc-blue-900 text-wrfc-blue-800 dark:text-wrfc-blue-100'
     case 'championship':
       return 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200'
     case 'community':
@@ -307,7 +307,7 @@ function getCategoryBadge(category: string): string {
     case 'milestone':
       return 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
     case 'tournament':
-      return 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
+      return 'bg-wrfc-red-100 dark:bg-wrfc-red-900 text-wrfc-red-800 dark:text-wrfc-red-100'
     default:
       return 'bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200'
   }
@@ -316,15 +316,15 @@ function getCategoryBadge(category: string): string {
 function getGradientStyle(category: string): string {
   switch (category) {
     case 'founding':
-      return 'bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600'
+      return 'bg-gradient-to-br from-wrfc-blue-400 via-wrfc-blue-500 to-wrfc-blue-600'
     case 'championship':
-      return 'bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500'
+      return 'bg-gradient-to-br from-wrfc-blue-400 via-wrfc-blue to-wrfc-red-500'
     case 'community':
       return 'bg-gradient-to-br from-green-400 via-emerald-500 to-teal-600'
     case 'milestone':
       return 'bg-gradient-to-br from-purple-400 via-violet-500 to-indigo-600'
     case 'tournament':
-      return 'bg-gradient-to-br from-red-400 via-pink-500 to-rose-600'
+      return 'bg-gradient-to-br from-wrfc-red-400 via-pink-500 to-rose-600'
     default:
       return 'bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600'
   }

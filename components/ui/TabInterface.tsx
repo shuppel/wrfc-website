@@ -82,7 +82,7 @@ export default function TabInterface() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
                   activeTab === tab.id
-                    ? 'bg-orange-500 text-white'
+                    ? 'bg-wrfc-blue text-white'
                     : 'hover:bg-gray-700'
                 }`}
               >

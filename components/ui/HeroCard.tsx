@@ -44,8 +44,8 @@ export function HeroCard({
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
           {/* Icon/Image container with animations */}
           <div className="w-32 h-32 md:w-48 md:h-48 relative flex-shrink-0 transform transition-transform duration-500 group-hover:scale-110">
-            <div className="absolute inset-0 bg-orange-500/10 dark:bg-orange-500/20 rounded-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-transparent rounded-2xl" />
+            <div className="absolute inset-0 bg-wrfc-red-500/10 dark:bg-wrfc-red-500/20 rounded-2xl transform rotate-6 group-hover:rotate-12 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-br from-wrfc-blue-500/20 to-transparent rounded-2xl" />
             <div className="relative h-full w-full flex items-center justify-center">
               {imageSrc ? (
                 <Image

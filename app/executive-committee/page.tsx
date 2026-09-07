@@ -51,7 +51,7 @@ function MemberName({ member }: { member: CommitteeMember }) {
 
 export default function ExecutiveCommitteePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900 py-12">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -81,14 +81,14 @@ export default function ExecutiveCommitteePage() {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                       {member.position}
                     </h3>
-                    <p className="text-lg text-blue-600 dark:text-blue-400">
+                    <p className="text-lg text-wrfc-blue-600 dark:text-wrfc-blue-300">
                       <MemberName member={member} />
                     </p>
                   </div>
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-wrfc-blue-100 dark:bg-wrfc-blue-900 rounded-full flex items-center justify-center">
                     {(() => {
                       const Icon = POSITION_ICONS[member.position] ?? Users
-                      return <Icon className="w-6 h-6 text-blue-600 dark:text-blue-300" />
+                      return <Icon className="w-6 h-6 text-wrfc-blue-600 dark:text-wrfc-blue-200" />
                     })()}
                   </div>
                 </div>
@@ -108,15 +108,15 @@ export default function ExecutiveCommitteePage() {
               <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Governance</h3>
               <ul className="text-gray-600 dark:text-gray-100 space-y-2">
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Setting club policies and strategic direction
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Financial oversight and budget management
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Ensuring compliance with USA Rugby regulations
                 </li>
               </ul>
@@ -125,15 +125,15 @@ export default function ExecutiveCommitteePage() {
               <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Operations</h3>
               <ul className="text-gray-600 dark:text-gray-100 space-y-2">
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Coordinating matches and tournaments
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Managing player recruitment and development
                 </li>
                 <li className="flex items-start">
-                  <span className="text-blue-500 mr-2">•</span>
+                  <span className="text-wrfc-blue-500 mr-2">•</span>
                   Organizing fundraising and community events
                 </li>
               </ul>
@@ -151,7 +151,7 @@ export default function ExecutiveCommitteePage() {
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-8 text-white max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-wrfc-blue-600 to-wrfc-blue-800 rounded-xl p-8 text-white max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Get Involved</h2>
             <p className="text-lg mb-6">
               Interested in contributing to WRFC&apos;s leadership? We welcome members who are 
@@ -159,7 +159,7 @@ export default function ExecutiveCommitteePage() {
             </p>
             <a 
               href="/contact"
-              className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-block bg-white text-wrfc-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Contact Us
             </a>

@@ -117,7 +117,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
               href={registrationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-wrfc-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center gap-2 bg-wrfc-red hover:bg-wrfc-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
             >
               <Ticket className="w-5 h-5" />
               Register Your Team Now
@@ -130,26 +130,26 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
       <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link href="/tournaments" className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400">
+            <Link href="/tournaments" className="flex items-center text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300">
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Tournaments
             </Link>
             <div className="flex items-center space-x-6">
               <Link 
                 href={`/tournaments/cherry-blossom/${params.year}`}
-                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300"
               >
                 Overview
               </Link>
               <Link 
                 href={`/tournaments/cherry-blossom/${params.year}/photos`}
-                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300"
               >
                 Photos
               </Link>
               <Link 
                 href="#past-results"
-                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-blue-400"
+                className="text-gray-600 dark:text-gray-100 hover:text-wrfc-navy dark:hover:text-wrfc-blue-300"
               >
                 Past Results
               </Link>
@@ -160,21 +160,21 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
 
       {/* Registration CTA Banner */}
       {isUpcoming && tournamentData.registrationOpen && (
-        <div className="bg-gradient-to-r from-wrfc-navy to-blue-800 text-white py-4">
+        <div className="bg-gradient-to-r from-wrfc-navy to-wrfc-blue-800 text-white py-4">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <Clock className="w-6 h-6 text-yellow-400" />
                 <div>
                   <p className="font-semibold">Early Bird Registration Open!</p>
-                  <p className="text-sm text-blue-200">Registration closes {tournamentData.registrationCloses}</p>
+                  <p className="text-sm text-wrfc-blue-200">Registration closes {tournamentData.registrationCloses}</p>
                 </div>
               </div>
               <a
                 href={registrationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-wrfc-red hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                className="bg-wrfc-red hover:bg-wrfc-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
               >
                 Register Now
               </a>
@@ -202,7 +202,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
         <div className="grid md:grid-cols-2 gap-8">
           {/* Tournament Details Card */}
           <Card className="p-8">
-            <h2 className="text-3xl font-bold mb-6 text-wrfc-navy dark:text-blue-400">
+            <h2 className="text-3xl font-bold mb-6 text-wrfc-navy dark:text-wrfc-blue-300">
               Tournament Details
             </h2>
             <div className="space-y-6">
@@ -278,7 +278,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
 
           {/* Registered Teams Card (for upcoming) or Past Results Card (for past) */}
           <Card className="p-8" id="past-results">
-            <h2 className="text-3xl font-bold mb-6 text-wrfc-navy dark:text-blue-400">
+            <h2 className="text-3xl font-bold mb-6 text-wrfc-navy dark:text-wrfc-blue-300">
               {isUpcoming ? 'Registered Teams' : (lastTournament ? `${lastTournament.year} Results` : 'Past Results')}
             </h2>
             <div className="space-y-6">
@@ -350,7 +350,7 @@ export default function CherryBlossomYearPage({ params }: { params: { year: stri
 
         {/* Final CTA */}
         {isUpcoming && tournamentData.registrationOpen && (
-          <div className="mt-16 bg-gradient-to-r from-wrfc-red to-red-700 rounded-xl p-8 text-center text-white">
+          <div className="mt-16 bg-gradient-to-r from-wrfc-red to-wrfc-red-700 rounded-xl p-8 text-center text-white">
             <h2 className="text-3xl font-bold mb-4">Ready to Compete?</h2>
             <p className="text-lg mb-6 max-w-2xl mx-auto">
               Don&apos;t miss your chance to be part of the {tournamentData.edition ? `${getOrdinalSuffix(tournamentData.edition)} Annual` : ''} Cherry Blossom Tournament. 

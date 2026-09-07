@@ -85,7 +85,7 @@ const tierConfig = {
   head: {
     label: 'Head Coaching Staff',
     description: 'Leading our rugby program with vision and expertise',
-    color: 'from-blue-600 to-blue-800',
+    color: 'from-wrfc-blue-600 to-wrfc-blue-800',
     icon: Medal
   },
   assistant: {
@@ -131,7 +131,7 @@ const coachingStaffJsonLd = {
 
 export default function CoachesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-wrfc-blue-50 dark:from-gray-900 dark:to-wrfc-blue-900 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(coachingStaffJsonLd) }}
@@ -139,7 +139,7 @@ export default function CoachesPage() {
       <div className="container mx-auto px-4">
         <Link 
           href="/teams" 
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mb-6 transition-colors"
+          className="inline-flex items-center text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:text-wrfc-blue-800 dark:hover:text-wrfc-blue-200 mb-6 transition-colors"
         >
           <CaretLeft className="w-5 h-5 mr-1" weight="bold" />
           Back to Teams
@@ -166,7 +166,7 @@ export default function CoachesPage() {
             <div key={tier} className="mb-16">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-3 mb-3">
-                  <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <Icon className="w-8 h-8 text-wrfc-blue-600 dark:text-wrfc-blue-300" />
                   <h2 className="section-title">
                     {config.label}
                   </h2>
@@ -201,7 +201,7 @@ export default function CoachesPage() {
                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                           {coach.name}
                         </h3>
-                        <p className="text-blue-600 dark:text-blue-400 font-semibold">
+                        <p className="text-wrfc-blue-600 dark:text-wrfc-blue-300 font-semibold">
                           {coach.title}
                         </p>
                       </div>
@@ -219,7 +219,7 @@ export default function CoachesPage() {
                             {coach.specialties.map((specialty) => (
                               <span 
                                 key={specialty}
-                                className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
+                                className="px-3 py-1 bg-wrfc-blue-100 dark:bg-wrfc-blue-900/30 text-wrfc-blue-800 dark:text-wrfc-blue-200 rounded-full text-xs font-medium"
                               >
                                 {specialty}
                               </span>
@@ -234,7 +234,7 @@ export default function CoachesPage() {
                             href={coach.wikiUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+                            className="inline-flex items-center gap-2 text-wrfc-blue-600 dark:text-wrfc-blue-300 hover:text-wrfc-blue-800 dark:hover:text-wrfc-blue-200 transition-colors"
                           >
                             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm.1 19.5h-.2c-3.3 0-6-2.7-6-6V12c0-.6.4-1 1-1s1 .4 1 1v1.5c0 2.2 1.8 4 4 4h.1v-3.2l4.4 3.7-4.4 3.7v-2.2z"/>
@@ -289,7 +289,7 @@ export default function CoachesPage() {
         </div>
 
         <div className="mt-12 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-wrfc-blue-600 to-wrfc-red-600 rounded-xl p-8 text-white max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Train Under Them</h2>
             <p className="text-lg mb-6">
               Practices run Tuesday and Thursday evenings with matches on Saturdays, across fall and
@@ -298,13 +298,13 @@ export default function CoachesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/membership"
-                className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-wrfc-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
               >
                 Become a Member
               </Link>
               <Link 
                 href="/schedule/practice"
-                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors"
+                className="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-wrfc-blue-700 transition-colors"
               >
                 View Practice Schedule
               </Link>

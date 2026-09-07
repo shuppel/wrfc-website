@@ -46,7 +46,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
       <JsonLd type="WebPage" data={structuredData} />
 
       {/* Hero Section */}
-      <section className="w-full py-20 bg-gradient-to-b from-blue-900 to-black text-white">
+      <section className="w-full py-20 bg-gradient-to-b from-wrfc-blue-900 to-black text-white">
         <div className="container mx-auto px-4">
           <h1 className="display-large mb-6 text-center">
             Connect With WRFC
@@ -123,7 +123,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
 
           {/* Facebook Feed */}
           <Card className="overflow-hidden">
-            <CardHeader className="bg-blue-600 text-white">
+            <CardHeader className="bg-wrfc-blue-600 text-white">
               <CardTitle className="flex items-center gap-2">
                 <Facebook className="w-6 h-6" />
                 Facebook @washingtonrugby
@@ -132,7 +132,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
             <CardContent className="p-6">
               <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-4 mb-4 min-h-[600px] flex items-center justify-center">
                 <div className="text-center">
-                  <Facebook className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+                  <Facebook className="w-16 h-16 text-wrfc-blue-600 mx-auto mb-4" />
                   <p className="text-gray-600 dark:text-gray-100 mb-4">
                     Visit our Facebook page for the latest updates, event information, and community discussions
                   </p>
@@ -162,7 +162,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
                 rel="noopener noreferrer"
                 className="block"
               >
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="w-full bg-wrfc-blue-600 hover:bg-wrfc-blue-700 text-white">
                   <Facebook className="w-5 h-5 mr-2" />
                   Follow on Facebook
                 </Button>
@@ -226,7 +226,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
               rel="noopener noreferrer"
             >
               <Button variant="outline" className="group">
-                <Facebook className="w-5 h-5 mr-2 group-hover:text-blue-600" />
+                <Facebook className="w-5 h-5 mr-2 group-hover:text-wrfc-blue-600" />
                 Facebook
               </Button>
             </a>
@@ -236,7 +236,7 @@ export default function SocialMediaContent({ structuredData }: SocialMediaConten
               rel="noopener noreferrer"
             >
               <Button variant="outline" className="group">
-                <svg className="w-5 h-5 mr-2 group-hover:text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-5 h-5 mr-2 group-hover:text-wrfc-red-600" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
                 YouTube

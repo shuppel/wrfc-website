@@ -23,7 +23,7 @@ export default function ZeffyPaymentButton({
     <div className="space-y-2">
       <Button
         onClick={handleClick}
-        className={className || "bg-wrfc-red text-white hover:bg-red-700"}
+        className={className || "bg-wrfc-red text-white hover:bg-wrfc-red-700"}
         size="lg"
       >
         {buttonText}

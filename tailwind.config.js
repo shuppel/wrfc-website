@@ -9,23 +9,53 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Brand primary is the crest blue; hover/dark variants stay on the same ramp.
         primary: {
-          light: '#FFB800',
-          dark: '#FFA000',
+          light: '#0000CC',
+          dark: '#5252DC',
         },
         background: {
-          light: '#FFF5E6',
-          dark: '#1A1A1A',
+          light: '#FFFFFF',
+          dark: '#0B0B1A',
         },
         text: {
-          light: '#1A1A1A',
-          dark: '#E0E0E0',
+          light: '#0B0B1A',
+          dark: '#E6E6FA',
         },
+        // Club crest palette: shield blue #0000CC, shield red #FF0000, white.
+        // Scales are tints/shades of those two exact logo colors.
         'wrfc': {
-          navy: '#002B5C',
-          red: '#C8102E',
-          teal: '#00A7B5',
-          magenta: '#E31C79',
+          blue: {
+            50: '#F2F2FC',
+            100: '#E6E6FA',
+            200: '#C7C7F4',
+            300: '#9999EB',
+            400: '#5252DC',
+            500: '#0000CC', // crest blue
+            600: '#0000B8',
+            700: '#00009F',
+            800: '#000083',
+            900: '#000062',
+            950: '#000041',
+            DEFAULT: '#0000CC',
+          },
+          red: {
+            50: '#FFF2F2',
+            100: '#FFE6E6',
+            200: '#FFC7C7',
+            300: '#FF9999',
+            400: '#FF5252',
+            500: '#FF0000', // crest red
+            600: '#E60000',
+            700: '#C70000',
+            800: '#A30000',
+            900: '#7A0000',
+            950: '#520000',
+            DEFAULT: '#E60000', // AA on white; 500 is the exact crest red for fills
+          },
+          // Deep crest blue used for headings and dark surfaces.
+          navy: '#000062',
+          white: '#FFFFFF',
         }
       },
       fontFamily: {

@@ -50,7 +50,7 @@ const GROUP_GRADIENTS: Record<PositionGroupId, string[]> = {
   'back-three': [
     'from-[#831843] via-[#be185d] to-[#500724]',
     'from-[#78350f] via-[#a16207] to-[#422006]',
-    'from-[#002B5C] via-[#0b4a8f] to-[#001529]',
+    'from-[#000062] via-[#0000CC] to-[#000041]',
   ],
 };
 
