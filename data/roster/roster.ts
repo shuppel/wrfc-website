@@ -488,8 +488,13 @@ export const players: Player[] = [
     slug: 'austin-park',
     squad: 'fall-2026',
     positions: ['center', 'wing', 'full-back'],
-    weightKg: 134,
+    weightKg: 73,
     seasons: 4,
+    accolades: [
+      { id: 'national-7s-champion', detail: '2025', verification: 'self-reported' },
+      { id: 'national-7s-team', detail: '2024', verification: 'self-reported' },
+      { id: 'capital-selects', verification: 'self-reported' },
+    ],
   },
 
   // --- Back three ----------------------------------------------------------
