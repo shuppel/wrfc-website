@@ -51,6 +51,8 @@ export type AccoladeId =
   | 'old-glory-academy'
   | 'free-jacks-academy'
   | 'maharlikans-7s'
+  | 'national-7s-champion'
+  | 'national-7s-team'
   | 'nsw-suburban-finalist'
   | 'man-of-the-match'
   | 'match-captain'
@@ -219,6 +221,22 @@ export const ACCOLADES: Record<AccoladeId, AccoladeDefinition> = {
       name: 'Philippine Maharlikans',
       url: 'https://www.facebook.com/maharlika7s/',
     },
+  },
+  'national-7s-champion': {
+    id: 'national-7s-champion',
+    label: 'National 7s Champion',
+    shortLabel: 'National 7s Champion',
+    tier: 'representative',
+    description:
+      'Won a US national championship in rugby sevens, the seven-a-side Olympic format of the game played over short, high-tempo halves.',
+  },
+  'national-7s-team': {
+    id: 'national-7s-team',
+    label: 'National 7s Team',
+    shortLabel: 'National 7s',
+    tier: 'representative',
+    description:
+      'Named to a side competing at a US national rugby sevens championship, the seven-a-side Olympic format of the game.',
   },
   'nsw-suburban-finalist': {
     id: 'nsw-suburban-finalist',
