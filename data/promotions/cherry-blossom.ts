@@ -26,6 +26,7 @@ export const cherryBlossomPromotion: Promotion = {
   type: 'tournament',
   tags: ['rugby', 'tournament', 'cherry blossom', '2027'],
   ctaType: 'link',
+  showPopup: true,
   modalContent: {
     title: 'Cherry Blossom Tournament 2027',
     content: `

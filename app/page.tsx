@@ -4,7 +4,6 @@ import { Barbell, GraduationCap, Globe, ArrowRight, CaretDown } from '@phosphor-
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
-import WelcomeModal from '@/components/feature/promotion/WelcomeModal'
 
 // Generate metadata for the home page
 export const metadata = generateMetadata('home');
@@ -40,9 +39,6 @@ export default function Home() {
         ]} 
       />
       <JsonLd type="Organization" data={structuredData} />
-      
-      {/* Welcome Modal */}
-      <WelcomeModal />
       
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
