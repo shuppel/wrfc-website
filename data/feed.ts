@@ -12,6 +12,8 @@ export interface FeedItem {
   recurrence?: string;
   timeLabel?: string;
   location?: string;
+  /** Replaces time/location when details are posted elsewhere, e.g. Instagram. */
+  note?: string;
   href: string;
   ctaLabel: string;
   external?: boolean;
@@ -20,7 +22,9 @@ export interface FeedItem {
 
 /**
  * Always-on items listed after dated events, so the feed is never empty.
- * Keep in sync with /app/schedule/practice.
+ *
+ * Practice time and location change week to week and are announced in the
+ * club's Instagram story, so don't hard-code them here.
  */
 export const recurringFeedItems: FeedItem[] = [
   {
@@ -28,10 +32,10 @@ export const recurringFeedItems: FeedItem[] = [
     kind: 'practice',
     title: 'Team Practice',
     recurrence: 'Tue & Thu',
-    timeLabel: '8:00 – 10:00 PM',
-    location: 'Rosedale Rec Center',
-    href: '/schedule/practice',
-    ctaLabel: 'Practice details',
+    note: 'Time & location posted on Instagram',
+    href: 'https://www.instagram.com/wrfc1963/',
+    ctaLabel: 'Check Instagram',
+    external: true,
   },
 ];
 

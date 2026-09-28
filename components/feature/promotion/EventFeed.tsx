@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowSquareOut, Barbell, Clock, MapPin, Megaphone, Ticket, Trophy } from '@phosphor-icons/react';
+import { ArrowRight, ArrowSquareOut, Barbell, Clock, InstagramLogo, MapPin, Megaphone, Ticket, Trophy } from '@phosphor-icons/react';
 import { FeedItem, getFeedItems } from '@/data/feed';
 import ZeffyFormModal from '@/components/feature/payment/ZeffyFormModal';
 
@@ -133,6 +133,12 @@ function FeedRow({
         <p className="font-semibold text-white leading-snug">
           {item.title}
         </p>
+        {item.note && (
+          <p className="mt-1 inline-flex items-center gap-1 text-sm text-gray-300">
+            <InstagramLogo className="w-3.5 h-3.5" weight="bold" />
+            {item.note}
+          </p>
+        )}
         {(time || item.location) && (
           <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-gray-300">
             {time && (
