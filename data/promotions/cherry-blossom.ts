@@ -10,7 +10,8 @@ import { ZEFFY_LINKS } from '@/data/zeffy-links';
  * To bring it back online when the committee opens registration:
  *   1. Set the real date/venue below and in /data/cherry-blossom-tournaments.ts
  *   2. Add the 2027 Zeffy form to /data/zeffy-links.ts
- *   3. Set `isActive: true` and update `startDate` / `endDate`
+ *   3. Set `isActive: true`, update `startDate` / `endDate`, and set
+ *      `eventStart` and `location` so it appears in the homepage event feed
  */
 export const cherryBlossomPromotion: Promotion = {
   id: 'cherry-blossom-2027',
@@ -26,6 +27,7 @@ export const cherryBlossomPromotion: Promotion = {
   type: 'tournament',
   tags: ['rugby', 'tournament', 'cherry blossom', '2027'],
   ctaType: 'link',
+  allDay: true,
   modalContent: {
     title: 'Cherry Blossom Tournament 2027',
     content: `

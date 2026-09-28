@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Barbell, GraduationCap, Globe, ArrowRight, CaretDown } from '@phosphor-icons/react/dist/ssr'
+import { Barbell, GraduationCap, Globe, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import { BreadcrumbJsonLd } from '../components/JsonLd'
 import { generateMetadata, getStructuredData } from './utils/seo'
 import JsonLd from '../components/JsonLd'
-import WelcomeModal from '@/components/feature/promotion/WelcomeModal'
+import EventFeed from '@/components/feature/promotion/EventFeed'
 
 // Generate metadata for the home page
 export const metadata = generateMetadata('home');
@@ -41,75 +41,74 @@ export default function Home() {
       />
       <JsonLd type="Organization" data={structuredData} />
       
-      {/* Welcome Modal */}
-      <WelcomeModal />
-      
-      {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section: club identity + "What's On" event feed */}
+      <section className="relative w-full overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/assets/pictures/138A3717.jpg"
-            alt="WRFC Team Photo"
+            alt=""
             fill
+            sizes="100vw"
             className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/95 via-blue-900/85 to-black/90" />
         </div>
 
-        {/* Content */}
-        <div className="container mx-auto px-4 relative z-10 text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-8">
-              <div className="relative w-32 h-32">
-                <Image
-                  src="/logos/wrfc_logo.png"
-                  alt="WRFC Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+        <div className="container mx-auto px-4 relative z-10 py-12 md:py-16 lg:py-24 text-white">
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 items-center">
+            {/* Identity + primary actions */}
+            <div className="text-center lg:text-left">
+              <div className="hidden md:flex justify-center lg:justify-start mb-6">
+                <div className="relative w-20 h-20 md:w-24 md:h-24">
+                  <Image
+                    src="/logos/wrfc_logo.png"
+                    alt="WRFC Logo"
+                    fill
+                    sizes="96px"
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold mb-4 md:mb-5 animate-fade-in">
+                Washington Rugby
+                <span className="block text-wrfc-red">Football Club</span>
+              </h1>
+              <p className="text-lg md:text-2xl mb-6 md:mb-8 font-quantico opacity-90">
+                The oldest rugby club in Washington, DC. Founded 1963.
+                <span className="block text-base md:text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays, rugby all four seasons. No experience needed.</span>
+              </p>
+
+              <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:gap-4 justify-center lg:justify-start">
+                <Link 
+                  href="/membership" 
+                  className="col-span-2 bg-wrfc-red hover:bg-wrfc-red/90 text-white px-8 py-3.5 sm:py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                >
+                  Join WRFC
+                  <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link 
+                  href="/donate" 
+                  className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-center transition-all transform hover:scale-105 hover:shadow-lg"
+                >
+                  Donate
+                </Link>
+                <a 
+                  href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-center transition-all transform hover:scale-105 hover:shadow-lg"
+                >
+                  Pay Dues
+                </a>
               </div>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold  mb-6 animate-fade-in">
-              Washington Rugby
-              <span className="block text-wrfc-red">Football Club</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-6 font-quantico opacity-90">
-              The oldest rugby club in Washington, DC. Founded 1963.
-              <span className="block text-lg mt-2 text-gray-300">Practice Tuesdays &amp; Thursdays, matches Saturdays, rugby all four seasons. No experience needed.</span>
-            </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/membership" 
-                className="bg-wrfc-red hover:bg-wrfc-red/90 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg flex items-center justify-center group"
-              >
-                Join WRFC
-                <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link 
-                href="/donate" 
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg"
-              >
-                Donate
-              </Link>
-              <a 
-                href="https://www.zeffy.com/en-US/ticketing/wrfc-player-dues" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold transition-all transform hover:scale-105 hover:shadow-lg"
-              >
-                Pay Dues
-              </a>
-            </div>
+            {/* Event feed */}
+            <EventFeed renderedAt={new Date().toISOString()} />
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <CaretDown className="w-8 h-8 text-white" weight="bold" />
         </div>
       </section>
 

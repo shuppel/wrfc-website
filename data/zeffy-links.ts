@@ -16,6 +16,12 @@ export const ZEFFY_LINKS = {
     social: 'https://www.zeffy.com/en-US/membership/your-social-membership-link', // TODO: Replace with actual Zeffy link
     description: 'WRFC Membership'
   },
+  capitalsRugbyNight: {
+    // Time-boxed event — remove after game night (see docs/PROMOTIONS.md).
+    ticketing: 'https://www.zeffy.com/en-US/ticketing/rugby-night-with-the-washington-capitals',
+    embed: 'https://www.zeffy.com/embed/ticketing/rugby-night-with-the-washington-capitals?modal=true',
+    description: 'Rugby Night with the Washington Capitals tickets'
+  },
   donations: {
     general: 'https://www.zeffy.com/en-US/donation-form/wrfc-donations',
     description: 'Support WRFC'
