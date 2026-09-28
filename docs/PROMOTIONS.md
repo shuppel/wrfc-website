@@ -1,31 +1,36 @@
-# Promotions & Event Popups
+# Promotions & the Homepage Event Feed
 
-How to run a time-boxed promotion (popup, carousel card) for an event, and how
-to take it down afterwards.
+How to list a time-boxed event on the site, and how to take it down
+afterwards.
+
+We deliberately do **not** use a page-load popup: it interrupts every visitor
+(and hurts mobile/SEO). Events go in the "What's On" feed in the homepage hero
+instead.
 
 ## How it works
 
 - Promotions live in `/data/promotions/`, one file per promotion, registered in
   `/data/promotions/index.ts`.
-- The site-wide popup (`components/feature/promotion/WelcomeModal.tsx`) is
-  mounted in `app/layout.tsx`, so it can appear on whichever page a visitor
-  lands on. It shows the highest-`priority` promotion that has
-  `showPopup: true` and is currently live.
+- The homepage hero's "What's On" feed
+  (`components/feature/promotion/EventFeed.tsx`, data in `/data/feed.ts`)
+  lists every live promotion, **soonest `eventStart` first**, up to four,
+  then the recurring practice item so the feed is never empty. The next
+  upcoming event gets the red "Next up" tile.
 - **Live** means `isActive: true` AND `startDate <= now <= endDate`. The check
   runs in the visitor's browser, so a promotion turns itself off the moment
   `endDate` passes. No redeploy needed.
 - Dates **fail closed**: if `startDate` or `endDate` is missing or malformed,
   the promotion never shows (with a console warning in development).
-- Each visitor sees a given popup at most once per 24 hours. The dismissal is
-  stored per promotion (`promoPopupLastShown:<id>` in localStorage), so a new
-  promotion is not suppressed because someone closed an older one.
+- `startDate`/`endDate` control **visibility**; `eventStart` is **when the
+  event happens** and drives the date tile and ordering. Undated promotions
+  sort after dated ones, by `priority`.
 
 ## Zeffy ticket / donation buttons
 
 Zeffy's `embed-form-script` (loaded in `app/layout.tsx`) only binds
 `zeffy-form-link` elements that exist when the page first loads. Anything
-rendered later, such as popups, dialogs or content after client-side
-navigation, does **nothing** when clicked.
+rendered later, such as client components, dialogs or content after
+client-side navigation, does **nothing** when clicked.
 
 For those cases, set `zeffyFormUrl` on the promotion (or render
 `components/feature/payment/ZeffyFormModal.tsx` yourself). It opens the same
@@ -46,24 +51,25 @@ Keep both in `/data/zeffy-links.ts`.
 1. Add the Zeffy links to `/data/zeffy-links.ts` under a named key.
 2. Create `/data/promotions/<event-slug>.ts` exporting a `Promotion`:
    - `id`: unique and includes the year, e.g. `capitals-rugby-night-2026`
-   - `startDate`: when the popup should start (ISO with offset, e.g.
+   - `startDate`: when the listing should start (ISO with offset, e.g.
      `2026-10-01T00:00:00-04:00`)
    - `endDate`: **required.** Use the end of event day in Eastern time, e.g.
      `2026-11-14T23:59:59-05:00`. Watch the offset: `-04:00` during daylight
      time, `-05:00` after early November.
-   - `showPopup: true`, plus `zeffyFormUrl` if tickets are sold on Zeffy
-   - `eventDetails` (date + location) for the info pills, `badge` for the
-     image label
+   - `eventStart`: when the event starts (add `allDay: true` for
+     tournaments / multi-day events to hide the time)
+   - `location`: short venue label, e.g. `Capital One Arena`
+   - `zeffyFormUrl` if tickets are sold on Zeffy, and `buttonText` for the
+     row's CTA (e.g. `Get Tickets`)
 3. Register it in the `promotions` array in `/data/promotions/index.ts`.
-4. Pick `priority`: the highest live popup wins, so event promos should
-   outrank evergreen ones.
-5. Check it locally: `npm run dev`, clear the `promoPopupLastShown:*` keys in
-   localStorage, reload, and confirm the popup opens and the Zeffy form works.
+4. Check it locally: `npm run dev`, open the homepage, and confirm the event
+   shows in "What's On" with the right date/time and that its CTA (or the
+   Zeffy form) opens.
 
 ## After the event (cleanup)
 
-The popup already stopped at `endDate`, so cleanup is housekeeping, not
-urgent. Within a week or two of the event:
+The feed already dropped the event at `endDate`, so cleanup is
+housekeeping, not urgent. Within a week or two of the event:
 
 1. Delete `/data/promotions/<event-slug>.ts` and its entry in `index.ts`.
 2. Remove its block from `/data/zeffy-links.ts`.

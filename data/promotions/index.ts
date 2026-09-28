@@ -2,7 +2,7 @@ import { cherryBlossomPromotion } from './cherry-blossom';
 import { capitalsRugbyNightPromotion } from './capitals-rugby-night';
 
 /**
- * Site promotions (popups, carousels).
+ * Site promotions: the homepage event feed and promotion carousels.
  *
  * Every promotion is time-boxed: it is only shown between `startDate` and
  * `endDate`, evaluated in the visitor's browser, so a promotion switches
@@ -23,19 +23,20 @@ export interface Promotion {
   tags?: string[];
   ctaType?: 'link' | 'modal' | 'external';
   /**
-   * Zeffy embed URL (…/embed/ticketing/…?modal=true). When set, the popup CTA
+   * Zeffy embed URL (…/embed/ticketing/…?modal=true). When set, the CTA
    * opens the Zeffy form in an on-page modal instead of following buttonUrl.
    */
   zeffyFormUrl?: string;
-  /** Show this promotion as the site-wide popup on page load. */
-  showPopup?: boolean;
-  /** Short label shown on the popup image, e.g. "Tickets on sale". */
-  badge?: string;
-  /** Date / location pills shown in the popup. */
-  eventDetails?: {
-    date: string;
-    location: string;
-  };
+  /**
+   * When the event itself happens (ISO with offset). Drives the date shown in
+   * the homepage event feed and its order (soonest first). Distinct from
+   * startDate/endDate, which control when the promotion is visible.
+   */
+  eventStart?: string;
+  /** Multi-day or all-day events: show the date without a time. */
+  allDay?: boolean;
+  /** Short venue label shown in the event feed, e.g. "Capital One Arena". */
+  location?: string;
   modalContent?: {
     title: string;
     content: string;
@@ -73,9 +74,4 @@ export const getActivePromotions = (now: Date = new Date()): Promotion[] => {
   return promotions
     .filter(promo => isPromotionLive(promo, now))
     .sort((a, b) => b.priority - a.priority);
-};
-
-/** The highest-priority live promotion flagged for the site-wide popup. */
-export const getActivePopupPromotion = (now: Date = new Date()): Promotion | null => {
-  return getActivePromotions(now).find(promo => promo.showPopup) ?? null;
 };

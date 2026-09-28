@@ -58,12 +58,12 @@ The project has a strong focus on SEO:
 - Payment links configured in `/data/zeffy-links.ts`
 - Component implementation in `/components/ZeffyPaymentButton.tsx`
 
-### Promotions & Event Popups
+### Promotions & Event Feed
 
 - Time-boxed promotions live in `/data/promotions/` (one file per promotion, registered in `index.ts`)
-- The site-wide popup (`WelcomeModal`, mounted in `app/layout.tsx`) shows the top live promotion with `showPopup: true`
-- Every promotion **must** have a valid `endDate`. Visibility is checked in the browser, so popups stop on their own after the event, and invalid dates fail closed
-- Zeffy's `zeffy-form-link` attribute only works on elements present at page load; for popups and dialogs use `zeffyFormUrl` / `ZeffyFormModal`
+- They are listed in the homepage hero's "What's On" feed (`EventFeed`, data in `/data/feed.ts`), soonest `eventStart` first. No page-load popups
+- Every promotion **must** have a valid `endDate`. Visibility is checked in the browser, so events drop off on their own afterwards, and invalid dates fail closed
+- Zeffy's `zeffy-form-link` attribute only works on elements present at page load; for client components and dialogs use `zeffyFormUrl` / `ZeffyFormModal`
 - Remove the promotion file and its Zeffy links after the event
 - Full checklist: `docs/PROMOTIONS.md`
 

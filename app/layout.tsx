@@ -3,7 +3,6 @@ import { Analytics } from '@vercel/analytics/react'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import ArticleDrawerWrapper from '../components/layout/ArticleDrawerWrapper'
-import WelcomeModal from '../components/feature/promotion/WelcomeModal'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -146,7 +145,6 @@ export default function RootLayout({
           </main>
           <Footer />
           <ArticleDrawerWrapper />
-          <WelcomeModal />
           <Analytics />
         </ThemeProvider>
       </body>
